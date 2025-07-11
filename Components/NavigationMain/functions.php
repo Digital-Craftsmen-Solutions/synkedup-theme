@@ -15,7 +15,7 @@ add_action('init', function (): void {
 add_filter('Flynt/addComponentData?name=NavigationMain', function (array $data): array {
     $data['menu'] = Timber::get_menu('navigation_main') ?? Timber::get_pages_menu();
     $data['logo'] = [
-        'src' => get_theme_mod('custom_logo') ? wp_get_attachment_image_url(get_theme_mod('custom_logo'), 'full') : Asset::requireUrl('assets/images/logo.svg'),
+        'src' => get_theme_mod('custom_logo') ? wp_get_attachment_image_url(get_theme_mod('custom_logo'), 'full') : Asset::requireUrl('assets/images/logo-light.svg'),
         'alt' => get_bloginfo('name')
     ];
 
