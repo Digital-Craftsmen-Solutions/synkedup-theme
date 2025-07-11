@@ -22,6 +22,7 @@ const watchFiles = [
   'templates/**/*',
   'lib/**/*',
   'inc/**/*',
+  'assets/**/*',
   './Components/**/*.{php,twig}'
 ]
 
@@ -49,15 +50,15 @@ export default defineConfig(({ mode }) => {
       }
     },
     plugins: [
-      flynt({ dest, host }), 
+      flynt({ dest, host }),
       FullReload(watchFiles)
     ],
     server: {
       https: isSecure
         ? {
-            key: fs.readFileSync(env.VITE_DEV_SERVER_KEY),
-            cert: fs.readFileSync(env.VITE_DEV_SERVER_CERT)
-          }
+          key: fs.readFileSync(env.VITE_DEV_SERVER_KEY),
+          cert: fs.readFileSync(env.VITE_DEV_SERVER_CERT)
+        }
         : false,
       host: 'localhost' // preserve conflicts with IpV6
     },

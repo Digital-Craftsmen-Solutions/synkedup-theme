@@ -2,7 +2,7 @@
 export default {
   content: [
     './assets/**/*.{js,ts,jsx,tsx,scss}',
-    './Components/**/*.{twig,php}',    
+    './Components/**/*.{twig,php}',
     './templates/**/*.{twig,php}',
     './lib/**/*.{twig,php}',
     './inc/**/*.{twig,php}',

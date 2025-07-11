@@ -28,7 +28,7 @@
     border-radius: 50%;
     inline-size: var(--button-width);
 
-    @media (min-width: $breakpoint-tablet) {
+    @media (min-width: $tablet) {
       --button-width: 80px;
       --button-height: 80px;
     }
@@ -40,7 +40,7 @@
     border-inline-start: 18px solid var(--color-background);
     inset-inline-start: calc(50% + 2px);
 
-    @media (min-width: $breakpoint-tablet) {
+    @media (min-width: $tablet) {
       border-block-end-width: 17px;
       border-block-start-width: 17px;
       border-inline-start-width: 27px;
@@ -49,6 +49,7 @@
   }
 
   &:hover {
+
     &::before,
     &::after {
       scale: 1.1;

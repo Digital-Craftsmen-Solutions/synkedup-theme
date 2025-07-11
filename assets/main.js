@@ -22,3 +22,11 @@ window.customElements.define(
   'flynt-component',
   FlyntComponent
 )
+
+import '@preline/accordion';
+import '@preline/carousel';
+import '@preline/dropdown';
+import '@preline/overlay';
+import '@preline/tabs';
+import '@preline/tooltip';
+import '@preline/collapse';

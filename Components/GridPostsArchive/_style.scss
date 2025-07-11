@@ -8,11 +8,11 @@ flynt-component[name='GridPostsArchive'] {
     list-style: none;
     padding: 0;
 
-    @media (min-width: $breakpoint-tablet) {
+    @media (min-width: $tablet) {
       --grid-columns: 2;
     }
 
-    @media (min-width: $breakpoint-tablet-horizontal) {
+    @media (min-width: $large) {
       --grid-columns: 3;
     }
   }

@@ -1,7 +1,25 @@
-<ul class="menu">
-  {% for item in items %}
-    <li class="item {{- item.current ? ' current-menu-item' }}">
-      <a class="link" href="{{ item.link|e('esc_url') }}" {{- item.is_external or item.is_target_blank ? ' target="_blank" rel="noopener noreferrer"' -}}>{{ item.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
+<div id="hs-pro-hcail" class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow lg:block lg:w-auto lg:basis-auto lg:order-2 lg:col-span-8" aria-labelledby="hs-pro-hcail-collapse">
+	<div class="flex flex-col gap-y-4 gap-x-0 mt-5 lg:flex-row lg:justify-center lg:items-center lg:gap-y-0 lg:gap-x-7 lg:mt-0">
+		{% for item in items %}
+			{% if item.children|default([])|length > 0 %}
+				<div class="hs-dropdown [--strategy:static] lg:[--strategy:absolute] [--adaptive:none]   [--is-collapse:true] sm:[--is-collapse:false] ">
+					<button id="hs-mega-menu" type="button" class="hs-dropdown-toggle sm:p-2 flex items-center w-full text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600" aria-haspopup="menu" aria-expanded="false" aria-label="{{ item.title }}">
+						{{ item.title }}
+						<svg class="hs-dropdown-open:-rotate-180 sm:hs-dropdown-open:rotate-0 duration-300 ms-auto sm:ms-1 shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+					</button>
+					<div class="hs-dropdown-menu sm:transition-[opacity,margin] sm:ease-in-out sm:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 w-full hidden z-100000  top-full start-0 min-w-60 bg-white sm:shadow-md rounded-lg py-2 sm:px-2 before:absolute" role="menu" aria-orientation="vertical" aria-labelledby="hs-mega-menu">
+						<div class="grid grid-cols-3 gap-y-2 sm:gap-x-4">
+							{% for child in item.children %}
+								{% include 'Partials/_submenu-card.twig' with {'child': child} only %}
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<div>
+					<a href="{{ item.link|e('esc_url') }}" {{- item.is_external or item.is_target_blank ? ' target="_blank" rel="noopener noreferrer"' -}} class="inline-block text-black hover:text-gray-600 focus:outline-hidden focus:text-gray-600" aria-current="page">{{ item.title }}</a>
+				</div>
+			{% endif %}
+		{% endfor %}
+	</div>
+</div>

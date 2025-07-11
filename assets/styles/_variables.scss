@@ -1,35 +1,36 @@
-:root,
-[data-theme="reset"] {
-  --color-accent: hsla(212, 100%, 45%, 1);
-  --color-background: hsla(0, 0%, 100%, 1);
-  --color-background-secondary: hsla(0, 0%, 19%, 0.08);
+@theme {
+  --color-primary: hsla(12, 100%, 60%, 1);
+  --color-text: hsla(0, 0%, 0%, 0.65);
+  --color-text-muted: hsla(0, 0%, 19%, 0.8);
+  --color-accent: hsla(176, 64%, 61%, 1);
+  --color-heading: hsla(0, 0%, 0%, 0.88);
+  --color-background: #FFFFFF;
+  --color-dark-blue: hsla(209, 100%, 8%, 1);
+  --color-dark: hsla(0, 0%, 4%, 1);
+  --color-shade: #F5F8FA;
   --color-border: hsl(0, 0%, 90%);
   --color-border-secondary: hsl(0, 0%, 19%, 0.68);
-  --color-text: hsl(0, 0%, 19%, 1);
-  --color-text-muted: hsla(0, 0%, 19%, 0.8);
-  --color-error: hsl(343, 98%, 46%);
+  --color-error: hsla(359, 78%, 59%, 1);
+  // --breakpoint-sm: $mobile;
+  // --breakpoint-md: $tablet;
+  // --breakpoint-lg: $large;
+  // --breakpoint-xl: $desktop;
+  // --breakpoint-2xl: $monitor;
 }
 
+// :root,
+// [data-theme="reset"] {
+// }
+
 [data-theme="light"] {
-  --color-background: hsl(212, 76%, 97%);
-  --color-text: hsla(212, 100%, 15%, 1);
-  --color-border: hsla(212, 100%, 15%, 0.7);
-  --color-border-secondary: var(--color-border);
+  --color-background: #FFFFFF;
+  --color-text: hsla(0, 0%, 0%, 0.65);
 }
 
 [data-theme="dark"] {
-  --color-accent: hsla(79, 100%, 60%, 1);
-  --color-background: hsla(212, 100%, 15%, 1);
-  --color-background-secondary: hsl(228, 56%, 98%, 0.06);
-  --color-border-secondary: hsl(0, 0%, 90%, 0.68);
-  --color-text: hsla(0, 0%, 100%, 1);
-  --color-text-muted: hsl(0, 0%, 100%, 0.8);
+  --color-background: hsla(0, 0%, 4%, 1);
+  --color-text: #fff;
 }
-
-$breakpoint-mobile-horizontal: 480px;
-$breakpoint-tablet: 768px;
-$breakpoint-tablet-horizontal: 1024px;
-$breakpoint-desktop: 1280px;
 
 :root {
   /**
@@ -37,10 +38,10 @@ $breakpoint-desktop: 1280px;
    * https://meowni.ca/font-style-matcher/ or
    * https://github.com/pixel-point/fontpie
    */
-  --font-family-heading: 'Public Sans', 'Trebuchet MS', sans-serif;
-  --font-family-text: 'Public Sans', 'Trebuchet MS', sans-serif;
-  --font-size-body: 1.125rem;
-  --font-size-body-small: 1rem;
+  --font-family-heading: 'Inter', 'Fallback', Arial;
+  --font-family-text: 'Inter', 'Fallback', Arial;
+  --font-size-body: 1rem;
+  --font-size-body-small: 0.75rem;
   --flow-space: 1.5625rem;
   --column-gap: clamp(2.5rem, 2.5vw + 1.75rem, 3.75rem);
 
@@ -52,3 +53,12 @@ $breakpoint-desktop: 1280px;
   --container-spacing: clamp(1rem, 2.5vw + 0.25rem, 2.25rem);
   --component-spacing: clamp(3rem, 6.5vw + 1.05rem, 6.25rem);
 }
+
+// Breakpoints
+$mobile: 40rem;
+$tablet: 48rem;
+$large: 64rem;
+$desktop: 80rem;
+$monitor: 96rem;
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));

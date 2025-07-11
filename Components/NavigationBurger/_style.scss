@@ -2,7 +2,7 @@ flynt-component[name='NavigationBurger'] {
   --navigation-height: 64px;
   block-size: var(--navigation-height);
 
-  @media (min-width: $breakpoint-tablet-horizontal) {
+  @media (min-width: $large) {
     display: none;
   }
 
@@ -38,6 +38,7 @@ flynt-component[name='NavigationBurger'] {
 
 // Overwriting wp defaults to keep admin bar fixed
 @media screen and (max-width: 600px) {
+
   // stylelint-disable-next-line selector-max-id
   #wpadminbar {
     position: fixed;

@@ -92,3 +92,7 @@ function body_scripts()
 // add_action( 'wp_body_open', __NAMESPACE__ . '\\body_scripts', 10);
 
 add_filter('gform_confirmation_anchor_51', '__return_false');
+
+add_action('wp_enqueue_scripts', function () {
+    wp_dequeue_style('global-styles');
+}, 100);

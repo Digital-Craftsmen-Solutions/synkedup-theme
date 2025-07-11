@@ -5,7 +5,7 @@ flynt-component[name='NavigationFooter'] {
     padding-block: var(--component-spacing);
     text-align: center;
 
-    @media (min-width: $breakpoint-tablet) {
+    @media (min-width: $tablet) {
       display: flex;
       flex-direction: row-reverse;
       justify-content: space-between;
@@ -17,7 +17,7 @@ flynt-component[name='NavigationFooter'] {
     margin-block: var(--flow-space) 0;
     margin-inline: 0;
 
-    @media (min-width: $breakpoint-tablet) {
+    @media (min-width: $tablet) {
       margin: 0;
     }
   }

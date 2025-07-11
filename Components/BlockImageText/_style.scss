@@ -1,12 +1,12 @@
 flynt-component[name='BlockImageText'] {
-  @media (min-width: $breakpoint-tablet-horizontal) {
+  @media (min-width: $large) {
     .container {
       align-items: center;
       display: flex;
       gap: var(--column-gap);
       justify-content: space-around;
 
-      > * {
+      >* {
         flex-basis: 50%;
         margin-block-start: 0;
       }

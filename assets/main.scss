@@ -1,10 +1,12 @@
-// @import
-  // 'styles/reset',
-  // 'styles/variables',
-  // 'styles/fonts',
-  // 'styles/base';
+@import "tailwindcss";
+@import 'styles/variables';
+@import 'styles/fonts';
+
+@source '../node_modules/preline/dist/*.js';
+/* */
+@import '../node_modules/preline/variants.css';
+
+@import 'styles/base';
 
 // stylelint-disable-next-line scss/load-no-partial-leading-underscore, scss/at-import-partial-extension-disallowed-list
 // @import '../Components/**/_style.scss';
-
-@import "tailwindcss";
