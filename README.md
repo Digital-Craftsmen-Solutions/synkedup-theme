@@ -1,8 +1,7 @@
-![SynkedUP – WordPress Theme](.github/assets/banner.svg 'SynkedUP – WordPress Theme')
+# SynkedUP – WordPress Theme
 
 
-Based off
-[Flynt](https://flyntwp.com/) is a lightning-fast WordPress Starter Theme for component-based development with [ACF Pro](#advanced-custom-fields).
+ Lightning-fast WordPress Theme for component-based development with [ACF Pro](#advanced-custom-fields) base off [Flynt](https://flyntwp.com/).
 
 ## Dependencies
 
