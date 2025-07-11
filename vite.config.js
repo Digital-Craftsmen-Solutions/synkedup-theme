@@ -4,8 +4,9 @@ import flynt from './vite-plugin-flynt'
 import globImporter from 'node-sass-glob-importer'
 import FullReload from 'vite-plugin-full-reload'
 import fs from 'fs'
+import tailwindcss from '@tailwindcss/vite'
 
-const wordpressHost = 'http://localhost:3000'
+const wordpressHost = 'http://synkedup.local'
 
 const dest = './dist'
 const entries = [
@@ -38,16 +39,19 @@ export default defineConfig(({ mode }) => {
           importer: globImporter()
         }
       },
-      postcss: {
-        plugins: [autoprefixer()]
-      }
+      // postcss: {
+      //   plugins: [autoprefixer()]
+      // }
     },
     resolve: {
       alias: {
         '@': __dirname
       }
     },
-    plugins: [flynt({ dest, host }), FullReload(watchFiles)],
+    plugins: [
+      flynt({ dest, host }), 
+      FullReload(watchFiles)
+    ],
     server: {
       https: isSecure
         ? {

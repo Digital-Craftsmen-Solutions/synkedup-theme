@@ -1,11 +1,7 @@
-![Flynt – WordPress Starter Theme for Developers](.github/assets/banner.svg 'Flynt – WordPress Starter Theme for Developers')
+![SynkedUP – WordPress Theme](.github/assets/banner.svg 'SynkedUP – WordPress Theme')
 
-# Fall in love with WordPress (again)
 
-[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-[![Build Status](https://travis-ci.org/flyntwp/flynt.svg?branch=master)](https://travis-ci.org/flyntwp/flynt)
-[![Code Quality](https://img.shields.io/scrutinizer/g/flyntwp/flynt.svg)](https://scrutinizer-ci.com/g/flyntwp/flynt/?branch=master)
-
+Based off
 [Flynt](https://flyntwp.com/) is a lightning-fast WordPress Starter Theme for component-based development with [ACF Pro](#advanced-custom-fields).
 
 ## Dependencies
@@ -23,20 +19,20 @@
 3. Navigate to the theme folder and run the following command in your terminal:
 
 ```
-# wp-content/themes/flynt
+# wp-content/themes/theme
 composer install
 npm install
 npm run build
 ```
 
-4. Open the WordPress backend and activate the Flynt theme.
+4. Open the WordPress backend and activate the theme.
 
 ## Usage
 
 To start developing run the following command:
 
 ```
-# wp-content/themes/flynt
+# wp-content/themes/theme
 npm start
 ```
 
