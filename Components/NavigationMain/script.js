@@ -1,4 +1,5 @@
 import { buildRefs } from '@/assets/scripts/helpers.js'
+import { HSCollapse } from 'preline'
 
 export default function (el) {
   const isDesktopMediaQuery = window.matchMedia('(min-width: 1024px)')
@@ -19,23 +20,20 @@ export default function (el) {
     document.documentElement.style.scrollPaddingTop = `${scrollPaddingTop}px`
   }
 
-  const refs = buildRefs(el)
-  const collapse = new HSCollapse(document.querySelector('#hs-main-megamenu'));
-  console.log('NavigationMain component initialized');
-
+  const collapse = HSCollapse.getInstance('#hs-main-megamenu-collapse', true)
+  if (!collapse) {
+    console.warn('Collapse not initialized yet')
+    return
+  }
+  console.log(collapse);
   if (collapse) {
-    collapse.on('open', () => {
-      const nav = document.querySelector('#NavigationMain');
-      if (nav) {
-        nav.classList.add('collapse-open');
-      }
+    collapse.element.on('open', () => {
+      document.querySelector('#NavigationMain')?.classList.add('collapse-open')
     });
 
-    collapse.on('close', () => {
-      const nav = document.querySelector('#NavigationMain');
-      if (nav) {
-        nav.classList.remove('collapse-open');
-      }
+    collapse.element.on('hide', () => {
+      document.querySelector('#NavigationMain')?.classList.remove('collapse-open')
     });
   }
+
 }
