@@ -14,12 +14,14 @@ class Options
         'translatable' => [
             'title' => 'Translatable Options',
             'icon' => 'dashicons-translation',
-            'translatable' => true
+            'translatable' => true,
+            'hidden' => true,
         ],
         'global' => [
             'title' => 'Global Options',
             'icon' => 'dashicons-admin-site',
-            'translatable' => false
+            'translatable' => false,
+            'hidden' => false,
         ]
     ];
 
@@ -99,13 +101,16 @@ class Options
             $title = _x($option['title'], 'title', 'flynt');
             $slug = ucfirst($optionType) . 'Options';
 
-            acf_add_options_page([
-                'page_title'  => $title,
-                'menu_title'  => $title,
-                'redirect'    => true,
-                'menu_slug'   => $slug,
-                'icon_url'    => $option['icon']
-            ]);
+            if (!$option['hidden']) {
+
+                acf_add_options_page([
+                    'page_title' => $title,
+                    'menu_title' => $title,
+                    'redirect' => true,
+                    'menu_slug' => $slug,
+                    'icon_url' => $option['icon']
+                ]);
+            }
 
             static::$optionPages[$optionType] = [
                 'menu_slug' => $slug,

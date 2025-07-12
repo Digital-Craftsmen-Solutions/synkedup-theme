@@ -5,6 +5,7 @@ namespace Flynt\Assets;
 use Flynt\Utils\Asset;
 use Flynt\ComponentManager;
 use Flynt\Utils\ScriptAndStyleLoader;
+use Flynt\Utils\Options;
 
 call_user_func(function (): void {
     $loader = new ScriptAndStyleLoader();
@@ -47,11 +48,31 @@ add_action('admin_enqueue_scripts', function (): void {
 // 	}
 // });
 
-function ele_disable_page_title($return)
-{
-    return false;
-}
-// add_filter( 'hello_elementor_page_title', 'ele_disable_page_title' );
+
+Options::addGlobal('Scripts', [
+    [
+        'label' => __('Header Scripts', 'flynt'),
+        'name' => 'headerScripts',
+        'type' => 'textarea',
+        'rows' => 5,
+        'new_lines' => 'wpautop',
+    ],
+    [
+        'label' => __('Body Scripts', 'flynt'),
+        'name' => 'bodyScripts',
+        'type' => 'textarea',
+        'rows' => 5,
+        'new_lines' => 'wpautop',
+    ],
+    [
+        'label' => __('Footer Scripts', 'flynt'),
+        'name' => 'footerScripts',
+        'type' => 'textarea',
+        'rows' => 5,
+        'new_lines' => 'wpautop',
+    ],
+]);
+
 
 function wpb_search_filter($query)
 {
@@ -61,35 +82,7 @@ function wpb_search_filter($query)
     return $query;
 }
 
-// add_filter('pre_get_posts', __NAMESPACE__ . '\\wpb_search_filter');
-
-if (function_exists('acf_add_options_page')) {
-    acf_add_options_page();
-}
-
-function footer_scripts()
-{
-    if ($footer_scripts = get_field('footer_scripts', 'options')) {
-        echo $footer_scripts;
-    }
-}
-// add_action( 'wp_footer', __NAMESPACE__ . '\\footer_scripts', 10);
-
-function header_scripts()
-{
-    if ($header_scripts = get_field('header_scripts', 'options')) {
-        echo $header_scripts;
-    }
-}
-// add_action( 'wp_head', __NAMESPACE__ . '\\header_scripts', 10);
-
-function body_scripts()
-{
-    if ($body_scripts = get_field('body_scripts', 'options')) {
-        echo $body_scripts;
-    }
-}
-// add_action( 'wp_body_open', __NAMESPACE__ . '\\body_scripts', 10);
+add_filter('pre_get_posts', __NAMESPACE__ . '\\wpb_search_filter');
 
 add_filter('gform_confirmation_anchor_51', '__return_false');
 

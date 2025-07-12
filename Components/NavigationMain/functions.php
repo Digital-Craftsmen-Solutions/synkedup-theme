@@ -18,9 +18,27 @@ add_filter('Flynt/addComponentData?name=NavigationMain', function (array $data):
         'src' => get_theme_mod('custom_logo') ? wp_get_attachment_image_url(get_theme_mod('custom_logo'), 'full') : Asset::requireUrl('assets/images/logo-light.svg'),
         'alt' => get_bloginfo('name')
     ];
-
+    $data['options'] = Options::getGlobal('MainNavigation');
     return $data;
 });
+
+Options::addGlobal('MainNavigation', [
+    [
+        'label' => __('Top Bar Announcement', 'flynt'),
+        'name' => 'topBarAnnouncement',
+        'type' => 'wysiwyg',
+        'media_upload' => 0,
+        'tabs' => 'visual,text',
+        'delay' => 0,
+        'instructions' => __('Optional announcement text to show at the top of the site.', 'flynt'),
+    ],
+    [
+        'label' => __('CTA Button', 'flynt'),
+        'name' => 'ctaButton',
+        'type' => 'link',
+        'return_format' => 'array',
+    ],
+]);
 
 Options::addTranslatable('NavigationMain', [
     [
