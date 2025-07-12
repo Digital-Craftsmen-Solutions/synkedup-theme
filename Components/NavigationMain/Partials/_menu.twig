@@ -1,4 +1,4 @@
-<div id="hs-pro-hcail" class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow lg:block lg:w-auto lg:basis-auto lg:order-2 lg:col-span-8" aria-labelledby="hs-pro-hcail-collapse">
+<div id="hs-main-megamenu" data-ref="megamenu" class="text-sm lg:text-base hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow lg:block lg:w-auto lg:basis-auto lg:order-2 lg:col-span-8" aria-labelledby="hs-main-megamenu-collapse">
 	<div class="flex flex-col gap-y-4 gap-x-0 mt-5 lg:flex-row lg:justify-center lg:items-center lg:gap-y-0 lg:gap-x-7 lg:mt-0">
 		{% for item in items %}
 			{% if item.children|default([])|length > 0 %}
@@ -7,9 +7,9 @@
 						{{ item.title }}
 						<svg class="hs-dropdown-open:-rotate-180 sm:hs-dropdown-open:rotate-0 duration-300 ms-auto sm:ms-1 shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
 					</button>
-					<div class="hs-dropdown-menu sm:transition-[opacity,margin] ease-in-out duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 w-full hidden z-100000 top-full start-0 bg-dark-blue/95 shadow-lg before:absolute" role="menu" aria-orientation="vertical" aria-labelledby="hs-mega-menu">
-						<div class="max-w-7xl w-full min-w-60 py-6 px-2 mx-auto">
-							<div class="grid grid-cols-2 md:grid-cols-3 gap-y-2 sm:gap-x-4">
+					<div class="hs-dropdown-menu sm:transition-[opacity,margin] ease-in-out duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 w-full hidden z-100000 top-full start-0 lg:bg-dark-blue/95 shadow-lg before:absolute" role="menu" aria-orientation="vertical" aria-labelledby="hs-mega-menu">
+						<div class="max-w-7xl w-full min-w-60 pt-4 lg:py-6 px-0 lg:px-2 mx-auto">
+							<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-2 sm:gap-x-2 lg:gap-x-4">
 								{% for child in item.children %}
 									{% include 'Partials/_submenu-card.twig' with {'child': child} only %}
 								{% endfor %}

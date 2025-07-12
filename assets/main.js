@@ -1,4 +1,13 @@
+
 import 'vite/modulepreload-polyfill'
+import '@preline/accordion';
+import '@preline/carousel';
+import '@preline/dropdown';
+import '@preline/overlay';
+import '@preline/tabs';
+import '@preline/tooltip';
+import '@preline/collapse';
+
 import FlyntComponent from './scripts/FlyntComponent'
 
 import 'lazysizes'
@@ -22,11 +31,3 @@ window.customElements.define(
   'flynt-component',
   FlyntComponent
 )
-
-import '@preline/accordion';
-import '@preline/carousel';
-import '@preline/dropdown';
-import '@preline/overlay';
-import '@preline/tabs';
-import '@preline/tooltip';
-import '@preline/collapse';
