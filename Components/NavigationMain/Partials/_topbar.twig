@@ -1,17 +1,13 @@
 <div class="flex flex-wrap lg:justify-start lg:flex-nowrap w-full bg-dark-blue">
 	<div class="mx-auto grid max-w-7xl w-full grid-cols-8 gap-6 py-3 px-4 md:px-6 lg:px-8 text-sm">
-		<div class="items-center col-span-8 lg:col-span-6 text-white">
+		<div class="items-center col-span-8 lg:col-span-6 text-white text-center lg:text-start">
 			Promote an upcoming webinar
 			<a href="#" class="">
 				here
 			</a>
 		</div>
 		<div class="items-center justify-end col-span-2 gap-6 hidden lg:block">
-			<div class="flex items-center justify-end gap-4">
-				<a href="#" class="transition-colors duration-300 hover:text-orange-500">F</a>
-				<a href="#" class="transition-colors duration-300 hover:text-orange-500">T</a>
-				<a href="#" class="transition-colors duration-300 hover:text-orange-500">I</a>
-			</div>
+			{% include 'Partials/_socials.twig' only %}
 		</div>
 	</div>
 </div>

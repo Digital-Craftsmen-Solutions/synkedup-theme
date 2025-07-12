@@ -7,15 +7,7 @@
 						{{ item.title }}
 						<svg class="hs-dropdown-open:-rotate-180 sm:hs-dropdown-open:rotate-0 duration-300 ms-auto sm:ms-1 shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
 					</button>
-					<div class="hs-dropdown-menu sm:transition-[opacity,margin] ease-in-out duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 w-full hidden z-100000 top-full start-0 lg:bg-dark-blue/90 shadow-lg before:absolute lg:backdrop-blur-sm" role="menu" aria-orientation="vertical" aria-labelledby="hs-mega-menu">
-						<div class="max-w-7xl w-full min-w-60 pt-4 lg:py-6 px-0 lg:px-2 mx-auto">
-							<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-2 sm:gap-x-2 lg:gap-x-4">
-								{% for child in item.children %}
-									{% include 'Partials/_submenu-card.twig' with {'child': child} only %}
-								{% endfor %}
-							</div>
-						</div>
-					</div>
+					{% include 'Partials/_submenu.twig' with {'item': item} only %}
 				</div>
 			{% else %}
 				<div class="py-3 lg:py-0">
@@ -23,5 +15,8 @@
 				</div>
 			{% endif %}
 		{% endfor %}
+	</div>
+	<div class="lg:hidden flex flex-col my-2 items-center">
+		{% include 'Partials/_socials.twig' only %}
 	</div>
 </div>

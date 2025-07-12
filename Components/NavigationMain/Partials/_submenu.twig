@@ -1,0 +1,17 @@
+<div class="hs-dropdown-menu sm:transition-[opacity,margin] ease-in-out duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 w-full hidden z-100000 top-full start-0 lg:bg-dark-blue/90 shadow-lg before:absolute lg:backdrop-blur-sm" role="menu" aria-orientation="vertical" aria-labelledby="hs-mega-menu">
+	<div class="max-w-7xl w-full min-w-60 pt-4 lg:py-6 px-0 lg:px-2 mx-auto">
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-2 sm:gap-x-2 lg:gap-x-4">
+			{% for child in item.children %}
+				<a class="group flex gap-y-2 lg:gap-y-6 size-full focus:outline-hidden hover:bg-dark-blue-900 focus:bg-dark-blue-900 lg:hover:bg-dark-blue/70 lg:focus:bg-dark-blue/70 p-2 sm:p-4 lg:p-5 rounded-lg transition-colors" href="{{ child.link|e('esc_url') }}" {{- child.is_external or child.is_target_blank ? ' target="_blank" rel="noopener noreferrer"' -}}>
+					{% include '/Common/Partials/_icon.twig' with { name: child.icon|default('link') , class: 'shrink-0 size-4 lg:size-6  me-4 lg:me-6 dark:text-neutral-200 text-primary' } %}
+					<div>
+						<div>
+							<div class="block font-medium text-white lg:mb-2 group-hover:underline group-focus:underline">{{ child.title }}</div>
+							<p class="text-white/65 text-sm">{{ child.description }}</p>
+						</div>
+					</div>
+				</a>
+			{% endfor %}
+		</div>
+	</div>
+</div>
