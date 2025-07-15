@@ -1,12 +1,71 @@
+{# <flynt-component name="NavigationFooter">
+	<div class="container">
+		{% if menu %}
+			<nav class="navigation" aria-label="{{ labels.ariaLabel }}">
+				{% include 'Partials/_menu.twig' with {'items': menu.get_items, 'level': '0', 'maxLevel': maxLevel} only %}
+			</nav>
+		{% endif %}
+		{% if contentHtml %}
+			<div class="content">{{ contentHtml|e('wp_kses_post') }}</div>
+		{% endif %}
+	</div>
+</flynt-component> #}
+
 <flynt-component name="NavigationFooter">
-  <div class="container">
-    {% if menu %}
-      <nav class="navigation" aria-label="{{ labels.ariaLabel }}">
-        {% include 'Partials/_menu.twig' with {'items': menu.get_items, 'level': '0', 'maxLevel': maxLevel} only %}
-      </nav>
-    {% endif %}
-    {% if contentHtml %}
-      <div class="content">{{ contentHtml|e('wp_kses_post') }}</div>
-    {% endif %}
-  </div>
+	<div class="w-full max-w-334 mx-auto px-4 lg:px-8 my-5 lg:my-10">
+		<nav aria-label="{{ labels.ariaLabel }}" class="bg-white border border-border rounded-3xl py-5 lg:py-10 px-4 lg:px-8">
+
+			<div class="md:hidden mb-3">
+				{% include '/Components/NavigationMain/Partials/_logo.twig' with {'logo': logo, 'site': site} only %}
+			</div>
+
+			<!-- Grid -->
+			<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 mb-8 lg:mb-10 ">
+				<div class="col-span-full hidden lg:col-span-1 lg:block">
+					{% include '/Components/NavigationMain/Partials/_logo.twig' with {'logo': logo, 'site': site} only %}
+					<div class="ms-1 sm:ms-2"></div>
+				</div>
+				<!-- End Col -->
+
+				{% for menu in [menu1, menu2, menu3, menu4] %}
+					<div>
+						<h4 class="text-sm font-medium text-heading">{{ menu.title }}</h4>
+						<div class="mt-3 grid space-y-3 text-sm">
+							{% for item in menu.items %}
+								<p>
+									<a class="inline-flex gap-x-2 text-text hover:underline hover:text-heading focus:outline-hidden focus:underline focus:text-heading" href="{{ item.link|e('esc_url') }}" {{ item.is_external or item.is_target_blank ? 'target="_blank" rel="noopener noreferrer"' }}>
+										{{ item.title }}
+									</a>
+								</p>
+							{% endfor %}
+						</div>
+					</div>
+				{% endfor %}
+
+
+			</div>
+			<!-- End Grid -->
+
+			<div class="pt-5 mt-5 border-t border-gray-200">
+				<div class="flex flex-col sm:flex-row sm:justify-between gap-3">
+
+					<div class="flex">
+						{% include '/Components/NavigationMain/Partials/_socials.twig' only %}
+					</div>
+
+					<div class="text-sm flex flex-col sm:flex-row gap-3">
+						{% for item in menu5.items %}
+							<a class="text-text hover:underline hover:text-heading focus:outline-hidden focus:underline focus:text-heading" href="{{ item.link|e('esc_url') }}" {{ item.is_external or item.is_target_blank ? 'target="_blank" rel="noopener noreferrer"' }}>
+								{{ item.title }}
+							</a>
+						{% endfor %}
+						<div class="text-gray-600">{{ copyright }}</div>
+					</div>
+
+				</div>
+			</div>
+		</nav>
+	</div>
 </flynt-component>
+
+{% include '/Common/Partials/_json.twig' with {value: menu5, varName: 'menu5'} %}

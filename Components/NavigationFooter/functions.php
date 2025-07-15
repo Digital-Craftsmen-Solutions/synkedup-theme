@@ -2,18 +2,31 @@
 
 namespace Flynt\Components\NavigationFooter;
 
+use Flynt\Utils\Asset;
 use Flynt\Utils\Options;
 use Timber\Timber;
 
 add_action('init', function (): void {
     register_nav_menus([
-        'navigation_footer' => __('Navigation Footer', 'flynt')
+        'navigation_footer_1' => __('Navigation Footer Column 1', 'flynt'),
+        'navigation_footer_2' => __('Navigation Footer Column 2', 'flynt'),
+        'navigation_footer_3' => __('Navigation Footer Column 3', 'flynt'),
+        'navigation_footer_4' => __('Navigation Footer Column 4', 'flynt'),
+        'navigation_footer_5' => __('Navigation Footer Bottom', 'flynt'),
     ]);
 });
 
 add_filter('Flynt/addComponentData?name=NavigationFooter', function (array $data): array {
-    $data['menu'] = Timber::get_menu('navigation_footer') ?? Timber::get_pages_menu();
-
+    $data['menu1'] = Timber::get_menu('navigation_footer_1') ?? (object) ['title' => 'Footer 1', 'items' => []];
+    $data['menu2'] = Timber::get_menu('navigation_footer_2') ?? array();
+    $data['menu3'] = Timber::get_menu('navigation_footer_3') ?? array();
+    $data['menu4'] = Timber::get_menu('navigation_footer_4') ?? array();
+    $data['menu5'] = Timber::get_menu('navigation_footer_5') ?? array();
+    $data['logo'] = [
+        'src' => Asset::requireUrl('assets/images/logo.svg'),
+        'alt' => get_bloginfo('name')
+    ];
+    $data['copyright'] = '© 2025 SynkedUp';
     return $data;
 });
 

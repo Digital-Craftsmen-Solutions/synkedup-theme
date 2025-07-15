@@ -6,8 +6,13 @@
   // Applies a consistent margin for most common elements.
   :where(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, p, .paragraph, ul, ol, pre, table, figure, blockquote, form, fieldset, dl, address, details, hr, aside, video) {
     +* {
-      margin-block-start: var(--flow-space);
+      // margin-block-start: var(--flow-space);
     }
+  }
+
+  body {
+    background-color: var(--color-shade);
+    border: none;
   }
 
   body,

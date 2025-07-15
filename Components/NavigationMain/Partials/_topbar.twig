@@ -5,7 +5,7 @@
 				{{ options.topBarAnnouncement|e('wp_kses_post') }}
 			</div>
 			<div class="items-center justify-end col-span-2 gap-6 hidden lg:block">
-				{% include 'Partials/_socials.twig' only %}
+				{% include 'Partials/_socials.twig' with { isDark: true} %}
 			</div>
 		</div>
 	</div>

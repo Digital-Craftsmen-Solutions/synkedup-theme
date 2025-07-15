@@ -17,8 +17,8 @@
   --color-dark-blue: hsla(209, 100%, 8%, 1);
   --color-dark-blue-900: hsla(209, 100%, 5%, 1);
   --color-dark: hsla(0, 0%, 4%, 1);
-  --color-shade: #F5F8FA;
-  --color-border: hsl(0, 0%, 90%);
+  --color-shade: #F5F7FD;
+  --color-border: #D9D9D9;
   --color-border-secondary: hsl(0, 0%, 19%, 0.68);
   --color-error: hsla(359, 78%, 59%, 1);
   // --breakpoint-sm: $mobile;
@@ -62,6 +62,8 @@
   --box-spacing: clamp(1rem, 2.50vw + 0.25rem, 2.25rem);
   --container-spacing: clamp(1rem, 2.5vw + 0.25rem, 2.25rem);
   --component-spacing: clamp(3rem, 6.5vw + 1.05rem, 6.25rem);
+
+  --color-shade: #F5F7FD;
 }
 
 // Breakpoints

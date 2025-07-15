@@ -16,7 +16,6 @@
 				<header class="mainHeader">
 					{% block header %}
 						{{ renderComponent('NavigationMain') }}
-						{# {{ renderComponent('NavigationBurger') }} #}
 					{% endblock %}
 				</header>
 				<main id="mainContent" class="mainContent" aria-label="{{- theme.labels.mainContentAriaLabel|e -}}">
@@ -34,7 +33,7 @@
 				</main>
 				<footer class="mainFooter">
 					{% block footer %}
-						{# {{ renderComponent('NavigationFooter') }} #}
+						{{ renderComponent('NavigationFooter') }}
 					{% endblock %}
 				</footer>
 			</div>

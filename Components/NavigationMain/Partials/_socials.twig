@@ -1,11 +1,13 @@
+{% set iconColorClass = isDark ? 'text-white/65' : 'text-black' %}
+
 <div class="flex items-center justify-end gap-4">
-	<a href="#" class="hover:opacity-75 focus:opacity-75">
-		{% include '/Common/Partials/_icon.twig' with { name: 'facebook', ariaLabel: 'Facebook Icon', class: 'shrink-0 size-5 text-white/65' } %}
+	<a href="https://www.facebook.com/synkedup/" target="_blank" rel="noopener noreferrer" class="hover:opacity-75 focus:opacity-75">
+		{% include '/Common/Partials/_icon.twig' with { name: 'facebook', ariaLabel: 'Facebook Icon', class: 'shrink-0 size-5 ' ~ iconColorClass } %}
 	</a>
-	<a href="#" class="hover:opacity-75 focus:opacity-75">
-		{% include '/Common/Partials/_icon.twig' with { name: 'instagram', ariaLabel: 'Instagram Icon', class: 'shrink-0 size-5 text-white/65' } %}
+	<a href="https://www.instagram.com/synkedup/?hl=en" target="_blank" rel="noopener noreferrer" class="hover:opacity-75 focus:opacity-75">
+		{% include '/Common/Partials/_icon.twig' with { name: 'instagram', ariaLabel: 'Instagram Icon', class: 'shrink-0 size-5 ' ~ iconColorClass } %}
 	</a>
-	<a href="#" class="hover:opacity-75 focus:opacity-75">
-		{% include '/Common/Partials/_icon.twig' with { name: 'linkedin', ariaLabel: 'LinkedIn Icon', class: 'shrink-0 size-5 text-white/65' } %}
+	<a href="https://www.linkedin.com/company/synkedup" target="_blank" rel="noopener noreferrer" class="hover:opacity-75 focus:opacity-75">
+		{% include '/Common/Partials/_icon.twig' with { name: 'linkedin', ariaLabel: 'LinkedIn Icon', class: 'shrink-0 size-5 ' ~ iconColorClass } %}
 	</a>
 </div>

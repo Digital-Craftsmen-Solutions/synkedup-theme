@@ -12,7 +12,8 @@ export default {
   safelist: [
   ],
   theme: {
-    extend: {},
+    extend: {
+    },
   },
   plugins: [],
 }
