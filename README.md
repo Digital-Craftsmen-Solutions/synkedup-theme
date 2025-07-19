@@ -1,5 +1,6 @@
 # SynkedUP – WordPress Theme
 
+nvm use v22
 
  Lightning-fast WordPress Theme for component-based development with [ACF Pro](#advanced-custom-fields) base off [Flynt](https://flyntwp.com/).
 

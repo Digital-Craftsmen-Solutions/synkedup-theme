@@ -26,7 +26,9 @@
     "replaceVersion": "run-s --silent checkVersion && npm i -g replace-in-files-cli && run-p --silent replaceVersion:*",
     "replaceVersion:style.css": "cross-env replace-in-files --regex='Version: (.*)' --replacement=Version:\\ $npm_package_version ./style.css",
     "replaceVersion:js": "cross-env replace-in-files --string='%%NEXT_VERSION%%' --replacement=$npm_package_version './**/*.js' '!./dist/**/*' '!./node_modules/**/*'",
-    "replaceVersion:php": "cross-env replace-in-files --string='%%NEXT_VERSION%%' --replacement=$npm_package_version './**/*.php' '!./dist/**/*' '!./node_modules/**/*' '!./vendor/**/*'"
+    "replaceVersion:php": "cross-env replace-in-files --string='%%NEXT_VERSION%%' --replacement=$npm_package_version './**/*.php' '!./dist/**/*' '!./node_modules/**/*' '!./vendor/**/*'",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.7.2",
@@ -44,6 +46,8 @@
     "rellax": "^1.12.1"
   },
   "devDependencies": {
+    "@storybook/addon-docs": "^9.0.17",
+    "@storybook/html-vite": "^9.0.17",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.11",
@@ -52,6 +56,7 @@
     "check-node-version": "^4.2.1",
     "cross-env": "^7.0.3",
     "eslint": "^9.2.0",
+    "eslint-plugin-storybook": "^9.0.17",
     "mkdirp": "^3.0.1",
     "node-sass-glob-importer": "^5.3.3",
     "npm-run-all": "^4.1.5",
@@ -59,6 +64,7 @@
     "rimraf": "^5.0.5",
     "sass": "^1.77.0",
     "standard": "^17.1.0",
+    "storybook": "^9.0.17",
     "stylelint": "^16.5.0",
     "stylelint-config-sass-guidelines": "^11.1.0",
     "stylelint-config-standard": "^36.0.0",
@@ -66,6 +72,7 @@
     "stylelint-scss": "^6.3.0",
     "stylelint-use-logical-spec": "^5.0.1",
     "tailwindcss": "^4.1.11",
+    "twig": "^1.17.1",
     "vite": "^5.2.11",
     "vite-plugin-full-reload": "^1.1.0"
   },
@@ -73,7 +80,10 @@
     "parser": "@babel/eslint-parser",
     "parserOptions": {
       "requireConfigFile": false
-    }
+    },
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   },
   "stylelint": {
     "extends": "stylelint-config-sass-guidelines",

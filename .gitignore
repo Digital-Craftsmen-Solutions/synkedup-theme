@@ -298,3 +298,6 @@ ehthumbs_vista.db
 *.lnk
 
 # End of https://www.gitignore.io/api/osx,node,linux,windows,phpstorm,composer,sublimetext,visualstudiocode
+
+*storybook.log
+storybook-static
