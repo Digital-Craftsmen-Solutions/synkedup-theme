@@ -10,7 +10,7 @@
 					{% include 'Partials/_submenu.twig' with {'item': item} only %}
 				</div>
 			{% else %}
-				<div class="py-3 lg:py-0">
+				<div class="py-3 lg:py-0 lg:text-center">
 					<a href="{{ item.link|e('esc_url') }}" {{- item.is_external or item.is_target_blank ? ' target="_blank" rel="noopener noreferrer"' -}} class="block lg:inline-block text-white hover:text-primary focus:outline-hidden focus:text-primary" aria-current="page">{{ item.title }}</a>
 				</div>
 			{% endif %}

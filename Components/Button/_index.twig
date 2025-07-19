@@ -1,0 +1,13 @@
+{% if button and button.title and button.url %}
+	{% set type = type|default('primary') %}
+	{% set baseClass = 'py-2 px-4 block sm:inline-flex items-center gap-x-2 text-sm text-nowrap rounded-xl transition disabled:opacity-50 disabled:pointer-events-none shadow-xs w-full sm:w-auto text-center' %}
+
+	{% set variantClass = {
+    'primary': 'border border-transparent bg-primary text-white hover:bg-primary-900 focus:bg-primary-900',
+    'secondary': 'border border-border bg-light text-heading hover:bg-gray-50 focus:bg-gray-50 hover:text-primary focus:text-primary '
+  }[type] %}
+
+	<a type="button" class="{{ baseClass }} {{ variantClass }} {{ class|default('') }}" href="{{ button.url|e('esc_url') }}" target="{{ button.target|default('_self')|e }}">
+		{{ button.title }}
+	</a>
+{% endif %}

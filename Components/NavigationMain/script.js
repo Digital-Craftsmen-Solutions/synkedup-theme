@@ -20,20 +20,22 @@ export default function (el) {
     document.documentElement.style.scrollPaddingTop = `${scrollPaddingTop}px`
   }
 
-  const collapse = HSCollapse.getInstance('#hs-main-megamenu-collapse', true)
-  if (!collapse) {
-    console.warn('Collapse not initialized yet')
-    return
-  }
-  console.log(collapse);
-  if (collapse) {
-    collapse.element.on('open', () => {
-      document.querySelector('#NavigationMain')?.classList.add('collapse-open')
-    });
+  setTimeout(() => {
 
-    collapse.element.on('hide', () => {
-      document.querySelector('#NavigationMain')?.classList.remove('collapse-open')
-    });
-  }
+    const collapse = HSCollapse.getInstance('#hs-main-megamenu-collapse', true)
+    if (!collapse) {
+      console.warn('Collapse not initialized yet')
+      return
+    }
+    if (collapse) {
+      collapse.element.on('open', () => {
+        document.querySelector('#NavigationMain')?.classList.add('collapse-open')
+      });
+
+      collapse.element.on('hide', () => {
+        document.querySelector('#NavigationMain')?.classList.remove('collapse-open')
+      });
+    }
+  }, 1000);
 
 }

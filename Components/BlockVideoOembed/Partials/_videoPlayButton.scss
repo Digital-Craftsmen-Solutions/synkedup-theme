@@ -37,7 +37,7 @@
   &::after {
     border-block-end: 12px solid transparent;
     border-block-start: 12px solid transparent;
-    border-inline-start: 18px solid var(--color-background);
+    border-inline-start: 18px solid var(--color-light);
     inset-inline-start: calc(50% + 2px);
 
     @media (min-width: $tablet) {
@@ -67,7 +67,7 @@
   &::after {
     border-block-end: 12px solid transparent;
     border-block-start: 12px solid transparent;
-    border-inline-start: 18px solid var(--color-background);
+    border-inline-start: 18px solid var(--color-light);
     inset-inline-start: calc(50% + 3px);
   }
 }

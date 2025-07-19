@@ -45,7 +45,7 @@
   h1,
   .h1 {
     --flow-space: 3.75rem;
-    font-size: 2.375rem;
+    font-size: 1.875rem;
     font-weight: 600;
     line-height: 1.15;
 
@@ -486,7 +486,7 @@
 
   .visuallyHidden-focusable {
     &:focus-visible {
-      background-color: var(--color-background);
+      background-color: var(--color-light);
       block-size: auto;
       box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
       clip: auto;
@@ -521,7 +521,7 @@
  */
 
   [data-theme] {
-    background-color: var(--color-background);
+    background-color: var(--color-light);
     color: var(--color-text);
   }
 
@@ -534,3 +534,7 @@
 
 /* Defaults hover styles on all devices */
 @custom-variant hover (&:hover);
+
+.prose {
+  line-height: 1.5;
+}

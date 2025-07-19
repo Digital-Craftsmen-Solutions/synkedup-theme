@@ -1,3 +1,29 @@
 {
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#ff8568",
+    "activityBar.background": "#ff8568",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#bfffcb",
+    "activityBarBadge.foreground": "#15202b",
+    "commandCenter.border": "#15202b99",
+    "sash.hoverBorder": "#ff8568",
+    "statusBar.background": "#ff5c35",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#ff3302",
+    "statusBarItem.remoteBackground": "#ff5c35",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#ff5c35",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#ff5c3599",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "peacock.color": "#FF5C35",
+  "files.associations": {
+    "*.html": "twig"
+  },
+  "emmet.includeLanguages": {
+    "twig": "html"
+  },
 }

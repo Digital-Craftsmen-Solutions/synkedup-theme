@@ -4,7 +4,6 @@ import flynt from './vite-plugin-flynt'
 import globImporter from 'node-sass-glob-importer'
 import FullReload from 'vite-plugin-full-reload'
 import fs from 'fs'
-import tailwindcss from '@tailwindcss/vite'
 
 const wordpressHost = 'http://synkedup.local'
 
@@ -40,9 +39,6 @@ export default defineConfig(({ mode }) => {
           importer: globImporter()
         }
       },
-      // postcss: {
-      //   plugins: [autoprefixer()]
-      // }
     },
     resolve: {
       alias: {

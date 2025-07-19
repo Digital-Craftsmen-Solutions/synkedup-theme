@@ -6,18 +6,17 @@
 
 namespace Flynt\FieldVariables;
 
-function getTheme($default = ''): array
+function getTheme($default = 'light'): array
 {
     return [
         'label' => __('Theme', 'flynt'),
         'name' => 'theme',
-        'type' => 'select',
+        'type' => 'button_group',
         'allow_null' => 0,
         'multiple' => 0,
         'ui' => 0,
         'ajax' => 0,
         'choices' => [
-            '' => __('(none)', 'flynt'),
             'light' => __('Light', 'flynt'),
             'dark' => __('Dark', 'flynt'),
         ],
