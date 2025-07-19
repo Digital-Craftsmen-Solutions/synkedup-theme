@@ -1,15 +1,7 @@
-import twig from 'twig';
-import template from '@/Components/Button/Button.twig?raw';
+import template from '@/Components/Button/index.twig?url';
 import type { Meta, StoryObj } from '@storybook/html';
-import type { ButtonModel } from './ButtonModel';
-
-// Extend Twig to handle 'e' filters
-twig.extendFilter('e', (value, args) => {
-  const strategy = args?.[0] ?? 'html';
-  return String(value);
-});
-
-const compiled = twig.twig({ data: template });
+import type { ButtonModel } from './model';
+import { renderTwig } from '../../stories/utils';
 
 const meta: Meta<ButtonModel> = {
   title: 'Components/Button',
@@ -42,6 +34,7 @@ const meta: Meta<ButtonModel> = {
 
 export default meta;
 
+const compiled = renderTwig(template)
 const Template = (args: ButtonModel) => {
   return compiled.render({ model: args });
 };

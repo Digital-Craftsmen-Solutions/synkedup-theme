@@ -17,8 +17,8 @@
 				{% endif %}
 				<div class="lg:hidden relative left-2">
 					<button type="button" class="hs-collapse-toggle size-9.5 flex justify-center items-center text-sm font-semibold rounded-xl text-white hover:text-gray-300 focus:outline-hidden focus:text-gray-300 disabled:opacity-50 disabled:pointer-events-none " id="hs-main-megamenu-collapse" aria-expanded="false" aria-controls="hs-main-megamenu" aria-label="Toggle navigation" data-hs-collapse="#hs-main-megamenu">
-						{% include '/Common/Partials/_icon.twig' with { name: 'menu', ariaLabel: 'Menu Icon', class: 'hs-collapse-open:hidden shrink-0 size-5' } %}
-						{% include '/Common/Partials/_icon.twig' with { name: 'close', ariaLabel: 'Close Icon', class: 'hs-collapse-open:block hidden shrink-0 size-5' } %}
+						{% include '@Components/Common/_icon.twig' with { name: 'menu', ariaLabel: 'Menu Icon', class: 'hs-collapse-open:hidden shrink-0 size-5' } %}
+						{% include '@Components/Common/_icon.twig' with { name: 'close', ariaLabel: 'Close Icon', class: 'hs-collapse-open:block hidden shrink-0 size-5' } %}
 					</button>
 				</div>
 			</div>

@@ -1,3 +1,10 @@
+{% set backgroundImage = model.backgroundImage %}
+{% set title = model.title %}
+{% set contentHtml = model.contentHtml %}
+{% set ctaType = model.ctaType %}
+{% set ctaButtons = model.ctaButtons %}
+{% set options = model.options %}
+
 <flynt-component
 	name="SectionHeroFull" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
 	<!-- Hero -->
@@ -28,10 +35,10 @@
 				<div class="gap-3 flex flex-col sm:flex-row justify-start sm:justify-center items-center">
 					{% if ctaType == 'buttons' %}
 						{% if ctaButtons.primaryButton %}
-							{% include 'Components/Button/_index.twig' with { button: ctaButtons.primaryButton } only %}
+							{% include '@Components/Button/index.twig' with { model: ctaButtons.primaryButton } only %}
 						{% endif %}
 						{% if ctaButtons.secondaryButton %}
-							{% include 'Components/Button/_index.twig' with { button: ctaButtons.secondaryButton,  type: 'secondary' } only %}
+							{% include '@Components/Button/index.twig' with { model: ctaButtons.secondaryButton, type: 'secondary' } only %}
 						{% endif %}
 					{% elseif ctaType == 'form' and gravityForm %}
 						<div class="w-full max-w-2xl">
@@ -50,5 +57,4 @@
 	<!-- End Hero -->
 
 </flynt-component>
-
-{% include '/Common/Partials/_json.twig' with {value: ctaButtons.primaryButton, varName: 'ctaButtons.primaryButton'} %}
+{% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %}

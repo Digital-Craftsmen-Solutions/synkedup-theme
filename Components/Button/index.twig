@@ -1,0 +1,15 @@
+{% if model and model.title and model.url %}
+	{% set type = type is defined ? type : model.type|default('primary') %}
+	{% set class = class is defined ? class : model.class|default('') %}
+	{% set baseClass = 'py-2 px-4 block sm:inline-flex items-center gap-x-2 text-sm text-nowrap rounded-xl transition disabled:opacity-50 disabled:pointer-events-none shadow-xs w-full sm:w-auto text-center' %}
+
+	{% set variantClass = {
+    'primary': 'border border-transparent bg-primary text-white hover:bg-primary-900 focus:bg-primary-900',
+    'secondary': 'border border-border bg-light text-heading hover:bg-gray-50 focus:bg-gray-50 hover:text-primary focus:text-primary '
+  }[type] %}
+
+	<a type="button" class="{{ baseClass }} {{ variantClass }} {{ class }}" href="{{ model.url|e('esc_url') }}" target="{{ model.target|default('_self')|e }}">
+		{{ model.title }}
+	</a>
+{% endif %}
+{# {% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %} #}

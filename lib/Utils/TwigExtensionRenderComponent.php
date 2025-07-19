@@ -67,6 +67,10 @@ class TwigExtensionRenderComponent extends AbstractExtension
             $loaderPaths = $loader->getPaths();
 
             $loader->addPath(dirname($filePath));
+            $componentsDir = get_template_directory() . '/Components';
+            if (!in_array($componentsDir, $loader->getPaths('@Components') ?: [])) {
+                $loader->addPath($componentsDir, 'Components');
+            }
 
             $output = CoreExtension::include($twigEnvironment, $context, $relativeFilePath, $data, $withContext, $ignoreMissing, $sandboxed);
 

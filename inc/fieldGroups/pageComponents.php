@@ -24,7 +24,7 @@ add_action('Flynt/afterRegisterComponents', function (): void {
                     Components\GridImageText\getACFLayout(),
                     Components\GridPostsLatest\getACFLayout(),
                     Components\ListComponents\getACFLayout(),
-                    Components\SliderImages\getACFLayout(),
+                    // Components\SliderImages\getACFLayout(),
                     Components\SectionHeroFull\getACFLayout(),
                     Components\ReusableComponent\getACFLayout(),
                 ],

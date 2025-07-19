@@ -56,6 +56,7 @@ export default defineConfig(({ mode }) => {
           cert: fs.readFileSync(env.VITE_DEV_SERVER_CERT)
         }
         : false,
+      cors: true,
       host: 'localhost' // preserve conflicts with IpV6
     },
     build: {

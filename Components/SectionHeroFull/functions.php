@@ -4,6 +4,23 @@ namespace Flynt\Components\SectionHeroFull;
 
 use Flynt\FieldVariables;
 
+
+add_filter('Flynt/addComponentData?name=SectionHeroFull', function (array $data): array {
+    $model = [
+        'backgroundImage' => $data['backgroundImage'],
+        'title' => $data['title'],
+        'contentHtml' => $data['contentHtml'],
+        'ctaType' => $data['ctaType'],
+        'ctaButtons' => [
+            'primaryButton' => $data['ctaButtons']['primaryButton'],
+            'secondaryButton' => $data['ctaButtons']['secondaryButton']
+        ],
+        'options' => $data['options'] ?? []
+    ];
+
+    return ['model' => $model];
+});
+
 function getACFLayout(): array
 {
     return [

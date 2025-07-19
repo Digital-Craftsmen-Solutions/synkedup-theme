@@ -1,5 +1,5 @@
 export type ButtonModel = {
-  type: 'primary' | 'secondary' | 'ghost' | 'link';
+  type?: 'primary' | 'secondary'
   title: string;
   url: string;
   target?: '_self' | '_blank';
