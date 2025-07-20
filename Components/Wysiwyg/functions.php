@@ -1,13 +1,13 @@
 <?php
 
-namespace Flynt\Components\BlockWysiwyg;
+namespace Flynt\Components\Wysiwyg;
 
 use Flynt\FieldVariables;
 
 function getACFLayout(): array
 {
     return [
-        'name' => 'blockWysiwyg',
+        'name' => 'Wysiwyg',
         'label' => __('Block: Wysiwyg', 'flynt'),
         'sub_fields' => [
             [

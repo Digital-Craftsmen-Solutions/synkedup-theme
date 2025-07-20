@@ -125,7 +125,7 @@ To define the name of a specific component use the `name` attribute, which shoul
 For example:
 
 ```twig
-<flynt-component name="BlockWysiwyg" …></flynt-component>
+<flynt-component name="Wysiwyg" …></flynt-component>
 ```
 
 #### JavaScript modules
@@ -150,7 +150,7 @@ Usage example: Elements which may only be visible on certain screen sizes.
 Example:
 
 ```twig
-<flynt-component name="BlockWysiwyg" load:on="visible"></flynt-component>
+<flynt-component name="Wysiwyg" load:on="visible"></flynt-component>
 ```
 
 If it makes logical sense, loading strategies can be combined:
@@ -168,12 +168,12 @@ Defining Advanced Custom Fields (ACF) can be done in `functions.php` for each co
 For example:
 
 ```php
-namespace Flynt\Components\BlockWysiwyg;
+namespace Flynt\Components\Wysiwyg;
 
 function getACFLayout()
 {
     return [
-        'name' => 'blockWysiwyg',
+        'name' => 'Wysiwyg',
         'label' => __('Block: Wysiwyg', 'flynt'),
         'sub_fields' => [
             [
@@ -213,7 +213,7 @@ add_action('Flynt/afterRegisterComponents', function () {
                 'type' => 'flexible_content',
                 'button_label' => __('Add Component', 'flynt'),
                 'layouts' => [
-                    Components\BlockWysiwyg\getACFLayout(),
+                    Components\Wysiwyg\getACFLayout(),
                 ]
             ]
         ],

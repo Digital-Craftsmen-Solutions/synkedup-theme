@@ -12,7 +12,7 @@ const FlyntComponents = new WeakMap()
 const parents = new WeakMap()
 
 export default class FlyntComponent extends window.HTMLElement {
-  constructor () {
+  constructor() {
     super()
     let setReady
     const isReady = new Promise((resolve) => {
@@ -21,7 +21,7 @@ export default class FlyntComponent extends window.HTMLElement {
     FlyntComponents.set(this, [isReady, setReady])
   }
 
-  async connectedCallback () {
+  async connectedCallback() {
     if (hasScript(this)) {
       const loadingStrategy = determineLoadingStrategy(this)
       const loadingFunctionWrapper = getLoadingFunctionWrapper(loadingStrategy, this)
@@ -43,33 +43,33 @@ export default class FlyntComponent extends window.HTMLElement {
     }
   }
 
-  disconnectedCallback () {
+  disconnectedCallback() {
     this.observer?.disconnect()
     this.mediaQueryList?.removeEventListener('change')
     cleanupElement(this)
   }
 }
 
-function getComponentPath (node) {
+function getComponentPath(node) {
   const componentName = node.getAttribute('name')
-  return window.FlyntData.componentsWithScript[componentName]
+  return window.FlyntData && window.FlyntData.componentsWithScript[componentName]
 }
 
-function hasScript (node) {
+function hasScript(node) {
   const componentPath = getComponentPath(node)
   return !!componentPath
 }
 
-function getScriptPath (node) {
+function getScriptPath(node) {
   const componentPath = getComponentPath(node)
   return `/Components/${componentPath}/script.js`
 }
 
-function getScriptImport (node) {
+function getScriptImport(node) {
   return componentsWithScripts[getScriptPath(node)]
 }
 
-function hasParent (node) {
+function hasParent(node) {
   if (!parents.has(node)) {
     const parent = node.parentElement.closest('flynt-component')
     parents.set(node, parent)
@@ -79,12 +79,12 @@ function hasParent (node) {
   }
 }
 
-function setComponentReady (node) {
+function setComponentReady(node) {
   const setReady = FlyntComponents.get(node)[1]
   setReady()
 }
 
-function visible (node) {
+function visible(node) {
   return new Promise(function (resolve) {
     const observer = new IntersectionObserver(function (entries) {
       for (const entry of entries) {
@@ -99,7 +99,7 @@ function visible (node) {
   })
 }
 
-function mediaQueryMatches (query, node) {
+function mediaQueryMatches(query, node) {
   return new Promise(function (resolve) {
     const mediaQueryList = window.matchMedia(query)
     if (mediaQueryList.matches) {
@@ -115,7 +115,7 @@ function mediaQueryMatches (query, node) {
   })
 }
 
-function determineLoadingStrategy (node) {
+function determineLoadingStrategy(node) {
   const defaultStrategy = 'load'
   const strategies = {
     load: 'load',
@@ -126,7 +126,7 @@ function determineLoadingStrategy (node) {
   return strategies[node.getAttribute('load:on')] ?? defaultStrategy
 }
 
-function getLoadingFunctionWrapper (strategyName, node) {
+function getLoadingFunctionWrapper(strategyName, node) {
   const loadingFunctions = {
     load: (x) => x(),
     idle: (x) => requestIdleCallback(x, { timeout: 2000 }),
@@ -150,11 +150,11 @@ function getLoadingFunctionWrapper (strategyName, node) {
   return loadingFunctions[strategyName] ?? defaultFn
 }
 
-function getMediaQuery (node) {
+function getMediaQuery(node) {
   return node.hasAttribute('load:on:media') ? node.getAttribute('load:on:media') : null
 }
 
-function getLoadingFunction (node) {
+function getLoadingFunction(node) {
   return async () => {
     const componentScriptImport = getScriptImport(node)
     const componentScript = await componentScriptImport()
@@ -166,7 +166,7 @@ function getLoadingFunction (node) {
   }
 }
 
-function cleanupElement (node) {
+function cleanupElement(node) {
   if (upgradedElements.has(node)) {
     const cleanupFn = upgradedElements.get(node)
     if (typeof cleanupFn === 'function') {

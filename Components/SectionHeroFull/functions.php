@@ -2,6 +2,7 @@
 
 namespace Flynt\Components\SectionHeroFull;
 
+use Flynt\Components;
 use Flynt\FieldVariables;
 
 
@@ -137,6 +138,104 @@ function getACFLayout(): array
                             'value' => 'form',
                         ],
                     ],
+                ],
+            ],
+            [
+                'label' => __('Show additional icons', 'flynt'),
+                'name' => 'showIcons',
+                'type' => 'true_false',
+                'default_value' => 0,
+                'ui' => 1
+            ],
+            [
+                'label' => __('Icon Items', 'flynt'),
+                'name' => 'icons',
+                'type' => 'repeater',
+                'collapsed' => '',
+                'layout' => 'block',
+                'min' => 0,
+                'max' => 3,
+                'conditional_logic' => [
+                    [
+                        [
+                            'fieldPath' => 'showIcons',
+                            'operator' => '==',
+                            'value' => 1,
+                        ],
+                    ],
+                ],
+                'button_label' => __('Add Item', 'flynt'),
+                'sub_fields' => [
+                    [
+                        'label' => __('Icon', 'flynt'),
+                        'name' => 'icon',
+                        'type' => 'text',
+                        'required' => 0,
+                        'wrapper' => [
+                            'width' => 20
+                        ],
+                    ],
+                    [
+                        'label' => __('Title', 'flynt'),
+                        'name' => 'title',
+                        'type' => 'text',
+                        'required' => 0,
+                        'wrapper' => [
+                            'width' => 40
+                        ],
+                    ],
+                    [
+                        'label' => __('Text', 'flynt'),
+                        'name' => 'text',
+                        'type' => 'text',
+                        'required' => 0,
+                        'wrapper' => [
+                            'width' => 40
+                        ],
+                    ],
+                ]
+            ],
+            [
+                'label' => __('Two Columns', 'flynt'),
+                'name' => 'columns',
+                'type' => 'group',
+                'layout' => 'block',
+                'sub_fields' => [
+                    [
+                        'label' => __('Inner Component', 'flynt'),
+                        'name' => 'innerComponent1',
+                        'type' => 'flexible_content',
+                        'layouts' => [
+                            Components\BlockImage\getACFLayout(),
+                            Components\BlockImageText\getACFLayout(),
+                        ],
+                        'wrapper' => [
+                            'width' => 50
+                        ],
+                    ],
+                    [
+                        'label' => __('Inner Component', 'flynt'),
+                        'name' => 'innerComponent2',
+                        'type' => 'flexible_content',
+                        'layouts' => [
+                            Components\BlockImage\getACFLayout(),
+                            Components\BlockImageText\getACFLayout(),
+                        ],
+                        'wrapper' => [
+                            'width' => 50
+                        ],
+                    ]
+                ]
+            ],
+            [
+                'label' => __('Inner Component', 'flynt'),
+                'name' => 'innerComponent3',
+                'type' => 'flexible_content',
+                'min' => 1,
+                'max' => 1,
+                'layouts' => [
+                    Components\BlockImage\getACFLayout(),
+                    Components\BlockImageText\getACFLayout(),
                 ],
             ],
             [

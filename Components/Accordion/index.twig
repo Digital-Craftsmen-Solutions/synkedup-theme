@@ -1,0 +1,27 @@
+{% set options = model.options %}
+<flynt-component name="Accordion" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
+	<div class="hs-accordion-group" {{ options.keepOpen ? 'data-hs-accordion-always-open=""' }}>
+		{% for item in model.items %}
+			<div class="hs-accordion {{ item.expanded ? 'active' : '' }} bg-white border border-gray-200 -mt-px first:rounded-t-lg last:rounded-b-lg dark:bg-neutral-800 dark:border-neutral-700 {{ item.class ?? '' }}" id="{{ item.id }}-heading">
+				<button class="hs-accordion-toggle hs-accordion-active:text-blue-600 inline-flex items-center gap-x-3 w-full font-semibold text-start text-gray-800 py-4 px-5 hover:text-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:hs-accordion-active:text-blue-500 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:outline-hidden dark:focus:text-neutral-400" aria-expanded="{{ item.expanded ? 'true' : 'false' }}" aria-controls="{{ item.id }}-collapse">
+					<svg class="hs-accordion-active:hidden block size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M5 12h14"></path>
+						<path d="M12 5v14"></path>
+					</svg>
+					<svg class="hs-accordion-active:block hidden size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M5 12h14"></path>
+					</svg>
+					{{ item.heading }}
+				</button>
+
+				<div id="{{ item.id }}-collapse" class="hs-accordion-content {{ item.expanded ? '' : 'hidden' }} w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="{{ item.id }}-heading">
+					<div class="pb-4 px-5">
+						<div class="text-gray-800 dark:text-neutral-200">
+							{{ item.contentHtml|e('wp_kses_post') }}
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</flynt-component>

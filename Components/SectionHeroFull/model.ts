@@ -11,7 +11,7 @@ export type SectionHeroFullModel = {
     after?: string;
   };
   contentHtml: string;
-  ctaType: 'none' | 'buttons' | 'form';
+  ctaType?: 'none' | 'buttons' | 'form';
   ctaButtons: {
     primaryButton?: ButtonModel;
     secondaryButton?: ButtonModel;

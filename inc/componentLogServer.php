@@ -7,8 +7,8 @@
  * in the browser.
  *
  * Combine get parameter `log` with a second parameter `component` e.g.
- * `http://localhost:3000/?log&component=BlockWysiwyg` or
- * `http://localhost:3000/?log&component=BlockWysiwyg,BlockImage`
+ * `http://localhost:3000/?log&component=Wysiwyg` or
+ * `http://localhost:3000/?log&component=Wysiwyg,BlockImage`
  * only the data for the specified component(s) will output via
  * console.log in the dev tools in the browser.
  */
@@ -48,7 +48,7 @@ function addDebugInfo(array $data, string $componentName): array
 function consoleDebug(array $data): void
 {
     $output = json_encode($data);
-    $result =  "<script>console.log({$output});</script>\n";
+    $result = "<script>console.log({$output});</script>\n";
     add_action('wp_footer', function () use ($result): void {
         echo $result;
     }, 30);

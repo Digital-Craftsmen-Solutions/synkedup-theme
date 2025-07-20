@@ -1,6 +1,6 @@
 import template from '@/Components/Button/index.twig?url';
 import type { Meta, StoryObj } from '@storybook/html';
-import type { ButtonModel } from './model';
+import { type ButtonModel } from './model';
 import { renderTwig } from '../../stories/utils';
 
 const meta: Meta<ButtonModel> = {
@@ -8,27 +8,22 @@ const meta: Meta<ButtonModel> = {
   tags: ['autodocs'],
   argTypes: {
     type: {
-      control: { type: 'select' },
+      control: 'radio',
       options: ['primary', 'secondary'],
-      defaultValue: 'primary'
     },
     title: {
       control: 'text',
-      defaultValue: 'Click Me'
     },
     url: {
       control: 'text',
-      defaultValue: '#'
     },
     target: {
       control: 'radio',
       options: ['_self', '_blank'],
-      defaultValue: '_self'
     },
     class: {
       control: 'text',
-      defaultValue: ''
-    }
+    },
   }
 };
 
@@ -46,7 +41,7 @@ export const Primary: StoryObj<ButtonModel> = {
     title: 'Click Me',
     url: '#',
     target: '_self',
-    class: ''
+    class: '',
   }
 };
 

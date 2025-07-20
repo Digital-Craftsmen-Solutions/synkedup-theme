@@ -3,27 +3,45 @@ import type { Meta, StoryObj } from '@storybook/html';
 import type { SectionHeroFullModel } from './model';
 import { renderTwig } from '../../stories/utils';
 
+const defaultData: SectionHeroFullModel =
+{
+  backgroundImage: undefined,
+  title: {
+    before: 'Welcome to',
+    highlight: 'Our Product',
+    after: 'Today'
+  },
+  contentHtml: '<p>This is a hero section with full background and call to action buttons.</p>',
+  ctaType: 'buttons',
+  ctaButtons: {
+    primaryButton: {
+      title: 'Get Started',
+      url: '/get-started',
+      target: '_self'
+    },
+    secondaryButton: {
+      title: 'Learn More',
+      url: '/learn-more',
+      target: '_blank'
+    }
+  },
+  options: {
+    theme: 'light'
+  }
+}
+
 const meta: Meta<SectionHeroFullModel> = {
-  title: 'Components/HeroFull',
+  title: 'Sections/HeroFull',
   tags: ['autodocs'],
+  args: {
+    ...defaultData
+  },
   argTypes: {
-    backgroundImage: {
-      control: 'object',
-    },
-    title: {
-      control: 'object',
-    },
-    contentHtml: {
-      control: 'text',
-    },
     ctaType: {
-      control: { type: 'select' },
-      options: ['buttons', 'form', 'none'],
+      control: { type: 'radio' },
+      options: ['none', 'buttons', 'form'],
       defaultValue: 'buttons'
     },
-    ctaButtons: {
-      control: 'object',
-    }
   }
 };
 
@@ -37,26 +55,7 @@ const Template = (args: SectionHeroFullModel) => {
 export const Light: StoryObj<SectionHeroFullModel> = {
   render: Template,
   args: {
-    backgroundImage: undefined,
-    title: {
-      before: 'Welcome to',
-      highlight: 'Our Product',
-      after: 'Today'
-    },
-    contentHtml: '<p>This is a hero section with full background and call to action buttons.</p>',
-    ctaType: 'buttons',
-    ctaButtons: {
-      primaryButton: {
-        title: 'Get Started',
-        url: '/get-started',
-        target: '_self'
-      },
-      secondaryButton: {
-        title: 'Learn More',
-        url: '/learn-more',
-        target: '_blank'
-      }
-    }
+    ...defaultData
   }
 };
 

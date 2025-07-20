@@ -364,106 +364,9 @@
     }
   }
 
-  .componentSpacing {
-    margin-block: var(--component-spacing);
-    margin-inline: 0;
-
-    &[data-theme] {
-      margin: 0;
-      padding-block: var(--component-spacing);
-      padding-inline: 0;
-    }
-  }
-
   .wp-block-post-content>.alignfull {
     margin-inline: auto;
     max-inline-size: var(--content-max-width-full) !important;
-  }
-
-  .groupContainer {
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: var(--flow-space);
-  }
-
-  .container {
-    margin-inline: auto;
-    max-inline-size: calc(var(--content-max-width-full) + var(--container-spacing) * 2);
-    padding-inline: var(--container-spacing);
-
-    &[data-size="full"] {
-      padding-inline: 0;
-    }
-  }
-
-  [data-size="medium"] {
-    max-inline-size: var(--content-max-width);
-  }
-
-  [data-size="wide"] {
-    max-inline-size: var(--content-max-width-wide);
-  }
-
-  [data-size="full"] {
-    max-inline-size: 100%;
-  }
-
-  [data-align="left"] {
-    margin-inline: unset;
-  }
-
-  [data-align="center"] {
-    margin-inline: auto;
-  }
-
-  [data-text-align="left"] {
-    text-align: start;
-  }
-
-  [data-text-align="center"] {
-    text-align: center;
-  }
-
-  [data-flow="layout"] {
-    >*+* {
-      margin-block-start: calc(var(--component-spacing) / 2);
-    }
-  }
-
-  [data-flow="content"] {
-    >*+* {
-      margin-block-start: var(--flow-space);
-    }
-  }
-
-  // Balance layouted text lines on mobile.
-  @media (max-width: ($tablet - 1)) {
-
-    [data-size="wide"],
-    [data-size="full"],
-    [data-text-align="center"] {
-
-      p,
-      .paragraph,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      .h1,
-      .h2,
-      .h3,
-      .h4,
-      .h5,
-      .h6 {
-        text-wrap: balance;
-
-        br {
-          display: none;
-        }
-      }
-    }
   }
 
   .scrollableTableWrapper {
@@ -504,26 +407,13 @@
   }
 
   /**
- * Box Helpers
- */
-
-  .boxPadding {
-    padding-block: var(--box-spacing);
-    padding-inline: var(--box-spacing);
-  }
-
-  .boxBorder {
-    border: solid 2px var(--color-border);
-  }
-
-  /**
  * Themes
  */
 
-  [data-theme] {
-    background-color: var(--color-light);
-    color: var(--color-text);
-  }
+  // [data-theme] {
+  //   background-color: var(--color-light);
+  //   color: var(--color-text);
+  // }
 
   /* Adds pointer cursor to buttons */
   button:not(:disabled),
