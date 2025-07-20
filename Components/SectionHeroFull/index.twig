@@ -18,11 +18,12 @@
 		<div class="max-w-7xl mx-auto p-6 sm:p-12 lg:p-24">
 			<div class="max-w-4xl mx-auto flex flex-col justify-center sm:text-center gap-6 my-10 sm:my-12 lg:my-16">
 				{% if title %}
-					<h1 class="text-heading dark:text-white">
-						<span>{{ title.before }}</span>
-						<span class="text-accent dark:text-accent-dark">{{ title.highlight }}</span>
-						<span>{{ title.after }}</span>
-					</h1>
+					{% include '@Components/Heading/index.twig' with { model: {
+						before: title.before ?? '',
+						highlight: title.highlight ?? '',
+						after: title.after ?? '',
+						type: 'h1',
+					} } only %}
 				{% endif %}
 
 				{% if contentHtml %}

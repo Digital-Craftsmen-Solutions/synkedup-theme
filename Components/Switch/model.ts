@@ -1,6 +1,8 @@
 export type SwitchModel = {
-  icon?: string
-  title?: string;
-  text?: string;
-  class?: string;
+  id?: string;
+  checked?: boolean;
+  disabled?: boolean;
+  options?: {
+    theme?: 'light' | 'dark';
+  };
 };

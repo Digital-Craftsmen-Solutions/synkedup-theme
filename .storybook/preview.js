@@ -10,6 +10,18 @@ const preview = {
         date: /Date$/i,
       },
     },
+    backgrounds: {
+      options: {
+        dark: { name: 'Dark', value: 'hsla(0, 0%, 4%, 1)' },
+        light: { name: 'Light', value: '#FFFFFF' },
+      },
+    },
+    options: {
+      storySort: {
+        method: 'alphabetical',
+        order: ['Intro', 'Pages', 'Components'],
+      },
+    },
   },
 };
 

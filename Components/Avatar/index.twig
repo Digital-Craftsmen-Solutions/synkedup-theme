@@ -1,0 +1,14 @@
+{% set src = model.src %}
+{% set alt = model.alt ?? 'Avatar' %}
+{% set options = model.options %}
+{% set size = options.size ?? 'medium' %}
+
+{% set sizeClass = {
+  'small': 'size-8',
+  'medium': 'size-11',
+  'large': 'size-15.5'
+}[size] %}
+
+<flynt-component name="Avatar" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>
+	<img class="inline-block {{ sizeClass }} rounded-full" src="{{ src }}" alt="{{ alt }}">
+</flynt-component>

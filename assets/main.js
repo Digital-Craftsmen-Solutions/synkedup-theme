@@ -1,6 +1,5 @@
 
 import 'vite/modulepreload-polyfill'
-// import '@preline/accordion'
 import '@preline/carousel'
 import '@preline/dropdown'
 import '@preline/overlay'

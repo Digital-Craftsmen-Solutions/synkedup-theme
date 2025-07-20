@@ -3,51 +3,89 @@ import type { Meta, StoryObj } from '@storybook/html';
 import type { CardModel } from './model';
 import { renderTwig } from '../../stories/utils';
 
+const defaultData: CardModel = {
+  type: 'icon',
+  icon: 'book',
+  title: 'Responsive',
+  description: 'Responsive, and mobile-first project on the web',
+  actionButton: {
+    title: 'Learn More',
+    url: '#'
+  },
+  options: {
+    align: 'left',
+    theme: 'light'
+  }
+};
+
 const meta: Meta<CardModel> = {
   title: 'Components/Card',
   tags: ['autodocs'],
+  args: {
+    ...defaultData
+  },
   argTypes: {
-    icon: {
-      control: 'text',
-      defaultValue: 'menu'
+    type: {
+      control: { type: 'radio' },
+      options: ['icon', 'image']
     },
-    title: {
-      control: 'text',
-      defaultValue: 'Responsive'
-    },
-    text: {
-      control: 'text',
-      defaultValue: 'Responsive, and mobile-first project on the web'
-    },
-    class: {
-      control: 'text',
-      defaultValue: ''
+    icon: { control: 'text' },
+    image: { control: 'object' },
+    options: {
+      control: 'object'
     }
-  }
+  },
+  decorators: [
+    (Story) => `<div class="max-w-xs">${Story()}</div>`
+  ]
 };
 
 export default meta;
 
-const compiled = renderTwig(template)
+const compiled = renderTwig(template);
 const Template = (args: CardModel) => {
   return compiled.render({ model: args });
 };
 
-export const Icon: StoryObj<CardModel> = {
+export const WithIcon: StoryObj<CardModel> = {
   render: Template,
   args: {
-    icon: 'menu',
-    title: 'Responsive',
-    text: 'Responsive, and mobile-first project on the web',
-    class: ''
+    ...defaultData,
+    type: 'icon',
+    icon: 'book',
+    image: undefined,
+    options: {
+      align: 'left',
+      theme: 'light'
+    }
   }
 };
 
-export const Figure: StoryObj<CardModel> = {
+export const WithImage: StoryObj<CardModel> = {
   render: Template,
   args: {
-    title: '$N.NN',
-    text: 'Profit generated',
-    class: ''
+    ...defaultData,
+    type: 'image',
+    icon: undefined,
+    image: {
+      src: 'https://placehold.co/64x64',
+      alt: 'Placeholder'
+    },
+    options: {
+      align: 'left',
+      theme: 'light'
+    }
+  }
+};
+
+export const CenterAligned: StoryObj<CardModel> = {
+  render: Template,
+  args: {
+    ...defaultData,
+    type: 'icon',
+    options: {
+      align: 'center',
+      theme: 'light'
+    }
   }
 };

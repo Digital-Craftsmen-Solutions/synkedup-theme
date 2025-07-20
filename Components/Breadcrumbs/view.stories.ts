@@ -1,53 +1,65 @@
 import template from '@/Components/Breadcrumbs/index.twig?url';
 import type { Meta, StoryObj } from '@storybook/html';
-import type { BreadcrumbsModel } from './model';
+import type { BreadcrumbModel } from './model';
 import { renderTwig } from '../../stories/utils';
 
-const meta: Meta<BreadcrumbsModel> = {
+const defaultData: BreadcrumbModel = {
+  items: [
+    {
+      label: 'Home',
+      url: '#',
+      icon: 'home'
+    },
+    {
+      label: 'App Center',
+      url: '#',
+      icon: 'appcenter'
+    },
+    {
+      label: 'Application',
+      isCurrent: true
+    }
+  ]
+};
+
+const meta: Meta<BreadcrumbModel> = {
   title: 'Components/Breadcrumbs',
   tags: ['autodocs'],
-  argTypes: {
-    icon: {
-      control: 'text',
-      defaultValue: 'menu'
-    },
-    title: {
-      control: 'text',
-      defaultValue: 'Responsive'
-    },
-    text: {
-      control: 'text',
-      defaultValue: 'Responsive, and mobile-first project on the web'
-    },
-    class: {
-      control: 'text',
-      defaultValue: ''
-    }
+  args: {
+    ...defaultData
   }
 };
 
 export default meta;
 
-const compiled = renderTwig(template)
-const Template = (args: BreadcrumbsModel) => {
+const compiled = renderTwig(template);
+const Template = (args: BreadcrumbModel) => {
   return compiled.render({ model: args });
 };
 
-export const Icon: StoryObj<BreadcrumbsModel> = {
+export const Default: StoryObj<BreadcrumbModel> = {
   render: Template,
   args: {
-    icon: 'menu',
-    title: 'Responsive',
-    text: 'Responsive, and mobile-first project on the web',
-    class: ''
+    ...defaultData
   }
 };
 
-export const Figure: StoryObj<BreadcrumbsModel> = {
+export const WithoutIcons: StoryObj<BreadcrumbModel> = {
   render: Template,
   args: {
-    title: '$N.NN',
-    text: 'Profit generated',
-    class: ''
+    items: [
+      {
+        label: 'Home',
+        url: '#'
+      },
+      {
+        label: 'App Center',
+        url: '#'
+      },
+      {
+        label: 'Application',
+        isCurrent: true
+      }
+    ]
   }
 };

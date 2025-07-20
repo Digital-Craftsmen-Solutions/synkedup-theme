@@ -1,6 +1,9 @@
 export type TooltipModel = {
-  icon?: string
-  title?: string;
-  text?: string;
-  class?: string;
+  label: string;
+  tooltip: string;
+  placement?: 'top' | 'bottom' | 'left' | 'right';
+  icon?: 'chevron-down' | 'chevron-left' | 'chevron-right' | 'chevron-up';
+  options?: {
+    theme?: 'light' | 'dark';
+  };
 };

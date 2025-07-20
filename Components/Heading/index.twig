@@ -1,0 +1,20 @@
+{% set before = model.before %}
+{% set highlight = model.highlight %}
+{% set after = model.after %}
+{% set type = model.type ?? 'h1' %}
+{% set options = model.options %}
+
+{% set Tag = type %}
+<flynt-component name="Heading" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>
+	<{{Tag}} class="text-heading dark:text-white">
+		{% if before %}
+			<span>{{ before }}</span>
+		{% endif %}
+		{% if highlight %}
+			<span class="text-accent dark:text-accent-dark">{{ highlight }}</span>
+		{% endif %}
+		{% if after %}
+			<span>{{ after }}</span>
+		{% endif %}
+	</{{Tag}}>
+</flynt-component>

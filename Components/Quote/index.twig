@@ -1,15 +1,43 @@
-<div class="text-center">
-	{% if model.icon %}
-		<div class="flex justify-center items-center size-12 bg-gray-50 mx-auto dark:bg-neutral-800 dark:border-neutral-700">
-			{% include '@Components/Common/_icon.twig' with { name: model.icon, class: 'shrink-0 size-5 text-gray-600 dark:text-neutral-400' } %}
-		</div>
-	{% endif %}
-	<div class="mt-3">
-		{% if model.title %}
-			<div class="text-lg font-semibold text-gray-800 dark:text-white">{{model.title}}</div>
+{% set quote = model.quote %}
+{% set authorName = model.authorName %}
+{% set sourceTitle = model.sourceTitle %}
+{% set avatar = model.avatar %}
+{% set options = model.options %}
+{% set display = options.display ?? 'bordered' %}
+
+{% set blockquoteClasses = [
+  'relative',
+  display == 'bordered' ? 'border-s-4 border-gray-200 ps-4 sm:ps-6 dark:border-neutral-700' : '',
+] | join(' ') %}
+
+<flynt-component name="Quote" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>
+	<blockquote class="{{ blockquoteClasses }}">
+		<p class="text-gray-800 sm:text-xl dark:text-white">
+			<em>{{ quote }}</em>
+		</p>
+
+		{% if authorName or avatar or sourceTitle %}
+			<footer class="mt-4">
+				<div class="flex items-center">
+					{% if avatar and avatar.src %}
+						<div class="shrink-0">
+							{% include '@Components/Avatar/index.twig' with { model: {
+                src: avatar.src,
+                alt: avatar.alt ?? authorName,
+                options: { size: 'small', theme: options.theme }
+              }} only %}
+						</div>
+					{% endif %}
+					<div class="ms-4">
+						{% if authorName %}
+							<div class="text-base font-semibold text-gray-800 dark:text-neutral-400">{{ authorName }}</div>
+						{% endif %}
+						{% if sourceTitle %}
+							<div class="text-xs text-gray-500 dark:text-neutral-500">{{ sourceTitle }}</div>
+						{% endif %}
+					</div>
+				</div>
+			</footer>
 		{% endif %}
-		{% if model.text %}
-			<p class="mt-1 text-gray-600 dark:text-neutral-400">{{model.text}}</p>
-		{% endif %}
-	</div>
-</div>
+	</blockquote>
+</flynt-component>

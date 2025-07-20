@@ -1,53 +1,46 @@
-import template from '@/Components/Switch/index.twig?url';
+import template from './index.twig?url';
 import type { Meta, StoryObj } from '@storybook/html';
 import type { SwitchModel } from './model';
 import { renderTwig } from '../../stories/utils';
 
+const defaultData: SwitchModel = {
+  id: 'hs-basic-usage',
+  checked: false,
+  disabled: false,
+  options: {
+    theme: 'light'
+  }
+};
+
 const meta: Meta<SwitchModel> = {
   title: 'Components/Switch',
   tags: ['autodocs'],
+  args: {
+    ...defaultData
+  },
   argTypes: {
-    icon: {
-      control: 'text',
-      defaultValue: 'menu'
-    },
-    title: {
-      control: 'text',
-      defaultValue: 'Responsive'
-    },
-    text: {
-      control: 'text',
-      defaultValue: 'Responsive, and mobile-first project on the web'
-    },
-    class: {
-      control: 'text',
-      defaultValue: ''
+    options: {
+      control: { type: 'object' }
     }
   }
 };
 
 export default meta;
 
-const compiled = renderTwig(template)
-const Template = (args: SwitchModel) => {
-  return compiled.render({ model: args });
+const compiled = renderTwig(template);
+const Template = (args: SwitchModel) => compiled.render({ model: args });
+
+export const Default: StoryObj<SwitchModel> = {
+  render: Template,
+  args: { ...defaultData }
 };
 
-export const Icon: StoryObj<SwitchModel> = {
+export const Checked: StoryObj<SwitchModel> = {
   render: Template,
-  args: {
-    icon: 'menu',
-    title: 'Responsive',
-    text: 'Responsive, and mobile-first project on the web',
-    class: ''
-  }
+  args: { ...defaultData, checked: true }
 };
 
-export const Figure: StoryObj<SwitchModel> = {
+export const Disabled: StoryObj<SwitchModel> = {
   render: Template,
-  args: {
-    title: '$N.NN',
-    text: 'Profit generated',
-    class: ''
-  }
+  args: { ...defaultData, disabled: true }
 };

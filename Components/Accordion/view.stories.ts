@@ -34,12 +34,19 @@ const defaultData = {
   }
 }
 
+const withAutoInit = {
+  play: async () => {
+    HSAccordion.autoInit();
+  }
+};
+
 const meta: Meta<AccordionModel> = {
   title: 'Components/Accordion',
   tags: ['autodocs'],
   args: {
     ...defaultData
-  }
+  },
+  ...withAutoInit
 };
 
 export default meta;
@@ -48,18 +55,11 @@ const Template = (args: AccordionModel) => {
   return compiled.render({ model: args });
 };
 
-const withAutoInit = {
-  play: async () => {
-    HSAccordion.autoInit();
-  }
-};
-
 export const Default: StoryObj<AccordionModel> = {
   args: {
     ...defaultData
   },
   render: Template,
-  ...withAutoInit
 };
 
 export const KeepOpen: StoryObj<AccordionModel> = {
@@ -76,9 +76,7 @@ export const KeepOpen: StoryObj<AccordionModel> = {
   },
 
   render: Template,
-  ...withAutoInit
 };
-
 
 export const Dark: StoryObj<AccordionModel> = {
   args: {
@@ -94,5 +92,4 @@ export const Dark: StoryObj<AccordionModel> = {
   },
 
   render: Template,
-  ...withAutoInit
 };
