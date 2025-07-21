@@ -2,7 +2,7 @@
 {% set authorName = model.authorName %}
 {% set sourceTitle = model.sourceTitle %}
 {% set avatar = model.avatar %}
-{% set options = model.options %}
+{% set options = options is defined ? options : model.options %}
 {% set display = options.display ?? 'bordered' %}
 
 {% set blockquoteClasses = [

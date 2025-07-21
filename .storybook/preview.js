@@ -55,8 +55,8 @@ const preview = {
     },
     backgrounds: {
       options: {
-        dark: { name: 'Dark', value: 'hsla(0, 0%, 4%, 1)' },
         light: { name: 'Light', value: '#FFFFFF' },
+        dark: { name: 'Dark', value: 'hsla(0, 0%, 4%, 1)' },
       },
     },
     options: {

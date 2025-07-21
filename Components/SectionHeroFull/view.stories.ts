@@ -83,3 +83,61 @@ export const Dark: StoryObj<SectionHeroFullModel> = {
     }
   }
 };
+
+export const Simple: StoryObj<SectionHeroFullModel> = {
+  render: Template,
+  args: {
+    ...defaultData,
+    ctaType: 'none',
+  }
+};
+
+export const ExtraItems: StoryObj<SectionHeroFullModel> = {
+  render: Template,
+  args: {
+    ...defaultData,
+    extraItems: {
+      items: [{
+        type: 'figure',
+        title: '$N.NN',
+        description: 'Easily customizable to fit your needs',
+      },
+      {
+        type: 'icon',
+        icon: 'stars',
+        description: 'Easily customizable to fit your needs.',
+      },]
+    },
+  }
+};
+
+export const ExtraItemsDark: StoryObj<SectionHeroFullModel> = {
+  render: Template,
+  args: {
+    ...defaultData,
+    backgroundImage: {
+      src: 'https://synkedup.local/wp-content/uploads/resized/2025/05/SynkedUP-Background-768x0-c-default.jpg',
+      alt: 'Hero Background'
+    },
+    extraItems: {
+      items: [{
+        type: 'figure',
+        title: '$N.NN',
+        description: 'Easily customizable to fit your needs',
+      },
+      {
+        type: 'figure',
+        title: '$N.NN',
+        description: 'Easily customizable to fit your needs',
+      },
+      {
+        type: 'icon',
+        icon: 'stars',
+        description: 'Easily customizable to fit your needs.',
+      },]
+    },
+    options: {
+      theme: 'dark'
+    }
+  }
+};

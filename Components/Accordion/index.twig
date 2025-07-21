@@ -1,4 +1,4 @@
-{% set options = model.options %}
+{% set options = options is defined ? options : model.options %}
 <flynt-component name="Accordion" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
 	<div class="hs-accordion-group" {{ options.keepOpen ? 'data-hs-accordion-always-open=""' }}>
 		{% for item in model.items %}

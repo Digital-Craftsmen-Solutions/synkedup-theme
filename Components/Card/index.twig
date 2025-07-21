@@ -8,7 +8,7 @@
 	options: model.options
 } %}
 {% set actionButton = model.actionButton %}
-{% set options = model.options %}
+{% set options = options is defined ? options : model.options %}
 
 
 <div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="flex flex-col bg-white border border-border rounded-xl p-4 md:p-6 dark:bg-dark-shade dark:border-border-dark {{ options.align == 'center' ? 'items-center text-center' : '' }}">

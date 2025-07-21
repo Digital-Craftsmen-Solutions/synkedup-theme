@@ -1,7 +1,7 @@
 {% set id = model.id ?? 'switch-' ~ random() %}
 {% set checked = model.checked ?? false %}
 {% set disabled = model.disabled ?? false %}
-{% set options = model.options %}
+{% set options = options is defined ? options : model.options %}
 
 <flynt-component name="Switch" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>
 	<label for="{{ id }}" class="relative inline-block w-11 h-6 cursor-pointer">

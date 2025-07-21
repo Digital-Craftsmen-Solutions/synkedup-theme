@@ -7,7 +7,7 @@
   placement == 'left' ? 'chevron-right' :
   'chevron-left'
 ) %}
-{% set options = model.options %}
+{% set options = options is defined ? options : model.options %}
 
 {% set placementClass = placement != 'top' ? '[--placement:' ~ placement ~ ']' : '' %}
 

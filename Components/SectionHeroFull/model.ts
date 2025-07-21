@@ -1,4 +1,6 @@
 import { ButtonModel } from "../Button/model";
+import { ItemBoxModel } from "../ItemBox/model";
+import { SectionFeatureItemsModel } from "../SectionFeatureItems/model";
 
 export type SectionHeroFullModel = {
   backgroundImage?: {
@@ -16,6 +18,7 @@ export type SectionHeroFullModel = {
     primaryButton?: ButtonModel;
     secondaryButton?: ButtonModel;
   };
+  extraItems?: SectionFeatureItemsModel
   options?: {
     theme?: 'light' | 'dark';
   };

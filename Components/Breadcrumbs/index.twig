@@ -1,5 +1,5 @@
 {% set items = model.items %}
-{% set options = model.options %}
+{% set options = options is defined ? options : model.options %}
 
 <flynt-component name="Breadcrumb" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>
 	<nav aria-label="Breadcrumb">

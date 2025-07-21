@@ -1,6 +1,6 @@
 {% set src = model.src %}
 {% set alt = model.alt ?? 'Avatar' %}
-{% set options = model.options %}
+{% set options = options is defined ? options : model.options %}
 {% set size = options.size ?? 'medium' %}
 
 {% set sizeClass = {
@@ -10,5 +10,11 @@
 }[size] %}
 
 <flynt-component name="Avatar" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>
-	<img class="inline-block {{ sizeClass }} rounded-full" src="{{ src }}" alt="{{ alt }}">
+  {% include '@Components/Common/_image.twig' with {
+    model: {
+      src: src,
+      alt: alt,
+    },
+    class: 'inline-block' ~ {{ sizeClass }} ~ 'rounded-full'
+  } only %}
 </flynt-component>

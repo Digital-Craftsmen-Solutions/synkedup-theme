@@ -3,19 +3,24 @@
 {% set contentHtml = model.contentHtml %}
 {% set ctaType = model.ctaType %}
 {% set ctaButtons = model.ctaButtons %}
-{% set options = model.options %}
+{% set extraItems = model.extraItems %}
+{% set options = options is defined ? options : model.options %}
 
 <flynt-component
 	name="SectionHeroFull" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
 	<!-- Hero -->
-	<div class="relative isolate overflow-hidden  bg-testblue dark:bg-dark">
+	<div class="relative isolate overflow-hidden bg-testblue dark:bg-dark">
 		{% if backgroundImage %}
 			<div class="absolute inset-0 -z-10">
-				<img class="lazyload h-full w-full object-cover object-center" src="{{ backgroundImage.src|resizeDynamic(768) }}" srcset="{{ placeholderImage(backgroundImage.width, backgroundImage.height, 'rgba(125, 125, 125, 0.1)') }}" data-srcset="{{ backgroundImage.src|resizeDynamic(1920) }} 1920w,{{ backgroundImage.src|resizeDynamic(1600) }} 1600w,{{ backgroundImage.src|resizeDynamic(1440) }} 1440w,{{ backgroundImage.src|resizeDynamic(1366) }} 1366w,{{ backgroundImage.src|resizeDynamic(1024) }} 1024w,{{ backgroundImage.src|resizeDynamic(768) }} 768w,{{ backgroundImage.src|resizeDynamic(640) }} 640w" data-sizes="auto" alt="{{ backgroundImage.alt|e }}">
+			 	{% include '@Components/Common/_image.twig' with {
+					model: backgroundImage,
+					class: 'h-full w-full object-cover object-center',
+					size: 'large'
+				} only %}
 				<div class="absolute inset-0 bg-black/40 dark:bg-black/60"></div>
 			</div>
 		{% endif %}
-		<div class="max-w-7xl mx-auto p-6 sm:p-12 lg:p-24">
+		<div class="max-w-7xl mx-auto py-6 sm:py-12 lg:py-24 px-4 md:px-6 lg:px-8">
 			<div class="max-w-4xl mx-auto flex flex-col justify-center sm:text-center gap-6 my-10 sm:my-12 lg:my-16">
 				{% if title %}
 					{% include '@Components/Heading/index.twig' with { model: {
@@ -53,9 +58,13 @@
 				</div>
 			</div>
 			<!-- End Buttons -->
+
+		{% if extraItems != undefine and extraItems|length > 0 %}
+			{% include '@Components/SectionFeatureItems/index.twig' with {model: extraItems, options: {theme: options.theme, align: 'center'}} %}
+		{% endif %}
+
 		</div>
 	</div>
 	<!-- End Hero -->
 
 </flynt-component>
-{% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %}

@@ -2,7 +2,7 @@
 {% set highlight = model.highlight %}
 {% set after = model.after %}
 {% set type = model.type ?? 'h1' %}
-{% set options = model.options %}
+{% set options = options is defined ? options : model.options %}
 
 {% set Tag = type %}
 <flynt-component name="Heading" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>

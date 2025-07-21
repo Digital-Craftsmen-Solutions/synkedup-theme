@@ -2,7 +2,7 @@
 {% set contentHtml = model.contentHtml %}
 {% set cards = model.cards %}
 {% set ctaButtons = model.ctaButtons %}
-{% set options = model.options %}
+{% set options = options is defined ? options : model.options %}
 
 <flynt-component name="SectionFeatureCards" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>
 	<div
