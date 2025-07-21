@@ -1,6 +1,6 @@
 import { ButtonModel } from "../Button/model";
 
-export type IconBoxListModel = {
+export type FeatureItemsModel = {
   backgroundImage?: {
     src: string;
     alt: string;

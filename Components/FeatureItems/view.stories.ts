@@ -1,10 +1,10 @@
-import template from '@/Components/IconBoxList/index.twig?url';
+import template from '@/Components/FeatureItems/index.twig?url';
 import type { Meta, StoryObj } from '@storybook/html';
-import type { IconBoxListModel } from './model';
+import type { FeatureItemsModel } from './model';
 import { renderTwig } from '../../stories/utils';
 
-const meta: Meta<IconBoxListModel> = {
-  title: 'Components/IconBoxList',
+const meta: Meta<FeatureItemsModel> = {
+  title: 'Sections/FeatureItems',
   tags: ['autodocs'],
   argTypes: {
     backgroundImage: {
@@ -30,11 +30,11 @@ const meta: Meta<IconBoxListModel> = {
 export default meta;
 
 const compiled = renderTwig(template)
-const Template = (args: IconBoxListModel) => {
+const Template = (args: FeatureItemsModel) => {
   return compiled.render({ model: args });
 };
 
-export const Light: StoryObj<IconBoxListModel> = {
+export const Light: StoryObj<FeatureItemsModel> = {
   render: Template,
   args: {
     backgroundImage: undefined,
@@ -60,7 +60,7 @@ export const Light: StoryObj<IconBoxListModel> = {
   }
 };
 
-export const Dark: StoryObj<IconBoxListModel> = {
+export const Dark: StoryObj<FeatureItemsModel> = {
   render: Template,
   args: {
     backgroundImage: {

@@ -280,7 +280,7 @@
   select {
     appearance: none;
     background-color: transparent;
-    border: 2px solid var(--color-border-secondary);
+    border: 2px solid var(--color-border);
     border-radius: 0;
     caret-color: var(--color-text);
     color: var(--color-text);
@@ -291,7 +291,7 @@
     transition: border-color 0.3s ease-in-out;
 
     &::placeholder {
-      color: var(--color-border-secondary);
+      color: var(--color-border);
     }
 
     &:disabled {

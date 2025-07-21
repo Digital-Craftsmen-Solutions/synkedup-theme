@@ -42,7 +42,10 @@ export const Primary: StoryObj<ButtonModel> = {
     url: '#',
     target: '_self',
     class: '',
-  }
+  },
+  parameters: {
+    layout: 'centered',
+  },
 };
 
 export const Secondary: StoryObj<ButtonModel> = {
@@ -53,5 +56,8 @@ export const Secondary: StoryObj<ButtonModel> = {
     url: '#',
     target: '_self',
     class: ''
-  }
+  },
+  parameters: {
+    layout: 'centered',
+  },
 };

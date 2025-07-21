@@ -5,10 +5,11 @@ import { renderTwig } from '../../stories/utils';
 
 const defaultData: CardModel = {
   type: 'icon',
-  icon: 'book',
+  icon: 'home',
   title: 'Responsive',
   description: 'Responsive, and mobile-first project on the web',
   actionButton: {
+    type: 'secondary',
     title: 'Learn More',
     url: '#'
   },
@@ -52,13 +53,27 @@ export const WithIcon: StoryObj<CardModel> = {
   args: {
     ...defaultData,
     type: 'icon',
-    icon: 'book',
-    image: undefined,
     options: {
       align: 'left',
       theme: 'light'
     }
   }
+};
+
+export const Dark: StoryObj<CardModel> = {
+  render: Template,
+  args: {
+    ...defaultData,
+    type: 'icon',
+    actionButton: undefined,
+    options: {
+      align: 'left',
+      theme: 'dark'
+    }
+  },
+  globals: {
+    backgrounds: { value: 'dark' },
+  },
 };
 
 export const WithImage: StoryObj<CardModel> = {
@@ -68,7 +83,7 @@ export const WithImage: StoryObj<CardModel> = {
     type: 'image',
     icon: undefined,
     image: {
-      src: 'https://placehold.co/64x64',
+      src: '../stories/assets/logo.svg',
       alt: 'Placeholder'
     },
     options: {
@@ -88,4 +103,15 @@ export const CenterAligned: StoryObj<CardModel> = {
       theme: 'light'
     }
   }
+};
+export const Mobile: StoryObj<CardModel> = {
+  render: Template,
+  args: {
+    ...defaultData,
+    type: 'icon',
+    options: {
+      align: 'center',
+      theme: 'light'
+    }
+  },
 };

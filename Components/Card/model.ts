@@ -1,14 +1,7 @@
 import { ButtonModel } from '../Button/model';
+import { ItemBoxModel } from '../ItemBox/model';
 
-export type CardModel = {
-  type: 'icon' | 'image';
-  icon?: string; // Name of the icon (for @Components/Common/_icon.twig)
-  image?: {
-    src: string;
-    alt: string;
-  };
-  title: string;
-  description: string;
+export type CardModel = ItemBoxModel & {
   actionButton?: ButtonModel;
   options?: {
     align?: 'left' | 'center';

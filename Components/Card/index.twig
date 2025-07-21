@@ -1,26 +1,21 @@
 {% set type = model.type %}
-{% set icon = model.icon %}
-{% set image = model.image %}
-{% set title = model.title %}
-{% set description = model.description %}
+{% set item = {
+	type: model.type,
+	icon: model.icon,
+	image: model.image,
+	title: model.title,
+	description: model.description,
+	options: model.options
+} %}
 {% set actionButton = model.actionButton %}
 {% set options = model.options %}
 
-<flynt-component name="Card" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>
-	<div class="flex flex-col bg-white border border-gray-200 shadow-2xs rounded-xl p-4 md:p-5 dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70 {{ options.align == 'center' ? 'items-center text-center' : '' }}">
-		{% if type == 'icon' and icon %}
-			{% include '@Components/Common/_icon.twig' with { name: icon, ariaLabel: title ~ ' Icon', class: 'shrink-0 size-9 text-gray-800 dark:text-white' } %}
-		{% elseif type == 'image' and image %}
-			<img src="{{ image.src }}" alt="{{ image.alt }}" class="shrink-0 size-9"/>
-		{% endif %}
-		<div class="mt-5">
-			<h3 class="text-lg font-semibold text-gray-800 dark:text-white">{{ title }}</h3>
-			<p class="mt-1 text-gray-600 dark:text-neutral-400">{{ description }}</p>
-			{% if actionButton %}
-				<div class="mt-2">
-					{% include '@Components/Button/index.twig' with { model: actionButton } only %}
-				</div>
-			{% endif %}
+
+<div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="flex flex-col bg-white border border-border rounded-xl p-4 md:p-6 dark:bg-dark-shade dark:border-border-dark {{ options.align == 'center' ? 'items-center text-center' : '' }}">
+	{% include '@Components/ItemBox/index.twig' with { model: item } only %}
+	{% if actionButton %}
+		<div class="mt-2 md:mt-4">
+			{% include '@Components/Button/index.twig' with { model: actionButton } only %}
 		</div>
-	</div>
-</flynt-component>
+	{% endif %}
+</div>

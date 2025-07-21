@@ -24,9 +24,6 @@ const meta: Meta<CardImageModel> = {
   args: {
     ...defaultData
   },
-  argTypes: {
-    options: { control: 'object' }
-  },
   decorators: [
     (Story) => `<div class="max-w-sm">${Story()}</div>`
   ]

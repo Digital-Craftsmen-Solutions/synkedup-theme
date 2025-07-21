@@ -2,41 +2,40 @@
 {% set description = model.description %}
 {% set subtitle = model.subtitle %}
 {% set backgroundImage = model.backgroundImage %}
-{% set options = model.options %}
+{% set options = options is defined ? options : model.options %}
 {% set display = options.display ?? 'imageBottom' %}
 {% set alignClass = options.align == 'center' ? 'items-center text-center' : '' %}
 
-<flynt-component name="CardImage" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>
-	{% if display == 'imageOverlay' %}
-		<div class="relative bg-white border border-gray-200 shadow-2xs rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
-			{% if backgroundImage %}
-				<img class="w-full h-auto rounded-xl" src="{{ backgroundImage.src }}" alt="{{ backgroundImage.alt }}">
-			{% endif %}
-			<div class="absolute top-0 start-0 end-0">
-				<div class="p-4 md:p-5 {{ alignClass }}">
-					<h3 class="text-lg font-bold text-gray-800 dark:text-white">{{ title }}</h3>
-					<p class="mt-1 text-gray-800 dark:text-neutral-400">{{ description }}</p>
-					{% if subtitle %}
-						<p class="mt-5 text-xs text-gray-500 dark:text-neutral-500">{{ subtitle }}</p>
-					{% endif %}
-				</div>
-			</div>
-		</div>
-	{% else %}
-		<div class="flex flex-col bg-white border border-gray-200 shadow-2xs rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
-			{% if display == 'imageTop' and backgroundImage %}
-				<img class="w-full h-auto rounded-t-xl" src="{{ backgroundImage.src }}" alt="{{ backgroundImage.alt }}">
-			{% endif %}
+{% if display == 'imageOverlay' %}
+	<div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="relative bg-white border border-gray-200 shadow-2xs rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70 overflow-hidden">
+		{% if backgroundImage %}
+			<img class="w-full h-auto rounded-xl" src="{{ backgroundImage.src }}" alt="{{ backgroundImage.alt }}">
+			<div class="absolute inset-0 bg-black/40 dark:bg-black/60"></div>
+		{% endif %}
+		<div class="absolute top-0 start-0 end-0">
 			<div class="p-4 md:p-5 {{ alignClass }}">
-				<h3 class="text-lg font-bold text-gray-800 dark:text-white">{{ title }}</h3>
-				<p class="mt-1 text-gray-500 dark:text-neutral-400">{{ description }}</p>
+				<h3 class="text-lg font-bold text-white">{{ title }}</h3>
+				<p class="mt-1 text-neutral-400">{{ description }}</p>
 				{% if subtitle %}
-					<p class="mt-5 text-xs text-gray-500 dark:text-neutral-500">{{ subtitle }}</p>
+					<p class="mt-5 text-xs text-neutral-500">{{ subtitle }}</p>
 				{% endif %}
 			</div>
-			{% if display == 'imageBottom' and backgroundImage %}
-				<img class="w-full h-auto rounded-b-xl" src="{{ backgroundImage.src }}" alt="{{ backgroundImage.alt }}">
+		</div>
+	</div>
+{% else %}
+	<div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="flex flex-col bg-white border border-gray-200 shadow-2xs rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+		{% if display == 'imageTop' and backgroundImage %}
+			<img class="w-full h-auto rounded-t-xl" src="{{ backgroundImage.src }}" alt="{{ backgroundImage.alt }}">
+		{% endif %}
+		<div class="p-4 md:p-5 flex-1 {{ alignClass }}">
+			<h3 class="text-lg font-bold text-gray-800 dark:text-white">{{ title }}</h3>
+			<p class="mt-1 text-gray-500 dark:text-neutral-400">{{ description }}</p>
+			{% if subtitle %}
+				<p class="mt-5 text-xs text-gray-500 dark:text-neutral-500">{{ subtitle }}</p>
 			{% endif %}
 		</div>
-	{% endif %}
-</flynt-component>
+		{% if display == 'imageBottom' and backgroundImage %}
+			<img class="w-full h-auto rounded-b-xl" src="{{ backgroundImage.src }}" alt="{{ backgroundImage.alt }}">
+		{% endif %}
+	</div>
+{% endif %}
