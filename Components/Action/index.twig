@@ -1,0 +1,22 @@
+{% set ctaType = model.ctaType ?? 'none' %}
+{% set ctaButtons = model.ctaButtons %}
+{% set gravityForm = model.gravityForm %}
+{% set options = options is defined ? options : model.options %}
+
+<div class="gap-3 flex flex-col sm:flex-row justify-start sm:justify-center items-center" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
+	{% if ctaType == 'buttons' %}
+		{% if ctaButtons.primaryButton %}
+			{% include '@Components/Button/index.twig' with { model: ctaButtons.primaryButton } only %}
+		{% endif %}
+		{% if ctaButtons.secondaryButton %}
+			{% include '@Components/Button/index.twig' with { model: ctaButtons.secondaryButton, type: 'secondary' } only %}
+		{% endif %}
+	{% elseif ctaType == 'form' and gravityForm %}
+		<div class="w-full max-w-2xl">
+			{% set gravity_form_shortcode = '[gravityform id="' ~ gravityForm ~ '" title="false" description="false" ajax="true"]' %}
+			{% apply shortcodes %}
+			{{ gravity_form_shortcode }}
+			{% endapply %}
+		</div>
+	{% endif %}
+</div>

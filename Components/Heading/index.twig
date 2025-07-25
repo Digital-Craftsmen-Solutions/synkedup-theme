@@ -2,10 +2,22 @@
 {% set highlight = model.highlight %}
 {% set after = model.after %}
 {% set type = model.type ?? 'h1' %}
+{% set description = model.description %}
 {% set options = options is defined ? options : model.options %}
+{% set align = options.align ?? 'center' %}
+{% set size = options.size ?? 'default' %}
 
 {% set Tag = type %}
-<flynt-component name="Heading" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>
+
+{% set maxWidthClass = 
+  size == 'wide' 
+    ? 'max-w-7xl mx-auto' 
+    : size == 'narrow' 
+      ? 'max-w-2xl mx-auto'
+      : 'max-w-4xl mx-auto' 
+%}
+
+<div {{ options.theme ? 'data-theme="'~options.theme~'"' }} class="flex flex-col justify-center gap-6 {{ align == 'center' ? 'text-center items-center' : 'text-left items-start' }} {{ maxWidthClass }}">
 	<{{Tag}} class="text-heading dark:text-white">
 		{% if before %}
 			<span>{{ before }}</span>
@@ -17,4 +29,9 @@
 			<span>{{ after }}</span>
 		{% endif %}
 	</{{Tag}}>
-</flynt-component>
+	{% if description %}
+		<div class="prose prose-p:space-y-2 dark:text-text-dark max-w-none">
+			{{ description|e('wp_kses_post') }}
+		</div>
+	{% endif %}
+</div>

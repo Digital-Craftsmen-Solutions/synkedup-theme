@@ -1,5 +1,4 @@
-import { ButtonModel } from "../Button/model";
-import { ItemBoxModel } from "../ItemBox/model";
+import { ActionModel } from "../Action/model";
 import { SectionFeatureItemsModel } from "../SectionFeatureItems/model";
 
 export type SectionHeroFullModel = {
@@ -13,12 +12,8 @@ export type SectionHeroFullModel = {
     after?: string;
   };
   contentHtml: string;
-  ctaType?: 'none' | 'buttons' | 'form';
-  ctaButtons: {
-    primaryButton?: ButtonModel;
-    secondaryButton?: ButtonModel;
-  };
-  extraItems?: SectionFeatureItemsModel
+  action?: ActionModel;
+  extraItems?: SectionFeatureItemsModel;
   options?: {
     theme?: 'light' | 'dark';
   };

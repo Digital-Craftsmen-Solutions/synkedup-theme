@@ -3,41 +3,40 @@
 {% set sourceTitle = model.sourceTitle %}
 {% set avatar = model.avatar %}
 {% set options = options is defined ? options : model.options %}
-{% set display = options.display ?? 'bordered' %}
+{% set display = options.display %}
 
 {% set blockquoteClasses = [
   'relative',
-  display == 'bordered' ? 'border-s-4 border-gray-200 ps-4 sm:ps-6 dark:border-neutral-700' : '',
+  display == 'bordered' ? 'm-0 border-s-4 border-border ps-4 sm:ps-6 dark:border-border-secondary' : 'border-0 ps-0 m-0',
 ] | join(' ') %}
 
-<flynt-component name="Quote" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>
+<div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>
 	<blockquote class="{{ blockquoteClasses }}">
-		<p class="text-gray-800 sm:text-xl dark:text-white">
-			<em>{{ quote }}</em>
+		<p class="sm:text-lg text-heading dark:text-white">
+			{{ quote }}
 		</p>
 
 		{% if authorName or avatar or sourceTitle %}
-			<footer class="mt-4">
+			<div class="mt-4">
 				<div class="flex items-center">
 					{% if avatar and avatar.src %}
-						<div class="shrink-0">
+						<div class="shrink-0 rounded-full overflow-hidden">
 							{% include '@Components/Avatar/index.twig' with { model: {
                 src: avatar.src,
                 alt: avatar.alt ?? authorName,
-                options: { size: 'small', theme: options.theme }
-              }} only %}
+              }, options: { size: 'small', theme: options.theme }} only %}
 						</div>
 					{% endif %}
 					<div class="ms-4">
 						{% if authorName %}
-							<div class="text-base font-semibold text-gray-800 dark:text-neutral-400">{{ authorName }}</div>
+							<div class="text-base text-heading dark:text-white">{{ authorName }}</div>
 						{% endif %}
 						{% if sourceTitle %}
-							<div class="text-xs text-gray-500 dark:text-neutral-500">{{ sourceTitle }}</div>
+							<div class="text-xs text-text dark:text-text-dark">{{ sourceTitle }}</div>
 						{% endif %}
 					</div>
 				</div>
-			</footer>
+			</div>
 		{% endif %}
 	</blockquote>
-</flynt-component>
+</div>

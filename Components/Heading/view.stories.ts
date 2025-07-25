@@ -8,8 +8,11 @@ const defaultData: HeadingModel = {
   highlight: 'Amazing',
   after: 'Heading',
   type: 'h1',
+  description: 'This is a description for the heading. You can add more context here as needed.',
   options: {
-    theme: 'light'
+    theme: 'light',
+    align: 'center',
+    size: 'default'
   }
 };
 
@@ -58,4 +61,43 @@ export const H3: StoryObj<HeadingModel> = {
     ...defaultData,
     type: 'h3'
   }
+};
+
+export const LeftAlignedWide: StoryObj<HeadingModel> = {
+  render: Template,
+  args: {
+    ...defaultData,
+    options: {
+      ...defaultData.options,
+      align: 'left',
+      size: 'wide'
+    }
+  }
+};
+
+export const Wide: StoryObj<HeadingModel> = {
+  render: Template,
+  args: {
+    ...defaultData,
+    description:
+      'This heading includes a longer description to demonstrate how additional information appears below the heading. You can use this for subheadings, intros, or explanatory text.',
+    options: {
+      ...defaultData.options,
+      size: 'wide'
+    }
+  }
+};
+
+export const Dark: StoryObj<HeadingModel> = {
+  render: Template,
+  args: {
+    ...defaultData,
+    options: {
+      ...defaultData.options,
+      theme: 'dark'
+    }
+  },
+  globals: {
+    backgrounds: { value: 'dark' },
+  },
 };

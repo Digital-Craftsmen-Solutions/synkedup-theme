@@ -3,8 +3,7 @@ import type { Meta, StoryObj } from '@storybook/html';
 import type { SectionHeroFullModel } from './model';
 import { renderTwig } from '../../stories/utils';
 
-const defaultData: SectionHeroFullModel =
-{
+const defaultData: SectionHeroFullModel = {
   backgroundImage: undefined,
   title: {
     before: 'Welcome to',
@@ -12,23 +11,25 @@ const defaultData: SectionHeroFullModel =
     after: 'Today'
   },
   contentHtml: '<p>This is a hero section with full background and call to action buttons.</p>',
-  ctaType: 'buttons',
-  ctaButtons: {
-    primaryButton: {
-      title: 'Get Started',
-      url: '/get-started',
-      target: '_self'
-    },
-    secondaryButton: {
-      title: 'Learn More',
-      url: '/learn-more',
-      target: '_blank'
+  action: {
+    ctaType: 'buttons',
+    ctaButtons: {
+      primaryButton: {
+        title: 'Get Started',
+        url: '/get-started',
+        target: '_self'
+      },
+      secondaryButton: {
+        title: 'Learn More',
+        url: '/learn-more',
+        target: '_blank'
+      }
     }
   },
   options: {
     theme: 'light'
   }
-}
+};
 
 const meta: Meta<SectionHeroFullModel> = {
   title: 'Sections/HeroFull',
@@ -37,17 +38,19 @@ const meta: Meta<SectionHeroFullModel> = {
     ...defaultData
   },
   argTypes: {
-    ctaType: {
-      control: { type: 'radio' },
-      options: ['none', 'buttons', 'form'],
-      defaultValue: 'buttons'
+    // Control action.ctaType, not ctaType (moved to action)
+    action: {
+      control: 'object'
     },
+    options: {
+      control: 'object'
+    }
   }
 };
 
 export default meta;
 
-const compiled = renderTwig(template)
+const compiled = renderTwig(template);
 const Template = (args: SectionHeroFullModel) => {
   return compiled.render({ model: args });
 };
@@ -63,7 +66,7 @@ export const Dark: StoryObj<SectionHeroFullModel> = {
   render: Template,
   args: {
     backgroundImage: {
-      src: 'https://synkedup.local/wp-content/uploads/resized/2025/05/SynkedUP-Background-768x0-c-default.jpg',
+      src: 'https://images.unsplash.com/photo-1680868543815-b8666dba60f7?auto=format&fit=crop&w=1280&q=80',
       alt: 'Hero Background'
     },
     title: {
@@ -71,11 +74,13 @@ export const Dark: StoryObj<SectionHeroFullModel> = {
       highlight: 'Something New'
     },
     contentHtml: '<p>Experience our secondary theme with more features and flexibility.</p>',
-    ctaType: 'buttons',
-    ctaButtons: {
-      primaryButton: {
-        title: 'Explore',
-        url: '/explore'
+    action: {
+      ctaType: 'buttons',
+      ctaButtons: {
+        primaryButton: {
+          title: 'Explore',
+          url: '/explore'
+        }
       }
     },
     options: {
@@ -88,7 +93,10 @@ export const Simple: StoryObj<SectionHeroFullModel> = {
   render: Template,
   args: {
     ...defaultData,
-    ctaType: 'none',
+    action: {
+      ctaType: 'none',
+      ctaButtons: {}
+    }
   }
 };
 
@@ -97,17 +105,19 @@ export const ExtraItems: StoryObj<SectionHeroFullModel> = {
   args: {
     ...defaultData,
     extraItems: {
-      items: [{
-        type: 'figure',
-        title: '$N.NN',
-        description: 'Easily customizable to fit your needs',
-      },
-      {
-        type: 'icon',
-        icon: 'stars',
-        description: 'Easily customizable to fit your needs.',
-      },]
-    },
+      items: [
+        {
+          type: 'figure',
+          title: '$N.NN',
+          description: 'Easily customizable to fit your needs',
+        },
+        {
+          type: 'icon',
+          icon: 'stars',
+          description: 'Easily customizable to fit your needs.',
+        }
+      ]
+    }
   }
 };
 
@@ -116,25 +126,27 @@ export const ExtraItemsDark: StoryObj<SectionHeroFullModel> = {
   args: {
     ...defaultData,
     backgroundImage: {
-      src: 'https://synkedup.local/wp-content/uploads/resized/2025/05/SynkedUP-Background-768x0-c-default.jpg',
+      src: 'https://images.unsplash.com/photo-1680868543815-b8666dba60f7?auto=format&fit=crop&w=1280&q=80',
       alt: 'Hero Background'
     },
     extraItems: {
-      items: [{
-        type: 'figure',
-        title: '$N.NN',
-        description: 'Easily customizable to fit your needs',
-      },
-      {
-        type: 'figure',
-        title: '$N.NN',
-        description: 'Easily customizable to fit your needs',
-      },
-      {
-        type: 'icon',
-        icon: 'stars',
-        description: 'Easily customizable to fit your needs.',
-      },]
+      items: [
+        {
+          type: 'figure',
+          title: '$N.NN',
+          description: 'Easily customizable to fit your needs',
+        },
+        {
+          type: 'figure',
+          title: '$N.NN',
+          description: 'Easily customizable to fit your needs',
+        },
+        {
+          type: 'icon',
+          icon: 'stars',
+          description: 'Easily customizable to fit your needs.',
+        }
+      ]
     },
     options: {
       theme: 'dark'

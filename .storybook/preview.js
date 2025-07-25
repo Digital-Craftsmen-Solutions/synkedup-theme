@@ -55,7 +55,7 @@ const preview = {
     },
     backgrounds: {
       options: {
-        light: { name: 'Light', value: '#FFFFFF' },
+        light: { name: 'Light', value: '#F7F9FD' },
         dark: { name: 'Dark', value: 'hsla(0, 0%, 4%, 1)' },
       },
     },
@@ -68,6 +68,9 @@ const preview = {
     viewport: {
       options: INITIAL_VIEWPORTS,
     },
+  },
+  initialGlobals: {
+    backgrounds: { value: 'light' },
   },
 
 };

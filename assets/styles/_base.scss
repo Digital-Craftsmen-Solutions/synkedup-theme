@@ -137,24 +137,27 @@
     margin-block-start: 0.25rem;
   }
 
-  blockquote,
-  .blockquote {
-    border-inline-start: 5px solid var(--color-primary);
-    display: block;
-    font-size: 1.44rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: calc(1em + 0.75rem);
-    margin-block: var(--flow-space);
-    margin-inline: 2.5rem 0;
-    padding-inline-start: 0.8rem;
+  .prose {
 
-    cite {
-      color: var(--color-text-muted);
+    blockquote,
+    .blockquote {
+      border-inline-start: 5px solid var(--color-primary);
       display: block;
-      font-size: var(--font-size-body);
+      font-size: 1.44rem;
       font-style: normal;
-      margin-block-start: 0.25rem;
+      font-weight: 500;
+      line-height: calc(1em + 0.75rem);
+      margin-block: var(--flow-space);
+      margin-inline: 2.5rem 0;
+      padding-inline-start: 0.8rem;
+
+      cite {
+        color: var(--color-text-muted);
+        display: block;
+        font-size: var(--font-size-body);
+        font-style: normal;
+        margin-block-start: 0.25rem;
+      }
     }
   }
 

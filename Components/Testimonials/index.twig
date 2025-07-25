@@ -1,0 +1,39 @@
+{% set quotes = model.quotes|default([]) %}
+{% set options = options is defined ? options : model.options %}
+{% set showArrows = options.showArrows is defined ? options.showArrows : true %}
+{% set autoPlay = options.autoPlay is defined ? options.autoPlay : false %}
+{% set showDots = options.showDots is defined ? options.showDots : true %}
+
+<flynt-component name="Testimonials" load:on="visible" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
+	<div data-hs-carousel='{"loadingClasses": "opacity-0", "isAutoPlay": {{ autoPlay ? "true" : "false" }}, "isAutoHeight": false, "dots": {{ showDots ? "true" : "false" }}, "arrows": {{ showArrows ? "true" : "false" }}, "dotsItemClasses": "hs-carousel-active:bg-primary bg-gray-400 hs-carousel-active:w-5 h-1 w-3 rounded-full cursor-pointer"}' class="relative">
+		<div class="hs-carousel relative overflow-hidden w-full">
+			<div class="hs-carousel-body flex flex-nowrap transition-transform duration-700 opacity-0">
+				{% for quote in quotes %}
+					<div class="hs-carousel-slide flex justify-start items-center px-10 lg:px-20">
+						{% include '@Components/Quote/index.twig' with { model: quote } only %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+		{% if showArrows %}
+			{% set arrowClasses = 'hs-carousel-disabled:opacity-50 hs-carousel-disabled:cursor-default absolute top-1/2 inline-flex justify-center items-center size-10 -translate-y-1/2 text-text-heading dark:text-white' %}
+			<button type="button" class="{{arrowClasses}} hs-carousel-prev start-0">
+				<span class="text-2xl" aria-hidden="true">
+					{% include '@Components/Common/_icon.twig' with { name: 'chevronLeft', ariaLabel: 'Left Arrow', class: 'shrink-0 size-5' } %}
+				</span>
+				<span class="sr-only">Previous</span>
+			</button>
+			<button type="button" class="{{arrowClasses}} hs-carousel-next end-0">
+				<span class="sr-only">Next</span>
+				<span class="text-2xl" aria-hidden="true">
+					{% include '@Components/Common/_icon.twig' with { name: 'chevronRight', ariaLabel: 'Right Arrow', class: 'shrink-0 size-5' } %}
+				</span>
+			</button>
+		{% endif %}
+
+		{% if showDots %}
+			<div class="hs-carousel-pagination flex justify-center flex gap-x-2 mt-4 lg:mt-6"></div>
+		{% endif %}
+	</div>
+</flynt-component>

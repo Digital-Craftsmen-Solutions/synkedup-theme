@@ -5,7 +5,7 @@
 {% set options = options is defined ? options : model.options %}
 
 <flynt-component name="SectionFeatureCards" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>
-	<div
+	<section
 		class="max-w-7xl mx-auto p-6 sm:p-12 lg:p-24">
 		<!-- Title -->
 		<div class="max-w-2xl text-center mx-auto mb-10 lg:mb-14">
@@ -37,5 +37,5 @@
 				{% include '@Components/Button/index.twig' with { model: ctaButtons.secondaryButton, type: 'secondary' } only %}
 			{% endif %}
 		</div>
-	</div>
+	</section>
 </flynt-component>

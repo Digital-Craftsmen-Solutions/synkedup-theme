@@ -9,10 +9,10 @@
 <flynt-component
 	name="SectionHeroFull" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
 	<!-- Hero -->
-	<div class="relative isolate overflow-hidden bg-testblue dark:bg-dark">
+	<section class="relative isolate overflow-hidden dark:bg-dark">
 		{% if backgroundImage %}
 			<div class="absolute inset-0 -z-10">
-			 	{% include '@Components/Common/_image.twig' with {
+				{% include '@Components/Common/_image.twig' with {
 					model: backgroundImage,
 					class: 'h-full w-full object-cover object-center',
 					size: 'large'
@@ -39,32 +39,17 @@
 
 				<!-- Buttons -->
 				<div class="gap-3 flex flex-col sm:flex-row justify-start sm:justify-center items-center">
-					{% if ctaType == 'buttons' %}
-						{% if ctaButtons.primaryButton %}
-							{% include '@Components/Button/index.twig' with { model: ctaButtons.primaryButton } only %}
-						{% endif %}
-						{% if ctaButtons.secondaryButton %}
-							{% include '@Components/Button/index.twig' with { model: ctaButtons.secondaryButton, type: 'secondary' } only %}
-						{% endif %}
-					{% elseif ctaType == 'form' and gravityForm %}
-						<div class="w-full max-w-2xl">
-							{% set gravity_form_shortcode = '[gravityform id="' ~ gravityForm ~ '" title="false" description="false" ajax="true"]' %}
-
-							{% apply shortcodes %}
-							{{ gravity_form_shortcode }}
-							{% endapply %}
-						</div>
-					{% endif %}
+					{% include '@Components/Action/index.twig' with { model: actionModel } only %}
 				</div>
 			</div>
 			<!-- End Buttons -->
 
-		{% if extraItems != undefine and extraItems|length > 0 %}
-			{% include '@Components/SectionFeatureItems/index.twig' with {model: extraItems, options: {theme: options.theme, align: 'center'}} %}
-		{% endif %}
+			{% if extraItems != undefine and extraItems|length > 0 %}
+				{% include '@Components/SectionFeatureItems/index.twig' with {model: extraItems, options: {theme: options.theme, align: 'center'}} %}
+			{% endif %}
 
 		</div>
-	</div>
+	</section>
 	<!-- End Hero -->
 
 </flynt-component>

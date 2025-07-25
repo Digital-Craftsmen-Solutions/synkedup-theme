@@ -50,3 +50,14 @@ export const Bordered: StoryObj<QuoteModel> = {
     options: { ...defaultData.options, display: 'bordered' }
   }
 };
+
+export const Dark: StoryObj<QuoteModel> = {
+  render: Template,
+  args: {
+    ...defaultData,
+    options: { ...defaultData.options, display: 'bordered' }
+  },
+  globals: {
+    backgrounds: { value: 'dark' },
+  }
+};

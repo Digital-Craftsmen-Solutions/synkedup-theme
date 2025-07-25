@@ -12,15 +12,16 @@
 {% set alt = model.alt %}
 {% set width = model.width %}
 {% set height = model.height %}
+{% set height = model.height %}
 
 {% if size == 'small' %}
-  {% set src_main = src|resizeDynamic(640) %}
-  {% set data_srcset = src|resizeDynamic(640) ~ ' 640w,' ~
+	{% set src_main = src|resizeDynamic(640) %}
+	{% set data_srcset = src|resizeDynamic(640) ~ ' 640w,' ~
     src|resizeDynamic(320) ~ ' 320w,' ~
     src|resizeDynamic(160) ~ ' 160w' %}
 {% elseif size == 'large' %}
-  {% set src_main = src|resizeDynamic(768) %}
-  {% set data_srcset = src|resizeDynamic(1920) ~ ' 1920w,' ~
+	{% set src_main = src|resizeDynamic(768) %}
+	{% set data_srcset = src|resizeDynamic(1920) ~ ' 1920w,' ~
     src|resizeDynamic(1600) ~ ' 1600w,' ~
     src|resizeDynamic(1440) ~ ' 1440w,' ~
     src|resizeDynamic(1366) ~ ' 1366w,' ~
@@ -28,19 +29,12 @@
     src|resizeDynamic(768) ~ ' 768w' ~
     src|resizeDynamic(640) ~ ' 640w' %}
 {% else %}
-  {# medium #}
-  {% set src_main = src|resizeDynamic(768) %}
-  {% set data_srcset = src|resizeDynamic(1366) ~ ' 1366w,' ~
+	{# medium #}
+	{% set src_main = src|resizeDynamic(768) %}
+	{% set data_srcset = src|resizeDynamic(1366) ~ ' 1366w,' ~
     src|resizeDynamic(1024) ~ ' 1024w,' ~
     src|resizeDynamic(768) ~ ' 768w,' ~
     src|resizeDynamic(640) ~ ' 640w' %}
 {% endif %}
 
-<img
-  class="lazyload h-full w-full object-cover object-center{{ class is defined ? ' ' ~ class : '' }}"
-  src="{{ src_main }}"
-  srcset="{{ placeholderImage(width, height, 'rgba(125, 125, 125, 0.1)') }}"
-  data-srcset="{{ data_srcset }}"
-  data-sizes="auto"
-  alt="{{ alt|e }}"
->
+<img class="lazyload h-auto w-full object-cover object-center {{ class is defined ? ' ' ~ class : '' }}" src="{{ src_main }}" src="{{ placeholderImage(width, height, 'rgba(125, 125, 125, 0.1)') }}" data-srcset="{{ data_srcset }}" data-sizes="auto" alt="{{ alt|e }}">
