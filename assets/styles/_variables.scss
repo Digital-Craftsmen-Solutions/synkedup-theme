@@ -24,6 +24,7 @@
   --color-dark-blue-900: hsla(209, 100%, 5%, 1);
   --color-border: hsl(0, 0%, 85%);
   --color-border-secondary: rgba(255, 255, 255, 0.25);
+  --color-success: hsla(100, 77%, 44%, 1);
   --color-error: hsla(359, 78%, 59%, 1);
   --color-warning: #FAAD14;
 
@@ -60,10 +61,6 @@
   --font-size-body-small: 0.75rem;
   --flow-space: 1.5625rem;
   --column-gap: clamp(2.5rem, 2.5vw + 1.75rem, 3.75rem);
-
-  --content-max-width: 700px;
-  --content-max-width-wide: 900px;
-  --content-max-width-full: 1200px;
 
   --box-spacing: clamp(1rem, 2.50vw + 0.25rem, 2.25rem);
   --container-spacing: clamp(1rem, 2.5vw + 0.25rem, 2.25rem);

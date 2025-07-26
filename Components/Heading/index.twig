@@ -17,7 +17,7 @@
       : 'max-w-4xl mx-auto' 
 %}
 
-<div {{ options.theme ? 'data-theme="'~options.theme~'"' }} class="flex flex-col justify-center gap-6 {{ align == 'center' ? 'text-center items-center' : 'text-left items-start' }} {{ maxWidthClass }}">
+<div {{ options.theme ? 'data-theme="'~options.theme~'"' }} class="flex flex-col justify-center gap-4 md:gap-6 {{ align == 'center' ? 'text-center items-center' : 'text-left items-start' }} {{ maxWidthClass }}">
 	<{{Tag}} class="text-heading dark:text-white">
 		{% if before %}
 			<span>{{ before }}</span>

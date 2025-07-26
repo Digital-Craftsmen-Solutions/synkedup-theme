@@ -14,7 +14,6 @@ const defaultData: TestimonialsModel = {
         src: 'https://randomuser.me/api/portraits/women/44.jpg',
         alt: 'Jane Doe'
       },
-      options: { display: 'bordered', theme: 'light', }
     },
     {
       quote: 'The component-based approach just works for our agency workflow.',
@@ -24,7 +23,6 @@ const defaultData: TestimonialsModel = {
         src: 'https://randomuser.me/api/portraits/men/32.jpg',
         alt: 'John Smith'
       },
-      options: { display: 'plain', theme: 'light' }
     },
     {
       quote: 'I love how easy it is to create beautiful, consistent sites.',
@@ -34,7 +32,6 @@ const defaultData: TestimonialsModel = {
         src: 'https://randomuser.me/api/portraits/women/65.jpg',
         alt: 'Emily Johnson'
       },
-      options: { display: 'plain', theme: 'light' }
     }
   ],
   options: {

@@ -1,7 +1,7 @@
 {% if model and model.title and model.url %}
 	{% set type = type is defined ? type : model.type|default('primary') %}
 	{% set class = class is defined ? class : model.class|default('') %}
-	{% set baseClass = 'py-2 px-4 block sm:inline-flex items-center gap-x-2 text-sm text-nowrap rounded-xl transition disabled:opacity-50 disabled:pointer-events-none shadow-xs w-full sm:w-auto text-center' %}
+	{% set baseClass = 'py-2 px-4 block md:inline-flex items-center gap-x-2 text-sm text-nowrap rounded-xl transition disabled:opacity-50 disabled:pointer-events-none shadow-xs w-full md:w-auto text-center' %}
 
 	{% set variantClass = {
     'primary': 'border border-transparent bg-primary text-white hover:bg-primary-900 focus:bg-primary-900',

@@ -2,8 +2,9 @@
 {% set ctaButtons = model.ctaButtons %}
 {% set gravityForm = model.gravityForm %}
 {% set options = options is defined ? options : model.options %}
+{% set align = options.align ?? 'center' %}
 
-<div class="gap-3 flex flex-col sm:flex-row justify-start sm:justify-center items-center" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
+<div class="gap-3 flex flex-col md:flex-row justify-start md:justify-center items-center {{align == 'left' ? 'md:justify-start'}}" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
 	{% if ctaType == 'buttons' %}
 		{% if ctaButtons.primaryButton %}
 			{% include '@Components/Button/index.twig' with { model: ctaButtons.primaryButton } only %}

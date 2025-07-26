@@ -10,6 +10,14 @@ const INITIAL_VIEWPORTS = {
     },
     type: 'mobile',
   },
+  mobilePlus: {
+    name: 'Mobile Plus',
+    styles: {
+      width: '640px',
+      height: '1024px',
+    },
+    type: 'mobile',
+  },
   tablet: {
     name: 'Tablet',
     styles: {

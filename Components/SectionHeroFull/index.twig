@@ -1,8 +1,7 @@
 {% set backgroundImage = model.backgroundImage %}
 {% set title = model.title %}
 {% set contentHtml = model.contentHtml %}
-{% set ctaType = model.ctaType %}
-{% set ctaButtons = model.ctaButtons %}
+{% set action = model.action %}
 {% set extraItems = model.extraItems %}
 {% set options = options is defined ? options : model.options %}
 
@@ -20,27 +19,19 @@
 				<div class="absolute inset-0 bg-black/40 dark:bg-black/60"></div>
 			</div>
 		{% endif %}
-		<div class="max-w-7xl mx-auto py-6 sm:py-12 lg:py-24 px-4 md:px-6 lg:px-8">
-			<div class="max-w-4xl mx-auto flex flex-col justify-center sm:text-center gap-6 my-10 sm:my-12 lg:my-16">
+		<div class="max-w-7xl mx-auto py-6 md:py-12 lg:py-24 px-4 md:px-6 lg:px-8">
+			<div class="max-w-4xl mx-auto flex flex-col justify-center md:text-center gap-6 my-10 md:my-12 lg:my-16">
 				{% if title %}
 					{% include '@Components/Heading/index.twig' with { model: {
 						before: title.before ?? '',
 						highlight: title.highlight ?? '',
 						after: title.after ?? '',
 						type: 'h1',
+						description: contentHtml
 					} } only %}
 				{% endif %}
 
-				{% if contentHtml %}
-					<div class="prose mx-auto prose-p:space-y-2 dark:text-text-dark" aria-describedby="hero-description" id="hero-description">
-						{{ contentHtml|e('wp_kses_post') }}
-					</div>
-				{% endif %}
-
-				<!-- Buttons -->
-				<div class="gap-3 flex flex-col sm:flex-row justify-start sm:justify-center items-center">
-					{% include '@Components/Action/index.twig' with { model: actionModel } only %}
-				</div>
+				{% include '@Components/Action/index.twig' with { model: action } only %}
 			</div>
 			<!-- End Buttons -->
 

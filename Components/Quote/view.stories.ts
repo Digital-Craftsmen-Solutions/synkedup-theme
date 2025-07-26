@@ -55,7 +55,7 @@ export const Dark: StoryObj<QuoteModel> = {
   render: Template,
   args: {
     ...defaultData,
-    options: { ...defaultData.options, display: 'bordered' }
+    options: { ...defaultData.options, display: 'bordered', theme: 'dark' }
   },
   globals: {
     backgrounds: { value: 'dark' },

@@ -32,7 +32,7 @@ const defaultData: SectionFeatureItemsModel = {
 };
 
 const meta: Meta<SectionFeatureItemsModel> = {
-  title: 'Sections/Featureitems',
+  title: 'Sections/FeatureItems',
   tags: ['autodocs'],
   args: {
     ...defaultData

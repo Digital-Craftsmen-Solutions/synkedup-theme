@@ -7,34 +7,32 @@
 
 {% set blockquoteClasses = [
   'relative',
-  display == 'bordered' ? 'm-0 border-s-4 border-border ps-4 sm:ps-6 dark:border-border-secondary' : 'border-0 ps-0 m-0',
+  display == 'bordered' ? 'm-0 p-4 rounded-lg bg-white dark:bg-transparent border-1 border-border dark:border-border-secondary' : 'border-0 ps-0 m-0',
 ] | join(' ') %}
 
 <div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>
 	<blockquote class="{{ blockquoteClasses }}">
-		<p class="sm:text-lg text-heading dark:text-white">
-			{{ quote }}
+		<p class="text-heading dark:text-white text-center md:text-left">
+			“{{ quote }}”
 		</p>
 
 		{% if authorName or avatar or sourceTitle %}
-			<div class="mt-4">
-				<div class="flex items-center">
-					{% if avatar and avatar.src %}
-						<div class="shrink-0 rounded-full overflow-hidden">
-							{% include '@Components/Avatar/index.twig' with { model: {
+			<div class="flex flex-col md:flex-row mt-4 gap-2 md:gap-4 items-center text-center justify-center md:justify-start md:text-left">
+				{% if avatar and avatar.src %}
+					<div class="shrink-0 rounded-full overflow-hidden">
+						{% include '@Components/Avatar/index.twig' with { model: {
                 src: avatar.src,
                 alt: avatar.alt ?? authorName,
               }, options: { size: 'small', theme: options.theme }} only %}
-						</div>
-					{% endif %}
-					<div class="ms-4">
-						{% if authorName %}
-							<div class="text-base text-heading dark:text-white">{{ authorName }}</div>
-						{% endif %}
-						{% if sourceTitle %}
-							<div class="text-xs text-text dark:text-text-dark">{{ sourceTitle }}</div>
-						{% endif %}
 					</div>
+				{% endif %}
+				<div>
+					{% if authorName %}
+						<div class="text-heading font-medium dark:text-white">{{ authorName }}</div>
+					{% endif %}
+					{% if sourceTitle %}
+						<div class="text-text dark:text-text-dark">{{ sourceTitle }}</div>
+					{% endif %}
 				</div>
 			</div>
 		{% endif %}
