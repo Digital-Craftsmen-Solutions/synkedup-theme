@@ -5,12 +5,12 @@ import { renderTwig } from '../../stories/utils';
 
 const defaultData: SectionHeroFullModel = {
   backgroundImage: undefined,
-  title: {
+  heading: {
     before: 'Welcome to',
     highlight: 'Our Product',
-    after: 'Today'
+    after: 'Today',
+    description: '<p>This is a hero section with full background and call to action buttons.</p>',
   },
-  contentHtml: '<p>This is a hero section with full background and call to action buttons.</p>',
   action: {
     ctaType: 'buttons',
     ctaButtons: {
@@ -38,7 +38,6 @@ const meta: Meta<SectionHeroFullModel> = {
     ...defaultData
   },
   argTypes: {
-    // Control action.ctaType, not ctaType (moved to action)
     action: {
       control: 'object'
     },
@@ -69,11 +68,11 @@ export const Dark: StoryObj<SectionHeroFullModel> = {
       src: 'https://images.unsplash.com/photo-1680868543815-b8666dba60f7?auto=format&fit=crop&w=1280&q=80',
       alt: 'Hero Background'
     },
-    title: {
+    heading: {
       before: 'Introducing',
-      highlight: 'Something New'
+      highlight: 'Something New',
+      description: '<p>Experience our secondary theme with more features and flexibility.</p>',
     },
-    contentHtml: '<p>Experience our secondary theme with more features and flexibility.</p>',
     action: {
       ctaType: 'buttons',
       ctaButtons: {

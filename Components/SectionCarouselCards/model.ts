@@ -1,9 +1,9 @@
-import type { CardImageModel } from '../CardImage/model';
 import type { HeadingModel } from '../Heading/model';
+import type { CardImageModel } from '../CardImage/model';
 import type { ActionModel } from '../Action/model';
 
-export type SectionFeatureCardsModel = {
-  heading?: HeadingModel;
+export type SectionCarouselCardsModel = {
+  heading: HeadingModel;
   cards: CardImageModel[];
   action?: ActionModel;
   options?: {

@@ -1,0 +1,47 @@
+{% set heading = model.heading %}
+{% set action = model.action %}
+{% set cards = model.cards|default([]) %}
+{% set options = options is defined ? options : model.options %}
+
+<flynt-component name="SectionCarouselCards" load:on="visible" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
+	<section class="max-w-7xl mx-auto py-6 md:py-12 lg:py-24 px-4 md:px-6 lg:px-8 flex flex-col gap-7 md:gap-16">
+		<div data-hs-carousel='{"loadingClasses": "opacity-0", "isAutoPlay": false, "isAutoHeight": false, "isInfiniteLoop": false, "dots": false, "arrows": true, "isDraggable": true, "isCentered": false, "slidesQty": {"xs": 1.25, "md": 2, "lg": 3.25, "xl": 3.25}}' class="relative">
+			<div class="hs-carousel relative overflow-hidden w-full flex flex-col gap-7 md:gap-16">
+				<div class="flex flex-col md:flex-row gap-4 justify-between">
+					<div>
+						{% if heading %}
+							{% include '@Components/Heading/index.twig' with { model: heading, options: {align: 'left', size: 'wide'} } only %}
+						{% endif %}
+					</div>
+					<div class="flex items-center gap-4 justify-end">
+						{% set arrowClasses = 'hs-carousel-disabled:opacity-40 hs-carousel-disabled:cursor-default inline-flex justify-center items-center size-10 bg-dark hover:bg-gray-dark/80 dark:bg-shade hover:dark:bg-shade/80 text-white dark:text-heading rounded-full' %}
+						<button type="button" class="{{arrowClasses}} hs-carousel-prev">
+							<span class="text-2xl" aria-hidden="true">
+								{% include '@Components/Common/_icon.twig' with { name: 'chevronLeft', ariaLabel: 'Left Arrow', class: 'shrink-0 size-5' } %}
+							</span>
+							<span class="sr-only">Previous</span>
+						</button>
+						<button type="button" class="{{arrowClasses}} hs-carousel-next">
+							<span class="sr-only">Next</span>
+							<span class="text-2xl" aria-hidden="true">
+								{% include '@Components/Common/_icon.twig' with { name: 'chevronRight', ariaLabel: 'Right Arrow', class: 'shrink-0 size-5' } %}
+							</span>
+						</button>
+					</div>
+				</div>
+				<div class="hs-carousel-body flex flex-nowrap transition-transform duration-700 opacity-0 -mx-2">
+					{% for card in cards %}
+						<div class="hs-carousel-slide flex justify-center items-center px-2">
+							{% include '@Components/CardImage/index.twig' with { model: card, options: {align: options.align, display: options.display} } only %}
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+
+		{% if action %}
+			{% include '@Components/Action/index.twig' with { model: action } only %}
+		{% endif %}
+
+	</section>
+</flynt-component>

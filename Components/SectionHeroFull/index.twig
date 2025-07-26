@@ -1,6 +1,6 @@
 {% set backgroundImage = model.backgroundImage %}
-{% set title = model.title %}
-{% set contentHtml = model.contentHtml %}
+{% set heading = model.heading|default([]) %}
+{% set heading = heading|merge({ type: 'h1' }) %}
 {% set action = model.action %}
 {% set extraItems = model.extraItems %}
 {% set options = options is defined ? options : model.options %}
@@ -21,16 +21,7 @@
 		{% endif %}
 		<div class="max-w-7xl mx-auto py-6 md:py-12 lg:py-24 px-4 md:px-6 lg:px-8">
 			<div class="max-w-4xl mx-auto flex flex-col justify-center md:text-center gap-6 my-10 md:my-12 lg:my-16">
-				{% if title %}
-					{% include '@Components/Heading/index.twig' with { model: {
-						before: title.before ?? '',
-						highlight: title.highlight ?? '',
-						after: title.after ?? '',
-						type: 'h1',
-						description: contentHtml
-					} } only %}
-				{% endif %}
-
+				{% include '@Components/Heading/index.twig' with { model: heading, options: {align: 'center'} } only %}
 				{% include '@Components/Action/index.twig' with { model: action } only %}
 			</div>
 			<!-- End Buttons -->

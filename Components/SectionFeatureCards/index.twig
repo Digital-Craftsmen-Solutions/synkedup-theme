@@ -1,41 +1,23 @@
-{% set title = model.title %}
-{% set contentHtml = model.contentHtml %}
+{% set heading = model.heading %}
 {% set cards = model.cards %}
-{% set ctaButtons = model.ctaButtons %}
+{% set action = model.action %}
 {% set options = options is defined ? options : model.options %}
 
 <flynt-component name="SectionFeatureCards" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>
-	<section
-		class="max-w-7xl mx-auto p-6 md:p-12 lg:p-24">
-		<!-- Title -->
+	<section class="max-w-7xl mx-auto py-6 md:py-12 lg:py-24 px-4 md:px-6 lg:px-8">
 		<div class="max-w-2xl text-center mx-auto mb-10 lg:mb-14">
-			{% if title %}
-				{% include '@Components/Heading/index.twig' with { model: title } only %}
-			{% endif %}
-
-			{% if contentHtml %}
-				<div class="mt-1 prose mx-auto prose-p:space-y-2 dark:text-text-dark">
-					{{ contentHtml|e('wp_kses_post') }}
-				</div>
+			{% if heading %}
+				{% include '@Components/Heading/index.twig' with { model: heading, options: {align: 'center'} } only %}
 			{% endif %}
 		</div>
-		<!-- End Title -->
 
-		<!-- Grid -->
 		<div class="grid md:grid-cols-3 gap-6 mb-10 lg:mb-14">
 			{% for card in cards %}
 				{% include '@Components/CardImage/index.twig' with { model: card, options: options } only %}
 			{% endfor %}
 		</div>
-		<!-- End Grid -->
 
-		<div class="gap-3 flex flex-col md:flex-row justify-start md:justify-center items-center">
-			{% if ctaButtons.primaryButton %}
-				{% include '@Components/Button/index.twig' with { model: ctaButtons.primaryButton } only %}
-			{% endif %}
-			{% if ctaButtons.secondaryButton %}
-				{% include '@Components/Button/index.twig' with { model: ctaButtons.secondaryButton, type: 'secondary' } only %}
-			{% endif %}
-		</div>
+		{% include '@Components/Action/index.twig' with { model: action } only %}
+
 	</section>
 </flynt-component>

@@ -2,12 +2,55 @@
 {% set description = model.description %}
 {% set subtitle = model.subtitle %}
 {% set backgroundImage = model.backgroundImage %}
+{% set action = model.action %}
 {% set options = options is defined ? options : model.options %}
 {% set display = options.display ?? 'imageBottom' %}
 {% set alignClass = options.align == 'center' ? 'items-center text-center' : '' %}
+{% set theme =  options.display == 'imageOverlay' ? 'dark' : options.theme %}
+{% set hasAction = action and action.url is defined %}
+{% set imgHoverClasses = 'group-hover:scale-105 group-focus:scale-105 transition-transform duration-500 ease-in-out overflow-hidden' %}
 
-{% if display == 'imageOverlay' %}
-	<div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="relative bg-white border border-gray-200 shadow-2xs rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70 overflow-hidden">
+
+{% if hasAction %}
+	<a class="group rounded-3xl" href="{{ action.url|e('esc_url') }}" target="{{ action.target|default('_self')|e }}">
+	{% endif %}
+	<div {{ theme ? ' data-theme="' ~ theme ~ '"' }} class="relative flex flex-col bg-white border border-border-card rounded-3xl overflow-hidden dark:bg-dark-shade dark:border-0 {{ options.align == 'center' ? 'items-center text-center' : '' }} {{ display == 'imageOverlay' ? 'h-90 md:h-110' : '' }}">
+		{% if display == 'imageOverlay' and backgroundImage %}
+			<div class="absolute inset-0 overflow-hidden">
+				{% include '@Components/Common/_image.twig' with {
+				model: backgroundImage,
+				class: 'h-full w-full object-cover object-center ' ~ imgHoverClasses,
+			} only %}
+				<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+			</div>
+		{% endif %}
+		{% if display == 'imageTop' and backgroundImage %}
+			{% include '@Components/Common/_image.twig' with {
+				model: backgroundImage,
+				class: 'w-full h-auto rounded-t-xl'
+			} only %}
+		{% endif %}
+		<div class="p-4 md:p-6 flex flex-col flex-1 space-y-4 {{ alignClass }} {{ display == 'imageOverlay' ? 'justify-end z-1' : '' }}">
+			<h3 class="text-lg md:text-xl font-medium text-heading dark:text-white {{hasAction ? 'group-hover:underline'}}">{{ title }}</h3>
+			{% if description %}
+				<p class="text-text dark:text-text-dark">{{ description }}</p>
+			{% endif %}
+			{% if subtitle %}
+				<p class="text-xs text-text dark:text-text-dark">{{ subtitle }}</p>
+			{% endif %}
+		</div>
+		{% if display == 'imageBottom' and backgroundImage %}
+			{% include '@Components/Common/_image.twig' with {
+				model: backgroundImage,
+				class: 'w-full h-auto rounded-b-xl'
+			} only %}
+		{% endif %}
+	</div>
+	{% if hasAction %}
+	</a>
+{% endif %}
+
+{# <div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="relative bg-white border border-gray-200 shadow-2xs rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70 overflow-hidden">
 		{% if backgroundImage %}
 			{% include '@Components/Common/_image.twig' with {
 				model: backgroundImage,
@@ -24,27 +67,4 @@
 				{% endif %}
 			</div>
 		</div>
-	</div>
-{% else %}
-	<div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="flex flex-col bg-white border border-gray-200 shadow-2xs rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
-		{% if display == 'imageTop' and backgroundImage %}
-			{% include '@Components/Common/_image.twig' with {
-				model: backgroundImage,
-				class: 'w-full h-auto rounded-t-xl',
-			} only %}
-		{% endif %}
-		<div class="p-4 md:p-5 flex-1 {{ alignClass }}">
-			<h3 class="text-lg font-bold text-gray-800 dark:text-white">{{ title }}</h3>
-			<p class="mt-1 text-gray-500 dark:text-neutral-400">{{ description }}</p>
-			{% if subtitle %}
-				<p class="mt-5 text-xs text-gray-500 dark:text-neutral-500">{{ subtitle }}</p>
-			{% endif %}
-		</div>
-		{% if display == 'imageBottom' and backgroundImage %}
-			{% include '@Components/Common/_image.twig' with {
-				model: backgroundImage,
-				class: 'w-full h-auto rounded-b-xl',
-			} only %}
-		{% endif %}
-	</div>
-{% endif %}
+	</div> #}

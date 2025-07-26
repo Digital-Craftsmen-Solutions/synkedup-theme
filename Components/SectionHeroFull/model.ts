@@ -1,17 +1,13 @@
-import { ActionModel } from "../Action/model";
-import { SectionFeatureItemsModel } from "../SectionFeatureItems/model";
+import type { HeadingModel } from '../Heading/model';
+import type { ActionModel } from '../Action/model';
+import type { SectionFeatureItemsModel } from '../SectionFeatureItems/model';
 
 export type SectionHeroFullModel = {
   backgroundImage?: {
     src: string;
     alt: string;
   };
-  title: {
-    before: string;
-    highlight?: string;
-    after?: string;
-  };
-  contentHtml: string;
+  heading: HeadingModel;
   action?: ActionModel;
   extraItems?: SectionFeatureItemsModel;
   options?: {

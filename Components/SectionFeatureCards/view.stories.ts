@@ -2,23 +2,19 @@ import template from './index.twig?url';
 import type { Meta, StoryObj } from '@storybook/html';
 import type { SectionFeatureCardsModel } from './model';
 import { renderTwig } from '../../stories/utils';
-import { ButtonModel } from '../Button/model';
 
 const defaultData: SectionFeatureCardsModel = {
-  title: {
+  heading: {
     before: 'Discover our',
     highlight: 'Features',
     after: '',
     type: 'h2',
-    options: {
-      theme: 'light'
-    }
+    description: '<p>Explore the key features of our product below.</p>',
   },
-  contentHtml: '<p>Explore the key features of our product below.</p>',
   cards: [
     {
-      title: 'Feature One',
-      description: 'Short description for feature one.',
+      title: 'Fast & Accurate Estimates ',
+      description: 'Build estimates in minutes with drag and drop templates, priced to recover your overhead. ',
       subtitle: 'First Subtitle',
       backgroundImage: {
         src: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=400&h=300&q=80',
@@ -43,16 +39,19 @@ const defaultData: SectionFeatureCardsModel = {
       },
     }
   ],
-  ctaButtons: {
-    primaryButton: {
-      title: 'Get Started',
-      url: '/get-started',
-      target: '_self'
-    },
-    secondaryButton: {
-      title: 'Learn More',
-      url: '/learn-more',
-      target: '_blank'
+  action: {
+    ctaType: 'buttons',
+    ctaButtons: {
+      primaryButton: {
+        title: 'Get Started',
+        url: '/get-started',
+        target: '_self'
+      },
+      secondaryButton: {
+        title: 'Learn More',
+        url: '/learn-more',
+        target: '_blank'
+      }
     }
   },
   options: {
@@ -72,7 +71,7 @@ const meta: Meta<SectionFeatureCardsModel> = {
     options: {
       control: { type: 'object' }
     },
-    ctaButtons: {
+    action: {
       control: { type: 'object' }
     }
   }
@@ -96,18 +95,7 @@ export const Dark: StoryObj<SectionFeatureCardsModel> = {
     ...defaultData,
     cards: defaultData.cards.map(card => ({
       ...card,
-      options: { ...card.options, theme: 'dark' }
     })),
-    ctaButtons: {
-      primaryButton: {
-        ...defaultData.ctaButtons?.primaryButton as ButtonModel,
-        title: 'Join Now'
-      },
-      secondaryButton: {
-        ...defaultData.ctaButtons?.secondaryButton as ButtonModel,
-        title: 'See More'
-      }
-    },
     options: {
       theme: 'dark'
     },
@@ -122,6 +110,7 @@ export const OverlayImage: StoryObj<SectionFeatureCardsModel> = {
   args: {
     ...defaultData,
     options: {
+      ...defaultData.options,
       display: 'imageOverlay'
     }
   }

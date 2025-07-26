@@ -15,7 +15,7 @@
 
 <flynt-component name="SectionCallToAction" {{ options.theme ? 'data-theme="' ~ theme ~ '"' }}>
 	<section class="max-w-7xl mx-auto py-6 md:py-12 lg:py-24 px-4 md:px-6 lg:px-8 bg-shade {{altMode ? 'dark:bg-dark' : 'dark:bg-shade'}}">
-		<div class="bg-gray-200 border border-border-secondary rounded-xl {{altMode ? 'dark:bg-primary' : 'dark:bg-dark'}} dark:border-border-secondary overflow-hidden">
+		<div class="bg-gray-200 border border-border-card rounded-3xl {{altMode ? 'dark:bg-primary' : 'dark:bg-dark'}} dark:border-0 overflow-hidden">
 			<div
 				class="{{display == 'full' ? 'flex flex-col p-4 md:p-8 lg:p-10 md:px-14 lg:px-16' : 'grid md:grid-cols-12 p-4 md:p-6 lg:p-10 gap-5 lg:gap-6'}} {{longTitle ? 'lg:py-12 sm:gap-6' : ''}}">
 				{# Col 1 #}
