@@ -1,29 +1,30 @@
 {% set before = model.before %}
 {% set highlight = model.highlight %}
 {% set after = model.after %}
-{% set type = model.type ?? 'h1' %}
+{% set type = model.type ?? 'h2' %}
 {% set description = model.description %}
 {% set options = options is defined ? options : model.options %}
 {% set align = options.align ?? 'center' %}
 {% set size = options.size ?? 'default' %}
+{% set hideHighlight = options.hideHighlight|default(false) %}
 
 {% set Tag = type %}
 
-{% set maxWidthClass = 
-  size == 'wide' 
-    ? 'max-w-7xl mx-auto' 
-    : size == 'narrow' 
+{% set maxWidthClass =
+  size == 'wide'
+    ? 'max-w-7xl mx-auto'
+    : size == 'narrow'
       ? 'max-w-2xl mx-auto'
-      : 'max-w-4xl mx-auto' 
+      : 'max-w-4xl mx-auto'
 %}
 
-<div {{ options.theme ? 'data-theme="'~options.theme~'"' }} class="flex flex-col justify-center gap-4 md:gap-6 {{ align == 'center' ? 'text-center items-center' : 'text-left items-start' }} {{ maxWidthClass }}">
+<div {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="flex flex-col justify-center gap-4 md:gap-5 {{ align == 'center' ? 'text-center items-center' : 'text-left items-start' }} {{ maxWidthClass }}">
 	<{{Tag}} class="text-heading dark:text-white">
 		{% if before %}
 			<span>{{ before }}</span>
 		{% endif %}
 		{% if highlight %}
-			<span class="text-accent dark:text-accent-dark">{{ highlight }}</span>
+			<span class="{{hideHighlight ? '' : 'text-accent dark:text-accent-dark'}}">{{ highlight }}</span>
 		{% endif %}
 		{% if after %}
 			<span>{{ after }}</span>
