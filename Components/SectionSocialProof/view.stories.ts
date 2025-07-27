@@ -13,7 +13,7 @@ const defaultData: SectionSocialProofModel = {
     options: { theme: 'light' }
   },
   action: {
-    ctaType: 'buttons',
+    actionType: 'buttons',
     ctaButtons: {
       primaryButton: {
         title: 'Get Started',

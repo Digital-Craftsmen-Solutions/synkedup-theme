@@ -1,11 +1,11 @@
 <?php
 
-namespace Flynt\Components\ItemBoxList;
+namespace Flynt\Components\SectionFeatureItems;
 
 use Flynt\FieldVariables;
 
 
-add_filter('Flynt/addComponentData?name=ItemBoxList', function (array $data): array {
+add_filter('Flynt/addComponentData?name=SectionFeatureItems', function (array $data): array {
     $model = [
 
         'options' => $data['options'] ?? []
@@ -17,7 +17,7 @@ add_filter('Flynt/addComponentData?name=ItemBoxList', function (array $data): ar
 function getACFLayout(): array
 {
     return [
-        'name' => 'ItemBoxList',
+        'name' => 'sectionFeatureItems',
         'label' => __('Section: Hero Full', 'flynt'),
         'sub_fields' => [
             [

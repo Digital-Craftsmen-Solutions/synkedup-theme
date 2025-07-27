@@ -15,6 +15,15 @@ add_action('Flynt/afterRegisterComponents', function (): void {
                 'type' => 'flexible_content',
                 'button_label' => __('Add Component', 'flynt'),
                 'layouts' => [
+                    Components\SectionHeroFull\getACFLayout(),
+                    Components\SectionCompanyLogos\getACFLayout(),
+                    Components\SectionSocialProof\getACFLayout(),
+                    Components\SectionFeatureBlock\getACFLayout(),
+                    Components\SectionFeatureItems\getACFLayout(),
+                    Components\SectionFeatureCards\getACFLayout(),
+                    Components\SectionCarouselCards\getACFLayout(),
+                    Components\SectionCallToAction\getACFLayout(),
+
                     Components\BlockAnchor\getACFLayout(),
                     Components\BlockImage\getACFLayout(),
                     Components\BlockImageText\getACFLayout(),
@@ -25,7 +34,6 @@ add_action('Flynt/afterRegisterComponents', function (): void {
                     Components\GridPostsLatest\getACFLayout(),
                     Components\ListComponents\getACFLayout(),
                     // Components\SliderImages\getACFLayout(),
-                    Components\SectionHeroFull\getACFLayout(),
                     Components\ReusableComponent\getACFLayout(),
                 ],
             ],

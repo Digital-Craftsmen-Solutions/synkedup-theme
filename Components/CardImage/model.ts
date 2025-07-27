@@ -1,13 +1,11 @@
 import { ButtonModel } from "../Button/model";
+import { ImageModel } from "../Common/model";
 
 export type CardImageModel = {
   title: string;
   description?: string;
   subtitle?: string;
-  backgroundImage: {
-    src: string;
-    alt: string;
-  };
+  backgroundImage: ImageModel;
   action?: ButtonModel,
   options?: {
     theme?: 'light' | 'dark';

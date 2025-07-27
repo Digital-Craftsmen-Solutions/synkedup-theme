@@ -16,6 +16,15 @@ add_action('Flynt/afterRegisterComponents', function (): void {
                 'type' => 'flexible_content',
                 'button_label' => __('Add Component', 'flynt'),
                 'layouts' => [
+                    Components\SectionHeroFull\getACFLayout(),
+                    Components\SectionCompanyLogos\getACFLayout(),
+                    Components\SectionSocialProof\getACFLayout(),
+                    Components\SectionFeatureBlock\getACFLayout(),
+                    Components\SectionFeatureItems\getACFLayout(),
+                    Components\SectionFeatureCards\getACFLayout(),
+                    Components\SectionCarouselCards\getACFLayout(),
+                    Components\SectionCallToAction\getACFLayout(),
+
                     Components\BlockImage\getACFLayout(),
                     Components\BlockImageText\getACFLayout(),
                     Components\BlockSpacer\getACFLayout(),

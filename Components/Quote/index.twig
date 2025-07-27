@@ -18,11 +18,10 @@
 
 		{% if authorName or avatar or sourceTitle %}
 			<div class="flex flex-col md:flex-row mt-4 gap-2 md:gap-4 items-center text-center justify-center md:justify-start md:text-left">
-				{% if avatar and avatar.src %}
+				{% if avatar %}
 					<div class="shrink-0 rounded-full overflow-hidden">
 						{% include '@Components/Avatar/index.twig' with { model: {
-                src: avatar.src,
-                alt: avatar.alt ?? authorName,
+                image: avatar
               }, options: { size: 'small', theme: options.theme }} only %}
 					</div>
 				{% endif %}

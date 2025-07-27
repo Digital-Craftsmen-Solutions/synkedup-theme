@@ -14,7 +14,7 @@
 }[logoCount]|default('lg:grid-cols-4') %}
 
 <flynt-component name="SectionCompanyLogos" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
-	<section class="max-w-7xl mx-auto py-4 md:py-8 px-4 md:px-6 lg:px-8 flex flex-col gap-8 lg:gap-12">
+	<section class="max-w-7xl mx-auto py-6 md:py-12 lg:py-24 px-4 md:px-6 lg:px-8 flex flex-col gap-8 lg:gap-12">
 		{% if heading %}
 			{% include '@Components/Heading/index.twig' with { model: heading } only %}
 		{% endif %}
@@ -28,11 +28,12 @@
 							width: logo.width|default(120),
 							height: logo.height|default(48)
 						},
-						class: 'max-w-30 h-auto grayscale dark:grayscale-0 opacity-90 hover:opacity-100 transition'
+						class: 'max-w-36 h-auto grayscale dark:grayscale-0 opacity-90 hover:opacity-100 transition'
 					} only %}
 				</div>
 			{% endfor %}
 		</div>
 	</section>
 </flynt-component>
-{% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %}
+
+{# {% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %} #}

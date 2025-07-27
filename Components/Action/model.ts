@@ -1,7 +1,7 @@
 import type { ButtonModel } from '../Button/model';
 
 export type ActionModel = {
-  ctaType?: 'none' | 'buttons' | 'form';
+  actionType: 'none' | 'buttons' | 'form';
   ctaButtons?: {
     primaryButton?: ButtonModel;
     secondaryButton?: ButtonModel;

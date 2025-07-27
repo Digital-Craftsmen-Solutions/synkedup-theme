@@ -13,6 +13,8 @@ export type SectionSocialProofModel = {
   stats: Stat[];
   testimonials: TestimonialsModel;
   options?: {
+    showArrows?: boolean;
+    autoPlay?: boolean;
     theme?: 'light' | 'dark';
   };
 };

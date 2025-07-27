@@ -40,7 +40,7 @@ const defaultData: SectionFeatureCardsModel = {
     }
   ],
   action: {
-    ctaType: 'buttons',
+    actionType: 'buttons',
     ctaButtons: {
       primaryButton: {
         title: 'Get Started',

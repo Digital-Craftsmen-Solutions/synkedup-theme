@@ -2,21 +2,34 @@
 
 namespace Flynt\Components\SectionHeroFull;
 
-use Flynt\Components;
 use Flynt\FieldVariables;
-
 
 add_filter('Flynt/addComponentData?name=SectionHeroFull', function (array $data): array {
     $model = [
         'backgroundImage' => $data['backgroundImage'],
-        'title' => $data['title'],
-        'contentHtml' => $data['contentHtml'],
-        'ctaType' => $data['ctaType'],
-        'ctaButtons' => [
-            'primaryButton' => $data['ctaButtons']['primaryButton'],
-            'secondaryButton' => $data['ctaButtons']['secondaryButton']
+        'heading' => $data['heading'],
+        'action' => [
+            'actionType' => $data['actionType'],
+            'ctaButtons' => $data['actionType'] == 'buttons' ? [
+                'primaryButton' => $data['ctaButtons']['primaryButton'],
+                'secondaryButton' => $data['ctaButtons']['secondaryButton']
+            ] : null,
+            'gravityForm' => $data['actionType'] == 'form' ? $data['gravityForm'] : null,
         ],
-        'options' => $data['options'] ?? []
+        'extraItems' => !empty($data['extraItems'])
+            ? [
+                'items' => array_map(function ($item) {
+                    return [
+                        'type' => $item['type'],
+                        'icon' => $item['type'] === 'icon' ? $item['icon'] : null,
+                        'image' => $item['type'] === 'image' ? $item['image'] : null,
+                        'title' => $item['title'],
+                        'description' => $item['description'],
+                    ];
+                }, $data['extraItems'])
+            ]
+            : null,
+        'options' => $data['options']
     ];
 
     return ['model' => $model];
@@ -37,206 +50,89 @@ function getACFLayout(): array
             ],
             [
                 'label' => __('Background Image', 'flynt'),
-                'instructions' => __('Optional background image. Format: JPG, PNG, WebP.', 'flynt'),
                 'name' => 'backgroundImage',
                 'type' => 'image',
+                'instructions' => __('Optional background image (JPG, PNG, WebP).', 'flynt'),
                 'preview_size' => 'medium',
-                'required' => 0,
+                'return_format' => 'array',
                 'mime_types' => 'jpg,jpeg,png,webp',
             ],
+            FieldVariables\getHeading(),
+            FieldVariables\getAction(),
             [
-                'label' => __('Title', 'flynt'),
-                'name' => 'title',
-                'type' => 'group',
-                'layout' => 'block',
-                'sub_fields' => [
-                    [
-                        'label' => __('Before Highlight', 'flynt'),
-                        'name' => 'before',
-                        'type' => 'text',
-                        'required' => 1,
-                        'wrapper' => ['width' => 40],
-                    ],
-                    [
-                        'label' => __('Highlighted', 'flynt'),
-                        'name' => 'highlight',
-                        'type' => 'text',
-                        'required' => 1,
-                        'wrapper' => ['width' => 20],
-                    ],
-                    [
-                        'label' => __('After Highlight', 'flynt'),
-                        'name' => 'after',
-                        'type' => 'text',
-                        'required' => 0,
-                        'wrapper' => ['width' => 40],
-                    ],
-                ],
-            ],
-            [
-                'label' => __('Text', 'flynt'),
-                'name' => 'contentHtml',
-                'type' => 'wysiwyg',
-                'media_upload' => 0,
-                'required' => 1,
-                'delay' => 0,
-            ],
-            [
-                'label' => __('CTA Type', 'flynt'),
-                'name' => 'ctaType',
-                'type' => 'button_group',
-                'choices' => [
-                    'buttons' => __('Buttons', 'flynt'),
-                    'form' => __('Gravity Form', 'flynt'),
-                ],
-                'default_value' => 'buttons',
-                'layout' => 'horizontal',
-            ],
-            [
-                'label' => __('Buttons', 'flynt'),
-                'name' => 'ctaButtons',
-                'type' => 'group',
-                'layout' => 'block',
-                'conditional_logic' => [
-                    [
-                        [
-                            'fieldPath' => 'ctaType',
-                            'operator' => '==',
-                            'value' => 'buttons',
-                        ],
-                    ],
-                ],
-                'sub_fields' => [
-                    [
-                        'label' => __('Primary Button', 'flynt'),
-                        'name' => 'primaryButton',
-                        'type' => 'link',
-                        'wrapper' => ['width' => 50],
-                    ],
-                    [
-                        'label' => __('Secondary Button', 'flynt'),
-                        'name' => 'secondaryButton',
-                        'type' => 'link',
-                        'wrapper' => ['width' => 50],
-                    ],
-                ],
-            ],
-            [
-                'label' => __('Gravity Form', 'flynt'),
-                'name' => 'gravityForm',
-                'type' => 'select',
-                'instructions' => __('Select a Gravity Form to display.', 'flynt'),
-                'choices' => [],
-                'allow_null' => 1,
-                'return_format' => 'value',
-                'ui' => 1,
-                'conditional_logic' => [
-                    [
-                        [
-                            'fieldPath' => 'ctaType',
-                            'operator' => '==',
-                            'value' => 'form',
-                        ],
-                    ],
-                ],
-            ],
-            [
-                'label' => __('Show additional icons', 'flynt'),
-                'name' => 'showIcons',
-                'type' => 'true_false',
-                'default_value' => 0,
-                'ui' => 1
-            ],
-            [
-                'label' => __('Icon Items', 'flynt'),
-                'name' => 'icons',
+                'label' => __('Extra Items', 'flynt'),
+                'name' => 'extraItems',
                 'type' => 'repeater',
-                'collapsed' => '',
                 'layout' => 'block',
                 'min' => 0,
                 'max' => 3,
-                'conditional_logic' => [
-                    [
-                        [
-                            'fieldPath' => 'showIcons',
-                            'operator' => '==',
-                            'value' => 1,
-                        ],
-                    ],
-                ],
                 'button_label' => __('Add Item', 'flynt'),
                 'sub_fields' => [
                     [
-                        'label' => __('Icon', 'flynt'),
-                        'name' => 'icon',
-                        'type' => 'text',
-                        'required' => 0,
-                        'wrapper' => [
-                            'width' => 20
+                        'label' => __('Type', 'flynt'),
+                        'name' => 'type',
+                        'type' => 'button_group',
+                        'choices' => [
+                            'icon' => __('Icon', 'flynt'),
+                            'image' => __('Image', 'flynt'),
+                            'figure' => __('Figure', 'flynt'),
                         ],
+                        'default_value' => 'icon',
+                        'layout' => 'horizontal',
+                        'wrapper' => ['width' => 20],
+                    ],
+                    array_merge(
+                        FieldVariables\getIcon(),
+                        [
+                            'conditional_logic' => [
+                                [
+                                    [
+                                        'fieldPath' => 'type',
+                                        'operator' => '==',
+                                        'value' => 'icon',
+                                    ],
+                                ],
+                            ],
+                        ]
+                    ),
+                    [
+                        'label' => __('Image', 'flynt'),
+                        'name' => 'image',
+                        'type' => 'image',
+                        'return_format' => 'array',
+                        'conditional_logic' => [
+                            [
+                                [
+                                    'fieldPath' => 'type',
+                                    'operator' => '==',
+                                    'value' => 'image',
+                                ],
+                            ],
+                        ],
+                        'wrapper' => ['width' => 20],
                     ],
                     [
                         'label' => __('Title', 'flynt'),
                         'name' => 'title',
                         'type' => 'text',
-                        'required' => 0,
-                        'wrapper' => [
-                            'width' => 40
+                        'conditional_logic' => [
+                            [
+                                [
+                                    'fieldPath' => 'type',
+                                    'operator' => '==',
+                                    'value' => 'figure',
+                                ],
+                            ],
                         ],
+                        'wrapper' => ['width' => 30],
                     ],
                     [
-                        'label' => __('Text', 'flynt'),
-                        'name' => 'text',
+                        'label' => __('Description', 'flynt'),
+                        'name' => 'description',
                         'type' => 'text',
-                        'required' => 0,
-                        'wrapper' => [
-                            'width' => 40
-                        ],
+                        'wrapper' => ['width' => 30],
                     ],
                 ]
-            ],
-            [
-                'label' => __('Two Columns', 'flynt'),
-                'name' => 'columns',
-                'type' => 'group',
-                'layout' => 'block',
-                'sub_fields' => [
-                    [
-                        'label' => __('Inner Component', 'flynt'),
-                        'name' => 'innerComponent1',
-                        'type' => 'flexible_content',
-                        'layouts' => [
-                            Components\BlockImage\getACFLayout(),
-                            Components\BlockImageText\getACFLayout(),
-                        ],
-                        'wrapper' => [
-                            'width' => 50
-                        ],
-                    ],
-                    [
-                        'label' => __('Inner Component', 'flynt'),
-                        'name' => 'innerComponent2',
-                        'type' => 'flexible_content',
-                        'layouts' => [
-                            Components\BlockImage\getACFLayout(),
-                            Components\BlockImageText\getACFLayout(),
-                        ],
-                        'wrapper' => [
-                            'width' => 50
-                        ],
-                    ]
-                ]
-            ],
-            [
-                'label' => __('Inner Component', 'flynt'),
-                'name' => 'innerComponent3',
-                'type' => 'flexible_content',
-                'min' => 1,
-                'max' => 1,
-                'layouts' => [
-                    Components\BlockImage\getACFLayout(),
-                    Components\BlockImageText\getACFLayout(),
-                ],
             ],
             [
                 'label' => __('Options', 'flynt'),
@@ -257,20 +153,3 @@ function getACFLayout(): array
         ],
     ];
 }
-
-add_filter('acf/load_field/name=gravityForm', function ($field) {
-    if (!class_exists('GFAPI')) {
-        return $field;
-    }
-
-    $forms = \GFAPI::get_forms();
-    $choices = [];
-
-    foreach ($forms as $form) {
-        $choices[$form['id']] = $form['title'];
-    }
-
-    $field['choices'] = $choices;
-
-    return $field;
-});

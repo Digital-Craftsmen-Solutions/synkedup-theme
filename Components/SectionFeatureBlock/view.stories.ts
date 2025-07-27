@@ -1,9 +1,9 @@
 import template from './index.twig?url';
 import type { Meta, StoryObj } from '@storybook/html';
-import type { SectionFeatureImageModel } from './model';
+import type { SectionFeatureBlockModel } from './model';
 import { renderTwig } from '../../stories/utils';
 
-const defaultData: SectionFeatureImageModel = {
+const defaultData: SectionFeatureBlockModel = {
   icon: 'home',
   heading: {
     before: 'Discover our features',
@@ -16,7 +16,7 @@ const defaultData: SectionFeatureImageModel = {
     { label: '24/7 Support' }
   ],
   action: {
-    ctaType: 'buttons',
+    actionType: 'buttons',
     ctaButtons: {
       primaryButton: {
         title: 'Get Started',
@@ -51,8 +51,8 @@ const defaultData: SectionFeatureImageModel = {
   }
 };
 
-const meta: Meta<SectionFeatureImageModel> = {
-  title: 'Sections/FeatureImage',
+const meta: Meta<SectionFeatureBlockModel> = {
+  title: 'Sections/FeatureBlock',
   tags: ['autodocs'],
   args: {
     ...defaultData
@@ -66,9 +66,9 @@ const meta: Meta<SectionFeatureImageModel> = {
 export default meta;
 
 const compiled = renderTwig(template);
-const Template = (args: SectionFeatureImageModel) => compiled.render({ model: args });
+const Template = (args: SectionFeatureBlockModel) => compiled.render({ model: args });
 
-export const RightImage: StoryObj<SectionFeatureImageModel> = {
+export const RightImage: StoryObj<SectionFeatureBlockModel> = {
   render: Template,
   args: {
     ...defaultData,
@@ -79,7 +79,7 @@ export const RightImage: StoryObj<SectionFeatureImageModel> = {
   }
 };
 
-export const LeftImage: StoryObj<SectionFeatureImageModel> = {
+export const LeftImage: StoryObj<SectionFeatureBlockModel> = {
   render: Template,
   args: {
     ...defaultData,
@@ -90,7 +90,7 @@ export const LeftImage: StoryObj<SectionFeatureImageModel> = {
   }
 };
 
-export const FullImage: StoryObj<SectionFeatureImageModel> = {
+export const FullImage: StoryObj<SectionFeatureBlockModel> = {
   render: Template,
   args: {
     ...defaultData,
@@ -106,7 +106,7 @@ export const FullImage: StoryObj<SectionFeatureImageModel> = {
   }
 };
 
-export const FullImageDark: StoryObj<SectionFeatureImageModel> = {
+export const FullImageDark: StoryObj<SectionFeatureBlockModel> = {
   render: Template,
   args: {
     ...defaultData,

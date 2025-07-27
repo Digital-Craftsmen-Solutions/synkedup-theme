@@ -12,7 +12,7 @@ const defaultData: SectionHeroFullModel = {
     description: '<p>This is a hero section with full background and call to action buttons.</p>',
   },
   action: {
-    ctaType: 'buttons',
+    actionType: 'buttons',
     ctaButtons: {
       primaryButton: {
         title: 'Get Started',
@@ -74,7 +74,7 @@ export const Dark: StoryObj<SectionHeroFullModel> = {
       description: '<p>Experience our secondary theme with more features and flexibility.</p>',
     },
     action: {
-      ctaType: 'buttons',
+      actionType: 'buttons',
       ctaButtons: {
         primaryButton: {
           title: 'Explore',
@@ -93,7 +93,7 @@ export const Simple: StoryObj<SectionHeroFullModel> = {
   args: {
     ...defaultData,
     action: {
-      ctaType: 'none',
+      actionType: 'none',
       ctaButtons: {}
     }
   }

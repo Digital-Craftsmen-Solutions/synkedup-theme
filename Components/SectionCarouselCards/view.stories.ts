@@ -81,7 +81,7 @@ const defaultData: SectionCarouselCardsModel = {
   },
   cards,
   action: {
-    ctaType: 'buttons',
+    actionType: 'buttons',
     ctaButtons: {
       secondaryButton: {
         title: 'Learn More',

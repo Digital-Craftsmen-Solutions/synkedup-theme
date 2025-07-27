@@ -4,7 +4,7 @@
 {% set options = options is defined ? options : model.options %}
 
 <flynt-component name="SectionFeatureItems" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
-	<section class="max-w-7xl mx-auto py-4 md:py-8 px-4 md:px-6 lg:px-8">
+	<section class="max-w-7xl mx-auto py-6 md:py-12 lg:py-24 px-4 md:px-6 lg:px-8">
 		<div class="grid {{cols}} items-center gap-8 md:gap-10">
 			{% for item in items %}
 				{% include '@Components/ItemBox/index.twig' with { model: item, options: options } only %}

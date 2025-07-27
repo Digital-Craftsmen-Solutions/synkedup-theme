@@ -4,7 +4,7 @@ import type { ActionModel } from './model';
 import { renderTwig } from '../../stories/utils';
 
 const defaultData: ActionModel = {
-  ctaType: 'buttons',
+  actionType: 'buttons',
   ctaButtons: {
     primaryButton: {
       title: 'Get Started',
@@ -30,7 +30,7 @@ const meta: Meta<ActionModel> = {
     ...defaultData
   },
   argTypes: {
-    ctaType: {
+    actionType: {
       control: { type: 'radio' },
       options: ['none', 'buttons', 'form'],
       defaultValue: 'buttons'

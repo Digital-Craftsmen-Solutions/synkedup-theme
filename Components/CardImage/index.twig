@@ -14,14 +14,14 @@
 {% if hasAction %}
 	<a class="group rounded-3xl" href="{{ action.url|e('esc_url') }}" target="{{ action.target|default('_self')|e }}">
 	{% endif %}
-	<div {{ theme ? ' data-theme="' ~ theme ~ '"' }} class="relative flex flex-col bg-white border border-border-card rounded-3xl overflow-hidden dark:bg-dark-shade dark:border-0 {{ options.align == 'center' ? 'items-center text-center' : '' }} {{ display == 'imageOverlay' ? 'h-90 md:h-110' : '' }}">
+	<div {{ theme ? ' data-theme="' ~ theme ~ '"' }} class="relative flex flex-col bg-white border border-border-card rounded-3xl overflow-hidden dark:bg-dark-shade dark:border-0 {{ options.align == 'center' ? 'items-center text-center' : '' }} {{ display == 'imageOverlay' ? 'h-90 md:h-110' : '' }} {{hasAction ? 'h-full'}}">
 		{% if display == 'imageOverlay' and backgroundImage %}
 			<div class="absolute inset-0 overflow-hidden">
 				{% include '@Components/Common/_image.twig' with {
 				model: backgroundImage,
 				class: 'h-full w-full object-cover object-center ' ~ imgHoverClasses,
 			} only %}
-				<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+				<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
 			</div>
 		{% endif %}
 		{% if display == 'imageTop' and backgroundImage %}

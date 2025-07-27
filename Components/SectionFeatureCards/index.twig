@@ -3,7 +3,7 @@
 {% set action = model.action %}
 {% set options = options is defined ? options : model.options %}
 
-<flynt-component name="SectionFeatureCards" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>
+<flynt-component name="SectionFeatureCards" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="bg-shade dark:bg-dark">
 	<section class="max-w-7xl mx-auto py-6 md:py-12 lg:py-24 px-4 md:px-6 lg:px-8">
 		<div class="max-w-2xl text-center mx-auto mb-10 lg:mb-14">
 			{% if heading %}

@@ -1,6 +1,7 @@
+import { ImageModel } from "../Common/model";
+
 export type AvatarModel = {
-  src: string;
-  alt?: string;
+  image: ImageModel;
   options?: {
     size?: 'small' | 'medium' | 'large';
     theme?: 'light' | 'dark';
