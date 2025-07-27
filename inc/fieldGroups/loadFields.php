@@ -17,3 +17,12 @@ add_filter('acf/load_field/name=gravityForm', function ($field) {
 
   return $field;
 });
+
+add_filter('Flynt/addComponentData', function (array $data): array {
+
+  $data['twc'] = [
+    'section' => 'tw-section',
+  ];
+
+  return $data;
+});
