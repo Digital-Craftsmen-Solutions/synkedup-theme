@@ -76,9 +76,6 @@ export const Dark: StoryObj<SectionFeatureItemsModel> = {
       theme: 'dark'
     },
   },
-  globals: {
-    backgrounds: { value: 'dark' },
-  },
 };
 
 export const Stacked: StoryObj<SectionFeatureItemsModel> = {
@@ -95,9 +92,6 @@ export const Stacked: StoryObj<SectionFeatureItemsModel> = {
       theme: 'dark',
       align: 'center',
     },
-  },
-  globals: {
-    backgrounds: { value: 'dark' },
   },
 };
 

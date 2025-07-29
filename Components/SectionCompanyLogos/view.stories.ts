@@ -103,7 +103,4 @@ export const Dark: StoryObj<SectionCompanyLogosModel> = {
       theme: 'dark'
     }
   },
-  globals: {
-    backgrounds: { value: 'dark' },
-  },
 };

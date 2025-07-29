@@ -4,7 +4,7 @@
 {% set testimonials = model.testimonials %}
 {% set options = options is defined ? options : model.options %}
 
-<flynt-component name="SectionSocialProof" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="bg-shade dark:bg-dark">
+<flynt-component name="SectionSocialProof" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
 	<section class="tw-section">
 		<div class="flex flex-col gap-6 md:gap-8">
 			{% if heading %}

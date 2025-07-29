@@ -6,9 +6,9 @@
 {% set options = options is defined ? options : model.options %}
 
 <flynt-component
-	name="SectionHeroFull" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
+	name="SectionHeroFull" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
 	<!-- Hero -->
-	<section class="relative isolate overflow-hidden dark:bg-dark">
+	<section class="relative isolate overflow-hidden">
 		{% if backgroundImage %}
 			<div class="absolute inset-0 -z-10">
 				{% include '@Components/Common/_image.twig' with {
@@ -16,7 +16,7 @@
 					class: 'h-full w-full object-cover object-center',
 					size: 'large'
 				} only %}
-				<div class="absolute inset-0 bg-black/40 dark:bg-black/70"></div>
+				<div class="absolute inset-0 bg-black/40 dark:bg-black/60 dark:bg-gradient-to-t to-30% from-black/90 to-transparent"></div>
 			</div>
 		{% endif %}
 		<div class="max-w-7xl mx-auto py-6 md:py-12 lg:py-24 px-4 md:px-6 lg:px-8">

@@ -4,7 +4,7 @@
 {% set options = options is defined ? options : model.options %}
 
 {% if cards|length > 0 %}
-	<flynt-component name="SectionCarouselCards" load:on="visible" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="bg-shade dark:bg-dark">
+	<flynt-component name="SectionCarouselCards" load:on="visible" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
 		<section class="tw-section flex flex-col gap-7 md:gap-16">
 			<div data-hs-carousel='{"loadingClasses": "opacity-0", "isAutoPlay": false, "isAutoHeight": false, "isInfiniteLoop": false, "dots": false, "arrows": true, "isDraggable": true, "isCentered": false, "slidesQty": {"xs": 1.25, "md": 2, "lg": 3.25, "xl": 3.25}}' class="relative">
 				<div class="hs-carousel relative overflow-hidden w-full flex flex-col gap-7 md:gap-16">
@@ -48,4 +48,4 @@
 	</flynt-component>
 {% endif %}
 
-{% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %}
+{# {% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %} #}

@@ -12,7 +12,7 @@
 	{% set heading = heading|merge({ description: null }) %}
 {% endif %}
 
-<flynt-component name="SectionCallToAction" {{ options.theme ? 'data-theme="' ~ theme ~ '"' }} class="bg-shade {{altMode ? 'dark:bg-dark' : 'dark:bg-shade'}}">
+<flynt-component name="SectionCallToAction" {{ options.theme ? 'data-theme="' ~ theme ~ '"' }} class="edge sand bg-shade {{altMode ? 'edge dark:bg-dark' : 'dark:bg-shade'}}">
 	<section class="tw-section">
 		<div class="bg-gray-200 border border-border-secondary rounded-3xl {{altMode ? 'dark:bg-primary' : 'dark:bg-dark'}} dark:border-0 overflow-hidden">
 			<div

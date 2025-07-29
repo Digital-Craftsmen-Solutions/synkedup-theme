@@ -7,7 +7,7 @@
 {% set options = options is defined ? options : model.options %}
 {% set imageDisplay = options.imageDisplay ?? 'right' %}
 
-<flynt-component name="SectionFeatureBlock" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="bg-shade dark:bg-dark">
+<flynt-component name="SectionFeatureBlock" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
 	<section class="tw-section">
 		<div class="bg-white border border-border-card rounded-3xl dark:bg-dark-shade dark:border-0 overflow-hidden">
 			<div
@@ -45,7 +45,7 @@
 						</div>
 					{% endif %}
 					{% if quote %}
-						<div class="mt-4 {{imageDisplay == 'full' ? 'flex justify-center' : 'md:mt-8'}}">
+						<div class="mt-4 {{imageDisplay == 'full' ? 'flex justify-center' : 'md:mt-8 flex flex-col items-start'}}">
 							{% include '@Components/Quote/index.twig' with { model: quote, options: {display: 'bordered'} } only %}
 						</div>
 					{% endif %}

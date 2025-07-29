@@ -121,7 +121,5 @@ export const FullImageDark: StoryObj<SectionFeatureBlockModel> = {
       theme: 'dark'
     }
   },
-  globals: {
-    backgrounds: { value: 'dark' },
-  }
+
 };

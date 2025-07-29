@@ -2,12 +2,12 @@
 	<div class="flex flex-col mt-5 lg:flex-row lg:justify-center lg:items-center lg:gap-y-0 lg:gap-x-7 lg:mt-0 divide-y divide-neutral-700 lg:divide-y-0">
 		{% for item in items %}
 			{% if item.children|default([])|length > 0 %}
-				<div class="hs-dropdown [--strategy:static] lg:[--strategy:absolute] [--adaptive:none]   [--is-collapse:true] sm:[--is-collapse:false] py-3 lg:py-0 ">
+				<div class="hs-dropdown [--strategy:static] lg:[--strategy:absolute] [--adaptive:none]  [--is-collapse:true] md:[--is-collapse:false] py-3 lg:py-0 ">
 					<button id="hs-mega-menu" type="button" class="hs-dropdown-toggle lg:p-2 flex items-center w-full text-white hover:text-primary focus:outline-hidden focus:text-primary" aria-haspopup="menu" aria-expanded="false" aria-label="{{ item.title }}">
 						{{ item.title }}
-						<svg class="hs-dropdown-open:-rotate-180 sm:hs-dropdown-open:rotate-0 duration-300 ms-auto sm:ms-1 shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+						<svg class="hs-dropdown-open:-rotate-180 md:hs-dropdown-open:rotate-0 duration-300 ms-auto md:ms-1 shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
 					</button>
-					{% include 'Partials/_submenu.twig' with {'item': item} only %}
+					{% include 'Partials/_megamenu.twig' with {'item': item} only %}
 				</div>
 			{% else %}
 				<div class="py-3 lg:py-0 lg:text-center">

@@ -100,9 +100,6 @@ export const Dark: StoryObj<SectionFeatureCardsModel> = {
       theme: 'dark'
     },
   },
-  globals: {
-    backgrounds: { value: 'dark' },
-  },
 };
 
 export const OverlayImage: StoryObj<SectionFeatureCardsModel> = {

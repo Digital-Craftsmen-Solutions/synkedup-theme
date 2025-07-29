@@ -137,7 +137,5 @@ export const Dark: StoryObj<SectionCarouselCardsModel> = {
       theme: 'dark'
     }
   },
-  globals: {
-    backgrounds: { value: 'dark' },
-  }
+
 };

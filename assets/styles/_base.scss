@@ -56,41 +56,41 @@
 
   h2,
   .h2 {
-    font-size: 2.1875rem;
+    font-size: 1.5rem;
     font-weight: 600;
 
     @media (min-width: $mobile) {
-      font-size: 2.875rem;
+      font-size: 2.25rem;
     }
   }
 
   h3,
   .h3 {
-    font-size: 1.9375rem;
+    font-size: 1.25rem;
     line-height: 1.3;
 
     @media (min-width: $mobile) {
-      font-size: 2.1875rem;
+      font-size: 1.75rem;
     }
   }
 
   h4,
   .h4 {
-    font-size: 1.625rem;
+    font-size: 1.125rem;
     line-height: 1.4;
 
     @media (min-width: $mobile) {
-      font-size: 1.825rem;
+      font-size: 1.5rem;
     }
   }
 
   h5,
   .h5 {
-    font-size: 1.375rem;
+    font-size: 1.125rem;
     line-height: 1.5;
 
     @media (min-width: $mobile) {
-      font-size: 1.5rem;
+      font-size: 1.375rem;
     }
   }
 
@@ -429,4 +429,84 @@
 
 .prose {
   line-height: 1.5;
+}
+
+$edge-height: 50px;
+
+.tw-section {
+  @apply max-w-7xl mx-auto py-8 md:py-10 lg:py-12 px-4 md:px-6 lg:px-8;
+}
+
+flynt-component.sand[data-theme='light'] {
+  background-image: url('./images/pattern.png');
+  background-repeat: repeat;
+  background-size: 264px 264px;
+}
+
+.mainContent,
+#storybook-root {
+  >flynt-component {
+
+    // Top padding if previous component has a different theme
+    // &[data-theme='light']+flynt-component[data-theme='dark']>.tw-section,
+    &[data-theme='dark']+flynt-component[data-theme='light']>.tw-section {
+      @apply pt-10 md:pt-14 lg:pt-24;
+    }
+
+    // Bottom padding if next component has a different theme
+    // &[data-theme='dark']:has(+ flynt-component[data-theme='light'])>.tw-section,
+    &[data-theme='light']:has(+ flynt-component[data-theme='dark'])>.tw-section {
+      @apply pb-10 md:pb-14 lg:pb-24;
+    }
+
+    &.edge[data-theme='dark'] {
+      @apply relative z-0;
+      margin-bottom: $edge-height;
+
+      &:not(:first-child) {
+        margin-top: $edge-height;
+      }
+
+      &:not(:first-child)::before,
+      &::after {
+        @apply block absolute left-0 right-0 w-full -z-10;
+        height: $edge-height;
+        content: '';
+        background: url('./images/bg-edge-mobile.png') repeat-x center;
+        background-size: cover;
+
+        @media (min-width: $tablet) {
+          background: url('./images/bg-edge.png') repeat-x center;
+        }
+      }
+
+      &::before {
+        top: -$edge-height;
+      }
+
+      &::after {
+        bottom: -$edge-height;
+        transform: rotate(180deg);
+      }
+
+    }
+
+    &.edge[data-theme='dark']+flynt-component.edge[data-theme='dark'] {
+      margin-top: 0;
+
+      &::before {
+        display: none;
+
+      }
+    }
+
+    &.edge[data-theme='dark']:has(+ flynt-component.edge[data-theme='dark']) {
+      margin-bottom: 0;
+
+      &::after {
+        display: none;
+      }
+    }
+
+  }
 }

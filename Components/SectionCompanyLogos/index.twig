@@ -13,7 +13,7 @@
   8: 'lg:grid-cols-8'
 }[logoCount]|default('lg:grid-cols-4') %}
 
-<flynt-component name="SectionCompanyLogos" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
+<flynt-component name="SectionCompanyLogos" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
 	<section class="tw-section flex flex-col gap-8 lg:gap-12">
 		{% if heading %}
 			{% include '@Components/Heading/index.twig' with { model: heading } only %}

@@ -91,9 +91,7 @@ export const Dark: StoryObj<SectionCallToActionModel> = {
       theme: 'dark'
     },
   },
-  globals: {
-    backgrounds: { value: 'dark' },
-  }
+
 };
 
 export const DarkLongHeading: StoryObj<SectionCallToActionModel> = {
@@ -117,9 +115,7 @@ export const DarkLongHeading: StoryObj<SectionCallToActionModel> = {
       theme: 'dark'
     },
   },
-  globals: {
-    backgrounds: { value: 'dark' },
-  }
+
 };
 
 export const Alternate: StoryObj<SectionCallToActionModel> = {
