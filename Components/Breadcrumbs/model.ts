@@ -5,7 +5,7 @@ export type BreadcrumbItemModel = {
   isCurrent?: boolean;
 };
 
-export type BreadcrumbModel = {
+export type BreadcrumbsModel = {
   items: BreadcrumbItemModel[];
   options?: {
     theme?: 'light' | 'dark';

@@ -32,7 +32,7 @@ const defaultData: SectionHeroFullModel = {
 };
 
 const meta: Meta<SectionHeroFullModel> = {
-  title: 'Sections/HeroFull',
+  title: 'Sections/Hero',
   tags: ['autodocs'],
   args: {
     ...defaultData
@@ -61,6 +61,44 @@ export const Light: StoryObj<SectionHeroFullModel> = {
   }
 };
 
+export const LightSplit: StoryObj<SectionHeroFullModel> = {
+  render: Template,
+  args: {
+    ...defaultData,
+    backgroundImage: {
+      src: 'https://images.unsplash.com/photo-1621361365424-06f0e1eb5c49?auto=format&fit=crop&w=800&q=80',
+      alt: 'Hero Background'
+    },
+    mobileImage: {
+      src: 'https://images.unsplash.com/photo-1680868543815-b8666dba60f7?auto=format&fit=crop&w=1280&q=80',
+
+      alt: 'Hero Background'
+    },
+    breadcrumbs: {
+      items: [
+        {
+          label: 'Home',
+          url: '#',
+          icon: 'home'
+        },
+        {
+          label: 'App Center',
+          url: '#',
+          icon: 'appcenter'
+        },
+        {
+          label: 'Application',
+          isCurrent: true
+        }
+      ]
+    },
+    options: {
+      theme: 'light',
+      display: 'split',
+    }
+  }
+};
+
 export const Dark: StoryObj<SectionHeroFullModel> = {
   render: Template,
   args: {
@@ -84,6 +122,57 @@ export const Dark: StoryObj<SectionHeroFullModel> = {
     },
     options: {
       theme: 'dark'
+    }
+  }
+};
+
+export const DarkSplit: StoryObj<SectionHeroFullModel> = {
+  render: Template,
+  args: {
+    backgroundImage: {
+      src: 'https://images.unsplash.com/photo-1621361365424-06f0e1eb5c49?auto=format&fit=crop&w=800&q=80',
+      alt: 'Hero Background'
+    },
+    mobileImage: {
+      src: 'https://images.unsplash.com/photo-1680868543815-b8666dba60f7?auto=format&fit=crop&w=1280&q=80',
+
+      alt: 'Hero Background'
+    },
+    heading: {
+      before: 'Introducing',
+      highlight: 'Something New',
+      description: '<p>Experience our secondary theme with more features and flexibility.</p>',
+    },
+    action: {
+      actionType: 'buttons',
+      ctaButtons: {
+        primaryButton: {
+          title: 'Explore',
+          url: '/explore'
+        }
+      }
+    },
+    breadcrumbs: {
+      items: [
+        {
+          label: 'Home',
+          url: '#',
+          icon: 'home'
+        },
+        {
+          label: 'App Center',
+          url: '#',
+          icon: 'appcenter'
+        },
+        {
+          label: 'Application',
+          isCurrent: true
+        }
+      ]
+    },
+    options: {
+      theme: 'dark',
+      display: 'split'
     }
   }
 };
@@ -149,6 +238,40 @@ export const ExtraItemsDark: StoryObj<SectionHeroFullModel> = {
     },
     options: {
       theme: 'dark'
+    }
+  }
+};
+
+export const ExtraItemsDarkSplit: StoryObj<SectionHeroFullModel> = {
+  render: Template,
+  args: {
+    ...defaultData,
+    backgroundImage: {
+      src: 'https://images.unsplash.com/photo-1621361365424-06f0e1eb5c49?auto=format&fit=crop&w=800&q=80',
+      alt: 'Hero Background'
+    },
+    mobileImage: {
+      src: 'https://images.unsplash.com/photo-1680868543815-b8666dba60f7?auto=format&fit=crop&w=1280&q=80',
+
+      alt: 'Hero Background'
+    },
+    extraItems: {
+      items: [
+        {
+          type: 'figure',
+          title: '$N.NN',
+          description: 'Easily customizable to fit your needs',
+        },
+        {
+          type: 'figure',
+          title: '$N.NN',
+          description: 'Easily customizable to fit your needs',
+        },
+      ]
+    },
+    options: {
+      theme: 'dark',
+      display: 'split'
     }
   }
 };

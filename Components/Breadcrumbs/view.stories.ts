@@ -1,9 +1,9 @@
 import template from '@/Components/Breadcrumbs/index.twig?url';
 import type { Meta, StoryObj } from '@storybook/html';
-import type { BreadcrumbModel } from './model';
+import type { BreadcrumbsModel } from './model';
 import { renderTwig } from '../../stories/utils';
 
-const defaultData: BreadcrumbModel = {
+const defaultData: BreadcrumbsModel = {
   items: [
     {
       label: 'Home',
@@ -22,7 +22,7 @@ const defaultData: BreadcrumbModel = {
   ]
 };
 
-const meta: Meta<BreadcrumbModel> = {
+const meta: Meta<BreadcrumbsModel> = {
   title: 'Components/Breadcrumbs',
   tags: ['autodocs'],
   args: {
@@ -33,18 +33,18 @@ const meta: Meta<BreadcrumbModel> = {
 export default meta;
 
 const compiled = renderTwig(template);
-const Template = (args: BreadcrumbModel) => {
+const Template = (args: BreadcrumbsModel) => {
   return compiled.render({ model: args });
 };
 
-export const Default: StoryObj<BreadcrumbModel> = {
+export const Default: StoryObj<BreadcrumbsModel> = {
   render: Template,
   args: {
     ...defaultData
   }
 };
 
-export const WithoutIcons: StoryObj<BreadcrumbModel> = {
+export const WithoutIcons: StoryObj<BreadcrumbsModel> = {
   render: Template,
   args: {
     items: [

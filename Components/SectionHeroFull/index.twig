@@ -1,15 +1,21 @@
 {% set backgroundImage = model.backgroundImage %}
+{% set mobileImage = model.mobileImage %}
 {% set heading = model.heading|default([]) %}
 {% set heading = heading|merge({ type: 'h1' }) %}
 {% set action = model.action %}
+{% set breadcrumbs = model.breadcrumbs %}
 {% set extraItems = model.extraItems %}
 {% set options = options is defined ? options : model.options %}
+{% set display = options.display ?? 'full' %}
+{% set hasExtra = extraItems is defined and extraItems|length > 0 %}
+{% set mobileImage = mobileImage is defined ? mobileImage : backgroundImage %}
+
 
 <flynt-component
 	name="SectionHeroFull" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
 	<!-- Hero -->
 	<section class="relative isolate overflow-hidden">
-		{% if backgroundImage %}
+		{% if display == 'full' and backgroundImage %}
 			<div class="absolute inset-0 -z-10">
 				{% include '@Components/Common/_image.twig' with {
 					model: backgroundImage,
@@ -19,21 +25,49 @@
 				<div class="absolute inset-0 bg-black/40 dark:bg-black/60 dark:bg-gradient-to-t to-30% from-black/90 to-transparent"></div>
 			</div>
 		{% endif %}
-		<div class="max-w-7xl mx-auto py-6 md:py-12 lg:py-24 px-4 md:px-6 lg:px-8">
-			<div class="max-w-4xl mx-auto flex flex-col justify-center md:text-center gap-6 my-10 md:my-12 lg:my-16">
-				{% include '@Components/Heading/index.twig' with { model: heading, options: {align: 'center'} } only %}
-				{% include '@Components/Action/index.twig' with { model: action } only %}
+		<div class="tw-section py-0!">
+			<div
+				class="{{display == 'full' ? '' : 'grid md:grid-cols-12 gap-6 md:gap-10 lg:gap-12'}}">
+				{# Content #}
+				<div class="flex flex-col justify-center gap-6 md:gap-14 py-6 md:py-12 lg:py-18 xl:py-24 {{display == 'full' ? '' : 'md:col-span-7'}}">
+					<div class="max-w-4xl mx-auto flex flex-col justify-center gap-6 md:gap-8 my-10 md:my-14 lg:my-16 xl:my-20}}">
+						{% if breadcrumbs %}
+							{% include '@Components/Breadcrumbs/index.twig' with { model: breadcrumbs } only %}
+						{% endif %}
+						{% include '@Components/Heading/index.twig' with { model: heading, options: {align: display == 'full' ? 'center' : 'left'} } only %}
+						{% include '@Components/Action/index.twig' with { model: action,  options: {align: display == 'full' ? 'center' : 'left'} } only %}
+
+						{% if display != 'full' and mobileImage %}
+							<div class="flex md:hidden justify-center items-end ">
+								{% include '@Components/Common/_image.twig' with {
+              model: mobileImage,
+              size: 'small'
+            } only %}
+							</div>
+						{% endif %}
+					</div>
+
+					{% if hasExtra %}
+						<div class="inner-tw-section">
+							{% include '@Components/SectionFeatureItems/index.twig' with {model: extraItems, options: {theme: options.theme, align: display == 'full' ? 'center' : 'left'}} %}
+						</div>
+					{% endif %}
+				</div>
+
+				{% if display != 'full' and backgroundImage %}
+					<div class="hidden md:flex justify-center items-end md:col-span-5 mt-10 lg:mt-16">
+						{% include '@Components/Common/_image.twig' with {
+              model: backgroundImage,
+              size: 'large'
+            } only %}
+					</div>
+				{% endif %}
+
 			</div>
-			<!-- End Buttons -->
-
-			{% if extraItems != undefine and extraItems|length > 0 %}
-				{% include '@Components/SectionFeatureItems/index.twig' with {model: extraItems, options: {theme: options.theme, align: 'center'}} %}
-			{% endif %}
-
 		</div>
 	</section>
 	<!-- End Hero -->
 
 </flynt-component>
 
-{# {% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %} #}
+{% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %}

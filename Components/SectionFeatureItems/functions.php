@@ -18,7 +18,7 @@ function getACFLayout(): array
 {
     return [
         'name' => 'sectionFeatureItems',
-        'label' => __('Section: Hero Full', 'flynt'),
+        'label' => __('Section: Feature Items', 'flynt'),
         'sub_fields' => [
             [
                 'label' => __('Content', 'flynt'),
