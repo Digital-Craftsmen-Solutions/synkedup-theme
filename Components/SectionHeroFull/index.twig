@@ -1,5 +1,6 @@
 {% set backgroundImage = model.backgroundImage %}
 {% set mobileImage = model.mobileImage %}
+{% set mobileImage = mobileImage ? mobileImage : backgroundImage %}
 {% set heading = model.heading|default([]) %}
 {% set heading = heading|merge({ type: 'h1' }) %}
 {% set action = model.action %}
@@ -7,8 +8,7 @@
 {% set extraItems = model.extraItems %}
 {% set options = options is defined ? options : model.options %}
 {% set display = options.display ?? 'full' %}
-{% set hasExtra = extraItems is defined and extraItems|length > 0 %}
-{% set mobileImage = mobileImage is defined ? mobileImage : backgroundImage %}
+{% set hasExtra = extraItems and extraItems|length > 0 %}
 
 
 <flynt-component
@@ -38,10 +38,11 @@
 						{% include '@Components/Action/index.twig' with { model: action,  options: {align: display == 'full' ? 'center' : 'left'} } only %}
 
 						{% if display != 'full' and mobileImage %}
-							<div class="flex md:hidden justify-center items-end ">
+							<div class="flex md:hidden justify-center items-end">
 								{% include '@Components/Common/_image.twig' with {
               model: mobileImage,
-              size: 'small'
+              size: 'small',
+							class: 'max-w-sm'
             } only %}
 							</div>
 						{% endif %}
@@ -55,11 +56,14 @@
 				</div>
 
 				{% if display != 'full' and backgroundImage %}
-					<div class="hidden md:flex justify-center items-end md:col-span-5 mt-10 lg:mt-16">
-						{% include '@Components/Common/_image.twig' with {
+					<div class="hidden md:block relative isolate overflow-hidden md:col-span-5 mt-10 lg:mt-16">
+						<div class="absolute inset-0 flex justify-center items-end">
+							{% include '@Components/Common/_image.twig' with {
               model: backgroundImage,
-              size: 'large'
+              size: 'medium',
+							class: 'object-contain! h-full object-bottom'
             } only %}
+						</div>
 					</div>
 				{% endif %}
 
@@ -68,6 +72,5 @@
 	</section>
 	<!-- End Hero -->
 
+	{# {% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %} #}
 </flynt-component>
-
-{% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %}

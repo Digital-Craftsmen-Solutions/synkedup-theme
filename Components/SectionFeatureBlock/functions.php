@@ -23,6 +23,7 @@ add_filter('Flynt/addComponentData?name=SectionFeatureBlock', function (array $d
         ],
         'quote' => ($data['showQuote'] && !empty($data['quote'])) ? $data['quote'] : null,
         'image' => $data['image'] ?? null,
+        'mobileImage' => $data['mobileImage'] ?? null,
         'options' => $data['options']
     ];
 
@@ -70,6 +71,18 @@ function getACFLayout(): array
                 'preview_size' => 'medium',
                 'mime_types' => 'jpg,jpeg,png,webp,svg',
                 'required' => 1,
+                'wrapper' => ['width' => 50],
+            ],
+            [
+                'label' => __('Mobile Image', 'flynt'),
+                'name' => 'mobileImage',
+                'type' => 'image',
+                'instructions' => __('Optional image to replace with on mobile screens.', 'flynt'),
+                'return_format' => 'array',
+                'preview_size' => 'medium',
+                'mime_types' => 'jpg,jpeg,png,webp,svg',
+                'required' => 0,
+                'wrapper' => ['width' => 50],
             ],
             [
                 'label' => __('Show Bottom Quote', 'flynt'),
@@ -116,11 +129,11 @@ function getACFLayout(): array
                         'name' => 'imageDisplay',
                         'type' => 'button_group',
                         'choices' => [
-                            'left' => __('Left', 'flynt'),
                             'right' => __('Right', 'flynt'),
+                            'left' => __('Left', 'flynt'),
                             'full' => __('Center', 'flynt'),
                         ],
-                        'default_value' => 'left',
+                        'default_value' => 'right',
                         'allow_null' => 1,
                     ],
                 ],

@@ -1,0 +1,12 @@
+{% set heading = model.heading|default([]) %}
+{% set options = options is defined ? options : model.options %}
+{% set action = model.action %}
+
+<flynt-component name="SectionNotFound" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
+	<section class="tw-section">
+		<div class="my-8 md:my-16 flex flex-col gap-6 lg:gap-10">
+			{% include '@Components/Heading/index.twig' with { model: heading, options: {align: 'center'} } only %}
+			{% include '@Components/Action/index.twig' with { model: action } only %}
+		</div>
+	</section>
+</flynt-component>

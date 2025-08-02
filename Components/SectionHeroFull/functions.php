@@ -7,6 +7,7 @@ use Flynt\FieldVariables;
 add_filter('Flynt/addComponentData?name=SectionHeroFull', function (array $data): array {
     $model = [
         'backgroundImage' => $data['backgroundImage'],
+        'mobileImage' => $data['mobileImage'],
         'heading' => $data['heading'],
         'action' => [
             'actionType' => $data['actionType'],
@@ -49,15 +50,26 @@ function getACFLayout(): array
                 'endpoint' => 0,
             ],
             [
-                'label' => __('Background Image', 'flynt'),
+                'label' => __('Image', 'flynt'),
                 'name' => 'backgroundImage',
                 'type' => 'image',
-                'instructions' => __('Optional background image (JPG, PNG, WebP).', 'flynt'),
+                'instructions' => __('Optional background image.', 'flynt'),
                 'preview_size' => 'medium',
                 'return_format' => 'array',
                 'mime_types' => 'jpg,jpeg,png,webp',
+                'wrapper' => ['width' => 50],
             ],
-            FieldVariables\getHeading(),
+            [
+                'label' => __('Mobile Image', 'flynt'),
+                'name' => 'mobileImage',
+                'type' => 'image',
+                'instructions' => __('Optional image to replace with on mobile screens.', 'flynt'),
+                'preview_size' => 'medium',
+                'return_format' => 'array',
+                'mime_types' => 'jpg,jpeg,png,webp',
+                'wrapper' => ['width' => 50],
+            ],
+            FieldVariables\getHeading('h1'),
             FieldVariables\getAction(),
             [
                 'label' => __('Extra Items', 'flynt'),
@@ -147,7 +159,18 @@ function getACFLayout(): array
                 'type' => 'group',
                 'layout' => 'row',
                 'sub_fields' => [
-                    FieldVariables\getTheme()
+                    FieldVariables\getTheme('dark'),
+                    [
+                        'label' => __('Image Display', 'flynt'),
+                        'name' => 'display',
+                        'type' => 'button_group',
+                        'choices' => [
+                            'full' => __('Full', 'flynt'),
+                            'split' => __('Split', 'flynt'),
+                        ],
+                        'default_value' => 'full',
+                        'allow_null' => 0,
+                    ],
                 ],
             ],
         ],

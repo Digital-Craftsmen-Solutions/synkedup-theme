@@ -14,6 +14,7 @@ export type SectionFeatureBlockModel = {
   action?: ActionModel;
   quote?: QuoteModel;
   image: ImageModel;
+  mobileImage?: ImageModel;
   options?: {
     theme?: 'light' | 'dark';
     imageDisplay?: 'full' | 'left' | 'right';

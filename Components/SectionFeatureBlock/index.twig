@@ -4,6 +4,7 @@
 {% set action = model.action %}
 {% set quote = model.quote %}
 {% set image = model.image %}
+{% set mobileImage = model.mobileImage ? model.mobileImage : image %}
 {% set options = options is defined ? options : model.options %}
 {% set imageDisplay = options.imageDisplay ?? 'right' %}
 
@@ -40,7 +41,13 @@
 						<div class="w-full flex justify-center mt-4">
 							{% include '@Components/Common/_image.twig' with {
               model: image,
-              size: 'large'
+              size: 'large',
+							class: 'hidden md:block'
+            } only %}
+							{% include '@Components/Common/_image.twig' with {
+              model: mobileImage,
+              size: 'medium',
+							class: 'md:hidden block'
             } only %}
 						</div>
 					{% endif %}
@@ -56,7 +63,13 @@
 					<div class="flex justify-center items-end md:col-span-5 {{imageDisplay == 'left' ? 'order-1' : 'order-2' }}">
 						{% include '@Components/Common/_image.twig' with {
               model: image,
-              size: 'large'
+              size: 'large',
+							class: 'hidden md:block'
+            } only %}
+						{% include '@Components/Common/_image.twig' with {
+              model: mobileImage,
+              size: 'medium',
+							class: 'md:hidden block max-w-sm mx-auto'
             } only %}
 					</div>
 				{% endif %}
@@ -64,4 +77,6 @@
 			</div>
 		</div>
 	</section>
+
+	{% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %}
 </flynt-component>

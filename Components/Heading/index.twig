@@ -18,7 +18,7 @@
       : 'max-w-4xl mx-auto'
 %}
 
-<div {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="flex flex-col justify-center gap-4 md:gap-5 {{ align == 'center' ? 'text-center items-center' : 'text-left items-start' }} {{ maxWidthClass }}">
+<div {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="flex flex-col justify-center gap-4 md:gap-5 {{ align == 'center' ? 'text-center items-center' : 'text-left items-start w-full' }} {{ maxWidthClass }}">
 	<{{Tag}} class="text-heading dark:text-white">
 		{% if before %}
 			<span>{{ before }}</span>
@@ -31,7 +31,7 @@
 		{% endif %}
 	</{{Tag}}>
 	{% if description %}
-		<div class="prose prose-p:space-y-2 dark:text-text-dark max-w-none">
+		<div class="prose prose-p:space-y-2 dark:text-text-dark max-w-none lg:text-lg {{hideHighlight ? 'dark:text-white' : ''}}">
 			{{ description|e('wp_kses_post') }}
 		</div>
 	{% endif %}
