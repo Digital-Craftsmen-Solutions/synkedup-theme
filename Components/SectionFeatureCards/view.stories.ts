@@ -124,3 +124,97 @@ export const TopImageCenter: StoryObj<SectionFeatureCardsModel> = {
     }
   },
 };
+
+export const TwoCards: StoryObj<SectionFeatureCardsModel> = {
+  render: Template,
+  args: {
+    ...defaultData,
+    cards: [
+      {
+        title: 'Fast & Accurate Estimates ',
+        description: 'Build estimates in minutes with drag and drop templates, priced to recover your overhead. ',
+        subtitle: 'First Subtitle',
+        backgroundImage: {
+          src: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=400&h=300&q=80',
+          alt: 'Feature One'
+        },
+      },
+      {
+        title: 'Feature Two',
+        description: 'Short description for feature two.',
+        subtitle: 'Second Subtitle',
+        backgroundImage: {
+          src: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=facearea&w=400&h=300&q=80',
+          alt: 'Feature Two'
+        },
+      }
+    ],
+    options: {
+      theme: 'light',
+      align: 'center',
+      display: 'imageBottom'
+    }
+  },
+};
+
+export const FourCards: StoryObj<SectionFeatureCardsModel> = {
+  render: Template,
+  args: {
+    ...defaultData,
+    cards: [
+      ...defaultData.cards,
+      {
+        title: 'Fast & Accurate Estimates ',
+        description: 'Build estimates in minutes with drag and drop templates, priced to recover your overhead. ',
+        subtitle: 'First Subtitle',
+        backgroundImage: {
+          src: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=400&h=300&q=80',
+          alt: 'Feature One'
+        },
+      },
+    ],
+    options: {
+      theme: 'light',
+      align: 'center',
+      display: 'imageBottom'
+    }
+  },
+};
+
+export const FirstExpandedOdd: StoryObj<SectionFeatureCardsModel> = {
+  render: Template,
+  args: {
+    ...defaultData,
+    options: {
+      theme: 'light',
+      align: 'center',
+      display: 'imageBottom',
+      expandFirst: true
+    }
+  },
+};
+
+export const FirstExpandeEven: StoryObj<SectionFeatureCardsModel> = {
+  render: Template,
+  args: {
+    ...defaultData,
+    cards: [
+      ...defaultData.cards,
+      {
+        title: 'Fast & Accurate Estimates ',
+        description: 'Build estimates in minutes with drag and drop templates, priced to recover your overhead. ',
+        subtitle: 'First Subtitle',
+        backgroundImage: {
+          src: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=400&h=300&q=80',
+          alt: 'Feature One'
+        },
+      },
+    ],
+    options: {
+      theme: 'light',
+      align: 'center',
+      display: 'imageBottom',
+      expandFirst: true
+    }
+  },
+};

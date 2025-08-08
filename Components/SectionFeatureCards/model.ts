@@ -10,5 +10,6 @@ export type SectionFeatureCardsModel = {
     theme?: 'light' | 'dark';
     align?: 'left' | 'center';
     display?: 'imageTop' | 'imageBottom' | 'imageOverlay';
+    expandFirst?: boolean
   };
 };

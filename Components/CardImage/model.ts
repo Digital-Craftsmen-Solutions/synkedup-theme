@@ -6,7 +6,7 @@ export type CardImageModel = {
   description?: string;
   subtitle?: string;
   backgroundImage: ImageModel;
-  action?: ButtonModel,
+  actionButton?: ButtonModel,
   options?: {
     theme?: 'light' | 'dark';
     align?: 'left' | 'center';

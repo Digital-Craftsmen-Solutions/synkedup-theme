@@ -4,8 +4,9 @@ import '@preline/carousel'
 import '@preline/dropdown'
 import '@preline/overlay'
 import '@preline/tabs'
-import '@preline/tooltip'
+// import '@preline/tooltip'
 import '@preline/collapse'
+import '@/assets/scripts/toggle-class.js'
 
 import FlyntComponent from './scripts/FlyntComponent'
 

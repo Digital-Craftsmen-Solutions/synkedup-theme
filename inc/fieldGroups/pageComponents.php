@@ -23,6 +23,7 @@ add_action('Flynt/afterRegisterComponents', function (): void {
                     Components\SectionFeatureCards\getACFLayout(),
                     Components\SectionCarouselCards\getACFLayout(),
                     Components\SectionCallToAction\getACFLayout(),
+                    Components\SectionPricingCards\getACFLayout(),
 
                     Components\BlockAnchor\getACFLayout(),
                     Components\BlockImage\getACFLayout(),

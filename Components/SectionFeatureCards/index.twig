@@ -2,19 +2,31 @@
 {% set cards = model.cards %}
 {% set action = model.action %}
 {% set options = options is defined ? options : model.options %}
+{% set expandFirst = options.expandFirst|default(false) %}
+{% set num = cards|length %}
+{% set numGrid = expandFirst ? num - 1 : num %}
+{% set cols = numGrid == 1 ? 'md:grid-cols-1' : (numGrid % 2 == 0 ? 'md:grid-cols-2' : 'md:grid-cols-3') %}
 
 <flynt-component name="SectionFeatureCards" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
-	<section class="tw-section flex flex-col gap-6 lg:gap-10">
+	<section class="tw-section flex flex-col gap-8 lg:gap-10">
 		<div class="max-w-2xl text-center mx-auto">
 			{% if heading %}
 				{% include '@Components/Heading/index.twig' with { model: heading, options: {align: 'center'} } only %}
 			{% endif %}
 		</div>
-
-		<div class="grid md:grid-cols-3 gap-6">
-			{% for card in cards %}
-				{% include '@Components/CardImage/index.twig' with { model: card, options: options } only %}
-			{% endfor %}
+		<div class="flex flex-col gap-6">
+			{% if expandFirst and num > 0 %}
+				<div class="max-w-5xl mx-auto">
+					{% include '@Components/CardImage/index.twig' with { model: cards[0], options: options } only %}
+				</div>
+			{% endif %}
+			{% if numGrid > 0 %}
+				<div class="grid {{cols}} gap-6">
+					{% for card in cards|slice(num - numGrid, num) %}
+						{% include '@Components/CardImage/index.twig' with { model: card, options: options } only %}
+					{% endfor %}
+				</div>
+			{% endif %}
 		</div>
 
 		{% include '@Components/Action/index.twig' with { model: action } only %}

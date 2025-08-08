@@ -2,7 +2,6 @@ import template from '@/Components/Accordion/index.twig?url';
 import type { Meta, StoryObj } from '@storybook/html';
 import type { AccordionModel } from './model';
 import { renderTwig } from '../../stories/utils';
-import './script';
 import { HSAccordion } from 'preline';
 
 const defaultData = {

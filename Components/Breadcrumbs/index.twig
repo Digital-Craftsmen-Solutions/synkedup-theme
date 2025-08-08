@@ -1,33 +1,31 @@
 {% set items = model.items %}
 {% set options = options is defined ? options : model.options %}
 
-<div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }}>
-	<nav aria-label="Breadcrumbs">
-		<ol class="flex items-center whitespace-nowrap ps-0">
-			{% for item in items %}
-				<li class="inline-flex items-center">
-					{% if item.url and not item.isCurrent %}
-						<a class="flex items-center text-sm text-text hover:text-primary focus:text-primary dark:text-text-dark dark:hover:text-primary dark:focus:text-primary" href="{{ item.url }}">
-							{% if item.icon %}
-								{% include '@Components/Common/_icon.twig' with { name: item.icon, ariaLabel: item.label ~ ' Icon', class: 'shrink-0 me-3 size-4' } %}
-							{% endif %}
-							<span>{{ item.label }}</span>
-						</a>
-					{% else %}
-						<span class="inline-flex items-center text-sm font-semibold text-primary truncate dark:primary" aria-current="page">
-							{% if item.icon %}
-								{% include '@Components/Common/_icon.twig' with { name: item.icon, ariaLabel: item.label ~ ' Icon', class: 'shrink-0 me-3 size-4' } %}
-							{% endif %}
-							<span>{{ item.label }}</span>
-						</span>
-					{% endif %}
-					{% if not loop.last %}
-						<svg class="shrink-0 size-5 text-text dark:text-text-dark mx-2" width="16" height="16" viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-							<path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"></path>
-						</svg>
-					{% endif %}
-				</li>
-			{% endfor %}
-		</ol>
-	</nav>
-</div>
+<nav {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} aria-label="Breadcrumbs" class="flex">
+	<ol class="flex items-center whitespace-nowrap ps-0">
+		{% for item in items %}
+			<li class="inline-flex items-center">
+				{% if item.url and not item.isCurrent %}
+					<a class="flex items-center text-sm text-text hover:text-primary focus:text-primary dark:text-text-dark dark:hover:text-primary dark:focus:text-primary" href="{{ item.url }}">
+						{% if item.icon %}
+							{% include '@Components/Common/_icon.twig' with { name: item.icon, ariaLabel: item.label ~ ' Icon', class: 'shrink-0 me-3 size-4' } %}
+						{% endif %}
+						<span>{{ item.label }}</span>
+					</a>
+				{% else %}
+					<span class="inline-flex items-center text-sm font-semibold text-primary truncate dark:primary" aria-current="page">
+						{% if item.icon %}
+							{% include '@Components/Common/_icon.twig' with { name: item.icon, ariaLabel: item.label ~ ' Icon', class: 'shrink-0 me-3 size-4' } %}
+						{% endif %}
+						<span>{{ item.label }}</span>
+					</span>
+				{% endif %}
+				{% if not loop.last %}
+					<svg class="shrink-0 size-5 text-text dark:text-text-dark mx-2" width="16" height="16" viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+						<path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"></path>
+					</svg>
+				{% endif %}
+			</li>
+		{% endfor %}
+	</ol>
+</nav>

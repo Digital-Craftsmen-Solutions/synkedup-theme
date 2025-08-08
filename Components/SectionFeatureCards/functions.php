@@ -13,7 +13,7 @@ add_filter('Flynt/addComponentData?name=SectionFeatureCards', function (array $d
                 'description' => $card['description'],
                 'subtitle' => $card['subtitle'],
                 'backgroundImage' => $card['backgroundImage'],
-                'action' => $card['action'],
+                'actionButton' => $card['action'],
             ];
         }, $data['cards']),
         'action' => [
@@ -101,7 +101,7 @@ function getACFLayout(): array
                         'wrapper' => ['width' => 60],
                     ],
                     [
-                        'label' => __('Background Image', 'flynt'),
+                        'label' => __('Image', 'flynt'),
                         'name' => 'backgroundImage',
                         'type' => 'image',
                         'return_format' => 'array',
@@ -148,6 +148,13 @@ function getACFLayout(): array
                         ],
                         'default_value' => 'imageBottom',
                     ],
+                    [
+                        'label' => __('Expand First Card?', 'flynt'),
+                        'name' => 'expandFirst',
+                        'type' => 'true_false',
+                        'default_value' => 0,
+                        'ui' => 1
+                    ]
                 ],
             ],
         ],

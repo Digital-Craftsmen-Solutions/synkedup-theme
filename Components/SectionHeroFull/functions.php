@@ -53,7 +53,7 @@ function getACFLayout(): array
                 'label' => __('Image', 'flynt'),
                 'name' => 'backgroundImage',
                 'type' => 'image',
-                'instructions' => __('Optional background image.', 'flynt'),
+                'instructions' => __('Optional image.', 'flynt'),
                 'preview_size' => 'medium',
                 'return_format' => 'array',
                 'mime_types' => 'jpg,jpeg,png,webp',

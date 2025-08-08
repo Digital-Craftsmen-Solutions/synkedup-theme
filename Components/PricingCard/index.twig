@@ -1,0 +1,77 @@
+{% set icon = model.icon %}
+{% set title = model.title %}
+{% set description = model.description %}
+{% set switchId = model.switchId|default('toggle-pricing') %}
+{% set period = model.period %}
+{% set labelMonth = model.labelMonth %}
+{% set labelYear = model.labelYear %}
+{% set priceMonth = model.priceMonth %}
+{% set priceYear = model.priceYear %}
+{% set extraCost = model.extraCost %}
+{% set badge = model.badge %}
+{% set features = model.features %}
+{% set actionButton = model.actionButton %}
+{% set options = options is defined ? options : model.options %}
+
+
+<div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="relative flex flex-col bg-white border border-border-card rounded-3xl overflow-hidden p-6 md:p-10 lg:p-16 dark:bg-dark-shade dark:border-0 gap-4 md:gap-6 {{ options.align == 'center' ? 'items-center text-center' : '' }}">
+
+	{% if badge %}
+		<p class="absolute top-4 right-4 md:top-8 md:right-8">
+			<span class="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-lg text-xs uppercase font-semibold bg-badge text-white">{{badge}}</span>
+		</p>
+	{% endif %}
+
+	{% if icon %}
+		<div class="flex items-center">
+			{% include '@Components/Common/_icon.twig' with { name: icon, class: 'shrink-0 size-6 md:size-8 text-accent dark:text-accent-dark' } %}
+		</div>
+	{% endif %}
+
+	{% if title %}
+		<div class="text-heading font-medium dark:text-white text-2xl md:text-2xl">{{title}}</div>
+	{% endif %}
+
+	{% if description %}
+		<p class="text-text dark:text-text-dark">{{description}}</p>
+	{% endif %}
+
+	<div data-hs-toggle-class='{"target": "#{{switchId}}", "off": "period-month", "on": "period-year" }' class="flex flex-col gap-1 group period-{{period}}">
+		<div class="flex items-end">
+			<span class="text-3xl font-semibold text-heading dark:text-white">$</span>
+			<p class="text-heading font-semibold text-3xl dark:text-white">
+				<span class="hidden group-[.period-month]:inline">{{priceMonth}}</span>
+				<span class="hidden group-[.period-year]:inline">{{priceYear}}</span>
+			</p>
+
+			<span class="text-lg font-normal text-heading dark:text-white">
+				<span class="hidden group-[.period-month]:inline">{{labelMonth}}</span>
+				<span class="hidden group-[.period-year]:inline">{{labelYear}}</span>
+			</span>
+		</div>
+
+		{% if extraCost %}
+			<p>{{extraCost}}</p>
+		{% endif %}
+
+	</div>
+
+	{% if features %}
+		<p class="text-text dark:text-text-dark">Includes:</p>
+		<ul class="flex flex-col gap-3 md:gap-4 list-none ps-0 mb-2 {{imageDisplay == 'full' ? 'md:flex-row justify-center' : ''}}">
+			{% for item in features %}
+				<li class="flex items-center gap-2">
+					{% include '@Components/Common/_icon.twig' with { name: 'check', class: 'flex-shrink-0 size-4.5 text-white bg-success p-1 rounded-full' } %}
+					<span class="text-text dark:text-text-dark">{{ item.label }}</span>
+				</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+
+	{% if actionButton %}
+		<div class="pt-2 md:pt-4 mt-auto">
+
+			{% include '@Components/Button/index.twig' with { model: actionButton, blockMode: true } only %}
+		</div>
+	{% endif %}
+</div>

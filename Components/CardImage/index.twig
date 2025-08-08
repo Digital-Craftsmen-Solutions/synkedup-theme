@@ -2,7 +2,7 @@
 {% set description = model.description %}
 {% set subtitle = model.subtitle %}
 {% set backgroundImage = model.backgroundImage %}
-{% set action = model.action %}
+{% set action = model.actionButton %}
 {% set options = options is defined ? options : model.options %}
 {% set display = options.display ?? 'imageBottom' %}
 {% set alignClass = options.align == 'center' ? 'items-center text-center' : '' %}
@@ -49,22 +49,3 @@
 	{% if hasAction %}
 	</a>
 {% endif %}
-
-{# <div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="relative bg-white border border-gray-200 shadow-2xs rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70 overflow-hidden">
-		{% if backgroundImage %}
-			{% include '@Components/Common/_image.twig' with {
-				model: backgroundImage,
-				class: 'w-full h-auto rounded-xl',
-			} only %}
-			<div class="absolute inset-0 bg-black/40 dark:bg-black/60"></div>
-		{% endif %}
-		<div class="absolute top-0 start-0 end-0">
-			<div class="p-4 md:p-5 {{ alignClass }}">
-				<h3 class="text-lg font-bold text-white">{{ title }}</h3>
-				<p class="mt-1 text-neutral-400">{{ description }}</p>
-				{% if subtitle %}
-					<p class="mt-5 text-xs text-neutral-500">{{ subtitle }}</p>
-				{% endif %}
-			</div>
-		</div>
-	</div> #}

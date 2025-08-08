@@ -181,6 +181,24 @@ export const Simple: StoryObj<SectionHeroFullModel> = {
   render: Template,
   args: {
     ...defaultData,
+    breadcrumbs: {
+      items: [
+        {
+          label: 'Home',
+          url: '#',
+          icon: 'home'
+        },
+        {
+          label: 'App Center',
+          url: '#',
+          icon: 'appcenter'
+        },
+        {
+          label: 'Application',
+          isCurrent: true
+        }
+      ]
+    },
     action: {
       actionType: 'none',
       ctaButtons: {}

@@ -3,7 +3,7 @@ import type { ActionModel } from '../Action/model';
 import type { QuoteModel } from '../Quote/model';
 import { ImageModel } from '../Common/model';
 
-export type FeatureListItem = {
+type FeatureListItem = {
   label: string;
 };
 

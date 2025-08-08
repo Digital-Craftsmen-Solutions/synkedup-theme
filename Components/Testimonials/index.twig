@@ -5,7 +5,7 @@
 {% set showDots = options.showDots is defined ? options.showDots : true %}
 
 <flynt-component name="Testimonials" load:on="visible" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
-	<div data-hs-carousel='{"loadingClasses": "opacity-0", "isAutoPlay": {{ autoPlay ? "true" : "false" }}, "isAutoHeight": false, "isInfiniteLoop": true, "dots": {{ showDots ? "true" : "false" }}, "arrows": {{ showArrows ? "true" : "false" }}, "dotsItemClasses": "hs-carousel-active:bg-primary bg-gray-400 hs-carousel-active:w-5 h-1 w-3 rounded-full cursor-pointer"}' class="relative">
+	<div data-hs-carousel='{"loadingClasses": "opacity-0", "isAutoPlay": {{ autoPlay ? "true" : "false" }}, "isAutoHeight": false, "isInfiniteLoop": true, "dots": {{ showDots ? "true" : "false" }}, "arrows": {{ showArrows ? "true" : "false" }}, "dotsItemClasses": "hs-carousel-active:bg-primary bg-gray-400 hs-carousel-active:w-5 h-1 w-3 rounded-full cursor-pointer", "slidesQty": {"xs": 1}}' class="relative">
 		<div class="hs-carousel relative overflow-hidden w-full">
 			<div class="hs-carousel-body flex flex-nowrap transition-transform duration-700 opacity-0">
 				{% for quote in quotes %}

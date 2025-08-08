@@ -1,0 +1,44 @@
+{% set heading = model.heading %}
+{% set labelMonth = model.labelMonth %}
+{% set labelYear = model.labelYear %}
+{% set period = model.defaultPeriod %}
+{% set periodSwitch = model.periodSwitch %}
+{% set cards = model.cards %}
+{% set options = options is defined ? options : model.options %}
+{% set numGrid = cards|length %}
+{% set cols = numGrid == 1 ? 'md:grid-cols-1' : (numGrid % 2 == 0 ? 'md:grid-cols-2' : 'md:grid-cols-3') %}
+{% if periodSwitch %}
+	{% set periodSwitch = periodSwitch|merge({checked: period == 'year'}) %}
+{% endif %}
+
+<flynt-component name="SectionPricingCards" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
+	<section class="tw-section flex flex-col gap-8 lg:gap-10">
+		{% if heading %}
+			{% include '@Components/Heading/index.twig' with { model: heading, options: {align: 'center'} } only %}
+		{% endif %}
+		{% if periodSwitch %}
+			<div class="mt-8 mb-2">
+				{% include '@Components/Switch/index.twig' with { model: periodSwitch } only %}
+			</div>
+		{% endif %}
+
+
+		<div class="flex flex-col gap-6">
+			{% if numGrid > 0 %}
+				<div class="grid {{cols}} gap-6">
+					{% for card in cards %}
+						{% set card = card|merge({ 
+							period: period,
+							labelMonth: labelMonth,
+							labelYear: labelYear,
+							switchId: periodSwitch.id			
+						}) %}
+						{% include '@Components/PricingCard/index.twig' with { model: card, options: options } only %}
+					{% endfor %}
+				</div>
+			{% endif %}
+		</div>
+
+	</section>
+	{# {% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %} #}
+</flynt-component>

@@ -62,7 +62,7 @@ export const CenterAligned: StoryObj<CardImageModel> = {
   render: Template,
   args: {
     ...defaultData,
-    action: {
+    actionButton: {
       url: '#',
       title: 'Learn More',
     },
@@ -78,7 +78,7 @@ export const ImageOverlay: StoryObj<CardImageModel> = {
   render: Template,
   args: {
     ...defaultData,
-    action: {
+    actionButton: {
       url: '#',
       title: 'Learn More',
     },

@@ -24,7 +24,10 @@ const meta: Meta<ButtonModel> = {
     class: {
       control: 'text',
     },
-  }
+  },
+  decorators: [
+    (Story) => `<div class="min-w-sm text-center">${Story()}</div>`
+  ]
 };
 
 export default meta;
@@ -55,6 +58,21 @@ export const Secondary: StoryObj<ButtonModel> = {
     title: 'Click Me',
     url: '#',
     target: '_self',
+    class: ''
+  },
+  parameters: {
+    layout: 'centered',
+  },
+};
+
+export const Block: StoryObj<ButtonModel> = {
+  render: Template,
+  args: {
+    type: 'primary',
+    title: 'Click Me',
+    url: '#',
+    target: '_self',
+    blockMode: true,
     class: ''
   },
   parameters: {

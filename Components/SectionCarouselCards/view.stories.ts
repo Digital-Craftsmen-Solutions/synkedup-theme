@@ -14,7 +14,7 @@ const cards: CardImageModel[] = [
       src: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca',
       alt: 'Card 1'
     },
-    action: {
+    actionButton: {
       title: 'Read More',
       url: '/card-1'
     },
@@ -27,7 +27,7 @@ const cards: CardImageModel[] = [
       src: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
       alt: 'Card 2'
     },
-    action: {
+    actionButton: {
       title: 'Explore',
       url: '/card-2'
     },
@@ -40,7 +40,7 @@ const cards: CardImageModel[] = [
       src: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca',
       alt: 'Card 3'
     },
-    action: {
+    actionButton: {
       title: 'Discover',
       url: '/card-3'
     },
@@ -53,7 +53,7 @@ const cards: CardImageModel[] = [
       src: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca',
       alt: 'Card 3'
     },
-    action: {
+    actionButton: {
       title: 'Discover',
       url: '/card-3'
     },
@@ -66,7 +66,7 @@ const cards: CardImageModel[] = [
       src: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca',
       alt: 'Card 3'
     },
-    action: {
+    actionButton: {
       title: 'Discover',
       url: '/card-3'
     },

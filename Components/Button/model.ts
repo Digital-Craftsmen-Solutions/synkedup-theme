@@ -3,5 +3,6 @@ export type ButtonModel = {
   title: string;
   url: string;
   target?: '_self' | '_blank';
+  blockMode?: boolean;
   class?: string;
 };

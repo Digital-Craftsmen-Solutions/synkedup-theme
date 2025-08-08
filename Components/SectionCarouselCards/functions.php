@@ -34,7 +34,7 @@ add_filter('Flynt/addComponentData?name=SectionCarouselCards', function (array $
                 'title' => $card->title,
                 'subtitle' => $card->subtitle,
                 'backgroundImage' => $card->thumbnail,
-                'action' => [
+                'actionButton' => [
                     'title' => $card->title,
                     'url' => $card->link,
                 ],

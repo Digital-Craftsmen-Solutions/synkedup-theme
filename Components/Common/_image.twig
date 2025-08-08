@@ -10,9 +10,9 @@
 {% set size = size|default('medium') %}
 {% set src = model.src %}
 {% set alt = model.alt %}
-{% set width = model.width %}
-{% set height = model.height %}
-{% set height = model.height %}
+{% set width = model.width|default('768') %}
+{% set height = model.height|default('512') %}
+
 
 {% if size == 'small' %}
 	{% set src_main = src|resizeDynamic(640) %}
