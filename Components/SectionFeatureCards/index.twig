@@ -8,12 +8,10 @@
 {% set cols = numGrid == 1 ? 'md:grid-cols-1' : (numGrid % 2 == 0 ? 'md:grid-cols-2' : 'md:grid-cols-3') %}
 
 <flynt-component name="SectionFeatureCards" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
-	<section class="tw-section flex flex-col gap-8 lg:gap-10">
-		<div class="max-w-2xl text-center mx-auto">
-			{% if heading %}
-				{% include '@Components/Heading/index.twig' with { model: heading, options: {align: 'center'} } only %}
-			{% endif %}
-		</div>
+	<section class="tw-section tw-section-gap flex flex-col gap-8 lg:gap-12">
+		{% if heading %}
+			{% include '@Components/Heading/index.twig' with { model: heading, options: {align: 'center', size: 'narrow'} } only %}
+		{% endif %}
 		<div class="flex flex-col gap-6">
 			{% if expandFirst and num > 0 %}
 				<div class="max-w-5xl mx-auto">

@@ -1,11 +1,11 @@
 <?php
 
-namespace Flynt\Components\SectionFeatureItems;
+namespace Flynt\Components\SectionIconItems;
 
 use Flynt\FieldVariables;
 
 
-add_filter('Flynt/addComponentData?name=SectionFeatureItems', function (array $data): array {
+add_filter('Flynt/addComponentData?name=SectionIconItems', function (array $data): array {
     $model = [
 
         'options' => $data['options'] ?? []
@@ -17,7 +17,7 @@ add_filter('Flynt/addComponentData?name=SectionFeatureItems', function (array $d
 function getACFLayout(): array
 {
     return [
-        'name' => 'sectionFeatureItems',
+        'name' => 'SectionIconItems',
         'label' => __('Section: Feature Items', 'flynt'),
         'sub_fields' => [
             [

@@ -1,0 +1,20 @@
+{% set heading = model.heading %}
+{% set cards = model.cards|default([]) %}
+{% set num = cards|length %}
+{% set cols = num == 1 ? 'md:grid-cols-1' : (num == 2 ? 'md:grid-cols-2' : 'md:grid-cols-3') %}
+{% set options = options is defined ? options : model.options %}
+
+<flynt-component name="SectionIconCards" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
+	<section class="tw-section tw-section-gap flex flex-col gap-8 lg:gap-12">
+		{% if heading %}
+			{% include '@Components/Heading/index.twig' with { model: heading, options: {align: 'center', size: 'narrow'} } only %}
+		{% endif %}
+
+		<div class="grid {{cols}} gap-8 md:gap-10">
+			{% for card in cards %}
+				{% include '@Components/Card/index.twig' with { model: card, options: options } only %}
+			{% endfor %}
+
+		</div>
+	</section>
+</flynt-component>

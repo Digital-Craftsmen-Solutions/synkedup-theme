@@ -418,6 +418,10 @@ $edge-height: 50px;
   @apply max-w-7xl mx-auto py-8 md:py-10 lg:py-12 px-4 md:px-6 lg:px-8;
 }
 
+.tw-section-gap {
+  @apply gap-8 md:gap-10 lg:gap-14;
+}
+
 .inner-tw-section {
   .tw-section {
     @apply px-0 py-0;

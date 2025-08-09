@@ -20,7 +20,7 @@
 {% set align = options.align ?? 'center' %}
 {% set cellPad = cellPad is defined ? cellPad : 'p-2 md:p-4' %}
 
-<div{{options.theme?'data-theme="'~options.theme~'"'}} class="flex flex-col">
+<div {{options.theme?'data-theme="'~options.theme~'"'}} class="flex flex-col">
 
 	{% if colNum > 1 %}
 		<!-- xs to md -->
@@ -40,8 +40,8 @@
 						<tbody>
 							{% for row in rows %}
 								<tr>
-									<td class="{{ cellPad }} whitespace-nowrap text-text dark:text-text-dark lg:text-lg text-left">{{ attribute(row, head[0].key) }}</td>
-									<td class="{{ cellPad }} whitespace-nowrap text-text dark:text-text-dark lg:text-lg {{ align == 'left' ? 'text-start' : 'text-center' }}">
+									<td class="{{ cellPad }} align-middle text-text dark:text-text-dark lg:text-lg text-left">{{ attribute(row, head[0].key) }}</td>
+									<td class="{{ cellPad }} align-middle text-text dark:text-text-dark lg:text-lg {{ align == 'left' ? 'text-start' : 'text-center' }}">
 										{{ TableMacros.renderCell(attribute(row, col.key)) }}
 									</td>
 								</tr>
@@ -67,7 +67,7 @@
 					{% for row in rows %}
 						<tr>
 							{% for col in head %}
-								<td class="{{ cellPad }} whitespace-nowrap text-text dark:text-text-dark lg:text-lg {{ align == 'left' or loop.first ? 'text-start' : 'text-center' }}">
+								<td class="{{ cellPad }} align-middle text-text dark:text-text-dark lg:text-lg {{ align == 'left' or loop.first ? 'text-start' : 'text-center' }}">
 									{{ TableMacros.renderCell(attribute(row, col.key)) }}
 								</td>
 							{% endfor %}

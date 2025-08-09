@@ -12,9 +12,9 @@
 
 
 {% if hasAction %}
-	<a class="group rounded-3xl" href="{{ action.url|e('esc_url') }}" target="{{ action.target|default('_self')|e }}">
+	<a class="group rounded-2xl md:rounded-3xl" href="{{ action.url|e('esc_url') }}" target="{{ action.target|default('_self')|e }}">
 	{% endif %}
-	<div {{ theme ? ' data-theme="' ~ theme ~ '"' }} class="relative flex flex-col bg-white border border-border-card rounded-3xl overflow-hidden dark:bg-dark-shade dark:border-0 {{ options.align == 'center' ? 'items-center text-center' : '' }} {{ display == 'imageOverlay' ? 'min-h-90 md:min-h-110' : '' }} {{hasAction ? 'h-full'}}">
+	<div {{ theme ? ' data-theme="' ~ theme ~ '"' }} class="relative flex flex-col bg-white border border-border-card rounded-2xl md:rounded-3xl overflow-hidden dark:bg-dark-shade dark:border-0 {{ options.align == 'center' ? 'items-center text-center' : '' }} {{ display == 'imageOverlay' ? 'min-h-90 md:min-h-110' : '' }} {{hasAction ? 'h-full'}}">
 		{% if display == 'imageOverlay' and backgroundImage %}
 			<div class="absolute inset-0 overflow-hidden">
 				{% include '@Components/Common/_image.twig' with {

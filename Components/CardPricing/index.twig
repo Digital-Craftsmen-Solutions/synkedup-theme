@@ -14,7 +14,7 @@
 {% set options = options is defined ? options : model.options %}
 
 
-<div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="relative flex flex-col bg-white border border-border-card rounded-3xl overflow-hidden p-6 md:p-10 lg:p-16 dark:bg-dark-shade dark:border-0 gap-4 md:gap-6 {{ options.align == 'center' ? 'items-center text-center' : '' }}">
+<div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="relative flex flex-col bg-white border border-border-card rounded-2xl md:rounded-3xl overflow-hidden p-6 md:p-10 lg:p-16 dark:bg-dark-shade dark:border-0 gap-4 md:gap-6 {{ options.align == 'center' ? 'items-center text-center' : '' }}">
 
 	{% if badge %}
 		<p class="absolute top-4 right-4 md:top-8 md:right-8">
