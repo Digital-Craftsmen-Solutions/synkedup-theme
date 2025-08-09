@@ -1,18 +1,18 @@
 {% set options = options is defined ? options : model.options %}
-<flynt-component name="Accordion" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
+<flynt-component load:on="visible" name="Accordion" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="bg-white rounded-2xl dark:bg-dark-shade px-3 md:px-5">
 	<div class="hs-accordion-group divide-y divide-gray-200 dark:divide-neutral-600" {{ options.keepOpen ? 'data-hs-accordion-always-open=""' }}>
 		{% for item in model.items %}
-			<div class="hs-accordion {{ item.expanded ? 'active' : '' }} bg-white first:rounded-t-lg last:rounded-b-lg dark:bg-dark-shade {{ item.class ?? '' }}" id="{{ item.id }}-heading">
-				<button class="hs-accordion-toggle inline-flex items-center justify-between gap-x-3 w-full font-medium text-start text-heading dark:text-white px-4 py-5 md:p-6 lg:p-8 disabled:opacity-50 disabled:pointer-events-none" aria-expanded="{{ item.expanded ? 'true' : 'false' }}" aria-controls="{{ item.id }}-collapse">
+			<div class="hs-accordion {{ item.expanded ? 'active' : '' }} {{ item.class ?? '' }}" id="{{ item.id }}">
+				<button class="hs-accordion-toggle inline-flex items-center justify-between gap-x-3 w-full font-medium text-start text-heading dark:text-white px-2 py-4 md:py-6 disabled:opacity-50 disabled:pointer-events-none" aria-expanded="{{ item.expanded ? 'true' : 'false' }}" aria-controls="{{ item.id }}-collapse">
 					{{ item.heading }}
 
-					{% include '@Components/Common/_icon.twig' with { name: 'chevronDown', class: 'hs-accordion-active:hidden block size-3.5' } %}
-					{% include '@Components/Common/_icon.twig' with { name: 'chevronUp', class: 'hs-accordion-active:block hidden size-3.5' } %}
+					{% include '@Components/Common/_icon.twig' with { name: 'chevronDown', class: 'hs-accordion-active:hidden block size-3.5 text-text dark:text-text-dark hs-accordion-active:text-heading hs-accordion-active:dark:text-white' } %}
+					{% include '@Components/Common/_icon.twig' with { name: 'chevronUp', class: 'hs-accordion-active:block hidden size-3.5 text-text dark:text-text-dark hs-accordion-active:text-heading hs-accordion-active:dark:text-white' } %}
 
 				</button>
 
-				<div id="{{ item.id }}-collapse" class="hs-accordion-content {{ item.expanded ? '' : 'hidden' }} w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="{{ item.id }}-heading">
-					<div class="pb-5 px-4 md:px-6 lg:px-8 ">
+				<div id="{{ item.id }}-collapse" class="hs-accordion-content {{ item.expanded ? '' : 'hidden' }} w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="{{ item.id }}">
+					<div class="pb-6 md:pb-7 px-2">
 						<div class="text-text dark:text-text-dark prose prose-p:space-y-2 max-w-none">
 							{{ item.contentHtml|e('wp_kses_post') }}
 						</div>

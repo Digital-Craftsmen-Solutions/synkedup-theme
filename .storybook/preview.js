@@ -70,7 +70,7 @@ const preview = {
     options: {
       storySort: {
         method: 'alphabetical',
-        order: ['Intro', 'Pages', 'Components'],
+        order: ['Intro', 'Pages', 'Components', 'Sections'],
       },
     },
     viewport: {
