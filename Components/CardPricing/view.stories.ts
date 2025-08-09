@@ -1,9 +1,9 @@
-import template from '@/Components/PricingCard/index.twig?url';
+import template from '@/Components/CardPricing/index.twig?url';
 import type { Meta, StoryObj } from '@storybook/html';
-import type { PricingCardModel } from './model';
+import type { CardPricingModel } from './model';
 import { renderTwig } from '../../stories/utils';
 
-const defaultData: PricingCardModel = {
+const defaultData: CardPricingModel = {
   icon: 'home',
   title: 'Standard Plan',
   description: 'Perfect for individuals and small teams.',
@@ -29,8 +29,8 @@ const defaultData: PricingCardModel = {
   }
 };
 
-const meta: Meta<PricingCardModel> = {
-  title: 'Components/PricingCard',
+const meta: Meta<CardPricingModel> = {
+  title: 'Components/CardPricing',
   tags: ['autodocs'],
   args: {
     ...defaultData
@@ -57,11 +57,11 @@ const meta: Meta<PricingCardModel> = {
 export default meta;
 
 const compiled = renderTwig(template);
-const Template = (args: PricingCardModel) => {
+const Template = (args: CardPricingModel) => {
   return compiled.render({ model: args });
 };
 
-export const Basic: StoryObj<PricingCardModel> = {
+export const Basic: StoryObj<CardPricingModel> = {
   render: Template,
   args: {
     ...defaultData,
@@ -72,7 +72,7 @@ export const Basic: StoryObj<PricingCardModel> = {
   }
 };
 
-export const WithBadgeAndExtraCost: StoryObj<PricingCardModel> = {
+export const WithBadgeAndExtraCost: StoryObj<CardPricingModel> = {
   render: Template,
   args: {
     ...defaultData,
@@ -106,7 +106,7 @@ export const WithBadgeAndExtraCost: StoryObj<PricingCardModel> = {
   },
 };
 
-export const CenterAligned: StoryObj<PricingCardModel> = {
+export const CenterAligned: StoryObj<CardPricingModel> = {
   render: Template,
   args: {
     ...defaultData,
@@ -137,7 +137,7 @@ export const CenterAligned: StoryObj<PricingCardModel> = {
   },
 };
 
-export const YearlyOnly: StoryObj<PricingCardModel> = {
+export const YearlyOnly: StoryObj<CardPricingModel> = {
   render: Template,
   args: {
     ...defaultData,

@@ -131,7 +131,7 @@ function getACFLayout(): array
                         'label' => __('Features', 'flynt'),
                         'name' => 'features',
                         'type' => 'repeater',
-                        'layout' => 'row',
+                        'layout' => 'table',
                         'button_label' => __('Add Feature', 'flynt'),
                         'sub_fields' => [
                             [

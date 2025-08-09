@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/html';
 import type { SectionPricingCardsModel } from './model';
 import { renderTwig } from '../../stories/utils';
 import { SwitchModel } from '../Switch/model';
-import { PricingCardModel } from '../PricingCard/model';
+import { CardPricingModel } from '../CardPricing/model.js';
 import HSToggleClass from '../../assets/scripts/toggle-class.js'
 
 const defaultSwitch: SwitchModel = {
@@ -15,7 +15,7 @@ const defaultSwitch: SwitchModel = {
   disabled: false,
 };
 
-const defaultCard: PricingCardModel = {
+const defaultCard: CardPricingModel = {
   icon: 'home',
   title: 'Standard Plan',
   description: 'Perfect for individuals and small teams.',

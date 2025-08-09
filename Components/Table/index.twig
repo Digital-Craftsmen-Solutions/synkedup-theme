@@ -1,0 +1,81 @@
+{% macro renderCell(value) %}
+	{% if value is same as(true) %}
+		<span class="inline-block align-middle">
+			{% include '@Components/Common/_icon.twig' with { name: 'check', class: 'flex-shrink-0 size-4.5 text-white bg-success p-1 rounded-full' } %}
+		</span>
+	{% elseif value is same as(false) %}
+		<span class="inline-block align-middle text-gray-400 dark:text-neutral-400">
+			—
+		</span>
+	{% else %}
+		{{ value }}
+	{% endif %}
+{% endmacro %}
+
+{% import _self as TableMacros %}
+{% set head = model.head %}
+{% set colNum = model.head|length %}
+{% set rows = model.rows %}
+{% set options = options is defined ? options : model.options %}
+{% set align = options.align ?? 'center' %}
+{% set cellPad = cellPad is defined ? cellPad : 'p-2 md:p-4' %}
+
+<div{{options.theme?'data-theme="'~options.theme~'"'}} class="flex flex-col">
+
+	{% if colNum > 1 %}
+		<!-- xs to md -->
+		<div class="space-y-8 md:hidden">
+			{% for col in head|slice(1) %}
+				<div>
+					<div class="px-2 mb-4">
+						<div class="text-xl md:text-2xl font-medium text-heading dark:text-white">{{ col.label }}</div>
+					</div>
+					<table class="w-full">
+						<thead>
+							<tr>
+								<th class="sr-only" scope="col">{{ head[0].label }}</th>
+								<th class="sr-only" scope="col">{{ col.label }}</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for row in rows %}
+								<tr>
+									<td class="{{ cellPad }} whitespace-nowrap text-text dark:text-text-dark lg:text-lg text-left">{{ attribute(row, head[0].key) }}</td>
+									<td class="{{ cellPad }} whitespace-nowrap text-text dark:text-text-dark lg:text-lg {{ align == 'left' ? 'text-start' : 'text-center' }}">
+										{{ TableMacros.renderCell(attribute(row, col.key)) }}
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			{% endfor %}
+		</div>
+		<!-- End xs to md -->
+
+		<!-- md+ -->
+		<div class="hidden md:block">
+			<table class="w-full h-px">
+				<thead>
+					<tr>
+						{% for col in head %}
+							<th scope="col" class="{{ cellPad }} {{ align == 'left' or loop.first ? 'text-start' : 'text-center' }} text-xl md:text-2xl font-medium text-heading dark:text-white" style="width: {{(100 / colNum)|round(2)}}%">{{ col.label }}</th>
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+					{% for row in rows %}
+						<tr>
+							{% for col in head %}
+								<td class="{{ cellPad }} whitespace-nowrap text-text dark:text-text-dark lg:text-lg {{ align == 'left' or loop.first ? 'text-start' : 'text-center' }}">
+									{{ TableMacros.renderCell(attribute(row, col.key)) }}
+								</td>
+							{% endfor %}
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<!-- End md+ -->
+	{% endif %}
+</div>

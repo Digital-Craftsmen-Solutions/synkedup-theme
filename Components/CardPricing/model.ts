@@ -4,7 +4,7 @@ type FeatureListItem = {
   label: string;
 };
 
-export type PricingCardModel = {
+export type CardPricingModel = {
   icon?: string
   title?: string;
   description?: string;

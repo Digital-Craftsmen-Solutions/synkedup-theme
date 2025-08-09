@@ -30,7 +30,7 @@
 				class: 'w-full h-auto rounded-t-xl'
 			} only %}
 		{% endif %}
-		<div class="p-4 md:p-6 flex flex-col flex-1 space-y-4 {{ alignClass }} {{ display == 'imageOverlay' ? 'justify-end z-1' : '' }}">
+		<div class="p-4 py-6 md:p-6 flex flex-col flex-1 space-y-4 {{ alignClass }} {{ display == 'imageOverlay' ? 'justify-end z-1' : '' }}">
 			<h3 class="text-lg md:text-xl font-medium text-heading dark:text-white {{hasAction ? 'group-hover:underline'}}">{{ title }}</h3>
 			{% if description %}
 				<p class="text-text dark:text-text-dark">{{ description }}</p>
