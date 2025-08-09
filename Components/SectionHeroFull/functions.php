@@ -2,6 +2,7 @@
 
 namespace Flynt\Components\SectionHeroFull;
 
+use Flynt\Utils\Breadcrumbs;
 use Flynt\FieldVariables;
 
 add_filter('Flynt/addComponentData?name=SectionHeroFull', function (array $data): array {
@@ -30,6 +31,11 @@ add_filter('Flynt/addComponentData?name=SectionHeroFull', function (array $data)
                 }, $data['extraItems'])
             ]
             : null,
+        'breadcrumbs' => $data['options']['showBreadcrumbs']
+            ? [
+                'items' => Breadcrumbs::get(),
+            ]
+            : null,
         'options' => $data['options']
     ];
 
@@ -49,6 +55,8 @@ function getACFLayout(): array
                 'placement' => 'top',
                 'endpoint' => 0,
             ],
+            FieldVariables\getHeading('h1'),
+            FieldVariables\getAction(),
             [
                 'label' => __('Image', 'flynt'),
                 'name' => 'backgroundImage',
@@ -69,8 +77,6 @@ function getACFLayout(): array
                 'mime_types' => 'jpg,jpeg,png,webp',
                 'wrapper' => ['width' => 50],
             ],
-            FieldVariables\getHeading('h1'),
-            FieldVariables\getAction(),
             [
                 'label' => __('Extra Items', 'flynt'),
                 'name' => 'extraItems',
@@ -171,6 +177,13 @@ function getACFLayout(): array
                         'default_value' => 'full',
                         'allow_null' => 0,
                     ],
+                    [
+                        'label' => __('Show Breadcrumbs?', 'flynt'),
+                        'name' => 'showBreadcrumbs',
+                        'type' => 'true_false',
+                        'default_value' => 0,
+                        'ui' => 1
+                    ]
                 ],
             ],
         ],

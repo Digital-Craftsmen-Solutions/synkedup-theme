@@ -102,7 +102,7 @@ if (typeof window !== 'undefined') {
     HSToggleClass.autoInit();
 
     // Debug log (optional)
-    console.log('Toggle class collection:', window.$hsToggleClassCollection);
+    // console.log('Toggle class collection:', window.$hsToggleClassCollection);
   });
 }
 

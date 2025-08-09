@@ -8,7 +8,7 @@ use Flynt\FieldVariables;
 add_filter('Flynt/addComponentData?name=SectionIconItems', function (array $data): array {
     $model = [
 
-        'options' => $data['options'] ?? []
+        'options' => $data['options'] ?: []
     ];
 
     return ['model' => $model];

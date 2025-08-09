@@ -15,7 +15,7 @@ add_filter('Flynt/addComponentData?name=SectionCallToAction', function (array $d
             ] : null,
             'gravityForm' => $data['actionType'] == 'form' ? $data['gravityForm'] : null,
         ],
-        'options' => $data['options'] ?? []
+        'options' => $data['options'] ?: []
     ];
 
     return ['model' => $model];

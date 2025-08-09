@@ -13,7 +13,7 @@
 						<span>{{ item.label }}</span>
 					</a>
 				{% else %}
-					<span class="inline-flex items-center text-sm font-semibold text-primary truncate dark:primary" aria-current="page">
+					<span class="inline-flex items-center text-sm text-primary truncate dark:primary" aria-current="page">
 						{% if item.icon %}
 							{% include '@Components/Common/_icon.twig' with { name: item.icon, ariaLabel: item.label ~ ' Icon', class: 'shrink-0 me-3 size-4' } %}
 						{% endif %}

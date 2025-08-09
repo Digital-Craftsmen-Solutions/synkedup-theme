@@ -30,7 +30,7 @@
 				class="{{display == 'full' ? '' : 'grid md:grid-cols-12 gap-6 md:gap-10 lg:gap-12'}}">
 				{# Content #}
 				<div class="flex flex-col justify-center gap-6 md:gap-14 py-6 md:py-12 lg:py-18 xl:py-24 {{display == 'full' ? '' : 'md:col-span-7'}}">
-					<div class="max-w-4xl mx-auto flex flex-col justify-center tw-section-gap my-10 md:my-14 lg:my-16 {{display == 'full' ? 'xl:my-20 items-center'}}">
+					<div class="max-w-4xl mx-auto flex flex-col justify-center gap-6 md:gap-8 my-10 md:my-14 lg:my-16 {{display == 'full' ? 'xl:my-20 items-center'}}">
 						{% if breadcrumbs %}
 							{% include '@Components/Breadcrumbs/index.twig' with { model: breadcrumbs } only %}
 						{% endif %}
@@ -61,7 +61,7 @@
 							{% include '@Components/Common/_image.twig' with {
               model: backgroundImage,
               size: 'medium',
-							class: 'object-contain! h-full object-bottom'
+							class: 'object-contain! lg:object-cover! h-full object-bottom!'
             } only %}
 						</div>
 					</div>
@@ -72,5 +72,5 @@
 	</section>
 	<!-- End Hero -->
 
-	{# {% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %} #}
+	{% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %}
 </flynt-component>

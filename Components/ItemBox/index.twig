@@ -5,7 +5,7 @@
 {% set description = model.description %}
 {% set options = options is defined ? options : model.options %}
 
-<div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="flex flex-col {{ options.align == 'center' ? 'items-center text-center' : 'items-start' }} gap-1 md:gap-4 md:max-w-xs mx-auto w-full">
+<div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="flex flex-col {{ options.align == 'center' ? 'items-center text-center' : 'items-start' }} gap-1 md:gap-4 mx-auto w-full">
 	{% if icon or image %}
 		<div class="flex items-center">
 			{% if type == 'icon' and icon %}

@@ -14,9 +14,11 @@ add_filter('Flynt/addComponentData?name=SectionIconCards', function (array $data
                 'image' => $card['image'] ?? null,
                 'title' => $card['title'] ?? '',
                 'description' => $card['description'] ?? '',
-                'actionButton' => $card['actionButton'] ?? null,
+                'actionButton' => isset($card['actionButton'])
+                    ? array_merge($card['actionButton'], ['type' => 'secondary'])
+                    : null,
             ];
-        }, $data['cards'] ?? []),
+        }, $data['cards'] ?: []),
         'options' => $data['options']
     ];
 

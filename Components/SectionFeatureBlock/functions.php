@@ -12,7 +12,7 @@ add_filter('Flynt/addComponentData?name=SectionFeatureBlock', function (array $d
             return [
                 'label' => $feature['label'],
             ];
-        }, $data['features'] ?? []),
+        }, $data['features'] ?: []),
         'action' => [
             'actionType' => $data['actionType'],
             'ctaButtons' => $data['actionType'] == 'buttons' ? [
@@ -50,7 +50,6 @@ function getACFLayout(): array
                 'name' => 'features',
                 'type' => 'repeater',
                 'layout' => 'table',
-                'min' => 1,
                 'button_label' => __('Add Feature', 'flynt'),
                 'sub_fields' => [
                     [
@@ -58,7 +57,6 @@ function getACFLayout(): array
                         'name' => 'label',
                         'type' => 'text',
                         'wrapper' => ['width' => 100],
-                        'required' => 1,
                     ],
                 ],
             ],

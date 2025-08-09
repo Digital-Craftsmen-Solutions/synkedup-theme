@@ -47,7 +47,7 @@ add_filter('Flynt/addComponentData?name=SectionCarouselCards', function (array $
                 'secondaryButton' => $data['ctaButtons']['secondaryButton']
             ] : null,
         ],
-        'options' => $data['options'] ?? [],
+        'options' => $data['options'] ?: [],
     ];
 
     return ['model' => $model];

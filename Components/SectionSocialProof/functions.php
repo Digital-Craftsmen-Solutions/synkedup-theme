@@ -20,7 +20,7 @@ add_filter('Flynt/addComponentData?name=SectionSocialProof', function (array $da
                 'figure' => $stat['figure'],
                 'description' => $stat['description'],
             ];
-        }, $data['stats'] ?? []),
+        }, $data['stats'] ?: []),
         'testimonials' => $data['testimonials'],
         'options' => $data['options']
     ];

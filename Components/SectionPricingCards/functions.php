@@ -25,11 +25,11 @@ add_filter('Flynt/addComponentData?name=SectionPricingCards', function (array $d
                 'priceYear' => $card['priceYear'],
                 'extraCost' => $card['extraCost'],
                 'badge' => $card['badge'],
-                'features' => $card['features'] ?? [],
+                'features' => $card['features'] ?: [],
                 'actionButton' => $card['action'],
             ];
-        }, $data['cards'] ?? []),
-        'options' => $data['options'] ?? [],
+        }, $data['cards'] ?: []),
+        'options' => $data['options'] ?: [],
     ];
 
     return ['model' => $model];

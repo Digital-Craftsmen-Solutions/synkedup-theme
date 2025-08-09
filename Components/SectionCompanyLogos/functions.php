@@ -9,7 +9,7 @@ add_filter('Flynt/addComponentData?name=SectionCompanyLogos', function (array $d
         'heading' => $data['heading'],
         'logos' => array_map(function ($logo) {
             return $logo;
-        }, $data['logos'] ?? []),
+        }, $data['logos'] ?: []),
         'options' => $data['options']
     ];
 

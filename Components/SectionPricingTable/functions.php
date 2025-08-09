@@ -15,7 +15,7 @@ add_filter('Flynt/addComponentData?name=SectionPricingTable', function (array $d
             }
         }
     }
-    $plans = $data['plans'] ?? [];
+    $plans = $data['plans'] ?: [];
 
     $head = array_merge(
         [['label' => 'Feature', 'key' => 'feature']],
@@ -51,12 +51,12 @@ add_filter('Flynt/addComponentData?name=SectionPricingTable', function (array $d
 
     return [
         'model' => [
-            'heading' => $data['heading'] ?? [],
+            'heading' => $data['heading'] ?: [],
             'table' => [
                 'head' => $head,
                 'rows' => $rows,
             ],
-            'options' => $data['options'] ?? [],
+            'options' => $data['options'] ?: [],
         ],
     ];
 });
@@ -159,7 +159,7 @@ function getACFLayout(): array
 add_filter('acf/load_field/name=planFeature', function ($field) {
 
     $options = Options::getGlobal('PricingTable');
-    $features = $options['features'] ?? [];
+    $features = $options['features'] ?: [];
     $choices = [];
     if (is_array($features)) {
         foreach ($features as $feature) {
