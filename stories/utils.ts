@@ -13,6 +13,10 @@ twig.extendFunction("placeholderImage", function (value, times) {
   return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nNDAwMCcgaGVpZ2h0PScyNjY4JyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnPjxyZWN0IHdpZHRoPSc0MDAwJyBoZWlnaHQ9JzI2NjgnIHN0eWxlPSdmaWxsOnJnYmEoMTI1LCAxMjUsIDEyNSwgMC4xKScgLz48L3N2Zz4='
 });
 
+twig.extendFunction("renderComponent", function (value, times) {
+  return value
+});
+
 export const renderTwig = (path: string) => {
   return twig.twig({
     async: false,

@@ -7,7 +7,7 @@ use Flynt\FieldVariables;
 
 add_filter('Flynt/addComponentData?name=SectionAccordion', function (array $data): array {
     $model = [
-        'heading' => $data['heading'] ?: [],
+        'heading' => $data['heading'],
         'accordion' => [
             'items' => array_map(function ($item, $index) {
                 return [

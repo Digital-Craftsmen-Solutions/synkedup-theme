@@ -51,7 +51,7 @@ add_filter('Flynt/addComponentData?name=SectionPricingTable', function (array $d
 
     return [
         'model' => [
-            'heading' => $data['heading'] ?: [],
+            'heading' => $data['heading'],
             'table' => [
                 'head' => $head,
                 'rows' => $rows,

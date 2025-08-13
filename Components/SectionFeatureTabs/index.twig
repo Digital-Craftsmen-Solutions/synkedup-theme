@@ -1,0 +1,65 @@
+{% set heading = model.heading %}
+{% set tabs = model.tabs|default([]) %}
+{% set tabsId = 'tabs-' ~ random() %}
+{% set options = options is defined ? options : model.options %}
+{% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %}
+<flynt-component name="SectionFeatureTabs" {{ model.options.theme ? 'data-theme="' ~ model.options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
+	<section class="tw-section tw-section-gap flex flex-col gap-8 lg:gap-12">
+		{% if heading %}
+			{% include '@Components/Heading/index.twig' with { model: heading } only %}
+		{% endif %}
+
+		<div class="bg-white border border-border-card rounded-2xl md:rounded-3xl dark:bg-dark-shade dark:border-0 overflow-hidden">
+			<div class="flex flex-col md:grid md:grid-cols-12 gap-6 md:gap-8 p-4 py-6 md:p-8 lg:p-10">
+				<div class="flex flex-col md:col-span-4 xl:col-span-3">
+
+					<select id="{{tabsId}}" class="md:hidden py-3 px-4 pe-9 block w-full text-heading dark:text-white bg-white dark:bg-dark-shade border border-border dark:border-transparent rounded-lg text-md font-medium focus:outline-none focus-visible:border-primary hover:border-primary" aria-label="Tabs">
+						{% for tab in tabs %}
+							<option value="#{{tab.id}}">{{tab.title}}</option>
+						{% endfor %}
+					</select>
+
+					<div class="hidden md:block">
+						<nav class="flex gap-1 md:gap-2 md:flex-col" aria-label="Tabs" role="tablist" data-hs-tab-select="#{{tabsId}}">
+							{% for tab in tabs %}
+								<button type="button" class="hs-tab-active:bg-primary hs-tab-active:text-white py-2 px-4 inline-flex items-center gap-2 bg-transparent font-medium text-heading dark:text-white hover:bg-gray-100 dark:hover:bg-neutral-800 rounded-lg disabled:opacity-50 disabled:pointer-events-none text-left {{loop.first ? 'active'}}" id="{{tab.id}}-button" aria-selected="false" data-hs-tab="#{{tab.id}}" aria-controls="{{tab.id}}" role="tab">
+									{{ tab.title }}
+								</button>
+							{% endfor %}
+						</nav>
+					</div>
+				</div>
+
+				<div class="md:col-span-8 xl:col-span-9">
+					{% for tab in tabs %}
+						<div id="{{tab.id}}" class="flex flex-col gap-4 {{loop.first ? '' : 'hidden'}}" role="tabpanel" aria-labelledby="{{tab.id}}-button">
+							{% if tab.image %}
+								<div class="w-full flex mb-2">
+									{% include '@Components/Common/_image.twig' with {
+										model: tab.image,
+										size: 'medium',
+										class: 'rounded-lg overflow-hidden'
+									} only %}
+								</div>
+							{% endif %}
+							{% if tab.title %}
+								<div class="text-heading font-medium dark:text-white text-lg md:text-xl">{{tab.title}}</div>
+							{% endif %}
+							{% if tab.description %}
+								<div class="prose prose-p:space-y-2 dark:text-text-dark max-w-none lg:text-lg {{hideHighlight ? 'dark:text-white' : ''}}">
+									{{ tab.description|e('wp_kses_post') }}
+								</div>
+							{% endif %}
+							{% if tab.actionButton %}
+								<div class="mt-1">
+									{% include '@Components/Button/index.twig' with { model: tab.actionButton } only %}
+								</div>
+							{% endif %}
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+
+	</section>
+</flynt-component>

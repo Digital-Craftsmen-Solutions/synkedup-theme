@@ -19,6 +19,14 @@ add_filter('Flynt/addComponentData?name=SectionIconCards', function (array $data
                     : null,
             ];
         }, $data['cards'] ?: []),
+        'action' => [
+            'actionType' => $data['actionType'],
+            'ctaButtons' => $data['actionType'] == 'buttons' ? [
+                'primaryButton' => $data['ctaButtons']['primaryButton'],
+                'secondaryButton' => $data['ctaButtons']['secondaryButton']
+            ] : null,
+            'gravityForm' => $data['actionType'] == 'form' ? $data['gravityForm'] : null,
+        ],
         'options' => $data['options']
     ];
 
@@ -109,6 +117,7 @@ function getACFLayout(): array
                     ],
                 ]
             ],
+            FieldVariables\getAction(),
             [
                 'label' => __('Options', 'flynt'),
                 'name' => 'optionsTab',

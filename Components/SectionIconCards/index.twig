@@ -1,5 +1,6 @@
 {% set heading = model.heading %}
 {% set cards = model.cards|default([]) %}
+{% set action = model.action %}
 {% set num = cards|length %}
 {% set cols = num == 1 ? 'md:grid-cols-1' : (num == 2 ? 'md:grid-cols-2' : 'md:grid-cols-3') %}
 {% set options = options is defined ? options : model.options %}
@@ -16,5 +17,8 @@
 			{% endfor %}
 
 		</div>
+
+		{% include '@Components/Action/index.twig' with { model: action } only %}
+
 	</section>
 </flynt-component>

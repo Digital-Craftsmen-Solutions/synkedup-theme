@@ -1,0 +1,36 @@
+{% set heading = model.heading %}
+{% set tabs = model.tabs|default([]) %}
+{% set tabsId = 'tabs-' ~ random() %}
+
+
+<flynt-component name="LayoutTabs" {{ model.options.theme ? 'data-theme="' ~ model.options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
+	<section class="tw-section tw-section-gap flex flex-col gap-8 lg:gap-12">
+		{% if heading %}
+			{% include '@Components/Heading/index.twig' with { model: heading } only %}
+		{% endif %}
+
+		<div class="flex flex-col">
+			<div class="flex justify-center items-center">
+
+				<div class="bg-white dark:bg-dark-shade rounded-lg p-2 overflow-x-auto md:overflow-hidden [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-thumb]:rounded-sm [&::-webkit-scrollbar-track]:bg-gray-200 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-800 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-700">
+					<nav class="flex gap-1 md:gap-2" aria-label="Tabs" role="tablist" data-hs-tab-select="#{{tabsId}}">
+						{% for tab in tabs %}
+							<button type="button" class="hs-tab-active:bg-primary hs-tab-active:text-white py-2 px-4 inline-flex items-center gap-2 bg-transparent font-medium text-heading dark:text-white hover:bg-gray-100 dark:hover:bg-neutral-800 rounded-lg disabled:opacity-50 disabled:pointer-events-none whitespace-nowrap {{loop.first ? 'active'}}" id="{{tab.id}}-button" aria-selected="false" data-hs-tab="#{{tab.id}}" aria-controls="{{tab.id}}" role="tab">
+								{{ tab.title }}
+							</button>
+						{% endfor %}
+					</nav>
+				</div>
+			</div>
+
+			<div>
+				{% for tab in tabs %}
+					<div id="{{tab.id}}" class="{{loop.first ? '' : 'hidden'}}" role="tabpanel" aria-labelledby="{{tab.id}}-button">
+						{{ renderComponent(tab.component) }}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+	</section>
+</flynt-component>
