@@ -14,7 +14,7 @@
 				{% include '@Components/Button/index.twig' with { model: ctaButtons.secondaryButton, type: 'secondary' } only %}
 			{% endif %}
 		{% elseif actionType == 'form' and gravityForm %}
-			<div class="w-full max-w-2xl">
+			<div class="w-full max-w-2xl single-inline-form">
 				{% set gravity_form_shortcode = '[gravityform id="' ~ gravityForm ~ '" title="false" description="false" ajax="true"]' %}
 				{% apply shortcodes %}
 				{{ gravity_form_shortcode }}

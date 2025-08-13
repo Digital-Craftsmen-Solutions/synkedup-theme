@@ -548,3 +548,70 @@ div.gform_wrapper .gform_footer input.gform_button {
   background: var(--color-dark);
   min-width: 145px;
 }
+
+html .gform_wrapper label.gfield_label,
+html .gform_wrapper .gfield_label {
+  font-size: 14px;
+  line-height: 17px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  letter-spacing: 1px;
+  display: inline-block
+}
+
+html .gform_wrapper .gform_footer input[type=submit],
+html .gform_wrapper .gform_footer input.button {
+  font-size: 12px;
+  font-weight: 700
+}
+
+html .single-inline-form .gform_wrapper .field_sublabel_hidden_label .ginput_complex.ginput_container input[type=text] {
+  margin-bottom: 0
+}
+
+html .single-inline-form .gform_footer input[type=submit] {
+  width: auto !important
+}
+
+html .gform_wrapper .field_sublabel_below .ginput_complex.ginput_container label,
+html .gform_wrapper .field_sublabel_below div[class*=gfield_time_].ginput_container label {
+  margin-top: 8px
+}
+
+html .ginput_container label {
+  margin-top: 8px !important
+}
+
+html .gform_wrapper li {
+  padding: 0 15px !important
+}
+
+html div.gform_wrapper input:not([type=radio]):not([type=checkbox]):not([type=button]):not([type=submit]),
+html div.gform_wrapper select {
+  display: block;
+  height: 40px;
+  padding: .375rem .75rem !important;
+  font-size: .85rem !important;
+  font-weight: 400;
+  line-height: 1.5 !important;
+  background-clip: padding-box;
+  border: 1px solid #666;
+  border-radius: 4px;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+html .eael-gravity-form .gform_wrapper .gform_footer input.button,
+html .eael-gravity-form .gform_wrapper .gform_footer input[type=submit],
+html .eael-gravity-form .gform_wrapper .gform_page_footer input.button,
+html .eael-gravity-form .gform_wrapper .gform_page_footer input[type=submit] {
+  margin: 0 16px 0 0
+}
+
+html .gform_wrapper h1,
+html .gform_wrapper h2,
+html .gform_wrapper h3,
+html .gform_wrapper h4,
+html .gform_wrapper h5,
+html .gform_wrapper h6 {
+  margin-bottom: 20px
+}

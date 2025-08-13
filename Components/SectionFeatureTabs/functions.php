@@ -13,7 +13,7 @@ add_filter('Flynt/addComponentData?name=SectionFeatureTabs', function (array $da
             return [
                 'id' => !empty($item['id']) ? $tab['id'] : uniqid('accordion_' . $index . '_'),
                 'title' => $tab['title'],
-                'actionButton' => isset($tab['actionButton'])
+                'actionButton' => !empty($tab['actionButton'])
                     ? array_merge($tab['actionButton'], ['type' => 'secondary'])
                     : null,
                 'description' => $tab['description'] ?? '',

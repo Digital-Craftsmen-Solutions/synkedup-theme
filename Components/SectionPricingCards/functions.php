@@ -6,7 +6,7 @@ use Flynt\FieldVariables;
 
 add_filter('Flynt/addComponentData?name=SectionPricingCards', function (array $data): array {
     $model = [
-        'heading' => isset($data['heading']) ? $data['heading'] : null,
+        'heading' => !empty($data['heading']) ? $data['heading'] : null,
         'labelMonth' => $data['labelMonth'],
         'labelYear' => $data['labelYear'],
         'defaultPeriod' => $data['defaultPeriod'] ?? 'month',
