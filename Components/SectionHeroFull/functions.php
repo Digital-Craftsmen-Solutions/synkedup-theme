@@ -8,7 +8,7 @@ use Flynt\FieldVariables;
 add_filter('Flynt/addComponentData?name=SectionHeroFull', function (array $data): array {
     $model = [
         'backgroundImage' => $data['backgroundImage'],
-        'mobileImage' => $data['mobileImage'],
+        'mobileImage' => isset($data['mobileImage']) ? $data['mobileImage'] : null,
         'heading' => $data['heading'],
         'action' => [
             'actionType' => $data['actionType'],
@@ -31,7 +31,7 @@ add_filter('Flynt/addComponentData?name=SectionHeroFull', function (array $data)
                 }, $data['extraItems'])
             ]
             : null,
-        'breadcrumbs' => $data['options']['showBreadcrumbs']
+        'breadcrumbs' => isset($data['options']['showBreadcrumbs']) && $data['options']['showBreadcrumbs']
             ? [
                 'items' => Breadcrumbs::get(),
             ]

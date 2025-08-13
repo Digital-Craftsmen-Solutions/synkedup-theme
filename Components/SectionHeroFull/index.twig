@@ -12,7 +12,7 @@
 
 
 <flynt-component
-	name="SectionHeroFull" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
+	name="SectionHeroFull" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="edge bg-white dark:bg-dark">
 	<!-- Hero -->
 	<section class="relative isolate overflow-hidden">
 		{% if display == 'full' and backgroundImage %}
@@ -61,7 +61,7 @@
 							{% include '@Components/Common/_image.twig' with {
               model: backgroundImage,
               size: 'medium',
-							class: 'object-contain! lg:object-cover! h-full object-bottom!'
+							class: 'object-contain! h-full object-bottom!'
             } only %}
 						</div>
 					</div>
@@ -72,5 +72,5 @@
 	</section>
 	<!-- End Hero -->
 
-	{% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %}
+	{# {% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %} #}
 </flynt-component>

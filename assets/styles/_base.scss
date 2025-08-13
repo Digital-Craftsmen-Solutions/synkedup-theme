@@ -500,4 +500,14 @@ flynt-component.sand[data-theme='light'] {
     }
 
   }
+
+  .filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--flow-space);
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+  }
+
 }

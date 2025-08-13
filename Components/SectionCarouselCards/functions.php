@@ -101,7 +101,7 @@ function getACFLayout(): array
                         'name' => 'maxPosts',
                         'type' => 'number',
                         'default_value' => 6,
-                        'min' => 1,
+                        'min' => 4,
                         'step' => 1
                     ],
                     [

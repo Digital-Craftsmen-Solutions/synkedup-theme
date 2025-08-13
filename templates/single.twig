@@ -1,18 +1,52 @@
 {% extends 'templates/_document.twig' %}
 
+
 {% block content %}
-  <article>
-    <header>
-      {{ renderComponent('BlockPostHeader', {post: post}) }}
-    </header>
-    <section class="wp-block-post-content has-global-padding is-layout-constrained">
-        {{ post.content }}
-    </section>
-    <footer>
-      {{ renderComponent('BlockPostFooter', {post: post}) }}
-    </footer>
-    <section>
-      {{ renderComponent('GridPostsLatest', {'taxonomies': post.categories(), 'options': {'theme': 'light', 'maxColumns': 3}}) }}
-    </section>
-  </article>
+	<article>
+		<flynt-component data-theme="light" class="edge sand bg-shade dark:bg-dark">
+			<section class="tw-section tw-section-gap flex flex-col gap-8 lg:gap-12">
+				<div class="bg-white border border-border-card rounded-2xl md:rounded-3xl dark:bg-dark-shade dark:border-0 overflow-hidden">
+					{% if post.thumbnail %}
+						{% include '@Components/Common/_image.twig' with {
+                model: post.thumbnail,
+                class: ''
+              } only %}
+					{% endif %}
+					<div class="flex flex-col gap-10 md:gap-16 p-4 py-6 md:p-8 lg:p-10">
+						<header>
+							{% include '@Components/Heading/index.twig' with { model: {
+              before: post.title,
+              type: 'h1',
+              description: post.post_excerpt ? post.post_excerpt : null,
+            }, options: {} } only %}
+						</header>
+						<div class="text-text dark:text-text-dark prose prose-p:space-y-1 max-w-4xl mx-auto">
+							{{ post.content }}
+
+						</div>
+					</div>
+				</div>
+			</section>
+		</flynt-component>
+	</article>
+
+	{{ renderComponent('SectionCarouselCards', {
+      taxonomies: post.categories(), 
+      heading: {
+        'before': 'Related Articles',
+        'type': 'h3',
+      }, 
+      actionType: 'buttons',
+      ctaButtons: {
+        primaryButton: null,
+        secondaryButton: {
+          title: 'View All',
+          url: '/blog'
+        }
+      },
+      'options': {'theme': 'dark', display: 'imageOverlay' } }) 
+    }}
+
+	{{ renderComponent('BlogPostFooter', {post: post}) }}
+
 {% endblock %}

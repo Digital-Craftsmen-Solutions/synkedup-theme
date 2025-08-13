@@ -1,0 +1,550 @@
+.gform_wrapper .onboarding-form .gfield_list thead th {
+  height: 30px;
+  line-height: 30px;
+  position: relative;
+  border: none;
+  top: 0;
+  background: transparent;
+  text-align: left !important;
+}
+
+.gform_wrapper .onboarding-form .gfield_list thead th:not(:first-child) {
+  padding-left: 16px !important;
+}
+
+.onboarding-form_wrapper.gform_wrapper .gform_page_footer {
+  text-align: right;
+  border-top: none;
+}
+
+/*radio button*/
+.ginput_container_radio {
+  margin-top: 10px !important;
+}
+
+.gfield_radio {
+  display: inline-flex;
+  justify-content: space-between;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+.gfield_radio .gchoice,
+.gfield_radio li {
+  width: 100%;
+  text-align: center;
+  overflow: inherit !important;
+  margin-bottom: 0 !important;
+}
+
+div.gform_wrapper .gfield_radio .gchoice input[type="radio"],
+div.gform_wrapper ul.gfield_radio li input[type="radio"] {
+  width: 100% !important;
+  opacity: 0;
+}
+
+.gfield_radio .gchoice label,
+.gfield_radio li label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  // margin: 0 !important;
+  max-width: 100% !important;
+  font-size: 0 !important;
+  border: 1px solid #ced4da;
+  border-right: none;
+  transition: all 0.5s ease;
+  width: 100% !important;
+  cursor: pointer;
+  display: inline-block;
+  letter-spacing: inherit;
+  vertical-align: middle;
+}
+
+.gfield_radio .gchoice:first-child label,
+.gfield_radio li:first-child label {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.gfield_radio .gchoice:last-child label,
+.gfield_radio li:last-child label {
+  border-right: 1px solid #ced4da;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.gfield_radio .gchoice input[value="Sad"]+label,
+.gfield_radio li input[value="Sad"]+label,
+.gfield_radio .gchoice input[value="Frown"]+label,
+.gfield_radio li input[value="Frown"]+label,
+.gfield_radio .gchoice input[value="No"]+label,
+.gfield_radio li input[value="No"]+label {
+  border-color: #dc3545;
+}
+
+.gfield_radio .gchoice input[value="Sad"]+label:hover,
+.gfield_radio li input[value="Sad"]+label:hover,
+.gfield_radio .gchoice input[value="Frown"]+label:hover,
+.gfield_radio li input[value="Frown"]+label:hover,
+.gfield_radio .gchoice input[value="No"]+label:hover,
+.gfield_radio li input[value="No"]+label:hover,
+.gfield_radio .gchoice input[value="Sad"]:checked+label,
+.gfield_radio li input[value="Sad"]:checked+label,
+.gfield_radio .gchoice input[value="Frown"]:checked+label,
+.gfield_radio li input[value="Frown"]:checked+label,
+.gfield_radio .gchoice input[value="No"]:checked+label,
+.gfield_radio li input[value="No"]:checked+label {
+  background-color: #dc3545;
+}
+
+.gfield_radio .gchoice input[value="Sad"]:focus+label,
+.gfield_radio li input[value="Sad"]:focus+label,
+.gfield_radio .gchoice input[value="Frown"]:focus+label,
+.gfield_radio li input[value="Frown"]:focus+label,
+.gfield_radio .gchoice input[value="No"]:focus+label,
+.gfield_radio li input[value="No"]:focus+label {
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
+}
+
+.gfield_radio .gchoice input[value="Neutral"]+label,
+.gfield_radio li input[value="Neutral"]+label {
+  border-color: #ffc107;
+}
+
+.gfield_radio .gchoice input[value="Neutral"]+label:hover,
+.gfield_radio li input[value="Neutral"]+label:hover,
+.gfield_radio .gchoice input[value="Neutral"]:checked+label,
+.gfield_radio li input[value="Neutral"]:checked+label {
+  background-color: #ffc107;
+}
+
+.gfield_radio .gchoice input[value="Neutral"]:focus+label,
+.gfield_radio li input[value="Neutral"]:focus+label {
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+}
+
+.gfield_radio .gchoice input[value="Smile"]+label,
+.gfield_radio li input[value="Smile"]+label,
+.gfield_radio .gchoice input[value="Grin"]+label,
+.gfield_radio li input[value="Grin"]+label,
+.gfield_radio .gchoice input[value="Yes"]+label,
+.gfield_radio li input[value="Yes"]+label {
+  border-color: #28a745;
+}
+
+.gfield_radio .gchoice input+label,
+.gfield_radio li input+label {
+  // border-color: #fff;
+}
+
+.gfield_radio .gchoice input[value="Smile"]+label:hover,
+.gfield_radio li input[value="Smile"]+label:hover,
+.gfield_radio .gchoice input[value="Grin"]+label:hover,
+.gfield_radio li input[value="Grin"]+label:hover,
+.gfield_radio .gchoice input[value="Yes"]+label:hover,
+.gfield_radio li input[value="Yes"]+label:hover,
+.gfield_radio .gchoice input[value="Smile"]:checked+label,
+.gfield_radio li input[value="Smile"]:checked+label,
+.gfield_radio .gchoice input[value="Grin"]:checked+label,
+.gfield_radio li input[value="Grin"]:checked+label,
+.gfield_radio .gchoice input[value="Yes"]:checked+label,
+.gfield_radio li input[value="Yes"]:checked+label {
+  background-color: #28a745;
+}
+
+.gfield_radio .gchoice input:checked+label,
+.gfield_radio li input:checked+label {
+  // background-color: #fff;
+  font-weight: 700;
+}
+
+.gfield_radio .gchoice.default-radiobtns input+label:hover,
+.gfield_radio li.default-radiobtns input+label:hover,
+.gfield_radio .gchoice.default-radiobtns input:checked+label,
+.gfield_radio li.default-radiobtns input:checked+label {
+  background-color: transparent;
+}
+
+.gfield_radio .gchoice input[value="Smile"]:focus+label,
+.gfield_radio li input[value="Smile"]:focus+label,
+.gfield_radio .gchoice input[value="Grin"]:focus+label,
+.gfield_radio li input[value="Grin"]:focus+label,
+.gfield_radio .gchoice input[value="Yes"]:focus+label,
+.gfield_radio li input[value="Yes"]:focus+label {
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+}
+
+.gfield_radio .gchoice input[value="No"]+label,
+.gfield_radio li input[value="No"]+label,
+.gfield_radio .gchoice input[value="Yes"]+label,
+.gfield_radio li input[value="Yes"]+label,
+.gfield_radio .gchoice input+label,
+.gfield_radio li input+label {
+  font-size: 14px !important;
+  line-height: 40px !important;
+  font-weight: normal;
+}
+
+.gfield_radio .gchoice input[value="No"]+label,
+.gfield_radio li input[value="No"]+label {
+  color: #dc3545;
+}
+
+.gfield_radio .gchoice input[value="Yes"]+label,
+.gfield_radio li input[value="Yes"]+label {
+  color: #28a745;
+}
+
+.gfield_radio .gchoice input+label,
+.gfield_radio li input+label {
+  // color: #fff;
+}
+
+.gfield_radio .gchoice input[value="No"]+label:hover,
+.gfield_radio li input[value="No"]+label:hover,
+.gfield_radio .gchoice input[value="Yes"]+label:hover,
+.gfield_radio li input[value="Yes"]+label:hover,
+.gfield_radio .gchoice input[value="No"]:checked+label,
+.gfield_radio li input[value="No"]:checked+label,
+.gfield_radio .gchoice input[value="Yes"]:checked+label,
+.gfield_radio li input[value="Yes"]:checked+label {
+  // color: #fff;
+}
+
+.gfield_radio .gchoice input+label:hover,
+.gfield_radio li input+label:hover,
+.gfield_radio .gchoice input:checked+label,
+.gfield_radio li input:checked+label {
+  color: var(--color-heading);
+}
+
+.gfield_radio .gchoice label::before,
+.gfield_radio li label::before {
+  content: "";
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  bottom: 0;
+  font-weight: normal;
+  font-size: 14px !important;
+  transform: translateY(-50%);
+}
+
+.gfield_radio .gchoice input[value="Sad"]+label::before,
+.gfield_radio li input[value="Sad"]+label::before {
+  content: "\f5b3";
+  color: #dc3545;
+}
+
+.gfield_radio .gchoice input[value="Frown"]+label::before,
+.gfield_radio li input[value="Frown"]+label::before {
+  content: "\f119";
+  color: #dc3545;
+}
+
+.gfield_radio .gchoice input[value="Neutral"]+label::before,
+.gfield_radio li input[value="Neutral"]+label::before {
+  content: "\f11a";
+  color: #ffc107;
+}
+
+.gfield_radio .gchoice input[value="Smile"]+label::before,
+.gfield_radio li input[value="Smile"]+label::before {
+  content: "\f118";
+  color: #28a745;
+}
+
+.gfield_radio .gchoice input[value="Grin"]+label::before,
+.gfield_radio li input[value="Grin"]+label::before {
+  content: "\f580";
+  color: #28a745;
+}
+
+.gfield_radio .gchoice input[value="Sad"]+label:hover::before,
+.gfield_radio li input[value="Sad"]+label:hover::before,
+.gfield_radio .gchoice input[value="Frown"]+label:hover::before,
+.gfield_radio li input[value="Frown"]+label:hover::before,
+.gfield_radio .gchoice input[value="Smile"]+label:hover::before,
+.gfield_radio li input[value="Smile"]+label:hover::before,
+.gfield_radio .gchoice input[value="Grin"]+label:hover::before,
+.gfield_radio li input[value="Grin"]+label:hover::before,
+.gfield_radio .gchoice input[value="Sad"]:checked+label::before,
+.gfield_radio li input[value="Sad"]:checked+label::before,
+.gfield_radio .gchoice input[value="Frown"]:checked+label::before,
+.gfield_radio li input[value="Frown"]:checked+label::before,
+.gfield_radio .gchoice input[value="Smile"]:checked+label::before,
+.gfield_radio li input[value="Smile"]:checked+label::before,
+.gfield_radio .gchoice input[value="Grin"]:checked+label::before,
+.gfield_radio li input[value="Grin"]:checked+label::before {
+  // color: #fff;
+}
+
+.gfield_radio .gchoice input[value="Neutral"]+label:hover::before,
+.gfield_radio li input[value="Neutral"]+label:hover::before,
+.gfield_radio .gchoice input[value="Neutral"]:checked+label::before,
+.gfield_radio li input[value="Neutral"]:checked+label::before {
+  color: #000;
+}
+
+.gform_wrapper .gfield_checkbox li input {
+  height: auto !important;
+}
+
+.gform_wrapper .gfield_checkbox li label {
+  font-weight: normal !important;
+}
+
+/*default radio button*/
+.default-radiobtns ul {
+  display: block;
+}
+
+.default-radiobtns .gfield_radio {
+  justify-content: normal;
+}
+
+.default-radiobtns .gfield_radio .gchoice,
+.default-radiobtns .gfield_radio li {
+  display: inline-block;
+  width: auto;
+  margin-right: 10px !important;
+}
+
+.default-radiobtns .gfield_radio .gchoice label,
+.default-radiobtns .gfield_radio li label {
+  font-size: 13px !important;
+  border: none;
+  position: relative;
+  text-transform: inherit;
+  letter-spacing: 1px !important;
+}
+
+div.gform_wrapper .default-radiobtns .gfield_radio .gchoice label,
+div.gform_wrapper .default-radiobtns .gfield_radio li label {
+  background: transparent !important;
+  border: none;
+  padding-left: 30px !important;
+  // color: #4D6772 !important;
+}
+
+div.gform_wrapper .default-radiobtns .gfield_radio .gchoice input[type="radio"],
+div.gform_wrapper .default-radiobtns ul.gfield_radio li input[type="radio"] {
+  width: auto !important;
+  opacity: 1;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+/*list fields*/
+/*.gform_wrapper table.gfield_list thead tr {
+  margin-top: -30px !important;
+  display: inline-block;
+  width: 100%;
+}
+.gform_wrapper table.gfield_list th,
+.gform_wrapper table.gfield_list td {
+  width: 50%;
+  display: inline-block;
+}*/
+/*.gform_wrapper .top_label .gfield_list {
+  width: 100%;
+  height: 38px;
+  position: relative;
+}
+.gform_wrapper table.gfield_list thead, .gform_wrapper table.gfield_list tr {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  z-index: 9;
+}
+.gfield_list_container tbody {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  top: 0;
+}*/
+.gform_wrapper .top_label .gfield_list {
+  position: relative;
+}
+
+.gform_wrapper table.gfield_list thead th {
+  width: 80px;
+  background: #e9ecef;
+  border-right: 1px solid #ced4da;
+  border-radius: 0;
+  height: 38px;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+  position: absolute;
+  top: 5px;
+  line-height: 35px;
+  text-align: center !important;
+  padding: 0 !important;
+  font-size: 1rem;
+  font-weight: 400 !important;
+  left: 1px;
+  color: var(--color-heading);
+}
+
+.gform_wrapper table.gfield_list thead th:last-child {
+  left: calc(50% + 16px);
+  border-radius: 0;
+}
+
+.gform_wrapper table.gfield_list td:first-child {
+  padding-right: 15px;
+}
+
+.gform_wrapper table.gfield_list td input {
+  padding-left: 90px !important;
+}
+
+/*gray radio button*/
+.gray-radiobtn .gfield_radio {
+  justify-content: inherit;
+}
+
+.gfield_radio .gchoice,
+.gfield_radio li {
+  width: auto;
+}
+
+.gfield_radio {
+  flex-wrap: wrap;
+}
+
+div.gform_wrapper .gfield_radio .gchoice,
+div.gform_wrapper .gfield_radio li {
+  flex: 1 1 auto;
+}
+
+div.gform_wrapper .gfield_radio .gchoice input[type="radio"],
+div.gform_wrapper ul.gfield_radio li input[type="radio"] {
+  position: absolute;
+}
+
+div.gform_wrapper .gfield_radio .gchoice label,
+div.gform_wrapper .gfield_radio li label,
+div.gform_wrapper .gfield_radio input[value="Other"] {
+  position: relative;
+  border: 1px solid #666;
+  border-radius: 4px;
+  padding: 0 15px !important;
+  // color: #4d6772;
+  /*border-right: none;*/
+  width: 100% !important;
+}
+
+/*div.gform_wrapper .gray-radiobtn .gfield_radio input[value="Other"] {
+width: auto !important;
+}*/
+div.gform_wrapper .gfield_radio .gchoice input[value="Yes"]+label,
+div.gform_wrapper .gfield_radio li input[value="Yes"]+label {
+  color: #28a745;
+  border-color: #28a745;
+}
+
+div.gform_wrapper .gfield_radio .gchoice input[value="No"]+label,
+div.gform_wrapper .gfield_radio li input[value="No"]+label {
+  color: #dc3545;
+  border-color: #dc3545;
+}
+
+div.gform_wrapper .gray-radiobtn .gfield_radio input[value="Other"] {
+  /*border-left: none;*/
+  border-right: 1px solid #6c757d;
+  margin-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+div.gform_wrapper .gray-radiobtn.white-bg-color .gfield_radio .gchoice label,
+div.gform_wrapper .gray-radiobtn.white-bg-color .gfield_radio li label,
+div.gform_wrapper .gray-radiobtn.white-bg-color .gfield_radio input[value="Other"] {
+  // border-color: #fff;
+  // color: #fff;
+}
+
+div.gform_wrapper .default-radiobtns .gfield_radio .gchoice label,
+div.gform_wrapper .default-radiobtns .gfield_radio li label {
+  width: auto !important;
+}
+
+div.gform_wrapper .gray-radiobtn .gfield_radio .gchoice:last-child label,
+div.gform_wrapper .gray-radiobtn .gfield_radio li:last-child label {
+  border-right: 1px solid #6c757d;
+}
+
+div.gform_wrapper .gfield_radio .gchoice label:hover,
+div.gform_wrapper .gfield_radio li label:hover,
+div.gform_wrapper .gfield_radio .gchoice input[type="radio"]:checked+label,
+div.gform_wrapper .gfield_radio li input[type="radio"]:checked+label {
+  // color: #fff;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+div.gform_wrapper .gray-radiobtn .gfield_radio .gchoice label:hover,
+div.gform_wrapper .gray-radiobtn .gfield_radio li label:hover,
+div.gform_wrapper .gray-radiobtn .gfield_radio .gchoice input[type="radio"]:checked+label,
+div.gform_wrapper .gray-radiobtn .gfield_radio li input[type="radio"]:checked+label {
+  // background-color: #fff;
+  // border-color: #fff;
+  // color: #6c757d;
+}
+
+div.gform_wrapper .gfield_radio .gchoice input[value="Yes"]+label:hover,
+div.gform_wrapper .gfield_radio li input[value="Yes"]+label:hover,
+div.gform_wrapper .gfield_radio .gchoice input[value="Yes"]:checked+label,
+div.gform_wrapper .gfield_radio li input[value="Yes"]:checked+label {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: #fff;
+}
+
+div.gform_wrapper .gfield_radio .gchoice input[value="No"]+label:hover,
+div.gform_wrapper .gfield_radio li input[value="No"]+label:hover,
+div.gform_wrapper .gfield_radio .gchoice input[value="No"]:checked+label,
+div.gform_wrapper .gfield_radio li input[value="No"]:checked+label {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+}
+
+div.gform_wrapper .gray-radiobtn .gfield_radio .gchoice input[type="radio"]:focus+label,
+div.gform_wrapper .gray-radiobtn .gfield_radio li input[type="radio"]:focus+label {
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
+}
+
+/*button*/
+.gform_confirmation_wrapper {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px;
+  font-size: 15px;
+}
+
+.gform_page_footer .button {
+  display: inline-block;
+}
+
+div.gform_wrapper .gform_footer input.gform_button {
+  border: none;
+}
+
+.gform_page_footer .button.gform_next_button {
+  min-width: 145px;
+}
+
+.gform_page_footer .button.gform_previous_button {
+  background: var(--color-dark);
+  min-width: 145px;
+}

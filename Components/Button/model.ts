@@ -5,4 +5,5 @@ export type ButtonModel = {
   target?: '_self' | '_blank';
   blockMode?: boolean;
   class?: string;
+  ref?: string;
 };

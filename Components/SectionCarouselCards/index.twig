@@ -30,9 +30,9 @@
 							</button>
 						</div>
 					</div>
-					<div class="hs-carousel-body flex flex-nowrap transition-transform duration-700 opacity-0 -mx-2">
+					<div class="hs-carousel-body w-full flex flex-nowrap transition-transform duration-700 opacity-0 -mx-2">
 						{% for card in cards %}
-							<div class="hs-carousel-slide flex justify-center items-center px-2">
+							<div class="hs-carousel-slide flex justify-center px-2">
 								{% include '@Components/CardImage/index.twig' with { model: card, options: {align: options.align, display: options.display} } only %}
 							</div>
 						{% endfor %}

@@ -5,6 +5,7 @@ namespace Flynt\Components\GridPostsArchive;
 use Flynt\FieldVariables;
 use Flynt\Utils\Options;
 use Timber\Timber;
+use Flynt\Components;
 
 const POST_TYPE = 'post';
 const FILTER_BY_TAXONOMY = 'category';
@@ -40,22 +41,23 @@ add_filter('Flynt/addComponentData?name=GridPostsArchive', function (array $data
         $data['isHome'] = true;
         $data['title'] = $queriedObject->post_title ?? get_bloginfo('name');
     } else {
-        $data['title'] =  get_the_archive_title();
+        $data['title'] = get_the_archive_title();
         $data['description'] = get_the_archive_description();
     }
 
     return $data;
 });
 
-Options::addGlobal('GridPostsArchive', [
-    [
-        'label' => __('Load More Button?', 'flynt'),
-        'name' => 'loadMore',
-        'type' => 'true_false',
-        'default_value' => 0,
-        'ui' => 1
-    ],
-]);
+
+// Options::addGlobal('GridPostsArchive', [
+//     [
+//         'label' => __('Load More Button?', 'flynt'),
+//         'name' => 'loadMore',
+//         'type' => 'true_false',
+//         'default_value' => 1,
+//         'ui' => 1
+//     ],
+// ]);
 
 Options::addTranslatable('GridPostsArchive', [
     [

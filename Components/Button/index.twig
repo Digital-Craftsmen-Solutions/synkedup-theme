@@ -10,7 +10,7 @@
     'secondary': 'border border-border bg-light text-heading hover:text-primary focus:text-primary '
   }[type] %}
 
-	<a type="button" class="{{ baseClass }} {{blockClass}} {{ variantClass }} {{ class }}" href="{{ model.url|e('esc_url') }}" target="{{ model.target|default('_self')|e }}">
+	<a data-ref="{{model.ref}}" type="button" class="{{ baseClass }} {{blockClass}} {{ variantClass }} {{ class }}" href="{{ model.url|e('esc_url') }}" target="{{ model.target|default('_self')|e }}">
 		{{ model.title }}
 	</a>
 {% endif %}

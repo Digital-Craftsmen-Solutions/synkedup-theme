@@ -27,7 +27,7 @@
 		{% if display == 'imageTop' and backgroundImage %}
 			{% include '@Components/Common/_image.twig' with {
 				model: backgroundImage,
-				class: 'w-full h-auto rounded-t-xl'
+				class: 'w-full h-auto rounded-t-xl min-h-50!'
 			} only %}
 		{% endif %}
 		<div class="p-4 py-6 md:p-6 flex flex-col flex-1 space-y-4 {{ alignClass }} {{ display == 'imageOverlay' ? 'justify-end z-1' : '' }}">
