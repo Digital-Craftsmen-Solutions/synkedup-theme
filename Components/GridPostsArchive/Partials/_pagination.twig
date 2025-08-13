@@ -3,19 +3,10 @@
 		<div class="flex flex-col justify-center items-center w-full">
 			{% include '@Components/Button/index.twig' with { model: {
       type: 'secondary',
-      title: labels.loadMore,
+      title: 'Load More',
       url: pagination.next.link|e('esc_url'),
       ref: 'loadMore'
     } } only %}
 		</div>
 	</div>
-	{% else %}
-	{# <div class="pagination">
-			{% if pagination.prev %}
-				<a href="{{ pagination.prev.link|e('esc_url') }}" class="button button-previous">{{ labels.previous }}</a>
-			{% endif %}
-			{% if pagination.next %}
-				<a href="{{ pagination.next.link|e('esc_url') }}" class="button button-next">{{ labels.next }}</a>
-			{% endif %}
-		</div> #}
 {% endif %}

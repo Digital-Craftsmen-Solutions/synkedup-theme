@@ -12,6 +12,21 @@
       description: html,
     }, options: options } only %}
 
+
+		<div class="flex max-w-md items-center mx-auto">
+			<div class="relative">
+				<form class="searchForm" class="w-full" role="search" action="{{ bloginfo('url') }}" data-theme="reset">
+					<div class="flex gap-1">
+						<label class="visuallyHidden" for="searchForm-input-text">Search</label>
+						<input name="s" class="md:min-w-sm bg-white dark:bg-shade-dark text-heading dark:text-white  py-2.5 sm:py-3 px-4 block w-full border-border rounded-lg focus:z-10 disabled:opacity-50 disabled:pointer-events-none dark:border-transparent focus:outline-none focus-visible:border-primary hover:border-primary" id="searchForm-input-text" type="search" required placeholder="Search" value="{{ searchQuery }}">
+						<button data-ref="" type="submit" class="py-2 px-4 items-center text-sm text-nowrap rounded-xl transition disabled:opacity-50 disabled:pointer-events-none shadow-xs text-center inline-flex border border-border bg-light text-heading hover:text-primary focus:text-primary">
+							{% include '@Components/Common/_icon.twig' with { name: 'search', ariaLabel: 'Search Icon', class: 'shrink-0 size-5' } %}
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
 		{% if terms %}
 			{% include 'Partials/_filter.twig' %}
 		{% endif %}
@@ -22,10 +37,10 @@
 					{% include '@Components/CardImage/index.twig' with { model: {
                 title: post.title,
                 description: post.excerpt.read_more(false),
-                subtitle: labels.readingTime|replace({'%d': post.content|readingtime}),
+                subtitle: '%d min read'|replace({'%d': post.content|readingtime}),
                 backgroundImage: post.thumbnail,
                 actionButton: {
-                  title: labels.readMore,
+                  title: 'Read More',
                   url: post.link|e('esc_url'),
                   target: '_blank'
                 },
@@ -38,7 +53,7 @@
 			</div>
 
 		{% else %}
-			<p class="posts-empty">{{ labels.noPostsFound }}</p>
+			<p class="posts-empty">No post found.</p>
 		{% endif %}
 
 		{% set pagination = posts.pagination %}
