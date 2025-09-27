@@ -428,6 +428,10 @@ $edge-height: 50px;
   }
 }
 
+.tw-prose {
+  @apply prose prose-p:space-y-2 dark:text-text-dark max-w-none lg:text-lg prose-strong:text-heading dark:prose-strong:text-white;
+}
+
 flynt-component.sand[data-theme='light'] {
   background-image: url('./images/pattern.png');
   background-repeat: repeat;

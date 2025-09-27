@@ -20,9 +20,11 @@
               description: post.post_excerpt ? post.post_excerpt : null,
             }, options: {} } only %}
 						</header>
-						<div class="text-text dark:text-text-dark prose prose-p:space-y-1 max-w-4xl mx-auto">
+						<div class="text-text dark:text-text-dark tw-prose max-w-4xl mx-auto">
 							{{ post.content }}
-
+						</div>
+						<div class="comments tw-prose max-w-5xl mx-auto">
+							{{ function('comments_template') }}
 						</div>
 					</div>
 				</div>

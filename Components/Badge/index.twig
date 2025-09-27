@@ -1,0 +1,12 @@
+{% set type = type is defined ? type : model.type|default('default') %}
+{% set text = model.text %}
+{% set variantClass = {
+    'default': 'bg-gray-50 text-gray-600 inset-ring inset-ring-gray-500/10 dark:bg-gray-400/10 dark:text-gray-400 dark:inset-ring-gray-400/20	',
+    'red': 'bg-red-50 text-red-700 inset-ring inset-ring-red-600/10 dark:bg-red-400/10 dark:text-red-400 dark:inset-ring-red-400/20',
+    'yellow': 'bg-yellow-50 text-yellow-800 inset-ring inset-ring-yellow-600/20 dark:bg-yellow-400/10 dark:text-yellow-400 dark:inset-ring-yellow-400/20',
+    'green': 'bg-green-50 text-green-700 inset-ring inset-ring-green-600/20 dark:bg-green-400/10 dark:text-green-400 dark:inset-ring-green-400/20',
+    'blue': 'bg-blue-50 text-blue-700 inset-ring inset-ring-blue-700/10 dark:bg-blue-400/10 dark:text-blue-400 dark:inset-ring-blue-400/20',
+		'orange': 'bg-orange-50 text-orange-700 inset-ring inset-ring-orange-600/20 dark:bg-orange-400/10 dark:text-orange-400 dark:inset-ring-orange-400/20',
+} %}
+
+<span class="inline-flex items-center rounded-lg {{ variantClass[type] }} px-2 py-1 text-xs font-medium">{{ text }}</span>

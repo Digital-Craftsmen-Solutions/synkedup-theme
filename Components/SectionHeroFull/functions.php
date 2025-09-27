@@ -25,7 +25,7 @@ add_filter('Flynt/addComponentData?name=SectionHeroFull', function (array $data)
                         'type' => $item['type'],
                         'icon' => $item['type'] === 'icon' ? $item['icon'] : null,
                         'image' => $item['type'] === 'image' ? $item['image'] : null,
-                        'title' => $item['title'],
+                        'figure' => $item['figure'],
                         'description' => $item['description'],
                     ];
                 }, $data['extraItems'])
@@ -130,8 +130,8 @@ function getACFLayout(): array
                         'wrapper' => ['width' => 20],
                     ],
                     [
-                        'label' => __('Title', 'flynt'),
-                        'name' => 'title',
+                        'label' => __('Figure', 'flynt'),
+                        'name' => 'figure',
                         'type' => 'text',
                         'conditional_logic' => [
                             [
@@ -142,7 +142,7 @@ function getACFLayout(): array
                                 ],
                             ],
                         ],
-                        'wrapper' => ['width' => 30],
+                        'wrapper' => ['width' => 20],
                     ],
                     [
                         'label' => __('Description', 'flynt'),

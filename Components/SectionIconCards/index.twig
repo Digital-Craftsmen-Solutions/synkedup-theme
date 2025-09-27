@@ -2,8 +2,11 @@
 {% set cards = model.cards|default([]) %}
 {% set action = model.action %}
 {% set num = cards|length %}
-{% set cols = num == 1 ? 'md:grid-cols-1' : (num == 2 ? 'md:grid-cols-2' : 'md:grid-cols-3') %}
 {% set options = options is defined ? options : model.options %}
+{% set cols = num == 1 ? 'md:grid-cols-1' : (num == 2 ? 'md:grid-cols-2' : 'md:grid-cols-3') %}
+{% if options.cardCols == '1' or options.cardCols == '2' or options.cardCols == '3' %}
+	{% set cols = 'md:grid-cols-' ~ options.cardCols %}
+{% endif %}
 
 <flynt-component name="SectionIconCards" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
 	<section class="tw-section tw-section-gap flex flex-col gap-8 lg:gap-12">

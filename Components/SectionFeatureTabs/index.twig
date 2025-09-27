@@ -46,7 +46,7 @@
 								<div class="text-heading font-medium dark:text-white text-lg md:text-xl">{{tab.title}}</div>
 							{% endif %}
 							{% if tab.description %}
-								<div class="prose prose-p:space-y-2 dark:text-text-dark max-w-none lg:text-lg {{hideHighlight ? 'dark:text-white' : ''}}">
+								<div class="tw-prose {{hideHighlight ? 'dark:text-white' : ''}}">
 									{{ tab.description|e('wp_kses_post') }}
 								</div>
 							{% endif %}

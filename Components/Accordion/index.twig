@@ -13,7 +13,7 @@
 
 				<div id="{{ item.id }}-collapse" class="hs-accordion-content {{ item.expanded ? '' : 'hidden' }} w-full overflow-hidden transition-[height] duration-300" role="region" aria-labelledby="{{ item.id }}">
 					<div class="pb-6 md:pb-7 px-2">
-						<div class="text-text dark:text-text-dark prose prose-p:space-y-2 max-w-none">
+						<div class="tw-prose">
 							{{ item.contentHtml|e('wp_kses_post') }}
 						</div>
 					</div>

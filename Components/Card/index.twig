@@ -4,18 +4,25 @@
 	icon: model.icon,
 	image: model.image,
 	title: model.title,
+	figure: model.figure,
 	description: model.description,
 	options: model.options
 } %}
+{% set badge = model.badge %}
 {% set actionButton = model.actionButton %}
 {% set options = options is defined ? options : model.options %}
 
 
-<div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="flex flex-col bg-white border border-border-card rounded-2xl overflow-hidden p-4 py-5 md:p-6 dark:bg-dark-shade dark:border-0 {{ options.align == 'center' ? 'items-center text-center' : '' }}">
+<div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="relative flex flex-col bg-white border border-border-card rounded-2xl overflow-hidden p-4 py-5 md:p-6 dark:bg-dark-shade dark:border-0 {{ options.align == 'center' ? 'items-center text-center' : '' }}">
 	{% include '@Components/ItemBox/index.twig' with { model: item, options: options } only %}
 	{% if actionButton %}
-		<div class="mt-2 md:mt-4">
+		<div class="pt-3 md:pt-6 mt-auto">
 			{% include '@Components/Button/index.twig' with { model: actionButton } only %}
 		</div>
+	{% endif %}
+	{% if badge %}
+		<p class="absolute top-4 right-4 md:top-6 md:right-6">
+			{% include '@Components/Badge/index.twig' with { model: badge } only %}
+		</p>
 	{% endif %}
 </div>

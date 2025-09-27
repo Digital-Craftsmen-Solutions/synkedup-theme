@@ -31,7 +31,7 @@
 		{% endif %}
 	</{{Tag}}>
 	{% if description %}
-		<div class="prose prose-p:space-y-2 dark:text-text-dark max-w-none lg:text-lg {{hideHighlight ? 'dark:text-white' : ''}}">
+		<div class="tw-prose {{hideHighlight ? 'dark:text-white' : ''}}">
 			{{ description|e('wp_kses_post') }}
 		</div>
 	{% endif %}

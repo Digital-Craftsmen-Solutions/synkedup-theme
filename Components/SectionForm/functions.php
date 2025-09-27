@@ -1,10 +1,10 @@
 <?php
 
-namespace Flynt\Components\SectionFeatureBlock;
+namespace Flynt\Components\SectionForm;
 
 use Flynt\FieldVariables;
 
-add_filter('Flynt/addComponentData?name=SectionFeatureBlock', function (array $data): array {
+add_filter('Flynt/addComponentData?name=SectionForm', function (array $data): array {
     $model = [
         'icon' => $data['icon'] ?? null,
         'heading' => $data['heading'],
@@ -33,7 +33,7 @@ add_filter('Flynt/addComponentData?name=SectionFeatureBlock', function (array $d
 function getACFLayout(): array
 {
     return [
-        'name' => 'sectionFeatureBlock',
+        'name' => 'sectionForm',
         'label' => __('Section: Feature Block', 'flynt'),
         'sub_fields' => [
             [

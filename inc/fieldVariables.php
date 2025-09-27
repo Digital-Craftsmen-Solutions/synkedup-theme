@@ -219,6 +219,10 @@ function getIcon($label = 'Icon', $required = 0, $icons = []): array
 {
     if (empty($icons)) {
         $icons = [
+            'hardHat',
+            'plus',
+            'minus',
+            'search',
             'check',
             'chevronDown',
             'chevronUp',
@@ -230,9 +234,13 @@ function getIcon($label = 'Icon', $required = 0, $icons = []): array
             'close',
             'link',
             'smartphone',
+            'calculator',
+            'sheet',
+            'cog',
             'penLine',
             'hourglass',
             'dollarSign',
+            'dollarBadge',
             'zap',
             'file',
             'calendar',

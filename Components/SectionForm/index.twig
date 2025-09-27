@@ -37,7 +37,7 @@
 					{% endif %}
 
 					{# Full image #}
-					{% if imageDisplay == 'full' and image %}
+					{% if imageDisplay == 'full' %}
 						<div class="w-full flex justify-center mt-4">
 							{% include '@Components/Common/_image.twig' with {
               model: image,
@@ -59,7 +59,7 @@
 				</div>
 
 				{# Left-Right-aligned image #}
-				{% if imageDisplay != 'full' and image %}
+				{% if imageDisplay != 'full' %}
 					<div class="flex justify-center items-end md:col-span-5 {{imageDisplay == 'left' ? 'order-1' : 'order-2' }}">
 						{% include '@Components/Common/_image.twig' with {
               model: image,

@@ -13,6 +13,11 @@ add_filter('Flynt/addComponentData?name=SectionIconCards', function (array $data
                 'icon' => $card['icon'] ?? null,
                 'image' => $card['image'] ?? null,
                 'title' => $card['title'] ?? '',
+                'badge' => $card['showBadge'] ? [
+                    'text' => $card['badge'],
+                    'type' => $card['badgeType'],
+                ] : null,
+                'figure' => $card['figure'] ?? '',
                 'description' => $card['description'] ?? '',
                 'actionButton' => !empty($card['actionButton'])
                     ? array_merge($card['actionButton'], ['type' => 'secondary'])
@@ -62,6 +67,7 @@ function getACFLayout(): array
                         'choices' => [
                             'icon' => __('Icon', 'flynt'),
                             'image' => __('Image', 'flynt'),
+                            'figure' => __('Figure', 'flynt'),
                         ],
                         'default_value' => 'icon',
                         'layout' => 'horizontal',
@@ -98,10 +104,33 @@ function getACFLayout(): array
                         'wrapper' => ['width' => 20],
                     ],
                     [
+                        'label' => __('Figure', 'flynt'),
+                        'name' => 'figure',
+                        'type' => 'text',
+                        'conditional_logic' => [
+                            [
+                                [
+                                    'fieldPath' => 'type',
+                                    'operator' => '==',
+                                    'value' => 'figure',
+                                ],
+                            ],
+                        ],
+                        'wrapper' => ['width' => 20],
+                    ],
+                    [
                         'label' => __('Title', 'flynt'),
                         'name' => 'title',
                         'type' => 'text',
-                        'wrapper' => ['width' => 60],
+                        'wrapper' => ['width' => 45],
+                    ],
+                    [
+                        'label' => __('Show Badge?', 'flynt'),
+                        'name' => 'showBadge',
+                        'type' => 'true_false',
+                        'default_value' => 0,
+                        'ui' => 1,
+                        'wrapper' => ['width' => 15],
                     ],
                     [
                         'label' => __('Description', 'flynt'),
@@ -114,6 +143,41 @@ function getACFLayout(): array
                         'name' => 'actionButton',
                         'type' => 'link',
                         'wrapper' => ['width' => 30],
+                    ],
+                    [
+                        'label' => __('Badge', 'flynt'),
+                        'name' => 'badge',
+                        'type' => 'text',
+                        'wrapper' => ['width' => 20],
+                        'conditional_logic' => [
+                            [
+                                [
+                                    'fieldPath' => 'showBadge',
+                                    'operator' => '==',
+                                    'value' => 1,
+                                ],
+                            ],
+                        ],
+                    ],
+                    [
+                        'label' => __('Badge Type', 'flynt'),
+                        'name' => 'badgeType',
+                        'type' => 'button_group',
+                        'choices' => [
+                            'green' => __('Green', 'flynt'),
+                            'orange' => __('Orange', 'flynt'),
+                        ],
+                        'default_value' => 'green',
+                        'wrapper' => ['width' => 20],
+                        'conditional_logic' => [
+                            [
+                                [
+                                    'fieldPath' => 'showBadge',
+                                    'operator' => '==',
+                                    'value' => 1,
+                                ],
+                            ],
+                        ],
                     ],
                 ]
             ],
@@ -140,6 +204,19 @@ function getACFLayout(): array
                             'center' => __('Center', 'flynt'),
                         ],
                         'default_value' => 'left',
+                        'layout' => 'horizontal',
+                    ],
+                    [
+                        'label' => __('Card Columns', 'flynt'),
+                        'name' => 'cardCols',
+                        'type' => 'button_group',
+                        'choices' => [
+                            'auto' => __('Auto', 'flynt'),
+                            '1' => __('1', 'flynt'),
+                            '2' => __('2', 'flynt'),
+                            '3' => __('3', 'flynt'),
+                        ],
+                        'default_value' => 'auto',
                         'layout' => 'horizontal',
                     ],
                     FieldVariables\getTheme(),

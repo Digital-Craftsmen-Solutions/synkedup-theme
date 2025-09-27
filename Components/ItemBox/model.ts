@@ -1,14 +1,15 @@
 import { ImageModel } from "../Common/model";
 
 export type ItemBoxModel = {
-  type: 'icon' | 'image' | 'figure';
-  icon?: string
+  type: "icon" | "image" | "figure";
+  icon?: string;
   image?: ImageModel;
+  figure?: string;
   title?: string;
   description?: string;
   class?: string;
   options?: {
-    align?: 'left' | 'center';
-    theme?: 'light' | 'dark';
+    align?: "left" | "center";
+    theme?: "light" | "dark";
   };
 };
