@@ -7,6 +7,10 @@ var STORAGE_KEYS = {
   'overhead': 'saved_overhead1',
   'budget': 'saved_budget1',
 }
+  
+// TEMPORARY DISABLE ONBOARDING
+var onboardingEnabled = false
+
 var submit = false
 
 function openTab(tabName) {
@@ -29,7 +33,7 @@ function loadTab(view) {
     $('#ctabsContent').hide();
     $('#ctabsContent').removeClass('active');
     $('#ctabsContent').empty();
-    $('#ctabsContent').load("/wp-content/themes/gutenberg/calculators/combined/" + tabName + ".html?v=1", function () {
+    $('#ctabsContent').load("/wp-content/themes/synkedup/calculators/combined/" + tabName + ".html?v=3", function () {
       $('#ctabsContent').show()
       setTimeout(() => {
         $('#ctabsContent').addClass('active');  
@@ -102,8 +106,15 @@ function setupSummaryEvents() {
     var importStr = jQuery("#importSummary .import-field").val() || "{}*"
     importStr = importStr.slice(0, -1);
 
-    saveDataFull(JSON.parse(importStr));
-    location.reload();
+    var fullCalcObj = saveDataFull(JSON.parse(importStr));
+    if ((!fullCalcObj || !fullCalcObj.budget || !fullCalcObj.budget.laborCosts) && onboardingEnabled) {
+      window.location.hash = 'labor'
+      setUrlParam('onboarding', 'true')
+    }
+    setTimeout(function(){
+      location.reload();
+    }, 1000)
+    
   });
 
   jQuery(".import-toggle-summary").click(function () {
@@ -119,11 +130,14 @@ function setupSummaryEvents() {
 function saveDataFull (fullCalcObj) {
   for (const item in STORAGE_KEYS) {
     const key = STORAGE_KEYS[item];
-    if (fullCalcObj[item]) {
+    if (fullCalcObj[item] && !jQuery.isEmptyObject(fullCalcObj[item])) {
       localStorage.setItem(key, JSON.stringify(fullCalcObj[item]));
+    } else {
+      localStorage.removeItem(key);
     }
   }
   saveSummaryToGravityFormField();
+  return fullCalcObj
 }
 
 function saveSummaryToGravityFormField() {
@@ -139,12 +153,19 @@ function saveSummaryToGravityFormField() {
   jQuery(".export-summary-json-full textarea").val(
     JSON.stringify(exportData) + '*'
   );
+
+  var budgetData = exportData.budget || {}
+  $('.materialRecovery-value input').eq(0).val(formatVal(budgetData.materialRecovery, 'percent'));
+  $('.laborRecovery-value input').eq(0).val(formatVal(budgetData.laborRecovery, 'percent'));
+  $('.equipmentRecovery-value input').eq(0).val(formatVal(budgetData.equipmentRecovery, 'percent'));
+  $('.subcontractorRecovery-value input').eq(0).val(formatVal(budgetData.subcontractorRecovery, 'percent'));
+
 }
 
 function updateTabFigures() {
   var savedObj = JSON.parse(localStorage.getItem("saved_budget1") || "{}");
   var figures = {
-    salesGoal: 'sales',
+    // salesGoal: 'sales',
     laborCosts: 'labor',
     materialCosts: 'materials',
     equipmentBillable: 'equipment',
@@ -173,7 +194,16 @@ function run() {
   var view = (window.location.hash.split('?')[0]).substr(1);
   var params = new URLSearchParams(window.location.search)
   var isOnboarding = params.get('onboarding') == 'true'
+  var hasSaved = localStorage.getItem("saved_budget1") || false;
+    
   if (!$("#calc-" + view).length) {
+    if (!isOnboarding && (!hasSaved || !hasSaved.length)) {
+      isOnboarding = true
+      // setUrlParam('onboarding', 'true')
+    }
+    if (!onboardingEnabled) {
+      isOnboarding = false
+    }
     view = isOnboarding ? 'sales' : 'budget'
     window.location.hash = view;
   } else {
@@ -183,7 +213,7 @@ function run() {
     loadTab(view);
   }
 
-  if (isOnboarding) {
+  if (isOnboarding && onboardingEnabled) {
     onboard(view)
   }
 

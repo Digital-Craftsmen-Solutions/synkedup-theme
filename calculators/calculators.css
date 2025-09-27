@@ -17,30 +17,34 @@ ul#ctabs {
   max-width: initial;
   position: static;
   border-bottom: 1px solid #ff6959;
+  border-bottom: 1px solid #d0d6da;
   border-right: none;
   text-align: center;
 }
 
 #ctabs li {
   list-style: none;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding: 0 !important;
 
   margin-bottom: 0px;
-  width: 140px;
+  min-width: 114px;
+  max-width: 160px;
   display: inline-block;
 }
 
 #ctabs li:not(:last-of-type) {
-  margin-right: 10px;
+  margin-right: 8px;
 }
 
 #ctabs li a {
   text-decoration: none;
   outline: none;
   background: none;
+  background: var( --e-global-color-ae79764 );
   border: 1px solid #ff6959;
-  border-bottom: none;
+  border: 1px solid var( --e-global-color-accent );
+  /* border-bottom: none; */
   display: block;
   outline: none;
   cursor: pointer;
@@ -49,11 +53,17 @@ ul#ctabs {
   font-size: 15px;
   width: 100%;
   padding: 14px 16px;
+  border-radius: 10px;
+  margin-bottom: 20px
 }
 
 #ctabs li a .tab-title {
   color: #ff6959;
+  color: var( --e-global-color-secondary );
   font-weight: bold;
+  font-size: 13px;
+  text-transform: uppercase;
+  position: relative;
 }
 #ctabs li a .sub-fig {
   font-size: 80%;
@@ -61,6 +71,7 @@ ul#ctabs {
 
 #ctabs li a:hover, #ctabs li a.active {
   background-color: #ff6959;
+  background-color: var( --e-global-color-secondary );
   color: white;
 }
 
@@ -212,6 +223,56 @@ body.onboarding .completion-block, body.onboarding .gform_footer {
 #calcTabs .import-section {
   display: none !important;
 }
+
 .entry-content > div.gform_wrapper {
   z-index: 10;
+}
+
+.calculator-output-hidden {
+  display: none;
+}
+
+.outlookTab {
+  display: none;
+}
+
+.production_outlook_total {
+  /* display: block; */
+}
+
+.tab-arrow {
+  padding: 6px;
+  cursor: pointer;
+}
+
+.tab-arrow::after {
+  content: '';
+  display: inline-block;
+  border: solid #717375;
+  border-width: 0 3px 3px 0;
+  vertical-align: middle;
+  padding: 3px;
+  
+}
+
+.tab-arrow:hover::after {
+  border-color: var( --e-global-color-primary );
+}
+
+.tab-prev {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  float: left;
+}
+
+.tab-next {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  float: right;
+}
+
+.tab-row-title {
+  display: inline-block;
+  vertical-align: middle;
+  /* width: calc(100% - 20px); */
 }

@@ -1,15 +1,461 @@
 var STORAGE_KEY = "saved_budget1"
+// TEMPORARY DISABLE ONBOARDING
+var onboardingEnabled = false
 var googleChart,
+  googleChart1,
+  googleChart2,
   googleChartData,
+  googleChartData1,
+  googleChartData2,
   googleChartOptions,
-  lup = {};
+  lup = {},
+  reverseLup = {};
 
 var calcObj = {};
 var formats = {};
+var outlookTabs = ['production_outlook_total', 'production_outlook_labor', 'production_outlook_materials', 'production_outlook_equipment', 'production_outlook_subcontractor'];
+var outlookTabsIndex = 0;
 
 var summaryTables = {
+  production_outlook_labor: [
+    { id: 'title', head: 'Production Outlook', name: 'Labor', cols: ['Billable hours needed', 'Unbillable hrs allocated', 'Your Cost', 'Total Revenue Needed'], tabs: 'outlookTab' },
+    {
+      id: 'perSeason', name: 'per season', cols: [
+        {
+          id: "perSeasonLaborHours", format: "number", calculation: function (obj, fields) {
+            return obj.laborHours
+          }
+        },
+        {
+          id: "perSeasonLaborUnbillable", format: "number", calculation: function (obj, fields) {
+            return obj.laborUnbillable
+          }
+        },
+        {
+          id: "perSeasonLaborCost", format: "currency", calculation: function (obj, fields) {
+            return obj.perSeasonLaborHours * obj.ratioLaborHours
+          }
+        },
+        {
+          id: "perSeasonLaborRevenue", format: "currency", calculation: function (obj, fields) {
+            var l63 = obj.perSeasonLaborCost * (obj.laborRecovery / 100)
+            var m63 = (obj.perSeasonLaborCost + l63) / (1 - (obj.profitMargin / 100)) - (obj.perSeasonLaborCost + l63)
+            obj.perSeasonLaborProfit = m63
+            return obj.perSeasonLaborCost + l63 + m63
+          }
+        },
+      ]
+    },
+    {
+      id: 'perMonth', name: 'per month', cols: [
+        {
+          id: "perMonthLaborHours", format: "number", calculation: function (obj, fields) {
+            return (obj.perSeasonLaborHours / obj.productionDays) * 20
+          }
+        },
+        {
+          id: "perMonthLaborUnbillable", format: "number", calculation: function (obj, fields) {
+            return (obj.perSeasonLaborUnbillable / obj.productionDays) * 20
+          }
+        },
+        {
+          id: "perMonthLaborCost", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonLaborCost / obj.productionDays) * 20
+          }
+        },
+        {
+          id: "perMonthLaborRevenue", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonLaborRevenue / obj.productionDays) * 20
+          }
+        },
+      ]
+    },
+    {
+      id: 'perWeek', name: 'per week', cols: [
+        {
+          id: "perWeekLaborHours", format: "number", calculation: function (obj, fields) {
+            return (obj.perSeasonLaborHours / obj.productionDays) * 5
+          }
+        },
+        {
+          id: "perWeekLaborUnbillable", format: "number", calculation: function (obj, fields) {
+            return (obj.perSeasonLaborUnbillable / obj.productionDays) * 5
+          }
+        },
+        {
+          id: "perWeekLaborCost", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonLaborCost / obj.productionDays) * 5
+          }
+        },
+        {
+          id: "perWeekLaborRevenue", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonLaborRevenue / obj.productionDays) * 5
+          }
+        },
+      ]
+    },
+    {
+      id: 'perDay', name: 'per day', cols: [
+        {
+          id: "perDayLaborHours", format: "number", calculation: function (obj, fields) {
+            return obj.perSeasonLaborHours / obj.productionDays
+          }
+        },
+        {
+          id: "perDayLaborUnbillable", format: "number", calculation: function (obj, fields) {
+            return obj.perSeasonLaborUnbillable / obj.productionDays
+          }
+        },
+        {
+          id: "perDayLaborCost", format: "currency", calculation: function (obj, fields) {
+            return obj.perSeasonLaborCost / obj.productionDays
+          }
+        },
+        {
+          id: "perDayLaborRevenue", format: "currency", calculation: function (obj, fields) {
+            return obj.perSeasonLaborRevenue / obj.productionDays
+          }
+        },
+      ]
+    },
+  ],
+  production_outlook_materials: [
+    { id: 'title', head: 'Production Outlook', name: 'Materials', cols: ['Your Cost', 'Total Revenue Needed'], tabs: 'outlookTab' },
+    {
+      id: 'perSeason', name: 'per season', cols: [
+        {
+          id: "perSeasonMaterialCost", format: "currency", calculation: function (obj, fields) {
+            return obj.materialCosts
+          }
+        },
+        {
+          id: "perSeasonMaterialRevenue", format: "currency", calculation: function (obj, fields) {
+            var l70 = obj.perSeasonMaterialCost * (obj.materialRecovery / 100)
+            var m70 = (obj.perSeasonMaterialCost + l70) / (1 - (obj.profitMargin / 100)) - (obj.perSeasonMaterialCost + l70)
+            obj.perSeasonMaterialProfit = m70
+            return obj.perSeasonMaterialCost + l70 + m70
+          }
+        },
+      ]
+    },
+    {
+      id: 'perMonth', name: 'per month', cols: [
+        {
+          id: "perMonthMaterialCost", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonMaterialCost / obj.productionDays) * 20
+          }
+        },
+        {
+          id: "perMonthMaterialRevenue", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonMaterialRevenue / obj.productionDays) * 20
+          }
+        },
+      ]
+    },
+    {
+      id: 'perWeek', name: 'per week', cols: [
+        {
+          id: "perWeekMaterialCost", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonMaterialCost / obj.productionDays) * 5
+          }
+        },
+        {
+          id: "perWeekMaterialRevenue", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonMaterialRevenue / obj.productionDays) * 5
+          }
+        },
+      ]
+    },
+    {
+      id: 'perDay', name: 'per day', cols: [
+        {
+          id: "perDayMaterialCost", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonMaterialCost / obj.productionDays)
+          }
+        },
+        {
+          id: "perDayMaterialRevenue", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonMaterialRevenue / obj.productionDays)
+          }
+        },
+      ]
+    },
+  ],
+  production_outlook_equipment: [
+    { id: 'title', head: 'Production Outlook', name: 'Equipment', cols: ['Your Cost', 'Total Revenue Needed'], tabs: 'outlookTab' },
+    {
+      id: 'perSeason', name: 'per season', cols: [
+        {
+          id: "perSeasonEquipmentCost", format: "currency", calculation: function (obj, fields) {
+            return obj.equipmentBillable
+          }
+        },
+        {
+          id: "perSeasonEquipmentRevenue", format: "currency", calculation: function (obj, fields) {
+            var l77 = obj.perSeasonEquipmentCost * (obj.equipmentRecovery / 100)
+            var m77 = (obj.perSeasonEquipmentCost + l77) / (1 - (obj.profitMargin / 100)) - (obj.perSeasonEquipmentCost + l77)
+            obj.perSeasonEquipmentProfit = m77
+            return obj.perSeasonEquipmentCost + l77 + m77
+          }
+        },
+      ]
+    },
+    {
+      id: 'perMonth', name: 'per month', cols: [
+        {
+          id: "perMonthEquipmentCost", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonEquipmentCost / obj.productionDays) * 20
+          }
+        },
+        {
+          id: "perMonthEquipmentRevenue", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonEquipmentRevenue / obj.productionDays) * 20
+          }
+        },
+      ]
+    },
+    {
+      id: 'perWeek', name: 'per week', cols: [
+        {
+          id: "perWeekEquipmentCost", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonEquipmentCost / obj.productionDays) * 5
+          }
+        },
+        {
+          id: "perWeekEquipmentRevenue", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonEquipmentRevenue / obj.productionDays) * 5
+          }
+        },
+      ]
+    },
+    {
+      id: 'perDay', name: 'per day', cols: [
+        {
+          id: "perDayEquipmentCost", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonEquipmentCost / obj.productionDays)
+          }
+        },
+        {
+          id: "perDayEquipmentRevenue", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonEquipmentRevenue / obj.productionDays)
+          }
+        },
+      ]
+    },
+  ],
+  production_outlook_subcontractor: [
+    { id: 'title', head: 'Production Outlook', name: 'Subcontractor', cols: ['Your Cost', 'Total Revenue Needed'], tabs: 'outlookTab' },
+    {
+      id: 'perSeason', name: 'per season', cols: [
+        {
+          id: "perSeasonSubcontractorCost", format: "currency", calculation: function (obj, fields) {
+            return obj.subcontractorCosts
+          }
+        },
+        {
+          id: "perSeasonSubcontractorRevenue", format: "currency", calculation: function (obj, fields) {
+            var l84 = obj.perSeasonSubcontractorCost * (obj.subcontractorRecovery / 100)
+            var m84 = (obj.perSeasonSubcontractorCost + l84) / (1 - (obj.profitMargin / 100)) - (obj.perSeasonSubcontractorCost + l84)
+            obj.perSeasonSubcontractorProfit = m84
+            return obj.perSeasonSubcontractorCost + l84 + m84
+          }
+        },
+      ]
+    },
+    {
+      id: 'perMonth', name: 'per month', cols: [
+        {
+          id: "perMonthSubcontractorCost", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonSubcontractorCost / obj.productionDays) * 20
+          }
+        },
+        {
+          id: "perMonthSubcontractorRevenue", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonSubcontractorRevenue / obj.productionDays) * 20
+          }
+        },
+      ]
+    },
+    {
+      id: 'perWeek', name: 'per week', cols: [
+        {
+          id: "perWeekSubcontractorCost", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonSubcontractorCost / obj.productionDays) * 5
+          }
+        },
+        {
+          id: "perWeekSubcontractorRevenue", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonSubcontractorRevenue / obj.productionDays) * 5
+          }
+        },
+      ]
+    },
+    {
+      id: 'perDay', name: 'per day', cols: [
+        {
+          id: "perDaySubcontractorCost", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonSubcontractorCost / obj.productionDays)
+          }
+        },
+        {
+          id: "perDaySubcontractorRevenue", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonSubcontractorRevenue / obj.productionDays)
+          }
+        },
+      ]
+    },
+  ],
+  production_outlook_total: [
+    { id: 'title', head: 'Production Outlook', name: 'Total overhead that needs recovered', cols: ['Total', 'Labor', 'Materials', 'Equip', 'Subs'], tabs: 'outlookTab' },
+    {
+      id: 'perSeason', name: 'per season', cols: [
+        {
+          id: "perSeasonTotalCost", format: "currency", calculation: function (obj, fields) {
+            return obj.totalOverhead
+          }
+        },
+        {
+          id: "perSeasonTotalLabor", format: "currency", calculation: function (obj, fields) {
+            var manHourRecovery = obj.ratioLaborHours * (obj.laborRecovery / 100)
+            return obj.perSeasonLaborHours * manHourRecovery
+          }
+        },
+        {
+          id: "perSeasonTotalMaterial", format: "currency", calculation: function (obj, fields) {
+            return obj.perSeasonMaterialCost * (obj.materialRecovery / 100)
+          }
+        },
+        {
+          id: "perSeasonTotalEquipment", format: "currency", calculation: function (obj, fields) {
+            return obj.perSeasonEquipmentCost * (obj.equipmentRecovery / 100)
+          }
+        },
+        {
+          id: "perSeasonTotalSubcontractor", format: "currency", calculation: function (obj, fields) {
+            return obj.perSeasonSubcontractorCost * (obj.subcontractorRecovery / 100)
+          }
+        }
+      ]
+    },
+    {
+      id: 'perMonth', name: 'per month', cols: [
+        {
+          id: "perMonthTotalCost", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonTotalCost / obj.productionDays) * 20
+          }
+        },
+        {
+          id: "perMonthTotalLabor", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonTotalLabor / obj.productionDays) * 20
+          }
+        },
+        {
+          id: "perMonthTotalMaterial", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonTotalMaterial / obj.productionDays) * 20
+          }
+        },
+        {
+          id: "perMonthTotalEquipment", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonTotalEquipment / obj.productionDays) * 20
+          }
+        },
+        {
+          id: "perMonthTotalSubcontractor", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonTotalSubcontractor / obj.productionDays) * 20
+          }
+        }
+      ]
+    },
+    {
+      id: 'perWeek', name: 'per week', cols: [
+        {
+          id: "perWeekTotalCost", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonTotalCost / obj.productionDays) * 5
+          }
+        },
+        {
+          id: "perWeekTotalLabor", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonTotalLabor / obj.productionDays) * 5
+          }
+        },
+        {
+          id: "perWeekTotalMaterial", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonTotalMaterial / obj.productionDays) * 5
+          }
+        },
+        {
+          id: "perWeekTotalEquipment", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonTotalEquipment / obj.productionDays) * 5
+          }
+        },
+        {
+          id: "perWeekTotalSubcontractor", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonTotalSubcontractor / obj.productionDays) * 5
+          }
+        }
+      ]
+    },
+    {
+      id: 'perDay', name: 'per day', cols: [
+        {
+          id: "perDayTotalCost", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonTotalCost / obj.productionDays)
+          }
+        },
+        {
+          id: "perDayTotalLabor", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonTotalLabor / obj.productionDays)
+          }
+        },
+        {
+          id: "perDayTotalMaterial", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonTotalMaterial / obj.productionDays)
+          }
+        },
+        {
+          id: "perDayTotalEquipment", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonTotalEquipment / obj.productionDays)
+          }
+        },
+        {
+          id: "perDayTotalSubcontractor", format: "currency", calculation: function (obj, fields) {
+            return (obj.perSeasonTotalSubcontractor / obj.productionDays)
+          }
+        }
+      ]
+    },
+  ],
+  breakeven_insights: [
+    { id: 'title', name: 'Breakeven Insights', isSingle: true, cols: ['Breakeven Amount', 'Revenue per day needed to hit sales goal', 'Production Days needed to breakeven', 'Estimated Breakeven date	'] },
+    {
+      id: 'breakeven', name: 'Materials', cols: [
+        {
+          id: "breakevenAmount", format: "currency", calculation: function (obj, fields) {
+            return obj.breakevenAmount
+          }
+        },
+        {
+          id: "perDayRevenueGoal", format: "currency", calculation: function (obj, fields) {
+            return obj.salesGoal / obj.productionDays
+          }
+        },
+        {
+          id: "breakevenDays", format: "number", calculation: function (obj, fields) {
+            return Math.round(obj.breakevenAmount / obj.perDayRevenueGoal)
+          }
+        },
+        {
+          id: "breakevenDate", format: "datetime", calculation: function (obj, fields) {
+            var startDate = new Date(obj.startDate);
+            var breakDate = addWorkingDays(startDate, obj.breakevenDays, calcObj.daysInWeek)
+            return breakDate.getTime()
+          }
+        }
+      ]
+    }
+  ],
   budget_insights: [
-    { id: 'title', name: 'Budget Insights', cols: ['Overhead Recovered', 'Profit Generated', 'Portion of Total Sales'] },
+    { id: 'title', name: 'Budget Insights', cols: ['Overhead Recovered', 'Profit Generated', 'Total Revenue'] },
     {
       id: 'materials', name: 'Materials', cols: [
         {
@@ -19,7 +465,7 @@ var summaryTables = {
         },
         {
           id: "materialRecoveredPerc", format: "percent", calculation: function (obj, fields) {
-            return (obj.materialRecovered / obj.overheadCosts) * 100
+            return (obj.materialRecovered / obj.totalOverhead) * 100
           }
         },
         {
@@ -53,7 +499,7 @@ var summaryTables = {
         },
         {
           id: "equipmentRecoveredPerc", format: "percent", calculation: function (obj, fields) {
-            return (obj.equipmentRecovered / obj.overheadCosts) * 100
+            return (obj.equipmentRecovered / obj.totalOverhead) * 100
           }
         },
         {
@@ -87,7 +533,7 @@ var summaryTables = {
         },
         {
           id: "subcontractorRecoveredPerc", format: "percent", calculation: function (obj, fields) {
-            return (obj.subcontractorRecovered / obj.overheadCosts) * 100
+            return (obj.subcontractorRecovered / obj.totalOverhead) * 100
           }
         },
         {
@@ -121,7 +567,7 @@ var summaryTables = {
         },
         {
           id: "laborRecoveredPerc", format: "percent", calculation: function (obj, fields) {
-            return (obj.laborRecovered / obj.overheadCosts) * 100
+            return (obj.laborRecovered / obj.totalOverhead) * 100
           }
         },
         {
@@ -142,51 +588,6 @@ var summaryTables = {
         {
           id: "laborSalesPerc", format: "percent", calculation: function (obj, fields) {
             return (obj.laborSales / obj.salesGoal)  * 100
-          }
-        },
-      ]
-    },
-  ],
-  production_outlook: [
-    { id: 'title', name: 'Production Outlook', cols: ['Overhead Recovery Needed', 'Billable Hours Needed'] },
-    {
-      id: 'perDay', name: 'per Day', cols: [
-        {
-          id: "perDayRecovery", format: "currency", calculation: function (obj, fields) {
-            return obj.overheadCosts / obj.productionDays
-          }
-        },
-        {
-          id: "perDayHours", format: "number", calculation: function (obj, fields) {
-            return obj.laborHours / obj.productionDays
-          }
-        },
-      ]
-    },
-    {
-      id: 'perWeek', name: 'per Week', cols: [
-        {
-          id: "perWeekRecovery", format: "currency", calculation: function (obj, fields) {
-            return obj.perDayRecovery * 5
-          }
-        },
-        {
-          id: "perWeekHours", format: "number", calculation: function (obj, fields) {
-            return obj.perDayHours * 5
-          }
-        },
-      ]
-    },
-    {
-      id: 'perMonth', name: 'per Month', cols: [
-        {
-          id: "perMonthRecovery", format: "currency", calculation: function (obj, fields) {
-            return obj.perDayRecovery * 20
-          }
-        },
-        {
-          id: "perMonthHours", format: "number", calculation: function (obj, fields) {
-            return obj.perDayHours * 20
           }
         },
       ]
@@ -248,6 +649,25 @@ var summaryTables = {
   ]
 }
 
+var outlookTabPrev = function () {
+  $(".outlookTab").hide();
+  outlookTabsIndex --
+  if (outlookTabsIndex < 0) {
+    outlookTabsIndex = outlookTabs.length - 1 
+  }
+  
+  $("." + outlookTabs[outlookTabsIndex] ).show();
+}
+
+var outlookTabNext = function () {
+  $(".outlookTab").hide();
+  outlookTabsIndex ++
+  if (outlookTabsIndex >= outlookTabs.length) {
+    outlookTabsIndex = 0
+  }
+  $("." + outlookTabs[outlookTabsIndex] ).show();
+}
+
 var setupButtonEvents = function () {
   jQuery(".clear-values").click(function () {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({}));
@@ -279,6 +699,14 @@ var setupButtonEvents = function () {
 };1
 
 var setupDatepickers = function () {
+  gform.addFilter( 'gform_datepicker_options_pre_init', function( optionsObj, formId, fieldId ) {
+    optionsObj.onSelect = function(value, elem) {
+      calcObj[reverseLup[elem.id]] = value;
+      calculateOutput();
+    }
+  
+    return optionsObj;
+} );
   if (window['gformInitDatepicker']) { gformInitDatepicker(); }
 }
 var setupHelpIcons = function () {
@@ -318,7 +746,9 @@ var createGoogleChart = function () {
     packages: ["corechart"]
   });
   google.charts.setOnLoadCallback(drawChart);
-
+  google.charts.setOnLoadCallback(drawChart1);
+  google.charts.setOnLoadCallback(drawChart2);
+  
   googleChartOptions = {
     pieHole: 0.4,
     colors: ["#ff6384", "#36a2eb", "#ffcd56", "#8DCB56", "#775D98", "#FC590F"],
@@ -355,7 +785,54 @@ var createGoogleChart = function () {
     );
     googleChart.draw(googleChartData, googleChartOptions);
 
-    calculateOutput(); // Load any prepopulated values
+    calculateOutput()
+
+  }
+
+  function drawChart1() {
+    googleChartData1 = google.visualization.arrayToDataTable([
+      ["Component", "$"],
+      ["Labor", 0],
+      ["Materials", 0],
+      ["Equipment", 0],
+      ["Subcontractor", 0],
+    ]);
+    var formatter = new google.visualization.NumberFormat({
+      prefix: "$",
+    });
+
+    formatter.format(googleChartData1, 1);
+
+    googleChart1 = new google.visualization.PieChart(
+      document.getElementById("donutchart1")
+    );
+    googleChart1.draw(googleChartData1, googleChartOptions);
+
+    calculateOutput()
+
+  }
+
+  function drawChart2() {
+    googleChartData2 = google.visualization.arrayToDataTable([
+      ["Component", "$"],
+      ["Labor", 0],
+      ["Materials", 0],
+      ["Equipment", 0],
+      ["Subcontractor", 0],
+    ]);
+    var formatter = new google.visualization.NumberFormat({
+      prefix: "$",
+    });
+
+    formatter.format(googleChartData2, 1);
+
+    googleChart2 = new google.visualization.PieChart(
+      document.getElementById("donutchart2")
+    );
+    googleChart2.draw(googleChartData2, googleChartOptions);
+
+    calculateOutput()
+
   }
 };
 // Update existing Google chart with new values
@@ -395,6 +872,71 @@ function updateChart(data) {
   googleChart.draw(googleChartData, googleChartOptions);
 }
 
+function updateChart1(data) {
+  if(!googleChartData1) {
+    return
+  }
+  //Remove data from datatable
+  googleChartData1.removeRow(0);
+  googleChartData1.removeRow(0);
+  googleChartData1.removeRow(0);
+  googleChartData1.removeRow(0);
+
+  googleChartData1.insertRows(0, [
+    ["Labor", Number(data.labor.toFixed(2))],
+  ]);
+  googleChartData1.insertRows(1, [
+    ["Materials", Number(data.material.toFixed(2))]
+  ]);
+  googleChartData1.insertRows(2, [
+    ["Equipment", Number(data.equipment.toFixed(2))]
+  ]);
+  googleChartData1.insertRows(3, [
+    ["Subcontractor", Number(data.subcontractor.toFixed(2))]
+  ]);
+
+  var formatter = new google.visualization.NumberFormat({
+    prefix: "$",
+  });
+
+  formatter.format(googleChartData1, 1);
+  googleChart1.draw(googleChartData1, googleChartOptions);
+}
+
+function updateChart2(data) {
+  if(!googleChartData2) {
+    return
+  }
+  //Remove data from datatable
+  googleChartData2.removeRow(0);
+  googleChartData2.removeRow(0);
+  googleChartData2.removeRow(0);
+  googleChartData2.removeRow(0);
+
+  googleChartData2.insertRows(0, [
+    ["Labor", Number(data.labor.toFixed(2))],
+  ]);
+  googleChartData2.insertRows(1, [
+    ["Materials", Number(data.material.toFixed(2))]
+  ]);
+  googleChartData2.insertRows(2, [
+    ["Equipment", Number(data.equipment.toFixed(2))]
+  ]);
+  googleChartData2.insertRows(3, [
+    ["Subcontractor", Number(data.subcontractor.toFixed(2))]
+  ]);
+
+  var formatter = new google.visualization.NumberFormat({
+    prefix: "$",
+  });
+
+  formatter.format(googleChartData2, 1);
+  googleChart2.draw(googleChartData2, googleChartOptions);
+}
+
+function isDate (date) {
+  return (new Date(date) !== "Invalid Date") && !isNaN(new Date(date));
+}
 
 function calcWorkingDays(start, end, daysInWeek) {
   var startDate = new Date(start);
@@ -410,6 +952,19 @@ function calcWorkingDays(start, end, daysInWeek) {
   return count;
 }
 
+function addWorkingDays(start, days, daysInWeek) {
+  var startDate = new Date(start);
+  var count = 0;
+  var maxDayOfWeek = daysInWeek - 1;
+  const curDate = new Date(startDate.getTime());
+  while (count <= days) {
+    const dayOfWeek = curDate.getDay();
+    if (dayOfWeek <= maxDayOfWeek) count++;
+    curDate.setDate(curDate.getDate() + 1);
+  }
+  return curDate;
+}
+
 createSummaryTables = function () {
   jQuery("#summary-table").empty();
 
@@ -419,12 +974,23 @@ createSummaryTables = function () {
 
   Object.keys(summaryTables).forEach(function (key, index) {
     var item = summaryTables[key]
-    var table = $("<table data-index='" + index + "' >");
+    var tableClass = key
+    if (item[0].tabs) {
+      tableClass += ' ' + item[0].tabs
+    }
+    var table = $("<table class='" + tableClass + "' data-index='" + index + "' >");
     var tr1 = $("<tr class='row-title'>");
     if (item[0].name == 'Budget Insights') {
       tr1.append("<th colspan='" + ((item[0].cols.length + 1)*2) + "'>" + item[0].name + "</th>");
     } else {
       tr1.append("<th colspan='" + (item[0].cols.length + 1) + "'>" + item[0].name + "</th>");
+    }
+
+    if (item[0].tabs) {
+      var tr0 = $("<tr class='row-title'>");
+      tr0.append("<th colspan='" + (item[0].cols.length + 1) + "'>" + 
+      "<i class='tab-arrow tab-prev' onclick='" + item[0].tabs + "Prev()'></i><div class='tab-row-title'>" + item[0].head + "</div><i class='tab-arrow tab-next' onclick='" + item[0].tabs + "Next()'></i></th>");
+      table.append(tr0);
     }
     
     table.append(tr1);
@@ -459,29 +1025,38 @@ createSummaryTables = function () {
     container.append(table);
   })
 
+  $("." + outlookTabs[outlookTabsIndex] ).show();
+
   return sumObj
 }
 
 // Calculate the results of the calculator
 function calculateOutput() {
 
-  if (calcObj.startDate && calcObj.endDate) {
-    calcObj.productionDays = calcWorkingDays(calcObj.startDate, calcObj.endDate, calcObj.daysInWeek);
+  if (!isDate(calcObj.startDate) || !isDate(calcObj.endDate)) {
+    return
   }
+
+  calcObj.productionDays = calcWorkingDays(calcObj.startDate, calcObj.endDate, calcObj.daysInWeek);
 
   //Outputs
   calcObj.ratioLaborHours = calcObj.laborCosts / (calcObj.laborHours);
+  // calcObj.billableHours = calcObj.laborHours - calcObj.laborUnbillable
+  // calcObj.ratioBillableHours = (calcObj.laborCosts / calcObj.billableHours);
 
   calcObj.totalOverhead = (calcObj.ratioLaborHours * calcObj.laborUnbillable) + calcObj.overheadCosts;
+  calcObj.totalUnbillableLaborOverhead = calcObj.totalOverhead - calcObj.overheadCosts;
 
   calcObj.materialRecovered = calcObj.materialCosts * (calcObj.materialRecovery / 100);
   calcObj.equipmentRecovered = calcObj.equipmentBillable * (calcObj.equipmentRecovery / 100);
   calcObj.subcontractorRecovered = calcObj.subcontractorCosts * (calcObj.subcontractorRecovery / 100);
   calcObj.laborRecovered = calcObj.totalOverhead - (calcObj.materialRecovered + calcObj.equipmentRecovered + calcObj.subcontractorRecovered);
 
-  calcObj.laborRecovery = (calcObj.laborRecovered / calcObj.laborCosts) * 100;
+  calcObj.laborRecovery = (calcObj.totalOverhead / (calcObj.laborCosts - calcObj.totalUnbillableLaborOverhead)) * 100;
 
-  calcObj.totalCOGs = calcObj.laborCosts + calcObj.materialCosts + calcObj.subcontractorCosts + calcObj.equipmentBillable;
+  calcObj.totalCOGs = calcObj.laborCosts + calcObj.materialCosts + calcObj.subcontractorCosts + (calcObj.equipmentBillable - calcObj.totalUnbillableLaborOverhead);
+
+  calcObj.salesGoal = calcObj.desiredProfit < 100 ? (calcObj.totalCOGs + calcObj.totalOverhead) / (1 - (calcObj.desiredProfit / 100)) : 0;
   calcObj.totalCOGsPerc = (calcObj.totalCOGs / calcObj.salesGoal) * 100;
 
   calcObj.grossProfit = calcObj.salesGoal - calcObj.totalCOGs;
@@ -494,18 +1069,25 @@ function calculateOutput() {
 
   calcObj.ratioUnbillable = (calcObj.laborUnbillable / calcObj.laborHours) * 100;
 
+  calcObj.contribution = calcObj.salesGoal - calcObj.totalCOGs
+  calcObj.contributionRatio = calcObj.contribution / calcObj.salesGoal
+  calcObj.breakevenAmount = calcObj.totalOverhead / calcObj.contributionRatio
+
   $(".ratio-unbillable .ratio-value").text(formatVal(calcObj.ratioUnbillable, 'percent'));
   $(".ratio-labor-hours .ratio-value").text(formatVal(calcObj.ratioLaborHours, 'currency'));
   $("#" + lup.productionDays.id).eq(0).val(formatVal(calcObj.productionDays, lup.productionDays.format));
+  $("#" + lup.breakevenAmount.id).eq(0).val(formatVal(calcObj.breakevenAmount, lup.breakevenAmount.format));
   $("#" + lup.totalCOGs.id).eq(0).val(formatVal(calcObj.totalCOGs, lup.totalCOGs.format));
   $("#" + lup.profitMargin.id).eq(0).val(formatVal(calcObj.profitMargin, lup.profitMargin.format));
   $("#" + lup.grossProfit.id).eq(0).val(formatVal(calcObj.grossProfit, lup.grossProfit.format) + ' (' + formatVal(calcObj.grossProfitPerc, 'percent') + ')');
   $("#" + lup.netProfit.id).eq(0).val(formatVal(calcObj.netProfit, lup.netProfit.format) + ' (' + formatVal(calcObj.netProfitPerc, 'percent') + ')');
   $("#" + lup.laborRecovery.id).eq(0).val(formatVal(calcObj.laborRecovery, lup.laborRecovery.format));
+  $("#" + lup.salesGoal.id).eq(0).val(formatVal(calcObj.salesGoal, lup.salesGoal.format));
  
   const sumObj = createSummaryTables();
 
-  $("#" + lup.manHourPrice.id).eq(0).val(formatVal(sumObj.manHourPrice, lup.manHourPrice.format));
+  calcObj.manHourPrice = sumObj.manHourPrice
+  $("#" + lup.manHourPrice.id).eq(0).val(formatVal(calcObj.manHourPrice, lup.manHourPrice.format));
 
   saveData();
 
@@ -513,30 +1095,39 @@ function calculateOutput() {
   if (calcObj.netProfit) {
     $(".chart-placeholder").hide();
     $("#donutchart").show();
+    $("#donutchart1").show();
+    $("#donutchart2").show();
     $(".gform_page:last-of-type .gform_page_footer").show();
     $(".conversion-block").show();
-    updateChart({
-      laborCosts: calcObj.laborCosts,
-      materialCosts: calcObj.materialCosts,
-      equipmentBillable: calcObj.equipmentBillable,
-      subcontractorCosts: calcObj.subcontractorCosts,
-      overheadCosts: calcObj.overheadCosts,
-      netProfit: calcObj.netProfit,
-    });
   } else {
     $(".chart-placeholder").show();
     $("#donutchart").hide();
+    $("#donutchart1").hide();
+    $("#donutchart2").hide();
     $(".gform_page:last-of-type .gform_page_footer").hide();
     $(".conversion-block").hide();
-    updateChart({
-      laborCosts: calcObj.laborCosts,
-      materialCosts: calcObj.materialCosts,
-      equipmentBillable: calcObj.equipmentBillable,
-      subcontractorCosts: calcObj.subcontractorCosts,
-      overheadCosts: calcObj.overheadCosts,
-      netProfit: calcObj.netProfit,
-    });
   }
+
+  updateChart({
+    laborCosts: calcObj.laborCosts,
+    materialCosts: calcObj.materialCosts,
+    equipmentBillable: calcObj.equipmentBillable,
+    subcontractorCosts: calcObj.subcontractorCosts,
+    overheadCosts: calcObj.totalOverhead,
+    netProfit: calcObj.netProfit,
+  });
+  updateChart1({
+    labor: sumObj.perSeasonTotalLabor,
+    material: sumObj.perSeasonTotalMaterial,
+    equipment: sumObj.perSeasonTotalEquipment,
+    subcontractor: sumObj.perSeasonTotalSubcontractor,
+  });
+  updateChart2({
+    labor: sumObj.perSeasonLaborProfit,
+    material: sumObj.perSeasonMaterialProfit,
+    equipment: sumObj.perSeasonEquipmentProfit,
+    subcontractor: sumObj.perSeasonSubcontractorProfit,
+  });
 }
 
 function saveData () {
@@ -549,7 +1140,7 @@ function saveToGravityFormField () {
 
   for (const key in lup) {
     const item = lup[key];
-    text = text + item.name + ": " + calcObj[key] + "\n";
+    text = text + item.name + ": " + formatVal(calcObj[key], item.format) + "\n";
   }
 
   jQuery(".export-summary-json textarea").val(
@@ -604,9 +1195,11 @@ $(document).ready(function () {
   $(".gform_page").show();
   $(".tab_page").show();
   $("#donutchart").hide();
+  $("#donutchart1").hide();
+  $("#donutchart2").hide();
   $(".conversion-block").hide();
 
-  if (/[?&]onboarding=true/.test(location.search)) {
+  if (/[?&]onboarding=true/.test(location.search) && onboardingEnabled) {
     console.log('onboarding')
     $("#field_60_17 label").text('Thank you, hit the button below to complete this marathon');
     $("#gform_submit_button_60").val('Submit and finish onboarding');
@@ -637,11 +1230,6 @@ $(document).ready(function () {
       id: "input_60_41",
       name: 'Days In Week',
       format: 'none'
-    },
-    salesGoal: {
-      id: "input_60_6",
-      name: 'Sales Goal',
-      format: 'currency'
     },
     laborCosts: {
       id: "input_60_7",
@@ -733,9 +1321,22 @@ $(document).ready(function () {
       name: 'Your Man Hour Price',
       format: 'currency'
     },
+    breakevenAmount: {
+      id: "input_60_56",
+      name: 'Breakeven Amount',
+      format: 'currency'
+    },
+    desiredProfit: {
+      id: "input_60_57",
+      name: 'Desired Net Profit',
+      format: 'percent'
+    },
+    salesGoal: {
+      id: "input_60_58",
+      name: 'Sales Goal',
+      format: 'currency'
+    },
   };
-
-  var reverseLup = {};
 
   for (const key in lup) {
     const element = lup[key];
@@ -750,6 +1351,7 @@ $(document).ready(function () {
     function (elem, formId, fieldId) {
       // Store entered value
       if (fieldId == '39' || fieldId == '40') {
+        // see also setupDatepickers
         calcObj[reverseLup[elem.id]] = elem.value;
       } else {
         calcObj[reverseLup[elem.id]] = Number(

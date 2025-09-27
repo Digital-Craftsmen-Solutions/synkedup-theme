@@ -8,8 +8,40 @@
     </h4>
   </div>
 </div>
+<div style="margin-top: 10px;white-space: nowrap;max-width:600px;margin-left:auto;margin-right:auto;">
+  <div class="chart-half">
+    <h5>Overhead Recovery</h5>
+    <div id="donutchart1" style="width: 100%; height: 220px"></div>
+    <div class="chart-placeholder">
+      <div class="layer">
+      </div>
+    </div>
+  </div>
+  <div class="chart-half">
+    <h5>Profit Generated</h5>
+    <div id="donutchart2" style="width: 100%; height: 220px"></div>
+    <div class="chart-placeholder">
+      <div class="layer">
+      </div>
+    </div>
+  </div>
+</div>
 
 <style>
+
+  #donutchart, #donutchart1, #donutchart2 {
+
+  }
+  
+  @media (max-width: 600px) {
+    #donutchart, #donutchart1, #donutchart2 {
+      max-width: 350px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 10px;
+    }
+  }
+
   .chart-placeholder {
     height: 300px;
     text-align: center;
@@ -24,6 +56,22 @@
     padding: 20px;
     margin: 0px 10px;
     border-radius: 11px;
+  }
+  
+  .chart-half {
+    white-space: normal;
+    text-align: center;
+  }
+
+  @media (min-width: 1000px) {
+    .chart-half {
+      width: 50%;
+      display: inline-block;
+    }
+  }
+
+  .chart-half .chart-placeholder {
+    height: 220px;
   }
 
   .layer {
@@ -94,6 +142,10 @@
     display: none !important;
   }
 
+  html .gform_wrapper li.no-padding {
+    padding: 0 !important;
+  }
+
   .gform_wrapper .gfield_description {}
 
   .gform_wrapper .input-inline-help .gfield_description:after {
@@ -119,6 +171,10 @@
 
   body .gform_wrapper .calculator-output.calculator-output-highlight div.ginput_container {
     width: 200px;
+  }
+
+  body .gform_wrapper .calculator-output.calculator-output-highlight.calculator-output-wide div.ginput_container {
+    width: 250px;
   }
 
   body .gform_wrapper .calculator-output div.ginput_container,
@@ -211,6 +267,15 @@
     cursor: pointer;
   }
 
+  @media (max-width: 767px) {
+    #summary-table {
+      width: 350px;
+      margin-left: auto;
+      margin-right: auto;
+      overflow-x: scroll;
+    }
+  }
+
   #summary-table table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -226,6 +291,14 @@
     text-align: center;
     font-weight: 500;
     color: #666;
+  }
+
+  @media (max-width: 767px) {
+    #summary-table table td,
+    #summary-table table th {
+      padding: 6px;
+      font-size: 12px;
+    }
   }
 
   #summary-table table th {
@@ -272,8 +345,13 @@
     font-size: 11px;
     text-decoration: underline;
   }
+
+  .gform_wrapper li.calculator-input.prominent input{
+    border: 2px solid #ff6959 !important;
+    font-weight: bold !important;
+  }
 </style>
 
 
-<script type="text/javascript" src="/wp-content/themes/gutenberg/calculators/js/budget.js"></script>
+<script type="text/javascript" src="/wp-content/themes/synkedup/calculators/js/budget.js?v=21"></script>
 <!--Embed 1 end-->

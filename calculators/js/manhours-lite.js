@@ -33,9 +33,10 @@ var createGoogleChart = function () {
   googleChartOptions = {
     pieHole: 0.4,
     colors: ["#ff6384", "#36a2eb", "#ffcd56"],
-    pieSliceText: "value",
+    pieSliceText: "label",
     chartArea: { left: 10, top: 20, width: "100%", height: "100%" },
     legend: { position: "top" },
+    tooltip: { trigger: "none" }
   };
 
   function drawChart() {
@@ -108,41 +109,40 @@ function calculateOutput() {
     (1 - calculation_inputs[lookup.net_profit] / 100) -
     (manhour_cost + overhead_recovered);
   manhour_price = manhour_cost + overhead_recovered + profit;
-  manhour_difference = calculation_inputs[lookup.manhour_current] - manhour_price
-  underCharge = manhour_difference < 0
-  manhour_season = manhour_difference * calculation_inputs[lookup.labour_hours]
 
-  var priceText = calculation_inputs[lookup.manhour_current]
-  var chargeText = underCharge ? 'At $' + priceText.toFixed(2)  + ', you are currently undercharging per hour' : 'At $' + priceText.toFixed(2) + ',you are currently higher than your goal per hour';
-  
-  $("#" + lookup.manhour_cost).eq(0)
+  $("#" + lookup.manhour_cost)
+    .eq(0)
     .val("$" + (isFinite(manhour_cost) ? manhour_cost.toFixed(2) : ""));
-
-  $("#" + lookup.overhead_recovered).eq(0)
-    .val("$" + (isFinite(overhead_recovered) ? overhead_recovered.toFixed(2) : ""))
-    ;
-  $("#" + lookup.overhead_markup).eq(0)
-    .val((isFinite(overhead_markup) ? (overhead_markup * 100).toFixed(2) + "%" : ""));
-
-  $("#" + lookup.profit).eq(0)
+  $("#" + lookup.overhead_recovered)
+    .eq(0)
+    .val(
+      "$" + (isFinite(overhead_recovered) ? overhead_recovered.toFixed(2) : "")
+    );
+  $("#" + lookup.overhead_markup)
+    .eq(0)
+    .val(
+      (isFinite(overhead_markup) ? (overhead_markup * 100).toFixed(2) + "%" : "")
+    );
+  $("#" + lookup.profit)
+    .eq(0)
     .val("$" + (isFinite(profit) ? profit.toFixed(2) : ""));
-
-  $("#" + lookup.manhour_price).eq(0)
+  $("#" + lookup.manhour_price)
+    .eq(0)
     .val("$" + (isFinite(manhour_price) ? manhour_price.toFixed(2) : ""));
-  
-  $("#" + lookup.manhour_difference).eq(0)
-    .val("$" + (isFinite(manhour_difference) ? manhour_difference.toFixed(2) : ""));
 
-  $("#" + lookup.manhour_difference).eq(0).removeClass('output-red');
-  $("#" + lookup.manhour_difference).eq(0).removeClass('output-green');
-  $("#" + lookup.manhour_difference).eq(0).addClass(underCharge ? 'output-red' : 'output-green');
-  $("#field_46_25 > label").text(chargeText);
-
-  $("#" + lookup.manhour_season).eq(0).val("$" + (isFinite(manhour_season) ? manhour_season.toLocaleString('en-US', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) : ""));
-  $("#" + lookup.manhour_season).eq(0).addClass('output-red');
-  if (!underCharge) {
-    $("#field_46_26").addClass('hidden')
-  }
+  // Hide values for lite version
+  $("#" + lookup.overhead_recovered)
+    .eq(0)
+    .val("");
+  $("#" + lookup.profit)
+    .eq(0)
+    .val("");
+  $("#" + lookup.manhour_price)
+    .eq(0)
+    .val("");
+  $("#" + lookup.manhour_difference)
+    .eq(0)
+    .val("");
 
   if (labour_hours > 1) {
     $("#" + lookup.unbillable_hours_description)
@@ -155,12 +155,7 @@ function calculateOutput() {
     $(".chart-placeholder").hide();
     $("#donutchart").show();
     $(".gform_page:last-of-type .gform_page_footer").show();
-    $(".conversion-block").removeClass('hidden')
-    if (underCharge) {
-      $("#field_46_26").removeClass('hidden')
-    } else {
-      $("#field_46_26").addClass('hidden')
-    }
+    $(".conversion-block").show();
     updateChart({
       manhour_cost: manhour_cost,
       overhead_recovered: overhead_recovered,
@@ -170,14 +165,13 @@ function calculateOutput() {
     $(".chart-placeholder").show();
     $("#donutchart").hide();
     $(".gform_page:last-of-type .gform_page_footer").hide();
-    $(".conversion-block").addClass('hidden')
+    $(".conversion-block").hide();
     updateChart({
       manhour_cost: 0,
       overhead_recovered: 0,
       profit: 0,
     });
   }
-
 }
 
 // Move to page two on initial load so the submit button works well
@@ -199,26 +193,25 @@ $(document).ready(function () {
   $(".gform_page:first-of-type .gform_page_footer").css("visibility","hidden")
   $(".gform_page").show();
   $("#donutchart").hide();
-  $(".conversion-block").addClass('hidden')
+  $(".conversion-block").hide();
 
   createGoogleChart();
   setupHelpIcons();
 
   lookup = {
-    labour_cost: "input_46_6",
-    labour_hours: "input_46_7",
-    unbillable_hours: "input_46_8",
-    unbillable_hours_description: "gfield_description_46_8",
-    overhead_cost: "input_46_9",
-    net_profit: "input_46_10",
-    manhour_cost: "input_46_4",
-    overhead_recovered: "input_46_11",
-    profit: "input_46_12",
-    manhour_price: "input_46_13",
-    overhead_markup: "input_46_23",
-    manhour_current: "input_46_24",
-    manhour_difference: "input_46_25",
-    manhour_season: "input_46_26"
+    labour_cost: "input_96_6",
+    labour_hours: "input_96_7",
+    unbillable_hours: "input_96_8",
+    unbillable_hours_description: "gfield_description_96_8",
+    overhead_cost: "input_96_9",
+    net_profit: "input_96_10",
+    manhour_cost: "input_96_4",
+    overhead_recovered: "input_96_11",
+    profit: "input_96_12",
+    manhour_price: "input_96_13",
+    overhead_markup: "input_96_23",
+    manhour_current: "input_96_24",
+    manhour_difference: "input_96_25",
   };
 
   // Set default values
@@ -230,6 +223,15 @@ $(document).ready(function () {
         .replace(/[^0-9.-]+/g, "")
     );
   }
+
+  const lockIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock-icon lucide-lock"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
+
+  // Hide values for lite version
+  $("#" + lookup.overhead_markup).hide();
+  $("#" + lookup.overhead_recovered).after(lockIcon)
+  $("#" + lookup.profit).after(lockIcon)
+  $("#" + lookup.manhour_price).after(lockIcon)
+  $("#" + lookup.manhour_difference).after(lockIcon)
 
   gform.addAction(
     "gform_input_change",

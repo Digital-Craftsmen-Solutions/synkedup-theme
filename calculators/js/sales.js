@@ -1,6 +1,6 @@
 var defaultExpenses = [
   { name: "Description", heading: true },
-  { name: "Cost Code 1", value: 0 },
+  { name: "Cost Code 11", value: 0 },
   { name: "Cost Code 2", value: 0 },
   { name: "Cost Code 3", value: 0 },
   { name: "Cost Code 4", value: 0 },
@@ -38,10 +38,10 @@ var refreshInputEventhandlers = function () {
 
   jQuery(".overhead-table td:nth-child(3) input").on({
     keyup: function () {
-      formatCurrency($(this));
+      // formatCurrency($(this));
     },
     blur: function () {
-      formatCurrency($(this), "blur");
+      // formatCurrency($(this), "blur");
     },
   });
 
@@ -62,10 +62,10 @@ var refreshInputEventhandlers = function () {
 
   jQuery(".overhead-table td:nth-child(2) input").on({
     keyup: function () {
-      formatCurrency($(this));
+      // formatCurrency($(this));
     },
     blur: function () {
-      formatCurrency($(this), "blur");
+      // formatCurrency($(this), "blur");
     },
   });
 };
@@ -152,8 +152,7 @@ var calculateOutput = function () {
 
   });
 
-  jQuery(".overhead-total input").val(overheadSum);
-  formatCurrency(jQuery(".overhead-total input"));
+  jQuery(".overhead-total input").val(formatValCurrency(overheadSum));
 
   if (overheadSum > 0) {
     $(".gform_page:last-of-type .gform_page_footer").show();

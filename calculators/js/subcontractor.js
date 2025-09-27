@@ -36,11 +36,11 @@ var refreshInputEventhandlers = function () {
   });
 
   jQuery(".overhead-table td:nth-child(3) input").on({
-    keyup: function () {
-      formatCurrency($(this));
-    },
+    keyup: delay(function (e) {
+      // formatCurrency($(this));
+    }, 500),
     blur: function () {
-      formatCurrency($(this), "blur");
+      // formatCurrency($(this), "blur");
     },
   });
 
@@ -61,10 +61,10 @@ var refreshInputEventhandlers = function () {
 
   jQuery(".overhead-table td:nth-child(2) input").on({
     keyup: function () {
-      formatCurrency($(this));
+      // formatCurrency($(this));
     },
     blur: function () {
-      formatCurrency($(this), "blur");
+      // formatCurrency($(this), "blur");
     },
   });
 };
@@ -151,8 +151,7 @@ var calculateOutput = function () {
 
   });
 
-  jQuery(".overhead-total input").val(overheadSum);
-  formatCurrency(jQuery(".overhead-total input"));
+  jQuery(".overhead-total input").val(formatValCurrency(overheadSum));
 
   if (overheadSum > 0) {
     // $(".gform_page:last-of-type .gform_page_footer").show();

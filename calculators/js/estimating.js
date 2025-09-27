@@ -122,12 +122,12 @@ var calcFields = {
           }
         },
         {
-          id: "totalProfit", format: "number", calculation: function (obj, fields) {
-            return '';
+          id: "totalProfit", format: "currency", calculation: function (obj, fields) {
+            return (obj.totalBreakeven / (1 - (fields.profitMargin / 100))) - obj.totalBreakeven
           }
         },
         {
-          id: "totalFinal", format: "currency", calculation: function (obj, fields) {
+          id: "totalFinal", format: "currency", class: "bold", calculation: function (obj, fields) {
             return obj.materialFinal + obj.laborFinal + obj.equipmentFinal + obj.subcontractorFinal
           }
         },
@@ -149,8 +149,8 @@ var calcFields = {
           }
         },
         {
-          id: "materialFinal1", format: "number", calculation: function (obj, fields) {
-            return ''
+          id: "materialFinal1", format: "currency", calculation: function (obj, fields) {
+            return obj.materialFinal
           }
         },
         {
@@ -185,8 +185,8 @@ var calcFields = {
           }
         },
         {
-          id: "laborFinal1", format: "number", calculation: function (obj, fields) {
-            return ''
+          id: "laborFinal1", format: "currency", calculation: function (obj, fields) {
+            return obj.laborFinal
           }
         },
         {
@@ -219,8 +219,8 @@ var calcFields = {
           }
         },
         {
-          id: "equipmentFinal1", format: "number", calculation: function (obj, fields) {
-            return ''
+          id: "equipmentFinal1", format: "currency", calculation: function (obj, fields) {
+            return obj.equipmentFinal
           }
         },
         {
@@ -253,8 +253,8 @@ var calcFields = {
           }
         },
         {
-          id: "subcontractorFinal1", format: "number", calculation: function (obj, fields) {
-            return ''
+          id: "subcontractorFinal1", format: "currency", calculation: function (obj, fields) {
+            return obj.subcontractorFinal
           }
         },
         {
@@ -288,12 +288,15 @@ var calcFields = {
           }
         },
         {
-          id: "totalActualPerc", format: "number", calculation: function (obj, fields) {
-            return '';
+          id: "totalActualPerc", format: "percent", shade: function (value) {
+            if (!value) { return '' }
+            return value > 0 ? 'red' : 'green'
+          }, calculation: function (obj, fields) {
+            return Math.round((1 - (obj.totalActualCosts / obj.totalHardCosts)) * -10000) / 100
           }
         },
         {
-          id: "totalFinal", format: "currency", calculation: function (obj, fields) {
+          id: "totalFinal", format: "currency", class: 'bold', calculation: function (obj, fields) {
             return obj.materialFinal + obj.laborFinal + obj.equipmentFinal + obj.subcontractorFinal
           }
         },
@@ -373,7 +376,7 @@ createTable = function () {
         } else {
           var val = obj[col.id] !== undefined && !isNaN(obj[col.id]) ? obj[col.id] : ''
           var shade = col.shade && col.shade(val)
-          tr.append("<td class='" + (shade || '') + "' format='" + col.format + "'>" + val + "</td>");
+          tr.append("<td class='" +  (col.class ? (col.class + ' ') : '') + (shade || '') + "' format='" + col.format + "'>" + val + "</td>");
         }
         table.append(tr);
       });
@@ -589,6 +592,7 @@ createEditPopup = function (selectedIndex) {
     }
 
     createTable();
+    createTable(); //run twice for calcs
     jQuery("#addDetailForm").modal("hide");
 
   });

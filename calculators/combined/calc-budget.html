@@ -1,204 +1,210 @@
 <div class='calc_block'>
   <h2 class='calc-heading'>Budget calculator</h3>
-  <div class='gform_body'>
-    <div class='tab_page'>
-      <div class='gform_page_fields'>
-        <ul id='gform_fields_60' class='gform_fields top_label form_sublabel_below description_below'>
-          <li id='field_60_39' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_39'>Season Start Date</label>
-            <div class='ginput_container ginput_container_date'>
-              <input name='input_39' id='input_60_39' type='text' value='' class='datepicker embed-datepicker medium ymd_slash datepicker_no_icon' aria-describedby='input_60_39_date_format' />
-              <span id='input_60_39_date_format' class='screen-reader-text'>Date Format: YYYY slash MM slash DD</span>
-            </div>
-            <input type='hidden' id='gforms_calendar_icon_input_60_39' class='gform_hidden' value='https://synkedup.com/wp-content/plugins/gravityforms/images/calendar.png' />
-          </li>
-          <li id='field_60_40' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_40'>Season End Date</label>
-            <div class='ginput_container ginput_container_date'>
-              <input name='input_40' id='input_60_40' type='text' value='' class='datepicker embed-datepicker medium ymd_slash datepicker_no_icon' aria-describedby='input_60_40_date_format' />
-              <span id='input_60_40_date_format' class='screen-reader-text'>Date Format: YYYY slash MM slash DD</span>
-            </div>
-            <input type='hidden' id='gforms_calendar_icon_input_60_40' class='gform_hidden' value='https://synkedup.com/wp-content/plugins/gravityforms/images/calendar.png' />
-          </li>
-          <li id='field_60_41' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_41'>Number of normal working days in a week</label>
-            <div class='ginput_container ginput_container_select'><select name='input_41' id='input_60_41' class='medium gfield_select' aria-invalid="false">
-                <option value='1'>1</option>
-                <option value='2'>2</option>
-                <option value='3'>3</option>
-                <option value='4'>4</option>
-                <option value='5' selected='selected'>5</option>
-                <option value='6'>6</option>
-                <option value='7'>7</option>
-              </select></div>
-          </li>
-          <li id='field_60_42' class='gfield gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
-            <hr class="block-separator" />
-          </li>
-          <li id='field_60_6' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_6'>Sales Goal</label>
-            <div class='gfield_description' id='gfield_description_60_6'>Enter your sales goal projection for the upcoming year </div>
-            <div class='ginput_container ginput_container_number'><input name='input_6' id='input_60_6' type='text' value='$0.00' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_6" /></div>
-          </li>
-          <li id='field_60_48' class='gfield tabs-link-small gfield_html gfield_html_formatted field_sublabel_below field_description_below gfield_visibility_visible'><a href="#sales">Calculate this for me</a></li>
-          <li id='field_60_7' class='gfield calculator-input input-inline-help field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_7'>Total Field Labor Costs</label>
-            <div class='gfield_description' id='gfield_description_60_7'>Enter your projected field labor costs for the upcoming year.</div>
-            <div class='ginput_container ginput_container_number'><input name='input_7' id='input_60_7' type='text' value='$0.00' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_7" /></div>
-          </li>
-          <li id='field_60_49' class='gfield tabs-link-small gfield_html gfield_html_formatted field_sublabel_below field_description_below gfield_visibility_visible'><a href="#labor">Calculate this for me</a></li>
-          <li id='field_60_20' class='gfield inline-help gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
-            <div class="help-modal">
-              <div class="help-modal-content">
-                <span class="help-close">&times;</span>
-                <p>Enter your projected field labor costs for the upcoming year. (this number needs to INCLUDE LABOR BURDEN ie. payroll taxes, workers comp, vacation pay, benefits, bonuses, etc) Keep in mind this is only for employees that work on billable jobs that generate revenue. It would not include a role such as office admin, as that would get entered in Overhead </p>
+    <div class='gform_body'>
+      <div class='tab_page'>
+        <div class='gform_page_fields'>
+          <ul id='gform_fields_60' class='gform_fields top_label form_sublabel_below description_below'>
+            <li id='field_60_57' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible prominent'><label class='gfield_label' for='input_60_57'>Desired Net Profit Percentage</label>
+              <div class='gfield_description' id='gfield_description_60_57'>Enter your desired net profit percentage </div>
+              <div class='ginput_container ginput_container_number'><input name='input_6' id='input_60_57' type='text' value='20.00' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_57"/></div>
+            </li>
+            <li id='field_60_39' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_39'>Season Start Date</label>
+              <div class='ginput_container ginput_container_date'>
+                <input name='input_39' id='input_60_39' type='text' value='' class='datepicker gform-datepicker ymd_slash datepicker_no_icon gdatepicker-no-icon' placeholder="yyyy/mm/dd" aria-describedby='input_60_39_date_format' />
+                <span id='input_60_39_date_format' class='screen-reader-text'>Date Format: YYYY slash MM slash DD</span>
               </div>
-            </div>
-          </li>
-          <li id='field_60_23' class='gfield calculator-input input-inline-help field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_23'>Total Field Labor Hours</label>
-            <div class='gfield_description' id='gfield_description_60_23'>Enter the total hours you project your field employees will work during the year.</div>
-            <div class='ginput_container ginput_container_number'><input name='input_23' id='input_60_23' type='text' value='0' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_23" /></div>
-          </li>
-          <li id='field_60_24' class='gfield inline-help gfield_html gfield_html_formatted field_sublabel_below field_description_below gfield_visibility_visible'>
-            <div class="help-modal">
-              <div class="help-modal-content">
-                <span class="help-close">&times;</span>
-                <p>Enter the total hours you project your field employees will work this year. Easiest way to estimate this is look at last year, adjust for any +/- new employees, etc and estimate what the total will be this year. Do NOT enter hours for overhead employees such as office admin, shop mechanic, etc </p>
+              <input type='hidden' id='gforms_calendar_icon_input_60_39' class='gform_hidden' value='https://synkedup.com/wp-content/plugins/gravityforms/images/calendar.png' />
+            </li>
+            <li id='field_60_40' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_40'>Season End Date</label>
+              <div class='ginput_container ginput_container_date'>
+                <input name='input_40' id='input_60_40' type='text' value='' class='datepicker gform-datepicker ymd_slash datepicker_no_icon gdatepicker-no-icon' placeholder="yyyy/mm/dd" aria-describedby='input_60_40_date_format' />
+                <span id='input_60_40_date_format' class='screen-reader-text'>Date Format: YYYY slash MM slash DD</span>
               </div>
-            </div>
-          </li>
-          <li id='field_60_21' class='gfield budget-ratio gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
-            <div class="ratio-labor-hours">
-              <span class="ratio-value">$</span>
-              <span class="ratio-text"> average wage cost per hour</span>
-            </div>
-          </li>
-          <li id='field_60_8' class='gfield calculator-input input-inline-help field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_8'>Total UNBILLABLE Hours</label>
-            <div class='gfield_description' id='gfield_description_60_8'>Now, how many of those hours you entered above were UNBILLABLE?</div>
-            <div class='ginput_container ginput_container_number'><input name='input_8' id='input_60_8' type='text' value='0' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_8" /></div>
-          </li>
-          <li id='field_60_25' class='gfield inline-help gfield_html gfield_html_formatted field_sublabel_below field_description_below gfield_visibility_visible'>
-            <div class="help-modal">
-              <div class="help-modal-content">
-                <span class="help-close">&times;</span>
-                <p>Now, how many of those hours you entered above were UNBILLABLE? Meaning they were on tasks around the shop, loading/unloading, training/meetings, callbacks on projects, etc. If you do not have any of this recorded, take your best educated guess. A common average we see is about 5% of your hours for your Field Labor employees that you entered above are UNBILLABLE. </p>
+              <input type='hidden' id='gforms_calendar_icon_input_60_40' class='gform_hidden' value='https://synkedup.com/wp-content/plugins/gravityforms/images/calendar.png' />
+            </li>
+            <li id='field_60_41' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_41'>Number of normal working days in a week</label>
+              <div class='ginput_container ginput_container_select'><select name='input_41' id='input_60_41' class='medium gfield_select' aria-invalid="false">
+                  <option value='1'>1</option>
+                  <option value='2'>2</option>
+                  <option value='3'>3</option>
+                  <option value='4'>4</option>
+                  <option value='5' selected='selected'>5</option>
+                  <option value='6'>6</option>
+                  <option value='7'>7</option>
+                </select></div>
+            </li>
+            <li id='field_60_42' class='gfield gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
+              <hr class="block-separator" />
+            </li>
+            <li id='field_60_7' class='gfield calculator-input input-inline-help field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_7'>Total Field Labor Costs</label>
+              <div class='gfield_description' id='gfield_description_60_7'>Enter your projected field labor costs for the upcoming year.</div>
+              <div class='ginput_container ginput_container_number'><input name='input_7' id='input_60_7' type='text' value='$0.00' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_7" disabled /></div>
+            </li>
+            <li id='field_60_49' class='gfield tabs-link-small gfield_html gfield_html_formatted field_sublabel_below field_description_below gfield_visibility_visible'><a href="#labor">Calculate this for me</a></li>
+            <li id='field_60_20' class='gfield inline-help gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
+              <div class="help-modal">
+                <div class="help-modal-content">
+                  <span class="help-close">&times;</span>
+                  <p>Enter your projected field labor costs for the upcoming year. (this number needs to INCLUDE LABOR BURDEN ie. payroll taxes, workers comp, vacation pay, benefits, bonuses, etc) Keep in mind this is only for employees that work on billable jobs that generate revenue. It would not include a role such as office admin, as that would get entered in Overhead </p>
+                </div>
               </div>
-            </div>
-          </li>
-          <li id='field_60_26' class='gfield budget-ratio gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
-            <div class="ratio-unbillable">
-              <span class="ratio-value">%</span>
-              <span class="ratio-text"> of hours are unbillable</span>
-            </div>
-          </li>
-          <li id='field_60_9' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_9'>Material Costs</label>
-            <div class='gfield_description' id='gfield_description_60_9'>Enter the projected annual cost of materials for billable jobs for the upcoming year.</div>
-            <div class='ginput_container ginput_container_number'><input name='input_9' id='input_60_9' type='text' value='$0.00' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_9" /></div>
-          </li>
-          <li id='field_60_50' class='gfield tabs-link-small gfield_html gfield_html_formatted field_sublabel_below field_description_below gfield_visibility_visible'><a href="#materials">Calculate this for me</a></li>
-          <li id='field_60_27' class='gfield calculator-input input-inline-help field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_27'>Billable-by-the-unit Equipment Costs</label>
-            <div class='gfield_description' id='gfield_description_60_27'>Enter the projected annual cost of ownership for equipment that you bill out for (ie.: per hr/day). </div>
-            <div class='ginput_container ginput_container_number'><input name='input_27' id='input_60_27' type='text' value='$0.00' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_27" /></div>
-          </li>
-          <li id='field_60_51' class='gfield tabs-link-small gfield_html gfield_html_formatted field_sublabel_below field_description_below gfield_visibility_visible'><a href="#equipment">Calculate this for me</a></li>
-          <li id='field_60_28' class='gfield inline-help gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
-            <div class="help-modal">
-              <div class="help-modal-content">
-                <span class="help-close">&times;</span>
-                <p>Enter the projected annual cost of ownership for equipment that you bill out for (ie.: per hr/day) If a piece of equip is already paid for, remember, you will need to replace it someday and that paid-for equipment is still depreciating in value.</p>
+            </li>
+            <li id='field_60_23' class='gfield calculator-input input-inline-help field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_23'>Total Field Labor Hours</label>
+              <div class='gfield_description' id='gfield_description_60_23'>Enter the total hours you project your field employees will work during the year.</div>
+              <div class='ginput_container ginput_container_number'><input name='input_23' id='input_60_23' type='text' value='0' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_23" /></div>
+            </li>
+            <li id='field_60_24' class='gfield inline-help gfield_html gfield_html_formatted field_sublabel_below field_description_below gfield_visibility_visible'>
+              <div class="help-modal">
+                <div class="help-modal-content">
+                  <span class="help-close">&times;</span>
+                  <p>Enter the total hours you project your field employees will work this year. Easiest way to estimate this is look at last year, adjust for any +/- new employees, etc and estimate what the total will be this year. Do NOT enter hours for overhead employees such as office admin, shop mechanic, etc </p>
+                </div>
               </div>
-            </div>
-          </li>
-          <li id='field_60_29' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_29'>Subcontractor Costs</label>
-            <div class='gfield_description' id='gfield_description_60_29'>Enter the projected annual cost for subcontractors that you pay yourself, but then pass on/mark up the cost to the customer.</div>
-            <div class='ginput_container ginput_container_number'><input name='input_29' id='input_60_29' type='text' value='$0.00' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_29" /></div>
-          </li>
-          <li id='field_60_52' class='gfield tabs-link-small gfield_html gfield_html_formatted field_sublabel_below field_description_below gfield_visibility_visible'><a href="#subcontractor">Calculate this for me</a></li>
-          <li id='field_60_30' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_30'>Overhead Costs</label>
-            <div class='gfield_description' id='gfield_description_60_30'>Enter projection of all overhead costs for upcoming year.</div>
-            <div class='ginput_container ginput_container_number'><input name='input_30' id='input_60_30' type='text' value='$0.00' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_30" /></div>
-          </li>
-          <li id='field_60_53' class='gfield tabs-link-small gfield_html gfield_html_formatted field_sublabel_below field_description_below gfield_visibility_visible'><a href="#overhead">Calculate this for me</a></li>
-          <li id='field_60_31' class='gfield inline-help gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
-            <div class="help-modal">
-              <div class="help-modal-content">
-                <span class="help-close">&times;</span>
-                <p>Enter projection of all overhead costs for upcoming year. This includes anything to "keep the lights on" plus insurances, equipment that doesn't get billed out for on a per hr/day basis, property rent/payments, trucks, any labor that does not get directly billed for on jobs (Office admin, salesperson, owner wages), etc (NOTE: Do NOT include the cost for the unbillable hours for your Field Labor employees, we already calculated that).</p>
+            </li>
+            <li id='field_60_21' class='gfield budget-ratio gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
+              <div class="ratio-labor-hours">
+                <span class="ratio-value">$</span>
+                <span class="ratio-text"> average wage cost per hour</span>
               </div>
-            </div>
-          </li>
-          <li id='field_60_45' class='gfield gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
-            <hr class="block-separator" />
-            <h3>Overhead Markup % Per Class</h3>
-          </li>
-          <li id='field_60_37' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_37'>Material Overhead Recovery Markup Percentage</label>
-            <div class='gfield_description' id='gfield_description_60_37'>You can enter the amount of OH recovery you want to recover on Materials.</div>
-            <div class='ginput_container ginput_container_number'><input name='input_37' id='input_60_37' type='text' value='0' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_37" /></div>
-          </li>
-          <li id='field_60_33' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_33'>Equipment Overhead Recovery Markup Percentage</label>
-            <div class='gfield_description' id='gfield_description_60_33'>You can enter the amount of OH recovery you want to recover on Equipment.</div>
-            <div class='ginput_container ginput_container_number'><input name='input_33' id='input_60_33' type='text' value='0' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_33" /></div>
-          </li>
-          <li id='field_60_34' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_34'>Subcontractor Overhead Recovery Markup</label>
-            <div class='gfield_description' id='gfield_description_60_34'>You can enter the amount of OH recovery you want to recover on Subcontractors.</div>
-            <div class='ginput_container ginput_container_number'><input name='input_34' id='input_60_34' type='text' value='0' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_34" /></div>
-          </li>
-          <li id='field_60_38' class='gfield calculator-output field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_38'>Labor Overhead Recovery Markup</label>
-            <div class='ginput_container ginput_container_text'><input name='input_38' id='input_60_38' type='text' value='' class='medium' aria-invalid="false" /></div>
-          </li>
-        </ul>
+            </li>
+            <li id='field_60_8' class='gfield calculator-input input-inline-help field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_8'>Total UNBILLABLE Hours</label>
+              <div class='gfield_description' id='gfield_description_60_8'>Now, how many of those hours you entered above were UNBILLABLE?</div>
+              <div class='ginput_container ginput_container_number'><input name='input_8' id='input_60_8' type='text' value='0' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_8" /></div>
+            </li>
+            <li id='field_60_25' class='gfield inline-help gfield_html gfield_html_formatted field_sublabel_below field_description_below gfield_visibility_visible'>
+              <div class="help-modal">
+                <div class="help-modal-content">
+                  <span class="help-close">&times;</span>
+                  <p>Now, how many of those hours you entered above were UNBILLABLE? Meaning they were on tasks around the shop, loading/unloading, training/meetings, callbacks on projects, etc. If you do not have any of this recorded, take your best educated guess. A common average we see is about 5% of your hours for your Field Labor employees that you entered above are UNBILLABLE. </p>
+                </div>
+              </div>
+            </li>
+            <li id='field_60_26' class='gfield budget-ratio gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
+              <div class="ratio-unbillable">
+                <span class="ratio-value">%</span>
+                <span class="ratio-text"> of hours are unbillable</span>
+              </div>
+            </li>
+            <li id='field_60_9' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_9'>Material Costs</label>
+              <div class='gfield_description' id='gfield_description_60_9'>Enter the projected annual cost of materials for billable jobs for the upcoming year.</div>
+              <div class='ginput_container ginput_container_number'><input name='input_9' id='input_60_9' type='text' value='$0.00' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_9" disabled /></div>
+            </li>
+            <li id='field_60_50' class='gfield tabs-link-small gfield_html gfield_html_formatted field_sublabel_below field_description_below gfield_visibility_visible'><a href="#materials">Calculate this for me</a></li>
+            <li id='field_60_27' class='gfield calculator-input input-inline-help field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_27'>Billable-by-the-unit Equipment Costs</label>
+              <div class='gfield_description' id='gfield_description_60_27'>Enter the projected annual cost of ownership for equipment that you bill out for (ie.: per hr/day). </div>
+              <div class='ginput_container ginput_container_number'><input name='input_27' id='input_60_27' type='text' value='$0.00' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_27" disabled /></div>
+            </li>
+            <li id='field_60_51' class='gfield tabs-link-small gfield_html gfield_html_formatted field_sublabel_below field_description_below gfield_visibility_visible'><a href="#equipment">Calculate this for me</a></li>
+            <li id='field_60_28' class='gfield inline-help gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
+              <div class="help-modal">
+                <div class="help-modal-content">
+                  <span class="help-close">&times;</span>
+                  <p>Enter the projected annual cost of ownership for equipment that you bill out for (ie.: per hr/day) If a piece of equip is already paid for, remember, you will need to replace it someday and that paid-for equipment is still depreciating in value.</p>
+                </div>
+              </div>
+            </li>
+            <li id='field_60_29' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_29'>Subcontractor Costs</label>
+              <div class='gfield_description' id='gfield_description_60_29'>Enter the projected annual cost for subcontractors that you pay yourself, but then pass on/mark up the cost to the customer.</div>
+              <div class='ginput_container ginput_container_number'><input name='input_29' id='input_60_29' type='text' value='$0.00' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_29" disabled /></div>
+            </li>
+            <li id='field_60_52' class='gfield tabs-link-small gfield_html gfield_html_formatted field_sublabel_below field_description_below gfield_visibility_visible'><a href="#subcontractor">Calculate this for me</a></li>
+            <li id='field_60_30' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_30'>Overhead Costs</label>
+              <div class='gfield_description' id='gfield_description_60_30'>Enter projection of all overhead costs for upcoming year.</div>
+              <div class='ginput_container ginput_container_number'><input name='input_30' id='input_60_30' type='text' value='$0.00' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_30" disabled /></div>
+            </li>
+            <li id='field_60_53' class='gfield tabs-link-small gfield_html gfield_html_formatted field_sublabel_below field_description_below gfield_visibility_visible'><a href="#overhead">Calculate this for me</a></li>
+            <li id='field_60_31' class='gfield inline-help gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
+              <div class="help-modal">
+                <div class="help-modal-content">
+                  <span class="help-close">&times;</span>
+                  <p>Enter projection of all overhead costs for upcoming year. This includes anything to "keep the lights on" plus insurances, equipment that doesn't get billed out for on a per hr/day basis, property rent/payments, trucks, any labor that does not get directly billed for on jobs (Office admin, salesperson, owner wages), etc (NOTE: Do NOT include the cost for the unbillable hours for your Field Labor employees, we already calculated that).</p>
+                </div>
+              </div>
+            </li>
+            <li id='field_60_45' class='gfield gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
+              <hr class="block-separator" />
+              <h5>Overhead Markup % Per Class</h5>
+            </li>
+            <li id='field_60_37' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_37'>Material Overhead Recovery Markup Percentage</label>
+              <div class='gfield_description' id='gfield_description_60_37'>You can enter the amount of OH recovery you want to recover on Materials.</div>
+              <div class='ginput_container ginput_container_number'><input name='input_37' id='input_60_37' type='text' value='0' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_37" /></div>
+            </li>
+            <li id='field_60_33' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_33'>Equipment Overhead Recovery Markup Percentage</label>
+              <div class='gfield_description' id='gfield_description_60_33'>You can enter the amount of OH recovery you want to recover on Equipment.</div>
+              <div class='ginput_container ginput_container_number'><input name='input_33' id='input_60_33' type='text' value='0' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_33" /></div>
+            </li>
+            <li id='field_60_34' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_34'>Subcontractor Overhead Recovery Markup</label>
+              <div class='gfield_description' id='gfield_description_60_34'>You can enter the amount of OH recovery you want to recover on Subcontractors.</div>
+              <div class='ginput_container ginput_container_number'><input name='input_34' id='input_60_34' type='text' value='0' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_34" /></div>
+            </li>
+            <li id='field_60_38' class='gfield calculator-output field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_38'>Labor Overhead Recovery Markup</label>
+              <div class='ginput_container ginput_container_text'><input name='input_38' id='input_60_38' type='text' value='' class='medium' aria-invalid="false" /></div>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class='tab_page' style='display:none;'>
-      <div class='gform_page_fields'>
-        <ul id='gform_fields_60_2' class='gform_fields top_label form_sublabel_below description_below'>
-          <li id='field_60_5' class='gfield gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
-            <!-- Embed 1 load start-->
-            <script>
-              $(function () {
-                $("#embed2").load("/wp-content/themes/gutenberg/calculators/partials/budget-embed2.html", function() {
-                  $("#embed1").load("/wp-content/themes/gutenberg/calculators/partials/budget-embed1.html");
+      <div class='tab_page' style='display:none;'>
+        <div class='gform_page_fields'>
+          <ul id='gform_fields_60_2' class='gform_fields top_label form_sublabel_below description_below'>
+            <li id='field_60_5' class='gfield gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
+              <!-- Embed 1 load start-->
+              <script>
+                $(function () {
+                  $("#embed2").load("/wp-content/themes/synkedup/calculators/partials/budget-embed2.html", function () {
+                    $("#embed1").load("/wp-content/themes/synkedup/calculators/partials/budget-embed1.html");
+                  });
                 });
-              });
-            </script>
-            <div id="embed1"></div>
-            <!-- Embed 1 load end -->
-          </li>
-          <li id='field_60_18' class='gfield gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
+              </script>
+              <div id="embed1"></div>
+              <!-- Embed 1 load end -->
+            </li>
+            <li id='field_60_18' class='gfield gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
 
-          </li>
-          <li id='field_60_35' class='gfield calculator-output field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_35'>Production Days</label>
-            <div class='ginput_container ginput_container_text'><input name='input_35' id='input_60_35' type='text' value='' class='medium' aria-invalid="false" /></div>
-          </li>
-          <li id='field_60_36' class='gfield calculator-output field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_36'>Net Profit Margin</label>
-            <div class='ginput_container ginput_container_text'><input name='input_36' id='input_60_36' type='text' value='' class='medium' aria-invalid="false" /></div>
-          </li>
-          <li id='field_60_4' class='gfield calculator-output field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_4'>Total COGs</label>
-            <div class='ginput_container ginput_container_text'><input name='input_4' id='input_60_4' type='text' value='' class='medium' aria-invalid="false" /></div>
-          </li>
-          <li id='field_60_11' class='gfield calculator-output field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_11'>Gross Profit</label>
-            <div class='ginput_container ginput_container_text'><input name='input_11' id='input_60_11' type='text' value='' class='medium' aria-invalid="false" /></div>
-          </li>
-          <li id='field_60_13' class='gfield calculator-output calculator-output-highlight calculator-output calculator-output-wide field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_13'>Net Profit</label>
-            <div class='ginput_container ginput_container_text'><input name='input_13' id='input_60_13' type='text' value='' class='medium' aria-invalid="false" /></div>
-          </li>
-          <li id='field_60_47' class='gfield calculator-output calculator-output-highlight field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_47'>Man Hour Price</label>
-            <div class='ginput_container ginput_container_text'><input name='input_47' id='input_60_47' type='text' value='' class='medium' aria-invalid="false" /></div>
-          </li>
-          <li id='field_60_43' class='gfield export-summary-json field_sublabel_below field_description_below gfield_visibility_visible'><label class='gfield_label' for='input_60_43'>Export data</label>
-            <div class='ginput_container ginput_container_textarea'><textarea name='input_43' id='input_60_43' class='textarea medium' aria-describedby="gfield_description_60_43" aria-invalid="false" rows='10' cols='50'></textarea></div>
-            <div class='gfield_description' id='gfield_description_60_43'>Copy and paste this data in a text editor. You can import this data using the import button</div>
-          </li>
-          <li id='field_60_44' class='gfield export-summary field_sublabel_below field_description_below gfield_visibility_visible'><label class='gfield_label' for='input_60_44'>Values</label>
-            <div class='ginput_container ginput_container_textarea'><textarea name='input_44' id='input_60_44' class='textarea medium' aria-invalid="false" rows='10' cols='50'></textarea></div>
-          </li>
-          <li id='field_60_14' class='gfield gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
-            <!-- Embed 2 load start-->
-            <div id="embed2"></div>
-            <!-- Embed 2 load end -->
-          </li>
-          <li id='field_60_32' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_32'>Your Cost for Material Items</label>
-            <div class='gfield_description' id='gfield_description_60_32'>Simulate what a material item would be priced at for your customer by entering your hard cost (as an example)</div>
-            <div class='ginput_container ginput_container_number'><input name='input_32' id='input_60_32' type='text' value='$0.00' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_32" /></div>
-          </li>
-        </ul>
+            </li>
+            <li id='field_60_35' class='gfield calculator-output field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_35'>Production Days</label>
+              <div class='ginput_container ginput_container_text'><input name='input_35' id='input_60_35' type='text' value='' class='medium' aria-invalid="false" /></div>
+            </li>
+            <li id="field_60_56" class="gfield calculator-output field_sublabel_below field_description_above gfield_visibility_visible"><label class="gfield_label" for="input_60_56">Breakeven Amount</label>
+              <div class="ginput_container ginput_container_text"><input name="input_56" id="input_60_56" type="text" value="" class="medium" aria-invalid="false"></div>
+            </li>
+            <li id='field_60_36' class='gfield calculator-output field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_36'>Net Profit Margin</label>
+              <div class='ginput_container ginput_container_text'><input name='input_36' id='input_60_36' type='text' value='' class='medium' aria-invalid="false" /></div>
+            </li>
+            <li id='field_60_4' class='gfield calculator-output field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_4'>Total COGs</label>
+              <div class='ginput_container ginput_container_text'><input name='input_4' id='input_60_4' type='text' value='' class='medium' aria-invalid="false" /></div>
+            </li>
+            <li id='field_60_11' class='gfield calculator-output field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_11'>Gross Profit</label>
+              <div class='ginput_container ginput_container_text'><input name='input_11' id='input_60_11' type='text' value='' class='medium' aria-invalid="false" /></div>
+            </li>
+            <li id='field_60_58' class='gfield calculator-output field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_58'>Sales Goal</label>
+              <div class='ginput_container ginput_container_text'><input name='input_11' id='input_60_58' type='text' value='' class='medium' aria-invalid="false" /></div>
+            </li>
+            <li id='field_60_13' class='gfield calculator-output calculator-output-highlight calculator-output calculator-output-wide field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_13'>Net Profit</label>
+              <div class='ginput_container ginput_container_text'><input name='input_13' id='input_60_13' type='text' value='' class='medium' aria-invalid="false" /></div>
+            </li>
+            <li id='field_60_47' class='gfield calculator-output calculator-output-highlight field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_47'>Man Hour Price</label>
+              <div class='ginput_container ginput_container_text'><input name='input_47' id='input_60_47' type='text' value='' class='medium' aria-invalid="false" /></div>
+            </li>
+            <li id='field_60_43' class='gfield export-summary-json field_sublabel_below field_description_below gfield_visibility_visible'><label class='gfield_label' for='input_60_43'>Export data</label>
+              <div class='ginput_container ginput_container_textarea'><textarea name='input_43' id='input_60_43' class='textarea medium' aria-describedby="gfield_description_60_43" aria-invalid="false" rows='10' cols='50'></textarea></div>
+              <div class='gfield_description' id='gfield_description_60_43'>Copy and paste this data in a text editor. You can import this data using the import button</div>
+            </li>
+            <li id='field_60_44' class='gfield export-summary field_sublabel_below field_description_below gfield_visibility_visible'><label class='gfield_label' for='input_60_44'>Values</label>
+              <div class='ginput_container ginput_container_textarea'><textarea name='input_44' id='input_60_44' class='textarea medium' aria-invalid="false" rows='10' cols='50'></textarea></div>
+            </li>
+            <li id='field_60_14' class='gfield gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below field_description_below gfield_visibility_visible'>
+              <!-- Embed 2 load start-->
+              <div id="embed2"></div>
+              <!-- Embed 2 load end -->
+            </li>
+            <li id='field_60_32' class='gfield calculator-input field_sublabel_below field_description_above gfield_visibility_visible'><label class='gfield_label' for='input_60_32'>Your Cost for Material Items</label>
+              <div class='gfield_description' id='gfield_description_60_32'>Simulate what a material item would be priced at for your customer by entering your hard cost (as an example)</div>
+              <div class='ginput_container ginput_container_number'><input name='input_32' id='input_60_32' type='text' value='$0.00' class='medium' aria-invalid="false" aria-describedby="gfield_description_60_32" /></div>
+            </li>
+
+          </ul>
+        </div>
+
       </div>
-
     </div>
-  </div>
 </div>

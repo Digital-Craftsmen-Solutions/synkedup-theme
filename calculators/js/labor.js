@@ -56,7 +56,7 @@ var equipment_fields = {
       format: "currency",
       calculation: function (input) {
         return (
-          (Number(input["Hourly wage"]) * (Number(input["Total hours worked per year"]))) +
+          (Number(input["Hourly wage"]) * ( Number(input["Total hours worked per year"]) -  Number(input["Overtime hours"]) )) +
           (Number(input["Hourly wage"]) * (Number(input["Overtime hours"])) * (Number(input["Overtime multiplier"] || 1))) + Number(input["Bonuses"])
         )
       }

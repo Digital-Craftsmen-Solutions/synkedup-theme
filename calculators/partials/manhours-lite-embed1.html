@@ -1,33 +1,31 @@
-.gform_wrapper .overhead-table table.gfield_list thead th,
-  div.gform_wrapper .overhead-table table.gfield_list thead {
-    position: unset;
-  }
+<!--Embed start-->
+<h3>Makeup of your Man-hour</h3>
+<div id="donutchart" style="width: 100%; height: 300px"></div>
+<div class="chart-placeholder">
+  <div class="layer">
+    <h4>
+      Enter the values on the left to view your man hour and
+      profit graph
+    </h4>
+  </div>
+</div>
 
-  @media (min-width: 762px) {
-    .overhead-table thead tr th:first-child,
-    .overhead-table tbody tr td:first-child {
-      width: 40%;
+<style>
+  #donutchart {
+    margin: auto;
+    max-width: 400px;
+  }
+  
+  @media (max-width: 480px) {
+    #donutchart {
+      max-width: 300px;
     }
   }
-
-  .gform_wrapper table.gfield_list td:first-child {
-    padding-right: 5px;
-  }
-
-  .gform_page:last-of-type .gform_page_fields, .tab_page:last-of-type .gform_page_fields {
-    position: sticky;
-    top: 0;
-  }
-
-  .gform_page:last-of-type .gform_page_footer, .tab_page:last-of-type .gform_page_footer {
-    position: sticky;
-    top: 600px;
-  }
-
+  
   .chart-placeholder {
-    height: 100px;
+    height: 300px;
     text-align: center;
-
+    background: url(https://synkedup.com/wp-content/uploads/2021/08/graph-copy.png);
     background-size: contain;
     background-repeat: no-repeat;
   }
@@ -38,23 +36,6 @@
     padding: 20px;
     margin: 0px 10px;
     border-radius: 11px;
-  }
-
-  .clear-values {
-    cursor: pointer;
-    color: red;
-    font-size: 13px;
-    float: right;
-    margin: 20px 5px;
-  }
-
-  .import-toggle,
-  .export-toggle {
-    float: right;
-    cursor: pointer;
-    color: #333333;
-    font-size: 13px;
-    margin: 20px 5px;
   }
 
   .layer {
@@ -82,12 +63,12 @@
     color: #000;
   }
 
-  .gform_page:first-of-type, .tab_page:first-of-type {
+  .gform_page:first-of-type {
     background: #d0d6da;
     padding-bottom: 20px;
   }
 
-  .gform_page:last-of-type, .tab_page:last-of-type {
+  .gform_page:last-of-type {
     border: 1px #d0d6da solid;
     padding-bottom: 20px;
   }
@@ -96,7 +77,7 @@
     display: flex;
   }
 
-  .gform_page, .tab_page {
+  .gform_page {
     flex-grow: 1;
     flex-basis: 0;
   }
@@ -105,24 +86,12 @@
     display: none !important;
   }
 
-  div.gform_wrapper .section-heading input:not([type="radio"]):not([type="checkbox"]):not([type="button"]):not([type="submit"]),
-  div.gform_wrapper select {
-    border: none;
-    background: none;
-    font-weight: 600;
-    pointer-events: none;
-  }
-
-  .section-heading td:nth-child(2),
-  .section-heading td:nth-child(3),
-  .section-heading td:nth-child(4) {
-    display: none !important;
-  }
+  .gform_wrapper .gfield_description {}
 
   .gform_wrapper .input-inline-help .gfield_description:after {
     content: "";
     display: inline-block;
-    background: url("https://img.icons8.com/ios/452/help.png") no-repeat top right;
+    background: url("https://synkedup.com/wp-content/uploads/2021/09/help.png") no-repeat top right;
     width: 20px;
     height: 20px;
     background-size: 20px;
@@ -136,7 +105,7 @@
 
   body .gform_wrapper .calculator-output.calculator-output-highlight div.ginput_container input:not([type="radio"]):not([type="checkbox"]):not([type="button"]):not([type="submit"]) {
     background: #fff !important;
-    font-size: 18px !important;
+    font-size: 24px !important;
     font-weight: 700;
   }
 
@@ -170,6 +139,28 @@
     text-align: center;
   }
 
+  body .gform_wrapper ul li.gfield.calculator-output.output-sub-info {
+    margin: 0;
+  }
+
+  body .gform_wrapper .calculator-output.output-sub-info div.ginput_container {
+    margin: 0;
+  }
+
+  body .gform_wrapper .calculator-output.output-sub-info div.ginput_container input {
+    background: none !important;
+
+    height: auto !important;
+  }
+
+  html body div.gform_wrapper .calculator-output.output-sub-info div.ginput_container input:not([type=radio]):not([type=checkbox]):not([type=button]):not([type=submit]) {
+    padding: 0 !important;
+  }
+
+  body .gform_wrapper ul li.gfield.calculator-output.output-sub-info .gfield_label {
+    opacity: 0;
+  }
+
   .gform_wrapper input.large,
   .gform_wrapper input.medium,
   .gform_wrapper input.small,
@@ -179,7 +170,7 @@
     width: 100% !important;
   }
 
-  .gform_page h3, .tab_page h3  {
+  .gform_page h3 {
     text-align: center;
   }
 
@@ -187,8 +178,9 @@
     text-align: center;
   }
 
-  .inline-help {
+  body .gform_wrapper ul li.gfield.inline-help {
     display: none;
+    margin-top: 0px;
   }
 
   .help-modal {
@@ -233,7 +225,7 @@
       flex-wrap: wrap;
     }
 
-    .gform_page, .tab_page {
+    .gform_page {
       flex-basis: auto;
     }
 
@@ -243,21 +235,16 @@
     }
   }
 
-  @media only screen and (max-width: 747px) {
-    .gform_wrapper .overhead-table table.gfield_list thead th {
-      display: block;
-      width: 100%;
-    }
+  .lock-icon {
+    float: right;
+    margin-right: calc(50% - 10px);
+    margin-top: -28px;
+    position: relative;
+    z-index: 2;
   }
+</style>
 
-  .export-summary {
-    display: none !important;
-  }
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-  .export-summary-json {
-    display: none;
-  }
-  div.gform_wrapper .gfield_list td.gfield_list_cell input {
-    float: left;
-    clear: left;
-  }
+<script></script>
+<!--Embed end-->
