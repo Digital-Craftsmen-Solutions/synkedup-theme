@@ -146,8 +146,8 @@ function calculateOutput() {
 
   if (labour_hours > 1) {
     $("#" + lookup.unbillable_hours_description)
-    .eq(0)
-    .html("Now, how many of these " + labour_hours + " hours were UNBILLABLE?");
+      .eq(0)
+      .html("Now, how many of these " + labour_hours + " hours were UNBILLABLE?");
   }
 
   // Update Google Chart
@@ -182,7 +182,7 @@ jQuery(document).on(
     if (current_page == 1 && location.host != "localhost:8000") {
       $(".gform_next_button").eq(0).trigger("click");
     }
-    $(".gform_next_button").css("visibility","hidden");
+    $(".gform_next_button").css("visibility", "hidden");
   }
 );
 
@@ -190,7 +190,7 @@ $(document).ready(function () {
   console.log("Synkedup ready!");
 
   $(".gform_footer").hide();
-  $(".gform_page:first-of-type .gform_page_footer").css("visibility","hidden")
+  $(".gform_page:first-of-type .gform_page_footer").css("visibility", "hidden")
   $(".gform_page").show();
   $("#donutchart").hide();
   $(".conversion-block").hide();
@@ -224,7 +224,7 @@ $(document).ready(function () {
     );
   }
 
-  const lockIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock-icon lucide-lock"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
+  const lockIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock-icon lucide-lock lock-icon"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
 
   // Hide values for lite version
   $("#" + lookup.overhead_markup).hide();

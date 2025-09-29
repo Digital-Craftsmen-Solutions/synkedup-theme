@@ -7,7 +7,7 @@ var STORAGE_KEYS = {
   'overhead': 'saved_overhead1',
   'budget': 'saved_budget1',
 }
-  
+
 // TEMPORARY DISABLE ONBOARDING
 var onboardingEnabled = false
 
@@ -33,12 +33,12 @@ function loadTab(view) {
     $('#ctabsContent').hide();
     $('#ctabsContent').removeClass('active');
     $('#ctabsContent').empty();
-    $('#ctabsContent').load("/wp-content/themes/synkedup/calculators/combined/" + tabName + ".html?v=3", function () {
+    $('#ctabsContent').load("/wp-content/themes/synkedup-theme/calculators/combined/" + tabName + ".html?v=3", function () {
       $('#ctabsContent').show()
       setTimeout(() => {
-        $('#ctabsContent').addClass('active');  
+        $('#ctabsContent').addClass('active');
       }, 200);
-      
+
     });
 
     updateTabFigures()
@@ -111,10 +111,10 @@ function setupSummaryEvents() {
       window.location.hash = 'labor'
       setUrlParam('onboarding', 'true')
     }
-    setTimeout(function(){
+    setTimeout(function () {
       location.reload();
     }, 1000)
-    
+
   });
 
   jQuery(".import-toggle-summary").click(function () {
@@ -127,7 +127,7 @@ function setupSummaryEvents() {
   });
 }
 
-function saveDataFull (fullCalcObj) {
+function saveDataFull(fullCalcObj) {
   for (const item in STORAGE_KEYS) {
     const key = STORAGE_KEYS[item];
     if (fullCalcObj[item] && !jQuery.isEmptyObject(fullCalcObj[item])) {
@@ -195,7 +195,7 @@ function run() {
   var params = new URLSearchParams(window.location.search)
   var isOnboarding = params.get('onboarding') == 'true'
   var hasSaved = localStorage.getItem("saved_budget1") || false;
-    
+
   if (!$("#calc-" + view).length) {
     if (!isOnboarding && (!hasSaved || !hasSaved.length)) {
       isOnboarding = true

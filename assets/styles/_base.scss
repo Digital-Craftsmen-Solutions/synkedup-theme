@@ -113,12 +113,12 @@
     margin-block: var(--flow-space);
     margin-inline: auto;
 
-    &::after {
-      background-color: var(--color-border);
-      block-size: 2px;
-      content: "";
-      display: block;
-    }
+    // &::after {
+    //   background-color: var(--color-border);
+    //   block-size: 2px;
+    //   content: "";
+    //   display: block;
+    // }
   }
 
   kbd,
@@ -228,103 +228,104 @@
   /**
  * Forms
  */
-
-  form {
-    margin: 0;
-  }
-
-  fieldset {
-    border: 0;
-    padding: 0;
-  }
-
-  legend {
-    color: var(--color-text);
-    font-size: var(--font-size-body);
-    font-weight: 600;
-    padding: 0;
-  }
-
-  label {
-    color: var(--color-text-muted);
-    font-size: var(--font-size-body-small);
-    font-weight: 500;
-    margin-block-start: 0;
-  }
-
-  [type="tel"],
-  [type="url"],
-  [type="text"],
-  [type="date"],
-  [type="email"],
-  [type="search"],
-  [type="number"],
-  [type="password"],
-  textarea,
-  select {
-    appearance: none;
-    background-color: transparent;
-    border: 1px solid var(--color-border);
-    border-radius: 0;
-    caret-color: var(--color-text);
-    // color: var(--color-text);
-    // font-size: var(--font-size-body-small);
-    max-inline-size: 100%;
-    padding-block: 0.75rem;
-    padding-inline: 0.625rem;
-    transition: border-color 0.3s ease-in-out;
-
-    &::placeholder {
-      color: var(--color-border);
+  .content-form {
+    form {
+      margin: 0;
     }
 
-    &:disabled {
-      cursor: default;
-      opacity: 0.5;
-      pointer-events: none;
+    fieldset {
+      border: 0;
+      padding: 0;
     }
 
-    &:invalid {
-      border-color: var(--color-error);
-    }
-  }
-
-  select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38' fill='none'%3E%3Crect width='38' height='38' fill='rgba(255, 255, 255, 0.7)' rx='19'/%3E%3Cpath stroke='rgba(48, 48, 48, 1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8.846 15.846 19 26l10.153-10.154'/%3E%3C/svg%3E");
-    background-position: calc(100% - 0.75rem) center;
-    background-repeat: no-repeat;
-    background-size: 1.75rem;
-    line-height: 1.5;
-    padding-inline-end: 54px;
-  }
-
-  option {
-    // Fix for Windows.
-    color: initial;
-  }
-
-  textarea {
-    inline-size: 100%;
-    min-block-size: 150px;
-    resize: vertical;
-    vertical-align: top;
-  }
-
-  [type="checkbox"],
-  [type="radio"] {
-    accent-color: var(--color-primary);
-    block-size: 20px;
-    display: inline-block;
-    inline-size: 20px;
-    margin-block-start: 4px;
-    margin-inline-end: 8px;
-    vertical-align: top;
-
-    +label {
+    legend {
       color: var(--color-text);
+      font-size: var(--font-size-body);
+      font-weight: 600;
+      padding: 0;
+    }
+
+    label {
+      color: var(--color-text-muted);
+      font-size: var(--font-size-body-small);
+      font-weight: 500;
+      margin-block-start: 0;
+    }
+
+    [type="tel"],
+    [type="url"],
+    [type="text"],
+    [type="date"],
+    [type="email"],
+    [type="search"],
+    [type="number"],
+    [type="password"],
+    textarea,
+    select {
+      appearance: none;
+      background-color: transparent;
+      border: 1px solid var(--color-border);
+      border-radius: 0;
+      caret-color: var(--color-text);
+      // color: var(--color-text);
+      // font-size: var(--font-size-body-small);
+      max-inline-size: 100%;
+      padding-block: 0.75rem;
+      padding-inline: 0.625rem;
+      transition: border-color 0.3s ease-in-out;
+
+      &::placeholder {
+        color: var(--color-border);
+      }
+
+      &:disabled {
+        cursor: default;
+        opacity: 0.5;
+        pointer-events: none;
+      }
+
+      &:invalid {
+        border-color: var(--color-error);
+      }
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='38' fill='none'%3E%3Crect width='38' height='38' fill='rgba(255, 255, 255, 0.7)' rx='19'/%3E%3Cpath stroke='rgba(48, 48, 48, 1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8.846 15.846 19 26l10.153-10.154'/%3E%3C/svg%3E");
+      background-position: calc(100% - 0.75rem) center;
+      background-repeat: no-repeat;
+      background-size: 1.75rem;
+      line-height: 1.5;
+      padding-inline-end: 54px;
+    }
+
+    option {
+      // Fix for Windows.
+      color: initial;
+    }
+
+    textarea {
+      inline-size: 100%;
+      min-block-size: 150px;
+      resize: vertical;
+      vertical-align: top;
+    }
+
+    [type="checkbox"],
+    [type="radio"] {
+      accent-color: var(--color-primary);
+      block-size: 20px;
       display: inline-block;
-      font: inherit;
-      inline-size: calc(100% - 33px);
+      inline-size: 20px;
+      margin-block-start: 4px;
+      margin-inline-end: 8px;
+      vertical-align: top;
+
+      +label {
+        color: var(--color-text);
+        display: inline-block;
+        font: inherit;
+        inline-size: calc(100% - 33px);
+      }
     }
   }
 
@@ -512,6 +513,13 @@ flynt-component.sand[data-theme='light'] {
     justify-content: center;
     list-style: none;
     padding: 0;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    content: " ";
+    display: table;
+    clear: both
   }
 
 }

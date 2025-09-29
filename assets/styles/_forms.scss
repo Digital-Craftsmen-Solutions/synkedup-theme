@@ -559,12 +559,6 @@ html .gform_wrapper .gfield_label {
   display: inline-block
 }
 
-html .gform_wrapper .gform_footer input[type=submit],
-html .gform_wrapper .gform_footer input.button {
-  font-size: 12px;
-  font-weight: 700
-}
-
 html .single-inline-form .gform_wrapper .field_sublabel_hidden_label .ginput_complex.ginput_container input[type=text] {
   margin-bottom: 0
 }
@@ -594,17 +588,44 @@ html div.gform_wrapper select {
   font-size: .85rem !important;
   font-weight: 400;
   line-height: 1.5 !important;
+  color: #495057;
+  background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #666;
   border-radius: 4px;
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
 
-html .eael-gravity-form .gform_wrapper .gform_footer input.button,
-html .eael-gravity-form .gform_wrapper .gform_footer input[type=submit],
-html .eael-gravity-form .gform_wrapper .gform_page_footer input.button,
-html .eael-gravity-form .gform_wrapper .gform_page_footer input[type=submit] {
-  margin: 0 16px 0 0
+html div.gform_wrapper textarea {
+  border: 1px solid #666;
+  float: none;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  width: 100%;
+  border-radius: 4px;
+}
+
+html .gform_wrapper .gform_footer input.button,
+html .gform_wrapper .gform_button,
+html .gform_wrapper .gform_footer input[type=submit],
+html .gform_wrapper .gform_page_footer input.button,
+html .gform_wrapper .gform_page_footer input[type=submit] {
+  margin: 0 16px 0 0;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--color-primary-900);
+  }
 }
 
 html .gform_wrapper h1,
@@ -614,4 +635,30 @@ html .gform_wrapper h4,
 html .gform_wrapper h5,
 html .gform_wrapper h6 {
   margin-bottom: 20px
+}
+
+.gform-loader {
+  align-self: center;
+  animation: gformLoader 1.1s infinite linear;
+  block-size: 10em;
+  border-block-end: 1.1em solid #000;
+  border-block-start: 1.1em solid #fff;
+  border-inline-end: 1.1em solid #fff;
+  border-inline-start: 1.1em solid #000;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 2px;
+  inline-size: 10em;
+  position: relative;
+  transform: translateZ(0)
+}
+
+@keyframes gformLoader {
+  0% {
+    transform: rotate(0)
+  }
+
+  100% {
+    transform: rotate(360deg)
+  }
 }
