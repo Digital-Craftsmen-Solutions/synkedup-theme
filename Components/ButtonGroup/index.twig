@@ -1,0 +1,9 @@
+{% set buttons = model.buttons %}
+
+<div class="inline-flex rounded-lg overflow-x-auto lg:overflow-hidden [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-thumb]:rounded-sm [&::-webkit-scrollbar-track]:bg-gray-200 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-800 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-700 pb-1">
+	{% for button in buttons %}
+		<a type="button" class="py-2 px-4 items-center gap-x-2 text-sm text-nowrap transition disabled:opacity-50 disabled:pointer-events-none shadow-xs w-full md:w-auto text-center block md:inline-flex border border-border bg-light text-heading hover:text-primary focus:text-primary -ms-px first:rounded-s-xl first:ms-0 last:rounded-e-xl focus:outline-none {{ button.isActive ? 'text-primary' : '' }}" href="{{ button.url|e('esc_url') }}" target="{{ button.target|default('_self') }}">
+			{{ button.title|e('esc_html') }}
+		</a>
+	{% endfor %}
+</div>

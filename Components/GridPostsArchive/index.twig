@@ -6,49 +6,55 @@
 	<section class="tw-section tw-section-gap flex flex-col gap-8 lg:gap-12">
 
 		{% set html = isHome ? preContentHtml : description %}
-		{% include '@Components/Heading/index.twig' with { model: {
-      before: isHome ? 'Blog' : title,
-      type: isHome ? 'h2' : 'h1',
-      description: html,
-    }, options: options } only %}
+		{% if not isHome %}
+			<h1 class="hidden">Blog</h1>
+			{% include '@Components/Heading/index.twig' with { model: {
+				before: title,
+				type: 'h2',
+				description: html,
+			}, options: options } only %}
+		{% endif %}
 
 
-		<div class="flex max-w-md items-center mx-auto">
+		<div class=" flex flex-col sm:flex-row gap-4 justify-between">
+			{% if terms %}
+				{% include 'Partials/_filter.twig' %}
+			{% endif %}
+
 			<div class="relative">
 				<form class="searchForm" class="w-full" role="search" action="{{ bloginfo('url') }}" data-theme="reset">
-					<div class="flex gap-1">
+					<div class="flex group">
 						<label class="visuallyHidden" for="searchForm-input-text">Search</label>
-						<input name="s" class="md:min-w-sm bg-white dark:bg-shade-dark text-heading dark:text-white  py-2.5 sm:py-3 px-4 block w-full border-border rounded-lg focus:z-10 disabled:opacity-50 disabled:pointer-events-none dark:border-transparent focus:outline-none focus-visible:border-primary hover:border-primary" id="searchForm-input-text" type="search" required placeholder="Search" value="{{ searchQuery }}">
-						<button data-ref="" type="submit" class="py-2 px-4 items-center text-sm text-nowrap rounded-xl transition disabled:opacity-50 disabled:pointer-events-none shadow-xs text-center inline-flex border border-border bg-light text-heading hover:text-primary focus:text-primary">
-							{% include '@Components/Common/_icon.twig' with { name: 'search', ariaLabel: 'Search Icon', class: 'shrink-0 size-5' } %}
+						<input name="s" class="md:min-w-2xs bg-white dark:bg-shade-dark text-heading dark:text-white py-2 px-4 block w-full border border-border rounded-s-xl focus:z-10 disabled:opacity-50 disabled:pointer-events-none dark:border-transparent focus:outline-none focus-visible:border-primary transition" id="searchForm-input-text" type="search" required placeholder="Search" value="{{ searchQuery }}">
+						<button data-ref="" type="submit" class="py-2 px-3 items-center text-sm text-nowrap rounded-e-xl transition disabled:opacity-50 disabled:pointer-events-none shadow-xs text-center inline-flex border border-border bg-light text-heading hover:text-primary focus:text-primary -ms-px focus:outline-none focus:border-primary ">
+							{% include '@Components/Common/_icon.twig' with { name: 'search', ariaLabel: 'Search Icon', class: 'shrink-0 size-4' } %}
 						</button>
 					</div>
 				</form>
 			</div>
+
 		</div>
 
-		{% if terms %}
-			{% include 'Partials/_filter.twig' %}
-		{% endif %}
 
 		{% if posts|length > 0 %}
 			<div class="grid md:grid-cols-3 gap-6" data-ref="posts">
 				{% for post in posts %}
 					{% include '@Components/CardImage/index.twig' with { model: {
-                title: post.title,
-                description: post.excerpt.read_more(false),
-                subtitle: '%d min read'|replace({'%d': post.content|readingtime}),
-                backgroundImage: post.thumbnail,
-                actionButton: {
-                  title: 'Read More',
-                  url: post.link|e('esc_url'),
-                  target: '_blank'
-                },
-            }, options: {
-                align: 'left',
-                display: 'imageTop',
-                theme: options.theme,
-            } } only %}
+						title: post.title,
+						description: post.excerpt.read_more(false),
+						subtitle: '%d min read'|replace({'%d': post.content|readingtime}),
+						backgroundImage: post.thumbnail,
+						actionButton: {
+							title: 'Read More',
+							url: post.link|e('esc_url'),
+							target: '_blank'
+						},
+				}, options: {
+						align: 'left',
+						display: 'imageTop',
+						theme: options.theme,
+				} } only %}
+
 				{% endfor %}
 			</div>
 

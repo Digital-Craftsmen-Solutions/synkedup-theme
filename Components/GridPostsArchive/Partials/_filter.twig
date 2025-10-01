@@ -1,10 +1,1 @@
-<ul class="filter">
-	{% for term in terms %}
-		<li class="item">
-			<a href="{{ term.link|e('esc_url') }}" class="button {{- term.isActive ? '' : ' button--outlined' }}">
-				<span class="visuallyHidden">Filter By</span>
-				{{ term.title }}
-			</a>
-		</li>
-	{% endfor %}
-</ul>
+{% include '@Components/ButtonGroup/index.twig' with { model: { buttons: terms } } only %}
