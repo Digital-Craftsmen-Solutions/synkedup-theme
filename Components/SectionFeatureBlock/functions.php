@@ -3,6 +3,7 @@
 namespace Flynt\Components\SectionFeatureBlock;
 
 use Flynt\FieldVariables;
+use Flynt\Utils\Oembed;
 
 add_filter('Flynt/addComponentData?name=SectionFeatureBlock', function (array $data): array {
     $model = [
@@ -25,6 +26,15 @@ add_filter('Flynt/addComponentData?name=SectionFeatureBlock', function (array $d
         'image' => $data['mediaType'] === 'image' ? $data['image'] : null,
         'mobileImage' => $data['mediaType'] === 'image' && !empty($data['mobileImage']) ? $data['mobileImage'] : null,
         'gravityForm' => $data['mediaType'] === 'gravityForm' ? $data['gravityForm'] : null,
+        'video' => $data['mediaType'] === 'video' && !empty($data['video']) ? [
+            'posterImage' => $data['video']['posterImage'],
+            'oembed' => Oembed::setSrcAsDataAttribute(
+                $data['video']['oembed'] ?? '',
+                [
+                    'autoplay' => 'true'
+                ]
+            )
+        ] : null,
         'options' => $data['options']
     ];
 

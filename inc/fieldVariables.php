@@ -287,6 +287,50 @@ function getMedia($default = 'none')
                 ],
             ],
         ],
+        array_merge(
+            getVideo(),
+            [
+                'conditional_logic' => [
+                    [
+                        [
+                            'fieldPath' => 'mediaType',
+                            'operator' => '==',
+                            'value' => 'video',
+                        ],
+                    ],
+                ]
+            ]
+        )
+    ];
+}
+
+function getVideo(): array
+{
+    return [
+        'label' => __('Video', 'flynt'),
+        'name' => 'video',
+        'type' => 'group',
+        'layout' => 'block',
+        'sub_fields' => [
+            [
+                'label' => __('Poster Image', 'flynt'),
+                'instructions' => __('Image-Format: JPG, PNG, SVG, WebP. Aspect Ratio: 16:9. Recommended Size: 1920px × 1080px.', 'flynt'),
+                'name' => 'posterImage',
+                'type' => 'image',
+                'preview_size' => 'medium',
+                'mime_types' => 'jpg,jpeg,png,svg,webp',
+                'required' => 1,
+            ],
+            [
+                'label' => __('Video', 'flynt'),
+                'name' => 'oembed',
+                'type' => 'oembed',
+                'required' => 1,
+                'videoParams' => [
+                    'autoplay' => 1,
+                ]
+            ]
+        ]
     ];
 }
 

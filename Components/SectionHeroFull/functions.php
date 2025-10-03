@@ -4,6 +4,7 @@ namespace Flynt\Components\SectionHeroFull;
 
 use Flynt\Utils\Breadcrumbs;
 use Flynt\FieldVariables;
+use Flynt\Utils\Oembed;
 
 add_filter('Flynt/addComponentData?name=SectionHeroFull', function (array $data): array {
     $model = [
@@ -12,7 +13,15 @@ add_filter('Flynt/addComponentData?name=SectionHeroFull', function (array $data)
         'image' => $data['mediaType'] === 'image' ? $data['image'] : null,
         'mobileImage' => $data['mediaType'] === 'image' && !empty($data['mobileImage']) ? $data['mobileImage'] : null,
         'gravityForm' => $data['mediaType'] === 'gravityForm' ? $data['gravityForm'] : null,
-        'video' => $data['mediaType'] === 'video' ? $data['video'] : null,
+        'video' => $data['mediaType'] === 'video' && !empty($data['video']) ? [
+            'posterImage' => $data['video']['posterImage'],
+            'oembed' => Oembed::setSrcAsDataAttribute(
+                $data['video']['oembed'] ?? '',
+                [
+                    'autoplay' => 'true'
+                ]
+            )
+        ] : null,
         'action' => [
             'actionType' => $data['actionType'],
             'ctaButtons' => $data['actionType'] == 'buttons' ? [

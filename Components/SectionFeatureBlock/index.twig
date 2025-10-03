@@ -6,6 +6,7 @@
 {% set image = model.image %}
 {% set mobileImage = model.mobileImage ? model.mobileImage : image %}
 {% set gravityForm = model.gravityForm %}
+{% set video = model.video %}
 {% set options = options is defined ? options : model.options %}
 {% set imageDisplay = options.imageDisplay ?? 'right' %}
 {% set imageAlign = options.imageAlign ?? 'bottom' %}
@@ -48,14 +49,17 @@
 							class: 'hidden md:block'
             } only %}
 								{% include '@Components/Common/_image.twig' with {
-              model: mobileImage,
-              size: 'medium',
-							class: 'md:hidden block'
-            } only %}
+									model: mobileImage,
+									size: 'medium',
+									class: 'md:hidden block'
+								} only %}
 							</div>
 						{% endif %}
 						{% if gravityForm %}
 							{% include '@Components/Common/_form.twig' with { model: {gravityForm: gravityForm}, options: options } only %}
+						{% endif %}
+						{% if video %}
+							{% include '@Components/BlockVideoOembed/index.twig' with { model: video } only %}
 						{% endif %}
 					{% endif %}
 					{% if quote %}
@@ -84,10 +88,14 @@
 					{% if gravityForm %}
 						{% include '@Components/Common/_form.twig' with { model: {gravityForm: gravityForm}, options: options } only %}
 					{% endif %}
+					{% if video %}
+						{% include '@Components/BlockVideoOembed/index.twig' with { model: video } only %}
+					{% endif %}
 				{% endif %}
 
 			</div>
 		</div>
 	</section>
 
-	{% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %}</flynt-component>
+	{# {% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %} #}
+</flynt-component>

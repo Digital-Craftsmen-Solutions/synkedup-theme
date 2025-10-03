@@ -1,14 +1,28 @@
+{% set image = model.posterImage %}
+{% set oembed = model.oembed %}
+{% set options = options is defined ? options : model.options %}
+
 <flynt-component name="BlockVideoOembed" load:on="visible" class="componentSpacing" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
-  <div class="container">
-    <div class="video" data-size="{{ options.size }}" data-align="center">
-      {% if posterImage %}
-        {% include 'Partials/_figure.twig' ignore missing with {image: posterImage} only %}
-      {% endif %}
-      <div data-ref="videoPlayer" class="video-player">
-        {{ oembed }}
-        <div class="video-loader"></div>
-        <button data-ref="playButton" class="video-playButton" type="button" aria-label="{{ labels.videoPlayButtonAriaLabel|e }}"></button>
-      </div>
-    </div>
-  </div>
+	<div class="container">
+		<div class="video" data-size="full" data-align="center">
+			{% if image %}
+				<figure data-ref="posterImage" class="figure">
+					{% if image.post_mime_type == 'image/svg+xml' %}
+						<img class="figure-image-svg lazyload" src="{{ placeholderImage(1280, 720, 'rgba(125, 125, 125, 0.1)') }}" width="1280" height="720" data-src="{{ image.src }}" alt="{{ image.alt|e }}">
+					{% else %}
+						<img class="figure-image lazyload" src="{{ image.src|resizeDynamic(1280, 720) }}" width="1280" height="720" srcset="{{ placeholderImage(1280, 720, 'rgba(125, 125, 125, 0.1)') }}" data-srcset=" {{ image.src|resizeDynamic(2048, 1152) }} 2048w, {{ image.src|resizeDynamic(1920, 1080) }} 1920w, {{ image.src|resizeDynamic(1440, 810) }} 1440w, {{ image.src|resizeDynamic(1320, 743) }} 1320w, {{ image.src|resizeDynamic(1280, 720) }} 1280w, {{ image.src|resizeDynamic(860, 515) }} 860w, {{ image.src|resizeDynamic(760, 428) }} 760w, data-sizes=" auto" alt=" {{ image.alt|e }} ">
+					{% endif %}
+					{% if image.caption %}
+						<figcaption class="figure-caption">{{ image.caption|e }}</figcaption>
+					{% endif %}
+				</figure>
+			{% endif %}
+			<div data-ref="videoPlayer" class="video-player">
+				{{ oembed }}
+				<div class="video-loader"></div>
+				<button data-ref="playButton" class="video-playButton" type="button" aria-label="Play Video"></button>
+			</div>
+		</div>
+	</div>
+	{% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %}
 </flynt-component>

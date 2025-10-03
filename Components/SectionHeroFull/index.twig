@@ -58,16 +58,24 @@
 					{% endif %}
 				</div>
 
-				{% if display != 'full' and image %}
-					<div class="hidden md:block relative isolate overflow-hidden md:col-span-5 mt-10">
-						<div class="absolute inset-0 flex justify-center items-end">
-							{% include '@Components/Common/_image.twig' with {
-              model: image,
-              size: 'medium',
-							class: 'object-contain! h-full object-bottom!'
-            } only %}
+				{% if display != 'full'%}
+					{% if image %}
+						<div class="hidden md:block relative isolate overflow-hidden md:col-span-5 mt-10">
+							<div class="absolute inset-0 flex justify-center items-end">
+								{% include '@Components/Common/_image.twig' with {
+									model: image,
+									size: 'medium',
+									class: 'object-contain! h-full object-bottom!'
+								} only %}
+							</div>
 						</div>
-					</div>
+					{% endif %}
+					{% if gravityForm %}
+						{% include '@Components/Common/_form.twig' with { model: {gravityForm: gravityForm}, options: options } only %}
+					{% endif %}
+					{% if video %}
+						{% include '@Components/BlockVideoOembed/index.twig' with { model: video } only %}
+					{% endif %}
 				{% endif %}
 
 			</div>
