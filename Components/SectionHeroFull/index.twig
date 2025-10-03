@@ -1,8 +1,11 @@
 {% set backgroundImage = model.backgroundImage %}
-{% set mobileImage = model.mobileImage %}
-{% set mobileImage = mobileImage ? mobileImage : backgroundImage %}
 {% set heading = model.heading|default([]) %}
 {% set heading = heading|merge({ type: 'h1' }) %}
+{% set image = model.image %}
+{% set mobileImage = model.mobileImage %}
+{% set mobileImage = mobileImage ? mobileImage : image %}
+{% set gravityForm = model.gravityForm %}
+{% set video = model.video %}
 {% set action = model.action %}
 {% set breadcrumbs = model.breadcrumbs %}
 {% set extraItems = model.extraItems %}
@@ -15,7 +18,7 @@
 	name="SectionHeroFull" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="edge bg-white dark:bg-dark">
 	<!-- Hero -->
 	<section class="relative isolate overflow-hidden">
-		{% if display == 'full' and backgroundImage %}
+		{% if backgroundImage %}
 			<div class="absolute inset-0 -z-10">
 				{% include '@Components/Common/_image.twig' with {
 					model: backgroundImage,
@@ -55,11 +58,11 @@
 					{% endif %}
 				</div>
 
-				{% if display != 'full' and backgroundImage %}
+				{% if display != 'full' and image %}
 					<div class="hidden md:block relative isolate overflow-hidden md:col-span-5 mt-10">
 						<div class="absolute inset-0 flex justify-center items-end">
 							{% include '@Components/Common/_image.twig' with {
-              model: backgroundImage,
+              model: image,
               size: 'medium',
 							class: 'object-contain! h-full object-bottom!'
             } only %}

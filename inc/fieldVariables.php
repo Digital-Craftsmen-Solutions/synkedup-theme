@@ -153,13 +153,13 @@ function getAction(): array
 {
     return [
         [
-            'label' => __('Action Type', 'flynt'),
+            'label' => __('Action', 'flynt'),
             'name' => 'actionType',
             'type' => 'button_group',
             'choices' => [
                 'none' => __('None', 'flynt'),
                 'buttons' => __('Buttons', 'flynt'),
-                'form' => __('Gravity Form', 'flynt'),
+                // 'form' => __('Gravity Form', 'flynt'),
             ],
             'default_value' => 'none',
             'layout' => 'horizontal',
@@ -193,6 +193,81 @@ function getAction(): array
                 ],
             ],
         ],
+        // [
+        //     'label' => __('Gravity Form', 'flynt'),
+        //     'name' => 'gravityForm',
+        //     'type' => 'select',
+        //     'instructions' => __('Select a Gravity Form to display.', 'flynt'),
+        //     'choices' => [],
+        //     'allow_null' => 1,
+        //     'return_format' => 'value',
+        //     'ui' => 1,
+        //     'conditional_logic' => [
+        //         [
+        //             [
+        //                 'fieldPath' => 'actionType',
+        //                 'operator' => '==',
+        //                 'value' => 'form',
+        //             ],
+        //         ],
+        //     ],
+        // ],
+    ];
+}
+
+function getMedia($default = 'none')
+{
+    return [
+        [
+            'label' => __('Media Content', 'flynt'),
+            'name' => 'mediaType',
+            'type' => 'button_group',
+            'choices' => [
+                'none' => __('None', 'flynt'),
+                'image' => __('Image', 'flynt'),
+                'video' => __('Video', 'flynt'),
+                'gravityForm' => __('Gravity Form', 'flynt'),
+            ],
+            'default_value' => $default,
+        ],
+        [
+            'label' => __('Image', 'flynt'),
+            'name' => 'image',
+            'type' => 'image',
+            'instructions' => __('Optional image.', 'flynt'),
+            'preview_size' => 'medium',
+            'return_format' => 'array',
+            'mime_types' => 'jpg,jpeg,png,webp',
+            'wrapper' => ['width' => 50],
+            'conditional_logic' => [
+                [
+                    [
+                        'fieldPath' => 'mediaType',
+                        'operator' => '==',
+                        'value' => 'image',
+                    ],
+                ],
+            ],
+        ],
+        [
+            'label' => __('Mobile Image', 'flynt'),
+            'name' => 'mobileImage',
+            'type' => 'image',
+            'instructions' => __('Optional image to replace with on mobile screens.', 'flynt'),
+            'preview_size' => 'medium',
+            'return_format' => 'array',
+            'mime_types' => 'jpg,jpeg,png,webp',
+            'wrapper' => ['width' => 50],
+            'conditional_logic' => [
+                [
+                    [
+                        'fieldPath' => 'mediaType',
+                        'operator' => '==',
+                        'value' => 'image',
+                    ],
+                ],
+            ],
+        ],
         [
             'label' => __('Gravity Form', 'flynt'),
             'name' => 'gravityForm',
@@ -205,9 +280,9 @@ function getAction(): array
             'conditional_logic' => [
                 [
                     [
-                        'fieldPath' => 'actionType',
+                        'fieldPath' => 'mediaType',
                         'operator' => '==',
-                        'value' => 'form',
+                        'value' => 'gravityForm',
                     ],
                 ],
             ],
@@ -245,6 +320,7 @@ function getIcon($label = 'Icon', $required = 0, $icons = []): array
             'file',
             'calendar',
             'calendarClock',
+            'calendarCheck',
             'presentation',
             'user',
             'fileText',

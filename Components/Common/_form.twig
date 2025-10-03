@@ -1,0 +1,9 @@
+{% set gravityForm = model.gravityForm %}
+{% set options = options is defined ? options : model.options %}
+
+<div class="w-full {{options.inlineForm ? 'max-w-2xl single-inline-form' : ''}}">
+	{% set gravity_form_shortcode = '[gravityform id="' ~ gravityForm ~ '" title="false" description="false" ajax="true"]' %}
+	{% apply shortcodes %}
+	{{ gravity_form_shortcode }}
+	{% endapply %}
+</div>

@@ -149,3 +149,12 @@ export const DarkWithBadge: StoryObj<CardModel> = {
     backgrounds: { value: "dark" },
   },
 };
+
+export const WithFeatures: StoryObj<CardModel> = {
+  render: Template,
+  args: {
+    ...defaultData,
+    type: "icon",
+    features: [{ label: "Feature 1" }, { label: "Feature 2" }],
+  },
+};

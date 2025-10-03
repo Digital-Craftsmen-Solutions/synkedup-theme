@@ -19,6 +19,7 @@ add_filter('Flynt/addComponentData?name=SectionIconCards', function (array $data
                 ] : null,
                 'figure' => $card['figure'] ?? '',
                 'description' => $card['description'] ?? '',
+                'features' => $card['showFeatures'] ? $card['features'] ?? [] : [],
                 'actionButton' => !empty($card['actionButton'])
                     ? array_merge($card['actionButton'], ['type' => 'secondary'])
                     : null,
@@ -73,6 +74,28 @@ function getACFLayout(): array
                         'layout' => 'horizontal',
                         'wrapper' => ['width' => 20],
                     ],
+                    [
+                        'label' => __('Title', 'flynt'),
+                        'name' => 'title',
+                        'type' => 'text',
+                        'wrapper' => ['width' => 50],
+                    ],
+                    [
+                        'label' => __('Show Features?', 'flynt'),
+                        'name' => 'showFeatures',
+                        'type' => 'true_false',
+                        'default_value' => 0,
+                        'ui' => 1,
+                        'wrapper' => ['width' => 15],
+                    ],
+                    [
+                        'label' => __('Show Badge?', 'flynt'),
+                        'name' => 'showBadge',
+                        'type' => 'true_false',
+                        'default_value' => 0,
+                        'ui' => 1,
+                        'wrapper' => ['width' => 15],
+                    ],
                     array_merge(
                         FieldVariables\getIcon(),
                         [
@@ -119,24 +142,10 @@ function getACFLayout(): array
                         'wrapper' => ['width' => 20],
                     ],
                     [
-                        'label' => __('Title', 'flynt'),
-                        'name' => 'title',
-                        'type' => 'text',
-                        'wrapper' => ['width' => 45],
-                    ],
-                    [
-                        'label' => __('Show Badge?', 'flynt'),
-                        'name' => 'showBadge',
-                        'type' => 'true_false',
-                        'default_value' => 0,
-                        'ui' => 1,
-                        'wrapper' => ['width' => 15],
-                    ],
-                    [
                         'label' => __('Description', 'flynt'),
                         'name' => 'description',
                         'type' => 'text',
-                        'wrapper' => ['width' => 70],
+                        'wrapper' => ['width' => 50],
                     ],
                     [
                         'label' => __('Action Button', 'flynt'),
@@ -178,6 +187,31 @@ function getACFLayout(): array
                                 ],
                             ],
                         ],
+                    ],
+                    [
+                        'label' => __('Features', 'flynt'),
+                        'name' => 'features',
+                        'type' => 'repeater',
+                        'layout' => 'table',
+                        'button_label' => __('Add Feature', 'flynt'),
+                        'conditional_logic' => [
+                            [
+                                [
+                                    'fieldPath' => 'showFeatures',
+                                    'operator' => '==',
+                                    'value' => 1,
+                                ],
+                            ],
+                        ],
+                        'sub_fields' => [
+                            FieldVariables\getIcon(),
+                            [
+                                'label' => __('Label', 'flynt'),
+                                'name' => 'label',
+                                'type' => 'text',
+                                'wrapper' => ['width' => 80],
+                            ],
+                        ]
                     ],
                 ]
             ],

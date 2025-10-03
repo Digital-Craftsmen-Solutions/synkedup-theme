@@ -8,8 +8,11 @@ use Flynt\FieldVariables;
 add_filter('Flynt/addComponentData?name=SectionHeroFull', function (array $data): array {
     $model = [
         'backgroundImage' => $data['backgroundImage'],
-        'mobileImage' => !empty($data['mobileImage']) ? $data['mobileImage'] : null,
         'heading' => $data['heading'],
+        'image' => $data['mediaType'] === 'image' ? $data['image'] : null,
+        'mobileImage' => $data['mediaType'] === 'image' && !empty($data['mobileImage']) ? $data['mobileImage'] : null,
+        'gravityForm' => $data['mediaType'] === 'gravityForm' ? $data['gravityForm'] : null,
+        'video' => $data['mediaType'] === 'video' ? $data['video'] : null,
         'action' => [
             'actionType' => $data['actionType'],
             'ctaButtons' => $data['actionType'] == 'buttons' ? [
@@ -55,28 +58,19 @@ function getACFLayout(): array
                 'placement' => 'top',
                 'endpoint' => 0,
             ],
-            FieldVariables\getHeading('h1'),
-            FieldVariables\getAction(),
             [
-                'label' => __('Image', 'flynt'),
+                'label' => __('Background Image', 'flynt'),
                 'name' => 'backgroundImage',
                 'type' => 'image',
                 'instructions' => __('Optional image.', 'flynt'),
                 'preview_size' => 'medium',
                 'return_format' => 'array',
                 'mime_types' => 'jpg,jpeg,png,webp',
-                'wrapper' => ['width' => 50],
+                'wrapper' => ['width' => 100],
             ],
-            [
-                'label' => __('Mobile Image', 'flynt'),
-                'name' => 'mobileImage',
-                'type' => 'image',
-                'instructions' => __('Optional image to replace with on mobile screens.', 'flynt'),
-                'preview_size' => 'medium',
-                'return_format' => 'array',
-                'mime_types' => 'jpg,jpeg,png,webp',
-                'wrapper' => ['width' => 50],
-            ],
+            FieldVariables\getHeading('h1'),
+            FieldVariables\getMedia(),
+            FieldVariables\getAction(),
             [
                 'label' => __('Extra Items', 'flynt'),
                 'name' => 'extraItems',
