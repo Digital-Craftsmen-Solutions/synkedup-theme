@@ -408,6 +408,7 @@ function getIcon($label = 'Icon', $required = 0, $icons = []): array
             'fileText',
             'circleCheck',
             'checkGreen',
+            'email',
         ];
     }
     sort($icons);

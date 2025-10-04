@@ -12,6 +12,7 @@ add_filter('Flynt/addComponentData?name=SectionFeatureBlock', function (array $d
         'features' => array_map(function ($feature) {
             return [
                 'label' => $feature['label'],
+                'icon' => empty($feature['icon']) ? 'checkGreen' : $feature['icon'],
             ];
         }, $data['features'] ?: []),
         'action' => [

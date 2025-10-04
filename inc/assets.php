@@ -83,3 +83,21 @@ add_action('wp_enqueue_scripts', function () {
 }, 100);
 
 add_filter('gform_enable_legacy_markup', '__return_true');
+
+// add_action('wp_footer', function () {
+//     if ($footer_scripts = get_field('footer_scripts', 'options')) {
+//         echo $footer_scripts;
+//     }
+// }, 10);
+
+// add_action('wp_head', function () {
+//     if ($header_scripts = get_field('header_scripts', 'options')) {
+//         echo $header_scripts;
+//     }
+// }, 10);
+
+// add_action('wp_body_open', function () {
+//     if ($body_scripts = get_field('body_scripts', 'options')) {
+//         echo $body_scripts;
+//     }
+// }, 10);
