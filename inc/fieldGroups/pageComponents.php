@@ -35,6 +35,11 @@ add_action('Flynt/afterRegisterComponents', function (): void {
 
                 ],
             ],
+            [
+                'name' => 'json_ld',
+                'label' => __('JSON-LD', 'flynt'),
+                'type' => 'textarea',
+            ],
         ],
         'location' => [
             [

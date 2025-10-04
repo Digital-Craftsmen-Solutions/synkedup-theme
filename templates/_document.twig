@@ -5,6 +5,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="alternate" type="application/rss+xml" title="{{- theme.labels.feed|replace({'%s': site.title}) -}}" href="{{ site.rss2|e('esc_url') }}">
 		{{ function('wp_head') }}
+		{% if post.meta('json_ld') %}
+			<div class="json-ld">
+				{{ post.meta('json_ld') }}
+			</div>
+		{% endif %}
 	</head>
 	<body>
 		{{ function('wp_body_open') }}
