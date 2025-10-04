@@ -188,31 +188,20 @@ function getACFLayout(): array
                             ],
                         ],
                     ],
-                    [
-                        'label' => __('Features', 'flynt'),
-                        'name' => 'features',
-                        'type' => 'repeater',
-                        'layout' => 'table',
-                        'button_label' => __('Add Feature', 'flynt'),
-                        'conditional_logic' => [
-                            [
+                    array_merge(
+                        FieldVariables\getFeatures(),
+                        [
+                            'conditional_logic' => [
                                 [
-                                    'fieldPath' => 'showFeatures',
-                                    'operator' => '==',
-                                    'value' => 1,
+                                    [
+                                        'fieldPath' => 'showFeatures',
+                                        'operator' => '==',
+                                        'value' => 1,
+                                    ],
                                 ],
                             ],
-                        ],
-                        'sub_fields' => [
-                            FieldVariables\getIcon(),
-                            [
-                                'label' => __('Label', 'flynt'),
-                                'name' => 'label',
-                                'type' => 'text',
-                                'wrapper' => ['width' => 80],
-                            ],
                         ]
-                    ],
+                    ),
                 ]
             ],
             FieldVariables\getAction(),

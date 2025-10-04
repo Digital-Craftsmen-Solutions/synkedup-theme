@@ -35,6 +35,7 @@ add_filter('Flynt/addComponentData?name=SectionFeatureBlock', function (array $d
                 ]
             )
         ] : null,
+        'embed' => $data['mediaType'] === 'embed' && !empty($data['embed']) ? $data['embed'] : null,
         'options' => $data['options']
     ];
 
@@ -56,21 +57,7 @@ function getACFLayout(): array
             ],
             FieldVariables\getIcon(),
             FieldVariables\getHeading(),
-            [
-                'label' => __('Features', 'flynt'),
-                'name' => 'features',
-                'type' => 'repeater',
-                'layout' => 'table',
-                'button_label' => __('Add Feature', 'flynt'),
-                'sub_fields' => [
-                    [
-                        'label' => __('Label', 'flynt'),
-                        'name' => 'label',
-                        'type' => 'text',
-                        'wrapper' => ['width' => 100],
-                    ],
-                ],
-            ],
+            FieldVariables\getFeatures(),
             FieldVariables\getMedia($default = 'image'),
             FieldVariables\getAction(),
             [
@@ -114,7 +101,7 @@ function getACFLayout(): array
                 'sub_fields' => [
                     FieldVariables\getTheme(),
                     [
-                        'label' => __('Image Display', 'flynt'),
+                        'label' => __('Media Display', 'flynt'),
                         'name' => 'imageDisplay',
                         'type' => 'button_group',
                         'choices' => [
@@ -126,7 +113,7 @@ function getACFLayout(): array
                         'allow_null' => 1,
                     ],
                     [
-                        'label' => __('Image Align', 'flynt'),
+                        'label' => __('Media Align', 'flynt'),
                         'name' => 'imageAlign',
                         'type' => 'button_group',
                         'choices' => [

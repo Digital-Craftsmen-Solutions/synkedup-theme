@@ -1,0 +1,28 @@
+{% set image   = model.image %}
+{% set mobileImage = model.mobileImage %}
+{% set gravityForm = model.gravityForm %}
+{% set video = model.video %}
+{% set embeds = model.embed %}
+{% set options = options is defined ? options : model.options %}
+
+{% if image %}
+	{% include '@Components/Common/_image.twig' with {
+    model: image,
+    size: 'large',
+    class: 'hidden md:block'
+  } only %}
+	{% include '@Components/Common/_image.twig' with {
+    model: mobileImage,
+    size: 'medium',
+    class: 'md:hidden block max-w-sm mx-auto'
+  } only %}
+{% endif %}
+{% if gravityForm %}
+	{% include '@Components/Common/_form.twig' with { model: {gravityForm: gravityForm}, options: options } only %}
+{% endif %}
+{% if video %}
+	{% include '@Components/BlockVideoOembed/index.twig' with { model: video } only %}
+{% endif %}
+{% if embeds %}
+	{{ embeds }}
+{% endif %}

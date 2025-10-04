@@ -6,22 +6,22 @@ var googleChart,
 var calculation_inputs = [];
 
 var setupHelpIcons = function () {
-  $(".input-inline-help .gfield_description").click(function () {
+  jQuery(".input-inline-help .gfield_description").click(function () {
     console.log(this);
 
-    $(".inline-help").hide();
+    jQuery(".inline-help").hide();
 
-    $(this).parent().next().show();
+    jQuery(this).parent().next().show();
   });
 
-  $(".help-modal").click(function () {
+  jQuery(".help-modal").click(function () {
     if (event.target.className == "help-modal") {
-      $(".inline-help").hide();
+      jQuery(".inline-help").hide();
     }
   });
 
-  $(".help-close").click(function () {
-    $(".inline-help").hide();
+  jQuery(".help-close").click(function () {
+    jQuery(".inline-help").hide();
   });
 };
 
@@ -110,62 +110,62 @@ function calculateOutput() {
     (manhour_cost + overhead_recovered);
   manhour_price = manhour_cost + overhead_recovered + profit;
 
-  $("#" + lookup.manhour_cost)
+  jQuery("#" + lookup.manhour_cost)
     .eq(0)
     .val("$" + (isFinite(manhour_cost) ? manhour_cost.toFixed(2) : ""));
-  $("#" + lookup.overhead_recovered)
+  jQuery("#" + lookup.overhead_recovered)
     .eq(0)
     .val(
       "$" + (isFinite(overhead_recovered) ? overhead_recovered.toFixed(2) : "")
     );
-  $("#" + lookup.overhead_markup)
+  jQuery("#" + lookup.overhead_markup)
     .eq(0)
     .val(
       (isFinite(overhead_markup) ? (overhead_markup * 100).toFixed(2) + "%" : "")
     );
-  $("#" + lookup.profit)
+  jQuery("#" + lookup.profit)
     .eq(0)
     .val("$" + (isFinite(profit) ? profit.toFixed(2) : ""));
-  $("#" + lookup.manhour_price)
+  jQuery("#" + lookup.manhour_price)
     .eq(0)
     .val("$" + (isFinite(manhour_price) ? manhour_price.toFixed(2) : ""));
 
   // Hide values for lite version
-  $("#" + lookup.overhead_recovered)
+  jQuery("#" + lookup.overhead_recovered)
     .eq(0)
     .val("");
-  $("#" + lookup.profit)
+  jQuery("#" + lookup.profit)
     .eq(0)
     .val("");
-  $("#" + lookup.manhour_price)
+  jQuery("#" + lookup.manhour_price)
     .eq(0)
     .val("");
-  $("#" + lookup.manhour_difference)
+  jQuery("#" + lookup.manhour_difference)
     .eq(0)
     .val("");
 
   if (labour_hours > 1) {
-    $("#" + lookup.unbillable_hours_description)
+    jQuery("#" + lookup.unbillable_hours_description)
       .eq(0)
       .html("Now, how many of these " + labour_hours + " hours were UNBILLABLE?");
   }
 
   // Update Google Chart
   if (overhead_recovered && manhour_cost && profit) {
-    $(".chart-placeholder").hide();
-    $("#donutchart").show();
-    $(".gform_page:last-of-type .gform_page_footer").show();
-    $(".conversion-block").show();
+    jQuery(".chart-placeholder").hide();
+    jQuery("#donutchart").show();
+    jQuery(".gform_page:last-of-type .gform_page_footer").show();
+    jQuery(".conversion-block").show();
     updateChart({
       manhour_cost: manhour_cost,
       overhead_recovered: overhead_recovered,
       profit: profit,
     });
   } else {
-    $(".chart-placeholder").show();
-    $("#donutchart").hide();
-    $(".gform_page:last-of-type .gform_page_footer").hide();
-    $(".conversion-block").hide();
+    jQuery(".chart-placeholder").show();
+    jQuery("#donutchart").hide();
+    jQuery(".gform_page:last-of-type .gform_page_footer").hide();
+    jQuery(".conversion-block").hide();
     updateChart({
       manhour_cost: 0,
       overhead_recovered: 0,
@@ -180,20 +180,20 @@ jQuery(document).on(
   function (event, form_id, current_page) {
     // code to trigger on form or form page render
     if (current_page == 1 && location.host != "localhost:8000") {
-      $(".gform_next_button").eq(0).trigger("click");
+      jQuery(".gform_next_button").eq(0).trigger("click");
     }
-    $(".gform_next_button").css("visibility", "hidden");
+    jQuery(".gform_next_button").css("visibility", "hidden");
   }
 );
 
-$(document).ready(function () {
+jQuery(document).ready(function () {
   console.log("Synkedup ready!");
 
-  $(".gform_footer").hide();
-  $(".gform_page:first-of-type .gform_page_footer").css("visibility", "hidden")
-  $(".gform_page").show();
-  $("#donutchart").hide();
-  $(".conversion-block").hide();
+  jQuery(".gform_footer").hide();
+  jQuery(".gform_page:first-of-type .gform_page_footer").css("visibility", "hidden")
+  jQuery(".gform_page").show();
+  jQuery("#donutchart").hide();
+  jQuery(".conversion-block").hide();
 
   createGoogleChart();
   setupHelpIcons();
@@ -218,7 +218,7 @@ $(document).ready(function () {
   for (const key in lookup) {
     const element = lookup[key];
     calculation_inputs[element] = Number(
-      $("#" + element)
+      jQuery("#" + element)
         .val()
         .replace(/[^0-9.-]+/g, "")
     );
@@ -227,11 +227,11 @@ $(document).ready(function () {
   const lockIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock-icon lucide-lock lock-icon"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
 
   // Hide values for lite version
-  $("#" + lookup.overhead_markup).hide();
-  $("#" + lookup.overhead_recovered).after(lockIcon)
-  $("#" + lookup.profit).after(lockIcon)
-  $("#" + lookup.manhour_price).after(lockIcon)
-  $("#" + lookup.manhour_difference).after(lockIcon)
+  jQuery("#" + lookup.overhead_markup).hide();
+  jQuery("#" + lookup.overhead_recovered).after(lockIcon)
+  jQuery("#" + lookup.profit).after(lockIcon)
+  jQuery("#" + lookup.manhour_price).after(lockIcon)
+  jQuery("#" + lookup.manhour_difference).after(lockIcon)
 
   gform.addAction(
     "gform_input_change",

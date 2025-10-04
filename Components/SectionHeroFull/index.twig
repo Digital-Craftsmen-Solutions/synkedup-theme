@@ -6,8 +6,10 @@
 {% set mobileImage = mobileImage ? mobileImage : image %}
 {% set gravityForm = model.gravityForm %}
 {% set video = model.video %}
+{% set embed = model.embed %}
 {% set action = model.action %}
 {% set breadcrumbs = model.breadcrumbs %}
+{% set features = model.features %}
 {% set extraItems = model.extraItems %}
 {% set options = options is defined ? options : model.options %}
 {% set display = options.display ?? 'full' %}
@@ -33,11 +35,14 @@
 				class="{{display == 'full' ? '' : 'grid md:grid-cols-12 gap-6 md:gap-10 lg:gap-12'}}">
 				{# Content #}
 				<div class="flex flex-col justify-center gap-6 md:gap-14 py-6 md:py-12 lg:py-18 xl:py-24 {{display == 'full' ? '' : 'md:col-span-7'}}">
-					<div class="max-w-4xl mx-auto flex flex-col justify-center gap-6 md:gap-8 my-10 md:my-14 lg:my-16 {{display == 'full' ? 'xl:my-20 items-center'}}">
+					<div class="max-w-4xl mx-auto flex flex-col justify-center gap-6 md:gap-8 my-10 md:my-14 {{display == 'full' ? ' items-center'}}">
 						{% if breadcrumbs %}
 							{% include '@Components/Breadcrumbs/index.twig' with { model: breadcrumbs } only %}
 						{% endif %}
 						{% include '@Components/Heading/index.twig' with { model: heading, options: {align: display == 'full' ? 'center' : 'left'} } only %}
+						{% if features %}
+							{% include '@Components/List/index.twig' with { model: features, options: options } only %}
+						{% endif %}
 						{% include '@Components/Action/index.twig' with { model: action,  options: {align: display == 'full' ? 'center' : 'left'} } only %}
 
 						{% if display != 'full' and mobileImage %}
@@ -58,24 +63,23 @@
 					{% endif %}
 				</div>
 
-				{% if display != 'full'%}
-					{% if image %}
-						<div class="hidden md:block relative isolate overflow-hidden md:col-span-5 mt-10">
-							<div class="absolute inset-0 flex justify-center items-end">
+				{% if display != 'full' and mediaType != 'none'%}
+					<div class="hidden md:block relative isolate overflow-hidden md:col-span-5 mt-10">
+						<div class="absolute inset-0 flex justify-center items-end">
+							{% if image %}
 								{% include '@Components/Common/_image.twig' with {
 									model: image,
 									size: 'medium',
 									class: 'object-contain! h-full object-bottom!'
 								} only %}
-							</div>
+							{% endif %}
+							{% include '@Components/Common/_media.twig' with { model: {
+								gravityForm: gravityForm,
+								video: video,
+								embed: embed
+							}, options: options } only %}
 						</div>
-					{% endif %}
-					{% if gravityForm %}
-						{% include '@Components/Common/_form.twig' with { model: {gravityForm: gravityForm}, options: options } only %}
-					{% endif %}
-					{% if video %}
-						{% include '@Components/BlockVideoOembed/index.twig' with { model: video } only %}
-					{% endif %}
+					</div>
 				{% endif %}
 
 			</div>

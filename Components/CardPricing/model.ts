@@ -1,25 +1,22 @@
-import { ButtonModel } from '../Button/model';
-
-type FeatureListItem = {
-  label: string;
-};
+import { ButtonModel } from "../Button/model";
+import { FeatureListModel } from "../List/model";
 
 export type CardPricingModel = {
-  icon?: string
+  icon?: string;
   title?: string;
   description?: string;
-  priceMonth: number
+  priceMonth: number;
   priceYear: number;
-  labelMonth: string
+  labelMonth: string;
   labelYear: string;
   switchId?: string;
-  period?: 'month' | 'year';
+  period?: "month" | "year";
   extraCost?: string;
   actionButton?: ButtonModel;
   badge?: string;
-  features: FeatureListItem[];
+  features: FeatureListModel;
   options?: {
-    align?: 'left' | 'center';
-    theme?: 'light' | 'dark';
+    align?: "left" | "center";
+    theme?: "light" | "dark";
   };
 };

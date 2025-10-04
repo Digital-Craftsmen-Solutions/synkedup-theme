@@ -127,20 +127,7 @@ function getACFLayout(): array
                         'type' => 'text',
                         'wrapper' => ['width' => 50],
                     ],
-                    [
-                        'label' => __('Features', 'flynt'),
-                        'name' => 'features',
-                        'type' => 'repeater',
-                        'layout' => 'table',
-                        'button_label' => __('Add Feature', 'flynt'),
-                        'sub_fields' => [
-                            [
-                                'label' => __('Label', 'flynt'),
-                                'name' => 'label',
-                                'type' => 'text',
-                            ],
-                        ],
-                    ],
+                    FieldVariables\getFeatures(),
                 ],
             ],
             [

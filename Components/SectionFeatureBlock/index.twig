@@ -7,6 +7,7 @@
 {% set mobileImage = model.mobileImage ? model.mobileImage : image %}
 {% set gravityForm = model.gravityForm %}
 {% set video = model.video %}
+{% set embed = model.embed %}
 {% set options = options is defined ? options : model.options %}
 {% set imageDisplay = options.imageDisplay ?? 'right' %}
 {% set imageAlign = options.imageAlign ?? 'bottom' %}
@@ -18,7 +19,7 @@
 				class="{{imageDisplay == 'full' ? 'flex flex-col' : 'grid md:grid-cols-12 lg:gap-8'}}">
 
 				{# Content #}
-				<div class="flex flex-col gap-4 justify-center {{imageDisplay == 'full' ? 'p-4 py-6 md:p-8 lg:p-10 md:px-14 lg:px-16' : 'p-4 md:p-10 md:gap-6 md:col-span-7'}} {{imageDisplay == 'left' ? 'order-2' : 'order-1' }}">
+				<div class="flex flex-col gap-4 {{imageAlign == 'top' ? 'justify-start' : 'justify-center'}} {{imageDisplay == 'full' ? 'p-4 py-6 md:p-8 lg:p-10 md:px-14 lg:px-16' : 'px-4 py-5 md:p-10 md:gap-6 md:col-span-7'}} {{imageDisplay == 'left' ? 'order-2' : 'order-1' }}">
 					{% if icon and imageDisplay != 'full' %}
 						{% include '@Components/Common/_icon.twig' with { name: icon, class: 'size-6 text-text dark:text-text-dark' } %}
 					{% endif %}
@@ -26,14 +27,7 @@
 						{% include '@Components/Heading/index.twig' with { model: heading, options: {align: imageDisplay == 'full' ? 'center' : 'left'} } only %}
 					{% endif %}
 					{% if features %}
-						<ul class="flex flex-col gap-3 md:gap-4 list-none ps-0 mb-2 {{imageDisplay == 'full' ? 'md:flex-row justify-center' : ''}}">
-							{% for item in features %}
-								<li class="flex items-center gap-2">
-									{% include '@Components/Common/_icon.twig' with { name: 'check', class: 'flex-shrink-0 size-4.5 text-white bg-success p-1 rounded-full' } %}
-									<span class="text-text dark:text-text-dark">{{ item.label }}</span>
-								</li>
-							{% endfor %}
-						</ul>
+						{% include '@Components/List/index.twig' with { model: features, options: options } only %}
 					{% endif %}
 					{% if action %}
 						{% include '@Components/Action/index.twig' with { model: action, options: {align: imageDisplay == 'full' ? 'center' : 'left'} } only %}
@@ -41,26 +35,13 @@
 
 					{# Full image #}
 					{% if imageDisplay == 'full' %}
-						{% if image %}
-							<div class="w-full flex justify-center mt-4">
-								{% include '@Components/Common/_image.twig' with {
-              model: image,
-              size: 'large',
-							class: 'hidden md:block'
-            } only %}
-								{% include '@Components/Common/_image.twig' with {
-									model: mobileImage,
-									size: 'medium',
-									class: 'md:hidden block'
-								} only %}
-							</div>
-						{% endif %}
-						{% if gravityForm %}
-							{% include '@Components/Common/_form.twig' with { model: {gravityForm: gravityForm}, options: options } only %}
-						{% endif %}
-						{% if video %}
-							{% include '@Components/BlockVideoOembed/index.twig' with { model: video } only %}
-						{% endif %}
+						{% include '@Components/Common/_media.twig' with { model: {
+							image: image,
+							mobileImage: mobileImage,
+							gravityForm: gravityForm,
+							video: video,
+							embed: embed
+						}, options: options } only %}
 					{% endif %}
 					{% if quote %}
 						<div class="mt-4 {{imageDisplay == 'full' ? 'flex justify-center' : 'md:mt-8 flex flex-col items-start'}}">
@@ -71,26 +52,15 @@
 
 				{# Left-Right-aligned image #}
 				{% if imageDisplay != 'full' %}
-					{% if image %}
-						<div class="flex justify-center {{imageAlign == 'top' ? 'items-start' : imageAlign == 'center' ? 'items-center' : 'items-end'}} md:col-span-5 {{imageDisplay == 'left' ? 'order-1' : 'order-2' }}">
-							{% include '@Components/Common/_image.twig' with {
-              model: image,
-              size: 'large',
-							class: 'hidden md:block'
-            } only %}
-							{% include '@Components/Common/_image.twig' with {
-              model: mobileImage,
-              size: 'medium',
-							class: 'md:hidden block max-w-sm mx-auto'
-            } only %}
-						</div>
-					{% endif %}
-					{% if gravityForm %}
-						{% include '@Components/Common/_form.twig' with { model: {gravityForm: gravityForm}, options: options } only %}
-					{% endif %}
-					{% if video %}
-						{% include '@Components/BlockVideoOembed/index.twig' with { model: video } only %}
-					{% endif %}
+					<div class="flex justify-center {{imageAlign == 'top' ? 'items-start' : imageAlign == 'center' ? 'items-center pr-4 md:pr-10' : 'items-end'}} md:col-span-5 {{imageDisplay == 'left' ? 'order-1' : 'order-2' }}">
+						{% include '@Components/Common/_media.twig' with { model: {
+							image: image,
+							mobileImage: mobileImage,
+							gravityForm: gravityForm,
+							video: video,
+							embed: embed
+						}, options: options } only %}
+					</div>
 				{% endif %}
 
 			</div>

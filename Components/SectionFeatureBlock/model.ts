@@ -2,15 +2,12 @@ import type { HeadingModel } from "../Heading/model";
 import type { ActionModel } from "../Action/model";
 import type { QuoteModel } from "../Quote/model";
 import { ImageModel } from "../Common/model";
-
-type FeatureListItem = {
-  label: string;
-};
+import { FeatureListModel } from "../List/model";
 
 export type SectionFeatureBlockModel = {
   icon?: string;
   heading: HeadingModel;
-  features: FeatureListItem[];
+  features: FeatureListModel;
   action?: ActionModel;
   quote?: QuoteModel;
   image: ImageModel;

@@ -58,14 +58,7 @@
 
 	{% if features %}
 		<p class="text-text dark:text-text-dark">Includes:</p>
-		<ul class="flex flex-col gap-3 md:gap-4 list-none ps-0 mb-2 {{imageDisplay == 'full' ? 'md:flex-row justify-center' : ''}}">
-			{% for item in features %}
-				<li class="flex items-center gap-2">
-					{% include '@Components/Common/_icon.twig' with { name: 'check', class: 'flex-shrink-0 size-4.5 text-white bg-success p-1 rounded-full' } %}
-					<span class="text-text dark:text-text-dark">{{ item.label }}</span>
-				</li>
-			{% endfor %}
-		</ul>
+		{% include '@Components/List/index.twig' with { model: features, options: options } only %}
 	{% endif %}
 
 	{% if actionButton %}

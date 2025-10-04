@@ -22,6 +22,13 @@ add_filter('Flynt/addComponentData?name=SectionHeroFull', function (array $data)
                 ]
             )
         ] : null,
+        'embed' => $data['mediaType'] === 'embed' && !empty($data['embed']) ? $data['embed'] : null,
+        'features' => array_map(function ($feature) {
+            return [
+                'label' => $feature['label'],
+                'icon' => empty($feature['icon']) ? 'checkGreen' : $feature['icon'],
+            ];
+        }, $data['features'] ?: []),
         'action' => [
             'actionType' => $data['actionType'],
             'ctaButtons' => $data['actionType'] == 'buttons' ? [
@@ -79,6 +86,7 @@ function getACFLayout(): array
             ],
             FieldVariables\getHeading('h1'),
             FieldVariables\getMedia(),
+            FieldVariables\getFeatures(),
             FieldVariables\getAction(),
             [
                 'label' => __('Extra Items', 'flynt'),

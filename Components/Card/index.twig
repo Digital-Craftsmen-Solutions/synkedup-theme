@@ -12,9 +12,10 @@
 {% set badge = model.badge %}
 {% set actionButton = model.actionButton %}
 {% set options = options is defined ? options : model.options %}
+{% set cardCols = options.cardCols %}
 
 
-<div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="relative flex flex-col bg-white border border-border-card rounded-2xl overflow-hidden p-4 py-5 md:p-6 dark:bg-dark-shade dark:border-0 {{ options.align == 'center' ? 'items-center text-center' : '' }}">
+<div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="relative flex flex-col bg-white border border-border-card rounded-2xl overflow-hidden p-4 py-5 md:p-6 {{cardCols == '1' ? 'lg:p-10'}} dark:bg-dark-shade dark:border-0 {{ options.align == 'center' ? 'items-center text-center' : '' }}">
 	{% include '@Components/ItemBox/index.twig' with { model: item, options: options } only %}
 	{% if model.features %}
 		<ul class="flex flex-col gap-3 md:gap-4 list-none ps-0 pt-2 md:pt-4">

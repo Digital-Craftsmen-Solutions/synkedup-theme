@@ -227,6 +227,7 @@ function getMedia($default = 'none')
                 'image' => __('Image', 'flynt'),
                 'video' => __('Video', 'flynt'),
                 'gravityForm' => __('Gravity Form', 'flynt'),
+                'embed' => __('Embed', 'flynt'),
             ],
             'default_value' => $default,
         ],
@@ -234,10 +235,11 @@ function getMedia($default = 'none')
             'label' => __('Image', 'flynt'),
             'name' => 'image',
             'type' => 'image',
-            'instructions' => __('Optional image.', 'flynt'),
+            'instructions' => __('', 'flynt'),
             'preview_size' => 'medium',
             'return_format' => 'array',
             'mime_types' => 'jpg,jpeg,png,webp',
+            'required' => 1,
             'wrapper' => ['width' => 50],
             'conditional_logic' => [
                 [
@@ -300,7 +302,22 @@ function getMedia($default = 'none')
                     ],
                 ]
             ]
-        )
+        ),
+        [
+            'label' => __('Embed', 'flynt'),
+            'name' => 'embed',
+            'type' => 'textarea',
+            'required' => 1,
+            'conditional_logic' => [
+                [
+                    [
+                        'fieldPath' => 'mediaType',
+                        'operator' => '==',
+                        'value' => 'embed',
+                    ],
+                ],
+            ]
+        ]
     ];
 }
 
@@ -331,6 +348,27 @@ function getVideo(): array
                 ]
             ]
         ]
+    ];
+}
+
+function getFeatures(): array
+{
+    return [
+        'label' => __('Features', 'flynt'),
+        'name' => 'features',
+        'type' => 'repeater',
+        'layout' => 'table',
+        'button_label' => __('Add Feature', 'flynt'),
+        'sub_fields' => [
+            getIcon(),
+            [
+                'label' => __('Label', 'flynt'),
+                'name' => 'label',
+                'type' => 'text',
+                'wrapper' => ['width' => 100],
+            ],
+
+        ],
     ];
 }
 
@@ -369,6 +407,7 @@ function getIcon($label = 'Icon', $required = 0, $icons = []): array
             'user',
             'fileText',
             'circleCheck',
+            'checkGreen',
         ];
     }
     sort($icons);
