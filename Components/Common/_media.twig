@@ -4,6 +4,7 @@
 {% set video = model.video %}
 {% set embeds = model.embed %}
 {% set options = options is defined ? options : model.options %}
+{% set hubspotForm = model.hubspotForm %}
 
 {% if image %}
 	{% include '@Components/Common/_image.twig' with {
@@ -19,6 +20,13 @@
 {% endif %}
 {% if gravityForm %}
 	{% include '@Components/Common/_form.twig' with { model: {gravityForm: gravityForm}, options: options } only %}
+{% endif %}
+{% if hubspotForm %}
+  {% if hubspotForm.editor is defined and hubspotForm.editor == 'new' %}
+    {% include '@Components/BlockHubspotFormNew/index.twig' with { model: hubspotForm } only %}
+  {% else %}
+    {% include '@Components/BlockHubspotForm/index.twig' with { model: hubspotForm, options: options } only %}
+  {% endif %}
 {% endif %}
 {% if video %}
 	{% include '@Components/BlockVideoOembed/index.twig' with { model: video } only %}

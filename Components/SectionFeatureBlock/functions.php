@@ -40,8 +40,21 @@ add_filter('Flynt/addComponentData?name=SectionFeatureBlock', function (array $d
         'options' => $data['options']
     ];
 
+    if ($data['mediaType'] === 'hubspot' && !empty($data['hubspotForm'])) {
+        $hs = $data['hubspotForm'];
+        $editor = $hs['editor'] ?? 'legacy';
+        if (!empty($hs['portalId']) && !empty($hs['formId'])) {
+            $model['hubspotForm'] = [
+                'editor' => $editor === 'new' ? 'new' : 'legacy',
+                'portalId' => $hs['portalId'],
+                'formId' => $hs['formId'],
+            ];
+        }
+    }
+
     return ['model' => $model];
 });
+
 
 function getACFLayout(): array
 {

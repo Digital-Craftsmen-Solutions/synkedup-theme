@@ -4,6 +4,17 @@ import type { QuoteModel } from "../Quote/model";
 import { ImageModel } from "../Common/model";
 import { FeatureListModel } from "../List/model";
 
+export type HubspotForm = {
+  portalId: string;
+  formId: string;
+  region?: string;
+  class?: string;
+  targetId?: string;
+};
+
+// The SectionFeatureBlock model supports an optional `hubspotForm`:
+// { hubspotForm?: HubspotForm }
+
 export type SectionFeatureBlockModel = {
   icon?: string;
   heading: HeadingModel;

@@ -208,7 +208,7 @@ function getAction(): array
         //                 'fieldPath' => 'actionType',
         //                 'operator' => '==',
         //                 'value' => 'form',
-        //             ],
+        //             },
         //         ],
         //     ],
         // ],
@@ -228,6 +228,7 @@ function getMedia($default = 'none')
                 'video' => __('Video', 'flynt'),
                 'gravityForm' => __('Gravity Form', 'flynt'),
                 'embed' => __('Embed', 'flynt'),
+                'hubspot' => __('HubSpot Form', 'flynt'),
             ],
             'default_value' => $default,
         ],
@@ -285,6 +286,78 @@ function getMedia($default = 'none')
                         'fieldPath' => 'mediaType',
                         'operator' => '==',
                         'value' => 'gravityForm',
+                    ],
+                ],
+            ],
+        ],
+        [
+            'label' => __('HubSpot Form', 'flynt'),
+            'name' => 'hubspotForm',
+            'type' => 'group',
+            'layout' => 'block',
+            'sub_fields' => [
+                [
+                    'label' => __('Editor', 'flynt'),
+                    'name' => 'editor',
+                    'type' => 'button_group',
+                    'choices' => [
+                        'legacy' => __('Legacy', 'flynt'),
+                        'new' => __('New editor', 'flynt'),
+                    ],
+                    'default_value' => 'legacy',
+                    'layout' => 'horizontal',
+                ],
+                [
+                    'label' => __('Portal ID', 'flynt'),
+                    'name' => 'portalId',
+                    'type' => 'text',
+                    'required' => 1,
+                    'conditional_logic' => [
+                        [
+                            [
+                                'fieldPath' => 'editor',
+                                'operator' => '==',
+                                'value' => 'legacy',
+                            ],
+                        ],
+                        [
+                            [
+                                'fieldPath' => 'editor',
+                                'operator' => '==',
+                                'value' => 'new',
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'label' => __('Form ID', 'flynt'),
+                    'name' => 'formId',
+                    'type' => 'text',
+                    'required' => 1,
+                    'conditional_logic' => [
+                        [
+                            [
+                                'fieldPath' => 'editor',
+                                'operator' => '==',
+                                'value' => 'legacy',
+                            ],
+                        ],
+                        [
+                            [
+                                'fieldPath' => 'editor',
+                                'operator' => '==',
+                                'value' => 'new',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'conditional_logic' => [
+                [
+                    [
+                        'fieldPath' => 'mediaType',
+                        'operator' => '==',
+                        'value' => 'hubspot',
                     ],
                 ],
             ],
