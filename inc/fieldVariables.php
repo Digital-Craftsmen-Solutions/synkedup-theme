@@ -229,6 +229,7 @@ function getMedia($default = 'none')
                 'gravityForm' => __('Gravity Form', 'flynt'),
                 'embed' => __('Embed', 'flynt'),
                 'hubspot' => __('HubSpot Form', 'flynt'),
+                'calendly' => __('Calendly', 'flynt'),
             ],
             'default_value' => $default,
         ],
@@ -362,6 +363,44 @@ function getMedia($default = 'none')
                 ],
             ],
         ],
+        [
+            'label' => __('Calendly', 'flynt'),
+            'name' => 'calendly',
+            'type' => 'group',
+            'layout' => 'block',
+            'conditional_logic' => [
+                [
+                    [
+                        'fieldPath' => 'mediaType',
+                        'operator' => '==',
+                        'value' => 'calendly',
+                    ],
+                ],
+            ],
+            'sub_fields' => [
+                [
+                    'label' => __('Scheduling URL', 'flynt'),
+                    'name' => 'url',
+                    'type' => 'url',
+                    'required' => 1,
+                ],
+                [
+                    'label' => __('Height (px)', 'flynt'),
+                    'name' => 'height',
+                    'type' => 'number',
+                    'default_value' => 700,
+                    'wrapper' => ['width' => 33],
+                ],
+                [
+                    'label' => __('Prefill from page query params', 'flynt'),
+                    'name' => 'prefillFromQuery',
+                    'type' => 'true_false',
+                    'ui' => 1,
+                    'default_value' => 1,
+                    'wrapper' => ['width' => 33],
+                ],
+            ],
+        ],
         array_merge(
             getVideo(),
             [
@@ -373,7 +412,7 @@ function getMedia($default = 'none')
                             'value' => 'video',
                         ],
                     ],
-                ]
+                ],
             ]
         ),
         [
@@ -389,8 +428,8 @@ function getMedia($default = 'none')
                         'value' => 'embed',
                     ],
                 ],
-            ]
-        ]
+            ],
+        ],
     ];
 }
 

@@ -52,6 +52,17 @@ add_filter('Flynt/addComponentData?name=SectionFeatureBlock', function (array $d
         }
     }
 
+    if ($data['mediaType'] === 'calendly' && !empty($data['calendly'])) {
+        $cd = $data['calendly'];
+        if (!empty($cd['url'])) {
+            $model['calendly'] = [
+                'url' => $cd['url'],
+                'height' => isset($cd['height']) ? (int) $cd['height'] : 700,
+                'prefillFromQuery' => isset($cd['prefillFromQuery']) ? (bool) $cd['prefillFromQuery'] : true
+            ];
+        }
+    }
+
     return ['model' => $model];
 });
 

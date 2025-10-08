@@ -5,6 +5,7 @@
 {% set embeds = model.embed %}
 {% set options = options is defined ? options : model.options %}
 {% set hubspotForm = model.hubspotForm %}
+{% set calendly = model.calendly %}
 
 {% if image %}
 	{% include '@Components/Common/_image.twig' with {
@@ -33,4 +34,7 @@
 {% endif %}
 {% if embeds %}
 	{{ embeds }}
+{% endif %}
+{% if calendly %}
+  {% include '@Components/BlockCalendlyEmbed/index.twig' with { model: calendly } only %}
 {% endif %}

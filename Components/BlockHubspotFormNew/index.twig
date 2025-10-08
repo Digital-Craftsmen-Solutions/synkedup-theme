@@ -1,6 +1,8 @@
 {% set portalId = '21666517' %}
 {% set formId = model.formId ?? formId ?? model.formID ?? model.form_id %}
 
+<flynt-component name="BlockHubspotFormNew" load:on="visible">
 {% if formId %}
   <div class="hs-form-html" data-region="na1" data-form-id="{{ formId|e('html_attr') }}" data-portal-id="{{ portalId|e('html_attr') }}"></div>
 {% endif %}
+</flynt-component>

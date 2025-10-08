@@ -22,15 +22,13 @@
         window.hbspt.forms.create({ portalId, formId, target: '#' + targetId });
         el.dataset.hsInit = '1';
         return true;
-      } catch (e) {
-        // ignore
-      }
+      } catch (e) {}
     }
     return false;
   }
 
-  function initAll() {
-    document.querySelectorAll('.js-hubspotForm').forEach(function (el) {
+  function initAll(context) {
+    (context || document).querySelectorAll('.js-hubspotForm').forEach(function (el) {
       if (tryCreate(el)) return;
       var tries = 0;
       var max = 100; // ~5s
@@ -40,5 +38,19 @@
     });
   }
 
-  ready(initAll);
+  function observe() {
+    var obs = new MutationObserver(function (mutations) {
+      mutations.forEach(function (m) {
+        m.addedNodes && m.addedNodes.forEach(function (node) {
+          if (node && node.nodeType === 1) {
+            if (node.matches && node.matches('.js-hubspotForm')) tryCreate(node);
+            else initAll(node);
+          }
+        });
+      });
+    });
+    obs.observe(document.documentElement, { childList: true, subtree: true });
+  }
+
+  ready(function () { initAll(document); observe(); });
 })();

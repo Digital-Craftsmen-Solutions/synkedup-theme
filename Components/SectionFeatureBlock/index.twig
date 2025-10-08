@@ -9,6 +9,7 @@
 {% set video = model.video %}
 {% set embed = model.embed %}
 {% set hubspotForm = model.hubspotForm %}
+{% set calendly = model.calendly %}
 {% set options = options is defined ? options : model.options %}
 {% set imageDisplay = options.imageDisplay ?? 'right' %}
 {% set imageAlign = options.imageAlign ?? 'bottom' %}
@@ -42,7 +43,8 @@
 							gravityForm: gravityForm,
 							video: video,
 							embed: embed,
-							hubspotForm: hubspotForm
+							hubspotForm: hubspotForm,
+							calendly: calendly
 						}, options: options } only %}
 					{% endif %}
 					{% if quote %}
@@ -61,7 +63,8 @@
 							gravityForm: gravityForm,
 							video: video,
 							embed: embed,
-							hubspotForm: hubspotForm
+							hubspotForm: hubspotForm,
+							calendly: calendly
 						}, options: options } only %}
 					</div>
 				{% endif %}

@@ -1,0 +1,14 @@
+{% set url = model.url %}
+{% set height = model.height ?? 700 %}
+{% set prefill = model.prefillFromQuery is defined ? model.prefillFromQuery : true %}
+
+<flynt-component name="BlockCalendlyEmbed" load:on="visible">
+{% if url %}
+<div class="blockCalendlyEmbed">
+  <div id="calendly-container" class="js-calendlyWidget"
+       data-url="{{ url }}"
+       data-allow-prefill="{{ prefill ? '1' : '0' }}"
+       style="min-width: 320px; height: {{ height }}px;"></div>
+</div>
+{% endif %}
+</flynt-component>

@@ -1,8 +1,10 @@
 {% set portalId = model.portalId ?? portalId ?? model.portalID ?? model.portal_id %}
 {% set formId = model.formId ?? formId ?? model.formID ?? model.form_id %}
 
-<div class="blockHubspotForm">
-  <div class="blockHubspotForm__container js-hubspotForm"
-    data-portal-id="{{ portalId }}"
-    data-form-id="{{ formId }}"></div>
-</div>
+<flynt-component name="BlockHubspotForm" load:on="visible">
+  <div class="blockHubspotForm">
+    <div class="blockHubspotForm__container js-hubspotForm"
+      data-portal-id="{{ portalId }}"
+      data-form-id="{{ formId }}"></div>
+  </div>
+</flynt-component>
