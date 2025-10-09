@@ -44,10 +44,23 @@ add_filter('Flynt/addComponentData?name=SectionFeatureBlock', function (array $d
         $hs = $data['hubspotForm'];
         $editor = $hs['editor'] ?? 'legacy';
         if (!empty($hs['portalId']) && !empty($hs['formId'])) {
+            $rules = [];
+            if (!empty($hs['redirectRules']) && is_array($hs['redirectRules'])) {
+                foreach ($hs['redirectRules'] as $r) {
+                    if (!empty($r['matchValue']) && !empty($r['redirectUrl'])) {
+                        $rules[] = [
+                            'field' => !empty($r['fieldName']) ? $r['fieldName'] : 'email',
+                            'value' => $r['matchValue'],
+                            'url' => $r['redirectUrl'],
+                        ];
+                    }
+                }
+            }
             $model['hubspotForm'] = [
                 'editor' => $editor === 'new' ? 'new' : 'legacy',
                 'portalId' => $hs['portalId'],
                 'formId' => $hs['formId'],
+                'redirectRules' => $rules,
             ];
         }
     }
@@ -57,7 +70,6 @@ add_filter('Flynt/addComponentData?name=SectionFeatureBlock', function (array $d
         if (!empty($cd['url'])) {
             $model['calendly'] = [
                 'url' => $cd['url'],
-                'height' => isset($cd['height']) ? (int) $cd['height'] : 700,
                 'prefillFromQuery' => isset($cd['prefillFromQuery']) ? (bool) $cd['prefillFromQuery'] : true
             ];
         }

@@ -313,42 +313,42 @@ function getMedia($default = 'none')
                     'name' => 'portalId',
                     'type' => 'text',
                     'required' => 1,
-                    'conditional_logic' => [
-                        [
-                            [
-                                'fieldPath' => 'editor',
-                                'operator' => '==',
-                                'value' => 'legacy',
-                            ],
-                        ],
-                        [
-                            [
-                                'fieldPath' => 'editor',
-                                'operator' => '==',
-                                'value' => 'new',
-                            ],
-                        ],
-                    ],
                 ],
                 [
                     'label' => __('Form ID', 'flynt'),
                     'name' => 'formId',
                     'type' => 'text',
                     'required' => 1,
-                    'conditional_logic' => [
+                ],
+                [
+                    'label' => __('Redirect Rules (optional)', 'flynt'),
+                    'name' => 'redirectRules',
+                    'type' => 'repeater',
+                    'layout' => 'table',
+                    'button_label' => __('Add Redirect Rule', 'flynt'),
+                    'instructions' => __('If a submitted field equals a given value, redirect to the specified URL.', 'flynt'),
+                    'sub_fields' => [
                         [
-                            [
-                                'fieldPath' => 'editor',
-                                'operator' => '==',
-                                'value' => 'legacy',
-                            ],
+                            'label' => __('Field Name', 'flynt'),
+                            'name' => 'fieldName',
+                            'type' => 'text',
+                            'default_value' => 'email',
+                            'wrapper' => ['width' => 30],
+                            'required' => 1,
                         ],
                         [
-                            [
-                                'fieldPath' => 'editor',
-                                'operator' => '==',
-                                'value' => 'new',
-                            ],
+                            'label' => __('Match Value', 'flynt'),
+                            'name' => 'matchValue',
+                            'type' => 'text',
+                            'wrapper' => ['width' => 35],
+                            'required' => 1,
+                        ],
+                        [
+                            'label' => __('Redirect URL', 'flynt'),
+                            'name' => 'redirectUrl',
+                            'type' => 'url',
+                            'wrapper' => ['width' => 35],
+                            'required' => 1,
                         ],
                     ],
                 ],
@@ -383,13 +383,6 @@ function getMedia($default = 'none')
                     'name' => 'url',
                     'type' => 'url',
                     'required' => 1,
-                ],
-                [
-                    'label' => __('Height (px)', 'flynt'),
-                    'name' => 'height',
-                    'type' => 'number',
-                    'default_value' => 700,
-                    'wrapper' => ['width' => 33],
                 ],
                 [
                     'label' => __('Prefill from page query params', 'flynt'),
