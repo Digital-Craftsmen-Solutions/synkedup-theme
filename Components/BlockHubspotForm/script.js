@@ -1,6 +1,5 @@
-(function () {
-  document.addEventListener('DOMContentLoaded', init);
-
+export default function (el) {
+  
   function init() {
     var containers = document.querySelectorAll('.js-hubspotForm');
     for (var i = 0; i < containers.length; i++) {
@@ -151,4 +150,6 @@
       return base; // Fallback if URL constructor fails
     }
   }
-})();
+
+  init()
+}

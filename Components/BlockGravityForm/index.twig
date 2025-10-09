@@ -1,0 +1,10 @@
+{% set formId = model.gravityForm ?? gravityForm %}
+{% set options = model.options ?? options ?? {} %}
+{% if formId %}
+<flynt-component name="BlockGravityForm" load:on="visible">
+  <div class="gravityFormWrapper {{ options.inlineForm ? 'max-w-2xl single-inline-form' : '' }}">
+    {% set shortcode = '[gravityform id="' ~ formId ~ '" title="false" description="false" ajax="true"]' %}
+    {% apply shortcodes %}{{ shortcode }}{% endapply %}
+  </div>
+</flynt-component>
+{% endif %}

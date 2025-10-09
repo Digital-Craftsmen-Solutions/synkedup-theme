@@ -16,12 +16,10 @@ if (function_exists('add_filter')) {
 
 if (function_exists('add_action')) {
     add_action('wp_enqueue_scripts', function () {
-        if (function_exists('wp_register_script') && function_exists('get_template_directory_uri')) {
+        if (function_exists('wp_register_script')) {
             wp_register_script('hubspot-forms', 'https://js.hsforms.net/forms/embed/v2.js', [], null, true);
-            wp_register_script('flynt-block-hubspot-form', get_template_directory_uri() . '/Components/BlockHubspotForm/script.js', ['hubspot-forms'], null, true);
             if (function_exists('wp_enqueue_script')) {
                 wp_enqueue_script('hubspot-forms');
-                wp_enqueue_script('flynt-block-hubspot-form');
             }
         }
     });
