@@ -1,4 +1,4 @@
-(function () {
+export default function (el) {
   // New HubSpot (Forms V4) redirect handler
   // Listens for the HubSpot global success event, extracts submitted field values,
   // normalizes field names (removes numeric prefixes like 0-1/), applies redirect rules,
@@ -144,4 +144,4 @@
       return base;
     }
   }
-})();
+}

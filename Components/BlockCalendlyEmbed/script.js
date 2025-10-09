@@ -1,4 +1,4 @@
-(function () {
+export default function (el) {
   function buildUrl(base) {
     try {
       var u = new URL(base, window.location.origin);
@@ -63,4 +63,4 @@
 
   if (document.readyState === 'complete') initWhenReady();
   else window.addEventListener('load', initWhenReady);
-})();
+}
