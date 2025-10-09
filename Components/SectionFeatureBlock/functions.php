@@ -62,6 +62,24 @@ add_filter('Flynt/addComponentData?name=SectionFeatureBlock', function (array $d
                 'formId' => $hs['formId'],
                 'redirectRules' => $rules,
             ];
+            // Enqueue HubSpot assets when included via partial
+            if (!is_admin() && function_exists('wp_register_script')) {
+                static $hubspotLegacyDone = false;
+                static $hubspotNewDone = false;
+                if ($editor === 'new') {
+                    if (!$hubspotNewDone) {
+                        wp_register_script('hubspot-forms-developer', 'https://js.hsforms.net/forms/embed/developer/21666517.js', [], null, true);
+                        wp_enqueue_script('hubspot-forms-developer');
+                        $hubspotNewDone = true;
+                    }
+                } else {
+                    if (!$hubspotLegacyDone) {
+                        wp_register_script('hubspot-forms', 'https://js.hsforms.net/forms/embed/v2.js', [], null, true);
+                        wp_enqueue_script('hubspot-forms');
+                        $hubspotLegacyDone = true;
+                    }
+                }
+            }
         }
     }
 
@@ -72,6 +90,20 @@ add_filter('Flynt/addComponentData?name=SectionFeatureBlock', function (array $d
                 'url' => $cd['url'],
                 'prefillFromQuery' => isset($cd['prefillFromQuery']) ? (bool) $cd['prefillFromQuery'] : true
             ];
+            if (!is_admin() && function_exists('wp_register_script')) {
+                static $enqueued = false;
+                if (!$enqueued) {
+                    wp_register_script('calendly-widget', 'https://assets.calendly.com/assets/external/widget.js', [], null, true);
+                    if (function_exists('wp_register_style')) {
+                        wp_register_style('calendly-widget', 'https://assets.calendly.com/assets/external/widget.css', [], null);
+                    }
+                    wp_enqueue_script('calendly-widget');
+                    if (function_exists('wp_enqueue_style')) {
+                        wp_enqueue_style('calendly-widget');
+                    }
+                    $enqueued = true;
+                }
+            }
         }
     }
 
