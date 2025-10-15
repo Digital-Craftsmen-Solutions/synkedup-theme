@@ -7,6 +7,8 @@
 {% set gravityForm = model.gravityForm %}
 {% set video = model.video %}
 {% set embed = model.embed %}
+{% set hubspotForm = model.hubspotForm %}
+{% set calendly = model.calendly %}
 {% set action = model.action %}
 {% set breadcrumbs = model.breadcrumbs %}
 {% set features = model.features %}
@@ -76,7 +78,9 @@
 							{% include '@Components/Common/_media.twig' with { model: {
 								gravityForm: gravityForm,
 								video: video,
-								embed: embed
+								embed: embed,
+								hubspotForm: hubspotForm,
+								calendly: calendly
 							}, options: options } only %}
 						</div>
 					</div>
