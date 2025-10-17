@@ -3,7 +3,7 @@
 {% set redirectRules = model.redirectRules ?? redirectRules ?? [] %}
 
 <flynt-component name="BlockHubspotForm" load:on="visible">
-  <div class="blockHubspotForm">
+  <div class="blockHubspotForm bg-white border border-border-card rounded-2xl md:rounded-3xl p-6 md:p-8">
     <div class="blockHubspotForm__container js-hubspotForm"
       data-portal-id="{{ portalId }}"
       data-form-id="{{ formId }}"
