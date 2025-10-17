@@ -10,7 +10,7 @@
 					{% if image.post_mime_type == 'image/svg+xml' %}
 						<img class="figure-image-svg lazyload" src="{{ placeholderImage(1280, 720, 'rgba(125, 125, 125, 0.1)') }}" width="1280" height="720" data-src="{{ image.src }}" alt="{{ image.alt|e }}">
 					{% else %}
-						{% include '@Components/Common/_image.twig' with { model: image, size: 'large', class: 'figure-image lazyload' } only %}
+						{% include '@Components/Common/_image.twig' with { model: image, size: 'large', class: 'figure-image' } only %}
 					{% endif %}
 					{% if image.caption %}
 						<figcaption class="figure-caption">{{ image.caption|e }}</figcaption>

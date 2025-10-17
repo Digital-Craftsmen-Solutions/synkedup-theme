@@ -3,7 +3,7 @@
 {% set cols = num == 1 ? 'md:grid-cols-1' : (num == 2 ? 'md:grid-cols-2' : 'md:grid-cols-3') %}
 {% set options = options is defined ? options : model.options %}
 
-<flynt-component name="SectionIconItems" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="">
+<flynt-component name="SectionIconItems" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="edge sand bg-shade dark:bg-transparent">
 	<section class="tw-section">
 		<div class="grid {{cols}} items-center gap-8 md:gap-10">
 			{% for item in items %}
