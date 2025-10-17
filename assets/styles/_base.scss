@@ -110,8 +110,9 @@
   hr {
     --flow-space: var(--component-spacing);
     border: 0;
-    margin-block: var(--flow-space);
+    margin-block: 40px;
     margin-inline: auto;
+    border-top: 1px solid rgba(0, 0, 0, .1);
 
     // &::after {
     //   background-color: var(--color-border);
@@ -203,6 +204,10 @@
   table {
     border-collapse: collapse;
     border-spacing: 0;
+    background-color: transparent;
+    width: 100%;
+    margin-block-end: 15px;
+    font-size: .9em;
 
     caption {
       caption-side: bottom;
