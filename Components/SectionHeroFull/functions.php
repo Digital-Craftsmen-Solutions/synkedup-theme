@@ -10,6 +10,7 @@ add_filter('Flynt/addComponentData?name=SectionHeroFull', function (array $data)
     $model = [
         'backgroundImage' => $data['backgroundImage'],
         'heading' => $data['heading'],
+        'mediaType' => $data['mediaType'],
         'image' => $data['mediaType'] === 'image' ? $data['image'] : null,
         'mobileImage' => $data['mediaType'] === 'image' && !empty($data['mobileImage']) ? $data['mobileImage'] : null,
         'gravityForm' => $data['mediaType'] === 'gravityForm' ? $data['gravityForm'] : null,

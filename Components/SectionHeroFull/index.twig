@@ -1,6 +1,7 @@
 {% set backgroundImage = model.backgroundImage %}
 {% set heading = model.heading|default([]) %}
 {% set heading = heading|merge({ type: 'h1' }) %}
+{% set mediaType = model.mediaType %}
 {% set image = model.image %}
 {% set mobileImage = model.mobileImage %}
 {% set mobileImage = mobileImage ? mobileImage : image %}
@@ -47,13 +48,34 @@
 						{% endif %}
 						{% include '@Components/Action/index.twig' with { model: action,  options: {align: display == 'full' ? 'center' : 'left'} } only %}
 
-						{% if display != 'full' and mobileImage %}
+						{% if mediaType == 'image' %}
 							<div class="flex md:hidden justify-center items-end">
 								{% include '@Components/Common/_image.twig' with {
-              model: mobileImage,
-              size: 'small',
-							class: 'max-w-sm'
-            } only %}
+									model: mobileImage,
+									size: 'small',
+									class: 'max-w-sm'
+								} only %}
+							</div>
+							{% if display == 'full' %}
+								<div class="hidden md:flex justify-center items-end">
+									{% include '@Components/Common/_image.twig' with {
+									model: image,
+									size: 'medium',
+									class: 'max-w-md'
+								} only %}
+								</div>
+							{% endif %}
+						{% endif %}
+
+						{% if mediaType != 'none' and mediaType != 'image' %}
+							<div class="flex {{display != 'full' ? 'md:hidden'}} justify-center items-center">
+								{% include '@Components/Common/_media.twig' with { model: {
+									gravityForm: gravityForm,
+									video: video,
+									embed: embed,
+									hubspotForm: hubspotForm,
+									calendly: calendly
+								}, options: options } only %}
 							</div>
 						{% endif %}
 					</div>
@@ -65,7 +87,7 @@
 					{% endif %}
 				</div>
 
-				{% if display != 'full' and mediaType != 'none'%}
+				{% if display != 'full' and mediaType == 'image'%}
 					<div class="hidden md:block relative isolate overflow-hidden md:col-span-5 mt-10">
 						<div class="absolute inset-0 flex justify-center items-end">
 							{% if image %}
@@ -75,6 +97,13 @@
 									class: 'object-contain! h-full object-bottom!'
 								} only %}
 							{% endif %}
+						</div>
+					</div>
+				{% endif %}
+
+				{% if display != 'full' and mediaType != 'none' and mediaType != 'image'%}
+					<div class="hidden md:block relative isolate overflow-hidden md:col-span-5 mt-10">
+						<div class="flex justify-center items-center">
 							{% include '@Components/Common/_media.twig' with { model: {
 								gravityForm: gravityForm,
 								video: video,
