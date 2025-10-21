@@ -257,6 +257,18 @@ function getACFLayout(): array
                         'allow_null' => 0,
                     ],
                     [
+                        'label' => __('Image Align', 'flynt'),
+                        'name' => 'imageAlign',
+                        'type' => 'button_group',
+                        'choices' => [
+                            'bottom' => __('Bottom', 'flynt'),
+                            'center' => __('Center', 'flynt'),
+                            'top' => __('Top', 'flynt'),
+                        ],
+                        'default_value' => 'bottom',
+                        'allow_null' => 1,
+                    ],
+                    [
                         'label' => __('Text Align', 'flynt'),
                         'name' => 'textAlign',
                         'type' => 'button_group',
