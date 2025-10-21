@@ -27,9 +27,8 @@ export default function (el) {
     return !!(window.Calendly && typeof window.Calendly.initInlineWidget === 'function');
   }
 
-  function init() {
-    var el = document.getElementById('calendly-container');
-    if (!el) return;
+  function initCalendlyWidget(el) {
+    if (!el || el.dataset.calInit === '1') return;
     var url = el.getAttribute('data-url');
     if (!url || !hasCalendly()) return;
     var allow = el.dataset.allowPrefill !== '0';
@@ -42,6 +41,15 @@ export default function (el) {
       });
       el.dataset.calInit = '1';
     } catch (e) {}
+  }
+
+  function init() {
+    var containers = document.querySelectorAll('.calendly-container, #calendly-container');
+    if (!containers.length || !hasCalendly()) return;
+    
+    containers.forEach(function(container) {
+      initCalendlyWidget(container);
+    });
   }
 
   function initWhenReady() {
