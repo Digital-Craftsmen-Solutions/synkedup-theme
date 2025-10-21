@@ -4,17 +4,32 @@
 
 			<div class="md:hidden mb-3">
 				{% include '/Components/NavigationMain/Partials/_logo.twig' with {'logo': logo, 'site': site} only %}
+				<div class="mt-4 mb-6">
+					<div class="flex items-start gap-2 text-sm text-text">
+						{% include '@Components/Common/_icon.twig' with { name: 'marker', ariaLabel: 'Location Icon', class: 'shrink-0 size-4 mt-0.5 text-text' } %}
+						<div>{{ address|raw }}</div>
+					</div>
+				</div>
+				{% include '/Components/NavigationMain/Partials/_logo.twig' with {'logo': app_store_logo, 'site': app_store_site} only %}
+				{% include '/Components/NavigationMain/Partials/_logo.twig' with {'logo': play_store_logo, 'site': play_store_site} only %}
 			</div>
 
 			<!-- Grid -->
-			<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 mb-8 lg:mb-10 ">
-				<div class="col-span-full hidden lg:col-span-1 lg:block">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 lg:mb-10 ">
+				<div class="col-span-full hidden lg:col-span-1 md:block">
 					{% include '/Components/NavigationMain/Partials/_logo.twig' with {'logo': logo, 'site': site} only %}
-					<div class="ms-1 sm:ms-2"></div>
+					<div class="mt-4 mb-8">
+						<div class="flex items-start gap-2 text-sm text-text">
+							{% include '@Components/Common/_icon.twig' with { name: 'marker', ariaLabel: 'Location Icon', class: 'shrink-0 size-4 mt-0.5 text-text' } %}
+							<div>{{ address|raw }}</div>
+						</div>
+					</div>
+					{% include '/Components/NavigationMain/Partials/_logo.twig' with {'logo': app_store_logo, 'site': app_store_site} only %}
+					{% include '/Components/NavigationMain/Partials/_logo.twig' with {'logo': play_store_logo, 'site': play_store_site} only %}
 				</div>
 				<!-- End Col -->
 
-				{% for menu in [menu1, menu2, menu3, menu4] %}
+				{% for menu in [menu1, menu2] %}
 					<div>
 						<h4 class="text-sm font-medium text-heading">{{ menu.title }}</h4>
 						<div class="mt-3 grid space-y-3 text-sm">

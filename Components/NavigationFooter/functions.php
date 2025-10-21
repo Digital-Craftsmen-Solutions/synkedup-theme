@@ -27,6 +27,21 @@ add_filter('Flynt/addComponentData?name=NavigationFooter', function (array $data
         'alt' => get_bloginfo('name')
     ];
     $data['copyright'] = '© 2025 SynkedUp';
+    $data['address'] = '8583 Woodbury <br> Pike Hollidaysburg, <br> PA 16648';
+    $data['app_store_logo'] = [
+        'src' => Asset::requireUrl('assets/images/app-store-badge.svg'),
+        'alt' => 'App store logo',
+    ];
+    $data['app_store_site'] = [
+        'link' => 'https://apps.apple.com/us/app/synkedup/id1482613991'
+    ];
+    $data['play_store_logo'] = [
+        'src' => Asset::requireUrl('assets/images/google-play-badge.png'),
+        'alt' => 'Play store logo',
+    ];
+    $data['play_store_site'] = [
+        'link' => 'https://play.google.com/store/apps/details?id=com.tussey.synkedup&hl=en_US'
+    ];
     return $data;
 });
 
