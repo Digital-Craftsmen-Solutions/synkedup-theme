@@ -257,6 +257,18 @@ function getACFLayout(): array
                         'allow_null' => 0,
                     ],
                     [
+                        'label' => __('Text Align', 'flynt'),
+                        'name' => 'textAlign',
+                        'type' => 'button_group',
+                        'choices' => [
+                            'default' => __('Default', 'flynt'),
+                            'center' => __('Center', 'flynt'),
+                            'left' => __('Left', 'flynt'),
+                        ],
+                        'default_value' => 'default',
+                        'allow_null' => 0,
+                    ],
+                    [
                         'label' => __('Show Breadcrumbs?', 'flynt'),
                         'name' => 'showBreadcrumbs',
                         'type' => 'true_false',

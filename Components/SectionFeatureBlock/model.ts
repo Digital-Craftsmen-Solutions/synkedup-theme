@@ -27,5 +27,6 @@ export type SectionFeatureBlockModel = {
     theme?: "light" | "dark";
     imageDisplay?: "full" | "left" | "right";
     imageAlign?: "bottom" | "center" | "top";
+    textAlign?: "default" | "center" | "left";
   };
 };

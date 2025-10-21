@@ -13,6 +13,7 @@
 {% set options = options is defined ? options : model.options %}
 {% set imageDisplay = options.imageDisplay ?? 'right' %}
 {% set imageAlign = options.imageAlign ?? 'bottom' %}
+{% set textAlign = options.textAlign ?? 'default' %}
 
 <flynt-component name="SectionFeatureBlock" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
 	<section class="tw-section">
@@ -26,7 +27,7 @@
 						{% include '@Components/Common/_icon.twig' with { name: icon, class: 'size-6 text-text dark:text-text-dark' } %}
 					{% endif %}
 					{% if heading %}
-						{% include '@Components/Heading/index.twig' with { model: heading, options: {align: imageDisplay == 'full' ? 'center' : 'left'} } only %}
+						{% include '@Components/Heading/index.twig' with { model: heading, options: {align: textAlign != 'default' ? textAlign : (imageDisplay == 'full' ? 'center' : 'left')} } only %}
 					{% endif %}
 					{% if features %}
 						{% include '@Components/List/index.twig' with { model: features, options: options } only %}

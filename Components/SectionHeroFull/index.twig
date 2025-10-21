@@ -16,6 +16,7 @@
 {% set extraItems = model.extraItems %}
 {% set options = options is defined ? options : model.options %}
 {% set display = options.display ?? 'full' %}
+{% set textAlign = options.textAlign ?? 'default' %}
 {% set hasExtra = extraItems and extraItems|length > 0 %}
 
 
@@ -42,7 +43,7 @@
 						{% if breadcrumbs %}
 							{% include '@Components/Breadcrumbs/index.twig' with { model: breadcrumbs } only %}
 						{% endif %}
-						{% include '@Components/Heading/index.twig' with { model: heading, options: {align: display == 'full' ? 'center' : 'left'} } only %}
+						{% include '@Components/Heading/index.twig' with { model: heading, options: {align:  textAlign != 'default' ? textAlign :(display == 'full' ? 'center' : 'left')} } only %}
 						{% if features %}
 							{% include '@Components/List/index.twig' with { model: features, options: options } only %}
 						{% endif %}

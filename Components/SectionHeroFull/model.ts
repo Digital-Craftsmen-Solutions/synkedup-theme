@@ -17,5 +17,6 @@ export type SectionHeroFullModel = {
   options?: {
     theme?: "light" | "dark";
     display?: "full" | "split";
+    textAlign?: "default" | "center" | "left";
   };
 };

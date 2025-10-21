@@ -193,6 +193,18 @@ function getACFLayout(): array
                         'default_value' => 'bottom',
                         'allow_null' => 1,
                     ],
+                    [
+                        'label' => __('Text Align', 'flynt'),
+                        'name' => 'textAlign',
+                        'type' => 'button_group',
+                        'choices' => [
+                            'default' => __('Default', 'flynt'),
+                            'center' => __('Center', 'flynt'),
+                            'left' => __('Left', 'flynt'),
+                        ],
+                        'default_value' => 'default',
+                        'allow_null' => 1,
+                    ],
                 ],
             ],
         ],
