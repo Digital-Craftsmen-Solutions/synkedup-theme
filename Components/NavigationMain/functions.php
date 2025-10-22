@@ -38,6 +38,12 @@ Options::addGlobal('MainNavigation', [
         'type' => 'link',
         'return_format' => 'array',
     ],
+    [
+        'label' => __('Secondary Button', 'flynt'),
+        'name' => 'secondaryButton',
+        'type' => 'link',
+        'return_format' => 'array',
+    ],
 ]);
 
 Options::addTranslatable('NavigationMain', [
