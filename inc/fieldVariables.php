@@ -215,22 +215,26 @@ function getAction(): array
     ];
 }
 
-function getMedia($default = 'none')
+function getMedia($default = 'none', $choicesFilter = []): array
 {
+    $choices = [
+        'none' => __('None', 'flynt'),
+        'image' => __('Image', 'flynt'),
+        'video' => __('Video', 'flynt'),
+        'gravityForm' => __('Gravity Form', 'flynt'),
+        'embed' => __('Embed', 'flynt'),
+        'hubspot' => __('HubSpot Form', 'flynt'),
+        'calendly' => __('Calendly', 'flynt'),
+    ];
+    if (!empty($choicesFilter)) {
+        $choices = array_intersect_key($choices, array_flip($choicesFilter));
+    }
     return [
         [
             'label' => __('Media Content', 'flynt'),
             'name' => 'mediaType',
             'type' => 'button_group',
-            'choices' => [
-                'none' => __('None', 'flynt'),
-                'image' => __('Image', 'flynt'),
-                'video' => __('Video', 'flynt'),
-                'gravityForm' => __('Gravity Form', 'flynt'),
-                'embed' => __('Embed', 'flynt'),
-                'hubspot' => __('HubSpot Form', 'flynt'),
-                'calendly' => __('Calendly', 'flynt'),
-            ],
+            'choices' => $choices,
             'default_value' => $default,
         ],
         [

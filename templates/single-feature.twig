@@ -1,0 +1,9 @@
+{% extends 'templates/_document.twig' %}
+
+{% block content %}
+
+	{{ renderComponent('PageFeature', post.meta('pageFeature')) }}
+
+{% include '@Components/Common/_json.twig' with {value: post.meta('pageFeature'), varName: 'pageFeature'} %}
+
+{% endblock %}
