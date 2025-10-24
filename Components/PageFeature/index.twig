@@ -1,0 +1,20 @@
+{% set hero = model.hero %}
+{% set featureTopComponents = model.featureTopComponents %}
+{% set featureBottomComponents = model.featureBottomComponents %}
+{% set content = model.featureContent|default([]) %}
+
+{% include '@Components/SectionHeroFull/index.twig' with {model: hero, options: {theme: 'dark', display: 'split', imageAlign: 'bottom', textAlign: 'left'}} %}
+
+{% for component in featureTopComponents %}
+	{{ renderComponent(component) }}
+{% endfor %}
+
+{% for component in content %}
+	{{ renderComponent(component) }}
+{% endfor %}
+
+{% for component in featureBottomComponents %}
+	{{ renderComponent(component) }}
+{% endfor %}
+
+{% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %}
