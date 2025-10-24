@@ -23,7 +23,17 @@
 						{% include '@Components/Heading/index.twig' with { model: heading, options: {align: display == 'full' ? 'center' : 'left', hideHighlight: theme == 'dark', theme: altMode ? 'dark' : theme} } only %}
 					{% endif %}
 					{% if action and display == 'full' %}
-						{% include '@Components/Action/index.twig' with { model: action, options: {align: display == 'full' ? 'center' : 'left', inlineForm: display == 'split'} } only %}
+						{% if action.actionType == 'hubspot' and action.hubspotForm %}
+							<div class="inline-hubspot-form"> 
+								{% if action.hubspotForm.editor is defined and action.hubspotForm.editor == 'new' %}
+									{% include '@Components/BlockHubspotFormNew/index.twig' with { model: action.hubspotForm, options: {raw: true, transparent: true} } only %}
+								{% else %}
+									{% include '@Components/BlockHubspotForm/index.twig' with { model: action.hubspotForm, options: {raw: true, transparent: true} } only %}
+								{% endif %}
+							</div>
+						{% else %}
+							{% include '@Components/Action/index.twig' with { model: action, options: {align: display == 'full' ? 'center' : 'left', inlineForm: display == 'split'} } only %}
+						{% endif %}
 					{% endif %}
 				</div>
 
@@ -36,7 +46,17 @@
 							</div>
 						{% endif %}
 						{% if action %}
-							{% include '@Components/Action/index.twig' with { model: action, options: {align: display == 'full' ? 'center' : 'left', inlineForm: display == 'split'} } only %}
+							{% if action.actionType == 'hubspot' and action.hubspotForm %}
+								<div class="inline-hubspot-form inline-hubspot-form-alt-button"> 
+									{% if action.hubspotForm.editor is defined and action.hubspotForm.editor == 'new' %}
+										{% include '@Components/BlockHubspotFormNew/index.twig' with { model: action.hubspotForm, options: {raw: true, transparent: true} } only %}
+									{% else %}
+										{% include '@Components/BlockHubspotForm/index.twig' with { model: action.hubspotForm, options: {raw: true, transparent: true} } only %}
+									{% endif %}
+								</div>
+							{% else %}
+								{% include '@Components/Action/index.twig' with { model: action, options: {align: display == 'full' ? 'center' : 'left', inlineForm: display == 'split'} } only %}
+							{% endif %}
 						{% endif %}
 					</div>
 				{% endif %}

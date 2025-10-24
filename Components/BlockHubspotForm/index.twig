@@ -1,12 +1,16 @@
 {% set portalId = model.portalId ?? portalId ?? model.portalID ?? model.portal_id %}
 {% set formId = model.formId ?? formId ?? model.formID ?? model.form_id %}
 {% set redirectRules = model.redirectRules ?? redirectRules ?? [] %}
+{% set options = options is defined ? options : {} %}
+{% set isRaw = options.raw ?? false %}
+{% set isTransparent = options.transparent ?? false %}
 
 <flynt-component name="BlockHubspotForm" load:on="visible">
-  <div class="blockHubspotForm bg-white border border-border-card rounded-2xl md:rounded-3xl p-6 md:p-8">
+  <div class="blockHubspotForm {{ isTransparent ? '' : 'bg-white border border-border-card' }} rounded-2xl md:rounded-3xl p-6 md:p-8">
     <div class="blockHubspotForm__container js-hubspotForm"
       data-portal-id="{{ portalId }}"
       data-form-id="{{ formId }}"
-      data-redirect-rules='{{ redirectRules|json_encode|e('html_attr') }}'></div>
+      data-redirect-rules='{{ redirectRules|json_encode|e('html_attr') }}'
+      {{ isRaw ? 'data-raw' : '' }}></div>
   </div>
 </flynt-component>

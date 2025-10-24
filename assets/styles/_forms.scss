@@ -662,3 +662,72 @@ html .gform_wrapper h6 {
     transform: rotate(360deg)
   }
 }
+
+.inline-hubspot-form {
+  form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .hs-button {
+    height: 40px;
+    width: 100%;
+    margin: 0 16px 0 0;
+    color: #fff;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    border: 1px solid transparent;
+    border-radius: 12px!important;
+    padding: 8px 16px!important;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background: #ff5c35;
+  }
+  
+  .hs-submit {
+    min-width: 105px;
+  }
+  
+  .hs-email {
+    flex-grow: 1;
+  }
+  
+  ul {
+    display: none;
+  }
+  
+  .hs-input {
+    height: 40px;
+    padding: .375rem .75rem !important;
+    font-size: .85rem !important;
+    font-weight: 400;
+    line-height: 1.5 !important;
+    background-clip: padding-box;
+    border: 1px solid #d8d8d8;
+    border-radius: 12px!important;
+    background:white;
+    
+    &.error { 
+      border: 1px solid dc3545;
+    }
+  }
+  
+  label {
+    display: none;
+  }
+  
+  .actions {
+    margin-top: 0px; 
+    margin-bottom: 0px; 
+    padding: 0px 0px; 
+  }
+}
+
+.inline-hubspot-form-alt-button{
+   .hs-button {
+    color: black;
+    background: white;
+  }
+}

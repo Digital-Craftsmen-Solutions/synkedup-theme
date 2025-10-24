@@ -109,7 +109,7 @@ export default function (el) {
       var url = (rule.url || '').trim();
       if (!field || !matchValue || !url) continue;
       var submitted = (values[field] || '').toString().trim();
-      if (submitted && submitted.toLowerCase() === matchValue.toLowerCase()) return url;
+      if (submitted && (matchValue === '*' || submitted.toLowerCase() === matchValue.toLowerCase())) return url;
     }
     return null;
   }

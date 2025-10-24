@@ -17,16 +17,26 @@ export default function (el) {
 
     ensureId(container);
 
+    var formOptions = {
+      portalId: portalId,
+      formId: formId,
+      target: '#' + container.id,
+      onFormReady: function ($form) {
+        var formElement = $form && $form.get ? $form.get(0) : container.querySelector('form');
+        attachSubmitInterceptor(container, formElement);
+      }
+    };
+
+    if (container.hasAttribute('data-raw')) {
+      formOptions.css = `
+    .hs-form-field label {
+      display: none;
+    }
+  `;
+    }
+
     try {
-      window.hbspt.forms.create({
-        portalId: portalId,
-        formId: formId,
-        target: '#' + container.id,
-        onFormReady: function ($form) {
-          var formElement = $form && $form.get ? $form.get(0) : container.querySelector('form');
-          attachSubmitInterceptor(container, formElement);
-        }
-      });
+      window.hbspt.forms.create(formOptions);
       container.dataset.hsInit = '1';
     } catch (e) {
       // Fail silently – HubSpot script might not be ready yet
@@ -103,7 +113,7 @@ export default function (el) {
       if (!field || !matchValue || !url) continue;
 
       var submitted = (values[field] || '').toString().trim();
-      if (submitted && submitted.toLowerCase() === matchValue.toLowerCase()) {
+      if (submitted && (matchValue === '*' || submitted.toLowerCase() === matchValue.toLowerCase())) {
         return url;
       }
     }

@@ -149,18 +149,98 @@ function getImage($label = 'Image', $required = 0, $previewSize = 'large', $mime
     ];
 }
 
-function getAction(): array
+
+
+function getHubSpotForm(): array
 {
     return [
+        'label' => __('HubSpot Form', 'flynt'),
+        'name' => 'hubspotForm',
+        'type' => 'group',
+        'layout' => 'block',
+        'sub_fields' => [
+            [
+                'label' => __('Editor', 'flynt'),
+                'name' => 'editor',
+                'type' => 'button_group',
+                'choices' => [
+                    'legacy' => __('Legacy', 'flynt'),
+                    'new' => __('New editor', 'flynt'),
+                ],
+                'default_value' => 'legacy',
+                'layout' => 'horizontal',
+            ],
+            [
+                'label' => __('Portal ID', 'flynt'),
+                'name' => 'portalId',
+                'type' => 'text',
+                'required' => 1,
+            ],
+            [
+                'label' => __('Form ID', 'flynt'),
+                'name' => 'formId',
+                'type' => 'text',
+                'required' => 1,
+            ],
+            [
+                'label' => __('Redirect Rules (optional)', 'flynt'),
+                'name' => 'redirectRules',
+                'type' => 'repeater',
+                'layout' => 'table',
+                'button_label' => __('Add Redirect Rule', 'flynt'),
+                'instructions' => __('If a submitted field equals a given value, redirect to the specified URL.', 'flynt'),
+                'sub_fields' => [
+                    [
+                        'label' => __('Field Name', 'flynt'),
+                        'name' => 'fieldName',
+                        'type' => 'text',
+                        'default_value' => 'email',
+                        'wrapper' => ['width' => 30],
+                        'required' => 1,
+                    ],
+                    [
+                        'label' => __('Match Value', 'flynt'),
+                        'name' => 'matchValue',
+                        'type' => 'text',
+                        'wrapper' => ['width' => 35],
+                        'required' => 1,
+                    ],
+                    [
+                        'label' => __('Redirect URL', 'flynt'),
+                        'name' => 'redirectUrl',
+                        'type' => 'url',
+                        'wrapper' => ['width' => 35],
+                        'required' => 1,
+                    ],
+                ],
+            ],
+        ],
+    ];
+}
+
+function getAction($options = []): array
+{
+    $defaults = [
+        'includeHubspot' => false,
+    ];
+    
+    $settings = wp_parse_args($options, $defaults);
+
+    $choices = [
+        'none' => __('None', 'flynt'),
+        'buttons' => __('Buttons', 'flynt'),
+    ];
+
+    if ($settings['includeHubspot']) {
+        $choices['hubspot'] = __('Hubspot Form', 'flynt');
+    }
+
+    $fields = [
         [
             'label' => __('Action', 'flynt'),
             'name' => 'actionType',
             'type' => 'button_group',
-            'choices' => [
-                'none' => __('None', 'flynt'),
-                'buttons' => __('Buttons', 'flynt'),
-                // 'form' => __('Gravity Form', 'flynt'),
-            ],
+            'choices' => $choices,
             'default_value' => 'none',
             'layout' => 'horizontal',
         ],
@@ -193,26 +273,26 @@ function getAction(): array
                 ],
             ],
         ],
-        // [
-        //     'label' => __('Gravity Form', 'flynt'),
-        //     'name' => 'gravityForm',
-        //     'type' => 'select',
-        //     'instructions' => __('Select a Gravity Form to display.', 'flynt'),
-        //     'choices' => [],
-        //     'allow_null' => 1,
-        //     'return_format' => 'value',
-        //     'ui' => 1,
-        //     'conditional_logic' => [
-        //         [
-        //             [
-        //                 'fieldPath' => 'actionType',
-        //                 'operator' => '==',
-        //                 'value' => 'form',
-        //             },
-        //         ],
-        //     ],
-        // ],
     ];
+
+    if ($settings['includeHubspot']) {
+        $fields[] = array_merge(
+            getHubSpotForm(),
+            [
+                'conditional_logic' => [
+                    [
+                        [
+                            'fieldPath' => 'actionType',
+                            'operator' => '==',
+                            'value' => 'hubspot',
+                        ],
+                    ],
+                ],
+            ]
+        );
+    }
+
+    return $fields;
 }
 
 function getMedia($default = 'none', $choicesFilter = []): array
@@ -295,78 +375,20 @@ function getMedia($default = 'none', $choicesFilter = []): array
                 ],
             ],
         ],
-        [
-            'label' => __('HubSpot Form', 'flynt'),
-            'name' => 'hubspotForm',
-            'type' => 'group',
-            'layout' => 'block',
-            'sub_fields' => [
-                [
-                    'label' => __('Editor', 'flynt'),
-                    'name' => 'editor',
-                    'type' => 'button_group',
-                    'choices' => [
-                        'legacy' => __('Legacy', 'flynt'),
-                        'new' => __('New editor', 'flynt'),
-                    ],
-                    'default_value' => 'legacy',
-                    'layout' => 'horizontal',
-                ],
-                [
-                    'label' => __('Portal ID', 'flynt'),
-                    'name' => 'portalId',
-                    'type' => 'text',
-                    'required' => 1,
-                ],
-                [
-                    'label' => __('Form ID', 'flynt'),
-                    'name' => 'formId',
-                    'type' => 'text',
-                    'required' => 1,
-                ],
-                [
-                    'label' => __('Redirect Rules (optional)', 'flynt'),
-                    'name' => 'redirectRules',
-                    'type' => 'repeater',
-                    'layout' => 'table',
-                    'button_label' => __('Add Redirect Rule', 'flynt'),
-                    'instructions' => __('If a submitted field equals a given value, redirect to the specified URL.', 'flynt'),
-                    'sub_fields' => [
-                        [
-                            'label' => __('Field Name', 'flynt'),
-                            'name' => 'fieldName',
-                            'type' => 'text',
-                            'default_value' => 'email',
-                            'wrapper' => ['width' => 30],
-                            'required' => 1,
-                        ],
-                        [
-                            'label' => __('Match Value', 'flynt'),
-                            'name' => 'matchValue',
-                            'type' => 'text',
-                            'wrapper' => ['width' => 35],
-                            'required' => 1,
-                        ],
-                        [
-                            'label' => __('Redirect URL', 'flynt'),
-                            'name' => 'redirectUrl',
-                            'type' => 'url',
-                            'wrapper' => ['width' => 35],
-                            'required' => 1,
-                        ],
-                    ],
-                ],
-            ],
-            'conditional_logic' => [
-                [
+        array_merge(
+            getHubSpotForm(),
+            [
+                'conditional_logic' => [
                     [
-                        'fieldPath' => 'mediaType',
-                        'operator' => '==',
-                        'value' => 'hubspot',
+                        [
+                            'fieldPath' => 'mediaType',
+                            'operator' => '==',
+                            'value' => 'hubspot',
+                        ],
                     ],
                 ],
-            ],
-        ],
+            ]
+        ),
         [
             'label' => __('Calendly', 'flynt'),
             'name' => 'calendly',
