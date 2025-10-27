@@ -117,8 +117,6 @@ function getHeading($typeDefault = 'h2'): array
                 'type' => 'button_group',
                 'choices' => $typeDefault == 'h1' ? [
                     'h1' => 'H1',
-                    'h2' => 'H2',
-                    'h3' => 'H3',
                 ] : [
                     'h2' => 'H2',
                     'h3' => 'H3',
@@ -223,7 +221,7 @@ function getAction($options = []): array
     $defaults = [
         'includeHubspot' => false,
     ];
-    
+
     $settings = wp_parse_args($options, $defaults);
 
     $choices = [

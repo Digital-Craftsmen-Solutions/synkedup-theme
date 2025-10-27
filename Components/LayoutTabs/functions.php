@@ -68,6 +68,7 @@ function getACFLayout(): array
                         'button_label' => __('Add Component', 'flynt'),
                         'layouts' => [
                             Components\ReusableComponent\getACFLayout(),
+                            Components\SectionFeatureTabs\getACFLayout(),
                         ],
                     ],
                 ]
