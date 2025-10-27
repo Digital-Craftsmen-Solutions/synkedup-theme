@@ -29,8 +29,8 @@ add_action('Flynt/afterRegisterComponents', function (): void {
                     Components\SectionPricingCards\getACFLayout(),
                     Components\SectionPricingTable\getACFLayout(),
                     Components\SectionTeam\getACFLayout(),
-
                     Components\SectionAccordion\getACFLayout(),
+                    Components\LayoutTabs\getACFLayout(),
 
                 ],
             ]

@@ -68,18 +68,6 @@
 								</div>
 							{% endif %}
 						{% endif %}
-
-						{% if mediaType != 'none' and mediaType != 'image' %}
-							<div class="flex {{display != 'full' ? 'md:hidden'}} justify-center items-center">
-								{% include '@Components/Common/_media.twig' with { model: {
-									gravityForm: gravityForm,
-									video: video,
-									embed: embed,
-									hubspotForm: hubspotForm,
-									calendly: calendly
-								}, options: options } only %}
-							</div>
-						{% endif %}
 					</div>
 
 					{% if hasExtra %}
@@ -103,8 +91,8 @@
 					</div>
 				{% endif %}
 
-				{% if display != 'full' and mediaType != 'none' and mediaType != 'image'%}
-					<div class="hidden md:block relative isolate overflow-hidden md:col-span-5 mt-10">
+				{% if mediaType != 'none' and mediaType != 'image'%}
+					<div class="block relative isolate overflow-hidden md:col-span-5 mb-10 md:mt-10 md:mb-0">
 						<div class="flex justify-center items-center">
 							{% include '@Components/Common/_media.twig' with { model: {
 								gravityForm: gravityForm,
