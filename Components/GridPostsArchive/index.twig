@@ -37,21 +37,20 @@
 
 
 		{% if posts|length > 0 %}
-			<div class="grid md:grid-cols-3 gap-6" data-ref="posts">
+			<div class="flex flex-col gap-6" data-ref="posts">
 				{% for post in posts %}
-					{% include '@Components/CardImage/index.twig' with { model: {
+					{% include '@Components/CardPost/index.twig' with { model: {
 						title: post.title,
 						description: post.excerpt.read_more(false),
-						subtitle: '%d min read'|replace({'%d': post.content|readingtime}),
+						subtitle: post.categories|map(cat => cat.name)|join(', '),
 						backgroundImage: post.thumbnail,
 						actionButton: {
 							title: 'Read More',
 							url: post.link|e('esc_url'),
-							target: '_blank'
+							target: '_blank',
+							type: 'secondary'
 						},
 				}, options: {
-						align: 'left',
-						display: 'imageTop',
 						theme: options.theme,
 				} } only %}
 
@@ -67,4 +66,5 @@
 			{% include 'Partials/_pagination.twig' %}
 		{% endif %}
 	</section>
+	{# {% include '@Components/Common/_json.twig' with {value: posts, varName: 'posts'} %} #}
 </flynt-component>

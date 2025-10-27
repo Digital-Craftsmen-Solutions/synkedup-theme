@@ -1,0 +1,14 @@
+{% set hero = model.hero %}
+{% set partnerBottomComponents = model.partnerBottomComponents %}
+{% set content = model.partnerContent|default([]) %}
+
+{% include '@Components/SectionHeroFull/index.twig' with {model: hero, options: {theme: 'dark', display: 'full', imageAlign: 'top', textAlign: 'center'}} %}
+
+{% for component in content %}
+	{{ renderComponent(component) }}
+{% endfor %}
+
+{% for component in partnerBottomComponents %}
+	{{ renderComponent(component) }}
+{% endfor %}
+

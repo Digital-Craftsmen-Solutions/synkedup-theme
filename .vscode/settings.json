@@ -26,4 +26,5 @@
   "emmet.includeLanguages": {
     "twig": "html"
   },
+  "eslint.enable": false,
 }

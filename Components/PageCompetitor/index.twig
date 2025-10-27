@@ -1,0 +1,14 @@
+{% set hero = model.hero %}
+{% set competitorBottomComponents = model.competitorBottomComponents %}
+{% set content = model.competitorContent|default([]) %}
+
+{% include '@Components/SectionHeroFull/index.twig' with {model: hero, options: {theme: 'dark', display: 'full', imageAlign: 'center', textAlign: 'center'}} %}
+
+{% for component in content %}
+	{{ renderComponent(component) }}
+{% endfor %}
+
+{% for component in competitorBottomComponents %}
+	{{ renderComponent(component) }}
+{% endfor %}
+

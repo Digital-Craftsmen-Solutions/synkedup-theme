@@ -1,0 +1,16 @@
+{% set hero = model.hero %}
+{% set industryTopComponents = model.industryTopComponents %}
+{% set industryBottomComponents = model.industryBottomComponents %}
+{% set content = model.industryContent|default([]) %}
+
+{% include '@Components/SectionHeroFull/index.twig' with {model: hero, options: {theme: 'dark', display: 'split', imageAlign: 'bottom', textAlign: 'left'}} %}
+
+{% for component in content %}
+	{{ renderComponent(component) }}
+{% endfor %}
+
+{% for component in industryBottomComponents %}
+	{{ renderComponent(component) }}
+{% endfor %}
+
+{% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %}
