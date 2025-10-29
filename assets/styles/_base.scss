@@ -464,7 +464,7 @@ flynt-component.sand[data-theme='light'] {
      background-image: url('./images/underline.png');
      background-repeat: no-repeat;
      background-position: bottom center;
-     background-size: 100% auto;
+     background-size: min(100%, 300px) auto;
      padding-bottom: 4px;
   }
 }
