@@ -459,6 +459,16 @@ flynt-component.sand[data-theme='light'] {
   background-size: 264px 264px;
 }
 
+.text-heading {
+  .text-accent{
+     background-image: url('./images/underline.png');
+     background-repeat: no-repeat;
+     background-position: bottom center;
+     background-size: 100% auto;
+     padding-bottom: 4px;
+  }
+}
+
 .mainContent,
 #storybook-root {
   >flynt-component {
