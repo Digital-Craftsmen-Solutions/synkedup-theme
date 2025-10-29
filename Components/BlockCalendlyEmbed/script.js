@@ -17,6 +17,9 @@ export default function (el) {
     var obj = {};
     q.forEach(function (v, k) {
       if (v == null || v === '') return;
+      // Transform keys for Calendly compatibility
+      if (k === 'firstname') k = 'firstName';
+      if (k === 'lastname') k = 'lastName';
       // If duplicate keys exist, last one wins
       obj[k] = v;
     });

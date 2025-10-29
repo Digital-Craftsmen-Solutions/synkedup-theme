@@ -5,6 +5,10 @@
 
 {% include '@Components/SectionHeroFull/index.twig' with {model: hero, options: {theme: 'dark', display: 'split', imageAlign: 'bottom', textAlign: 'left'}} %}
 
+<div class="tw-section">
+	{% include '@Components/Heading/index.twig' with { model: {before: 'SynkedUP is Built for', highlight: post.post_title, after: '', type: 'h2'}, options: {align: 'center'}} only %}
+</div>
+
 {% for component in content %}
 	{{ renderComponent(component) }}
 {% endfor %}
