@@ -14,7 +14,7 @@ Options::addGlobal('BlogPostFooter', [
         'type' => 'flexible_content',
         'required' => 1,
         'min' => 1,
-        'max' => 1,
+        'max' => 2,
         'button_label' => __('Add Component', 'flynt'),
         'layouts' => [
             [
