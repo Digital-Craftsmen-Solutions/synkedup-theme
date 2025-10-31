@@ -29,7 +29,7 @@
 					{% if heading %}
 						{% include '@Components/Heading/index.twig' with { model: heading, options: {align: textAlign != 'default' ? textAlign : (imageDisplay == 'full' ? 'center' : 'left')} } only %}
 					{% endif %}
-					{% if features %}
+					{% if features and imageDisplay != 'full' %}
 						{% include '@Components/List/index.twig' with { model: features, options: options } only %}
 					{% endif %}
 					{% if action %}
@@ -47,6 +47,10 @@
 							hubspotForm: hubspotForm,
 							calendly: calendly
 						}, options: options } only %}
+						
+						{% if features %}
+							{% include '@Components/List/index.twig' with { model: features, options: options } only %}
+						{% endif %}
 					{% endif %}
 					{% if quote %}
 						<div class="mt-4 {{imageDisplay == 'full' ? 'flex justify-center' : 'md:mt-8 flex flex-col items-start'}}">

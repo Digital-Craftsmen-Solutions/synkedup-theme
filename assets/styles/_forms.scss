@@ -668,6 +668,7 @@ html .gform_wrapper h6 {
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    justify-content: center;
     gap: 8px;
     
     @media (min-width: $mobile) {
@@ -698,6 +699,9 @@ html .gform_wrapper h6 {
   
   .hs-email {
     flex-grow: 1;
+    @media (min-width: $mobile) {
+        max-width: 400px;
+    }
   }
   
   ul {
