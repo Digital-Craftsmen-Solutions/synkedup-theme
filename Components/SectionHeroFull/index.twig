@@ -24,7 +24,7 @@
 <flynt-component
 	name="SectionHeroFull" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="edge bg-white dark:bg-dark">
 	<!-- Hero -->
-	<section class="relative isolate overflow-hidden">
+	<section class="relative isolate overflow-hidden arc">
 		{% if backgroundImage %}
 			<div class="absolute inset-0 -z-10">
 				{% include '@Components/Common/_image.twig' with {
@@ -51,7 +51,7 @@
 						{% include '@Components/Action/index.twig' with { model: action,  options: {align: display == 'full' ? 'center' : 'left'} } only %}
 
 						{% if mediaType == 'image' %}
-							<div class="flex md:hidden justify-center items-end {{imageAlign == 'top' ? 'order-first' : ''}}">
+							<div class="z-5 flex md:hidden justify-center items-end {{imageAlign == 'top' ? 'order-first' : ''}}">
 								{% include '@Components/Common/_image.twig' with {
 									model: mobileImage,
 									size: 'small',
@@ -59,7 +59,7 @@
 								} only %}
 							</div>
 							{% if display == 'full' %}
-								<div class="hidden md:flex justify-center items-end {{imageAlign == 'top' ? 'order-first' : ''}}">
+								<div class="z-5 hidden md:flex justify-center items-end {{imageAlign == 'top' ? 'order-first' : ''}}">
 									{% include '@Components/Common/_image.twig' with {
 									model: image,
 									size: 'medium',
@@ -78,7 +78,7 @@
 				</div>
 
 				{% if display != 'full' and mediaType == 'image'%}
-					<div class="hidden md:block relative isolate overflow-hidden md:col-span-5 mt-10">
+					<div class="z-5 hidden md:block relative isolate overflow-hidden md:col-span-5 mt-10">
 						<div class="absolute inset-0 flex justify-center {{imageAlign == 'top' ? 'items-start' : imageAlign == 'center' ? 'items-center' : 'items-end'}}">
 							{% if image %}
 								{% include '@Components/Common/_image.twig' with {
