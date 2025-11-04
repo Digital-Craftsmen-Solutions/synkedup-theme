@@ -84,16 +84,14 @@
 				</div>
 
 				{% if display != 'full' and mediaType == 'image'%}
-					<div class="z-5 hidden md:block relative isolate overflow-hidden md:col-span-5 mt-10">
-						<div class="absolute inset-0 flex justify-center {{imageAlign == 'top' ? 'items-start' : imageAlign == 'center' ? 'items-center' : 'items-end'}}">
-							{% if image %}
-								{% include '@Components/Common/_image.twig' with {
+					<div class="z-5 hidden md:flex absolute inset-y-0 right-0 flex max-w-[40%] mt-10 justify-center {{imageAlign == 'top' ? 'items-start' : imageAlign == 'center' ? 'items-center' : 'items-end'}}">
+						{% if image %}
+							{% include '@Components/Common/_image.twig' with {
 									model: image,
 									size: 'medium',
 									class: imageAlign == 'bottom' ? 'object-contain! h-full object-bottom!' : ''
 								} only %}
-							{% endif %}
-						</div>
+						{% endif %}
 					</div>
 				{% endif %}
 
