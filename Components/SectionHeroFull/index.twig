@@ -1,4 +1,5 @@
 {% set backgroundImage = model.backgroundImage %}
+{% set backgroundVideo = model.backgroundVideo %}
 {% set heading = model.heading|default([]) %}
 {% set heading = heading|merge({ type: 'h1' }) %}
 {% set mediaType = model.mediaType %}
@@ -26,14 +27,19 @@
 	<!-- Hero -->
 	<section class="relative isolate overflow-hidden arc">
 		{% if backgroundImage %}
-			<div class="absolute inset-0 -z-10">
+			{% if backgroundVideo %}
+				<video class="hidden md:block absolute inset-0 w-full h-full object-cover -z-10" autoplay muted loop playsinline preload="none">
+					<source src="{{ backgroundVideo }}" type="video/mp4" media="(min-width: 768px)">
+				</video>
+			{% endif %}
+			<div class="absolute inset-0 -z-11">
 				{% include '@Components/Common/_image.twig' with {
 					model: backgroundImage,
 					class: 'h-full w-full object-cover object-center',
 					size: 'large'
 				} only %}
-				<div class="absolute inset-0 bg-black/40 dark:bg-black/60 dark:bg-gradient-to-t to-30% from-black/90 to-transparent"></div>
 			</div>
+			<div class="absolute inset-0 bg-black/40 dark:bg-black/60 dark:bg-gradient-to-t to-30% from-black/90 to-transparent -z-10"></div>
 		{% endif %}
 		<div class="tw-section py-0!">
 			<div

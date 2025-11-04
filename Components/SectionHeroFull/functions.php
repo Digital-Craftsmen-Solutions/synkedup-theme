@@ -9,6 +9,7 @@ use Flynt\Utils\Oembed;
 add_filter('Flynt/addComponentData?name=SectionHeroFull', function (array $data): array {
     $model = [
         'backgroundImage' => $data['backgroundImage'],
+        'backgroundVideo' => $data['backgroundVideo'],
         'heading' => $data['heading'],
         'mediaType' => $data['mediaType'],
         'image' => $data['mediaType'] === 'image' ? $data['image'] : null,
@@ -150,7 +151,17 @@ function getACFLayout(): array
                 'preview_size' => 'medium',
                 'return_format' => 'array',
                 'mime_types' => 'jpg,jpeg,png,webp',
-                'wrapper' => ['width' => 100],
+                'wrapper' => ['width' => 50],
+            ],
+            [
+                'label' => __('Background Video', 'flynt'),
+                'name' => 'backgroundVideo',
+                'type' => 'file',
+                'instructions' => __('Optional video for desktop. Will play as background video on desktop devices.', 'flynt'),
+                'return_format' => 'url',
+                'library' => 'all',
+                'mime_types' => 'mp4,webm',
+                'wrapper' => ['width' => 50],
             ],
             FieldVariables\getHeading('h1'),
             FieldVariables\getMedia(),
