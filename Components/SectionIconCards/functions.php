@@ -6,7 +6,7 @@ use Flynt\FieldVariables;
 
 add_filter('Flynt/addComponentData?name=SectionIconCards', function (array $data): array {
     $model = [
-        'heading' => $data['heading'],
+        'heading' => array_filter($data['heading'] ?? [], fn($value, $key) => $key !== 'type' && !empty($value), ARRAY_FILTER_USE_BOTH) ? $data['heading'] : null,
         'cards' => array_map(function ($card) {
             return [
                 'type' => $card['type'] ?? 'icon',
