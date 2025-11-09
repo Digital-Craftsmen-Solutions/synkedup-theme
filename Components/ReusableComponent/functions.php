@@ -25,16 +25,18 @@ function getACFLayout(): array
     ];
 }
 
-add_filter('acf/prepare_field/name=reusableComponent', function (array $field): array {
-    $reusableAdminLink = admin_url('edit.php?post_type=reusable-components');
+function prepareReusableField(array $field, string $postType, string $labelText): array
+{
+    $reusableAdminLink = admin_url("edit.php?post_type={$postType}");
     $postEditLink = get_edit_post_link($field['value']);
     $postTitle = get_the_title($field['value']);
     $postId = $field['value'] ?: get_the_ID();
 
     $instructions = sprintf(
-        // translators: 1: <a> element 2: </a> element
-        __('Add %1$sreusable component%2$s.', 'flynt'),
+        // translators: 1: <a> element 2: label text 3: </a> element
+        __('Add %1$s%2$s%3$s.', 'flynt'),
         "<a href='{$reusableAdminLink}' target='_blank' rel='noopener noreferrer'>",
+        $labelText,
         "</a>"
     );
     $editLink = sprintf(
@@ -51,4 +53,12 @@ add_filter('acf/prepare_field/name=reusableComponent', function (array $field): 
 
     $field['instructions'] = $instructions;
     return $field;
+}
+
+add_filter('acf/prepare_field/name=reusableComponent', function (array $field): array {
+    return prepareReusableField($field, 'reusable-components', 'reusable component');
+}, 1);
+
+add_filter('acf/prepare_field/name=reusableBlock', function (array $field): array {
+    return prepareReusableField($field, 'reusable-blocks', 'reusable block');
 }, 1);

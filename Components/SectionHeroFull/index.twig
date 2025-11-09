@@ -89,7 +89,7 @@
 							{% include '@Components/Common/_image.twig' with {
 									model: image,
 									size: 'medium',
-									class: imageAlign == 'bottom' ? 'object-contain! h-full object-bottom!' : ''
+									class: imageAlign == 'bottom' ? 'object-contain! h-full object-bottom! [mask-image:linear-gradient(to_bottom,white_80%,transparent_100%)]' : ''
 								} only %}
 						{% endif %}
 					</div>

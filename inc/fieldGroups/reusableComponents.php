@@ -31,7 +31,6 @@ add_action('Flynt/afterRegisterComponents', function (): void {
                     Components\SectionTeam\getACFLayout(),
                     Components\SectionAccordion\getACFLayout(),
                     Components\LayoutTabs\getACFLayout(),
-
                 ],
             ]
         ],

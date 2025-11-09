@@ -1,6 +1,7 @@
 {% set actionType = model.actionType ?? 'none' %}
 {% set ctaButtons = model.ctaButtons %}
 {% set gravityForm = model.gravityForm %}
+{% set reusable = model.reusable %}
 {% set options = options is defined ? options : model.options %}
 {% set align = options.align ?? 'center' %}
 
@@ -15,8 +16,12 @@
 			{% endif %}
 		{% elseif actionType == 'form' and gravityForm %}
 			{% include '@Components/Common/_form.twig' with { model: {gravityForm: gravityForm}, options: options } only %}
+		{% elseif actionType == 'reusable' and reusable %}
+			{% for component in reusable %}
+				{{ renderComponent(component) }}
+			{% endfor %}
 		{% endif %}
 	</div>
 {% endif %}
 
-{# {% include '@Components/Common/_json.twig' with {value: model, varName: 'action'} %} #}
+{# {% include '@Components/Common/_json.twig' with {value: reusable, varName: 'reusable'} %} #}

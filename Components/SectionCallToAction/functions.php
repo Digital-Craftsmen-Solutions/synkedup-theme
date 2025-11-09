@@ -13,7 +13,7 @@ add_filter('Flynt/addComponentData?name=SectionCallToAction', function (array $d
                 'primaryButton' => $data['ctaButtons']['primaryButton'],
                 'secondaryButton' => $data['ctaButtons']['secondaryButton']
             ] : null,
-            'hubspotForm' =>  null,
+            'hubspotForm' => null,
         ],
         'options' => $data['options'] ?: []
     ];
@@ -78,7 +78,7 @@ function getACFLayout(): array
                 'endpoint' => 0,
             ],
             FieldVariables\getHeading(),
-            FieldVariables\getAction(['includeHubspot' => true]),
+            FieldVariables\getAction(['includeHubspot' => true, 'includeReusable' => true]),
             [
                 'label' => __('Options', 'flynt'),
                 'name' => 'optionsTab',

@@ -38,6 +38,7 @@ add_filter('Flynt/addComponentData?name=SectionHeroFull', function (array $data)
                 'secondaryButton' => $data['ctaButtons']['secondaryButton']
             ] : null,
             'gravityForm' => $data['actionType'] == 'form' ? $data['gravityForm'] : null,
+            'reusable' => $data['actionType'] == 'reusable' ? $data['reusable'] : null,
         ],
         'extraItems' => !empty($data['extraItems'])
             ? [
@@ -166,7 +167,7 @@ function getACFLayout(): array
             FieldVariables\getHeading('h1'),
             FieldVariables\getMedia(),
             FieldVariables\getFeatures(),
-            FieldVariables\getAction(),
+            FieldVariables\getAction(['includeReusable' => true]),
             [
                 'label' => __('Extra Items', 'flynt'),
                 'name' => 'extraItems',

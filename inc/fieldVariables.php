@@ -216,10 +216,35 @@ function getHubSpotForm(): array
     ];
 }
 
+function getCtaButtons(): array
+{
+    return [
+        'label' => __('Buttons', 'flynt'),
+        'name' => 'ctaButtons',
+        'type' => 'group',
+        'layout' => 'block',
+        'sub_fields' => [
+            [
+                'label' => __('Primary Button', 'flynt'),
+                'name' => 'primaryButton',
+                'type' => 'link',
+                'wrapper' => ['width' => 50],
+            ],
+            [
+                'label' => __('Secondary Button', 'flynt'),
+                'name' => 'secondaryButton',
+                'type' => 'link',
+                'wrapper' => ['width' => 50],
+            ],
+        ]
+    ];
+}
+
 function getAction($options = []): array
 {
     $defaults = [
         'includeHubspot' => false,
+        'includeReusable' => false,
     ];
 
     $settings = wp_parse_args($options, $defaults);
@@ -232,6 +257,9 @@ function getAction($options = []): array
     if ($settings['includeHubspot']) {
         $choices['hubspot'] = __('Hubspot Form', 'flynt');
     }
+    if ($settings['includeReusable']) {
+        $choices['reusable'] = __('Reusable Block', 'flynt');
+    }
 
     $fields = [
         [
@@ -242,35 +270,20 @@ function getAction($options = []): array
             'default_value' => 'none',
             'layout' => 'horizontal',
         ],
-        [
-            'label' => __('Buttons', 'flynt'),
-            'name' => 'ctaButtons',
-            'type' => 'group',
-            'layout' => 'block',
-            'conditional_logic' => [
-                [
+        array_merge(
+            getCtaButtons(),
+            [
+                'conditional_logic' => [
                     [
-                        'fieldPath' => 'actionType',
-                        'operator' => '==',
-                        'value' => 'buttons',
+                        [
+                            'fieldPath' => 'actionType',
+                            'operator' => '==',
+                            'value' => 'buttons',
+                        ],
                     ],
                 ],
-            ],
-            'sub_fields' => [
-                [
-                    'label' => __('Primary Button', 'flynt'),
-                    'name' => 'primaryButton',
-                    'type' => 'link',
-                    'wrapper' => ['width' => 50],
-                ],
-                [
-                    'label' => __('Secondary Button', 'flynt'),
-                    'name' => 'secondaryButton',
-                    'type' => 'link',
-                    'wrapper' => ['width' => 50],
-                ],
-            ],
-        ],
+            ]
+        ),
     ];
 
     if ($settings['includeHubspot']) {
@@ -288,6 +301,46 @@ function getAction($options = []): array
                 ],
             ]
         );
+    }
+
+    if ($settings['includeReusable']) {
+        $fields[] = [
+            'label' => __('Reusable Block', 'flynt'),
+            'name' => 'reusable',
+            'type' => 'flexible_content',
+            'max' => 1,
+            'button_label' => __('Add Component', 'flynt'),
+            'conditional_logic' => [
+                [
+                    [
+                        'fieldPath' => 'actionType',
+                        'operator' => '==',
+                        'value' => 'reusable',
+                    ],
+                ],
+            ],
+            'layouts' => [
+                [
+                    'name' => 'ReusableComponent',
+                    'label' => sprintf('%1$s <i class="dashicons dashicons-controls-repeat"></i>', __('Reusable', 'flynt')),
+                    'sub_fields' => [
+                        [
+                            'label' => __('Select Reusable Block', 'flynt'),
+                            'name' => 'reusableBlock',
+                            'type' => 'post_object',
+                            'post_type' => [
+                                'reusable-blocks'
+                            ],
+                            'allow_null' => 0,
+                            'multiple' => 0,
+                            'ui' => 1,
+                            'required' => 1,
+                            'return_format' => 'object',
+                        ],
+                    ],
+                ]
+            ],
+        ];
     }
 
     return $fields;

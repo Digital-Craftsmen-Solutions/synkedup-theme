@@ -10,7 +10,7 @@
       const $fieldEl = field.$el
       const fieldName = $fieldEl ? $fieldEl.data('name') || '' : ''
 
-      if (fieldName === 'reusableComponent') {
+      if (fieldName === 'reusableComponent' || fieldName === 'reusableBlock') {
         $select.on('change', { $fieldEl }, function () {
           const postId = $(this).val()
           const postTitle = $(this).find('option:selected').text()

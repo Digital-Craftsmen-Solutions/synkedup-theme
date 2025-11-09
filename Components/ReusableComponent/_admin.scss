@@ -1,7 +1,9 @@
 /* style dashicon on flexible component dropdown */
 // stylelint-disable selector-no-qualifying-type
 .acf-fc-popup a {
-  &[data-layout='ReusableComponent'] {
+
+  &[data-layout='ReusableComponent'],
+  &[data-layout='ReusableBlock'] {
     align-items: center;
     display: flex;
 

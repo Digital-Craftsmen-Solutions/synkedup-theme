@@ -24,11 +24,11 @@
 					{% endif %}
 					{% if action and display == 'full' %}
 						{% if action.actionType == 'hubspot' and action.hubspotForm %}
-							<div class="inline-hubspot-form"> 
+							<div class="inline-hubspot-form">
 								{% if action.hubspotForm.editor is defined and action.hubspotForm.editor == 'new' %}
 									{% include '@Components/BlockHubspotFormNew/index.twig' with { model: action.hubspotForm, options: {raw: true, transparent: true} } only %}
 								{% else %}
-									{% include '@Components/BlockHubspotForm/index.twig' with { model: action.hubspotForm, options: {raw: true, transparent: true} } only %}
+									{% include '@Components/BlockHubspotFormOld/index.twig' with { model: action.hubspotForm, options: {raw: true, transparent: true} } only %}
 								{% endif %}
 							</div>
 						{% else %}
@@ -47,11 +47,11 @@
 						{% endif %}
 						{% if action %}
 							{% if action.actionType == 'hubspot' and action.hubspotForm %}
-								<div class="inline-hubspot-form inline-hubspot-form-alt-button"> 
+								<div class="inline-hubspot-form inline-hubspot-form-alt-button">
 									{% if action.hubspotForm.editor is defined and action.hubspotForm.editor == 'new' %}
 										{% include '@Components/BlockHubspotFormNew/index.twig' with { model: action.hubspotForm, options: {raw: true, transparent: true} } only %}
 									{% else %}
-										{% include '@Components/BlockHubspotForm/index.twig' with { model: action.hubspotForm, options: {raw: true, transparent: true} } only %}
+										{% include '@Components/BlockHubspotFormOld/index.twig' with { model: action.hubspotForm, options: {raw: true, transparent: true} } only %}
 									{% endif %}
 								</div>
 							{% else %}
