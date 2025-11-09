@@ -21,9 +21,8 @@
 {% set textAlign = options.textAlign ?? 'default' %}
 {% set hasExtra = extraItems and extraItems|length > 0 %}
 
-
 <flynt-component
-	name="SectionHeroFull" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="edge bg-white dark:bg-dark">
+	name="SectionHeroFull" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }} class="edge-mask bg-white dark:bg-dark">
 	<!-- Hero -->
 	<section class="relative isolate overflow-hidden arc">
 		{% if backgroundImage %}
@@ -41,11 +40,11 @@
 			</div>
 			<div class="absolute inset-0 bg-black/40 dark:bg-black/60 dark:bg-gradient-to-t to-30% from-black/90 to-transparent -z-10"></div>
 		{% endif %}
-		<div class="tw-section py-0!">
+		<div class="tw-section pt-0! {{imageAlign == 'bottom' ? 'py-0!' : ''}}">
 			<div
 				class="{{display == 'full' ? '' : 'grid md:grid-cols-12 gap-6 md:gap-10 lg:gap-12'}}">
 				{# Content #}
-				<div class="flex flex-col justify-center gap-6 md:gap-14 py-6 md:py-12 lg:py-18 xl:py-24 {{display == 'full' ? '' : 'md:col-span-7'}}">
+				<div class="flex flex-col justify-center gap-6 md:gap-14 py-6 md:py-12 lg:py-18 xl:py-24 mb-4 {{display == 'full' ? '' : 'md:col-span-7'}}">
 					<div class="max-w-4xl mx-auto flex flex-col justify-center gap-6 md:gap-8 my-10 md:my-14 {{display == 'full' ? ' items-center'}}">
 						{% if breadcrumbs %}
 							{% include '@Components/Breadcrumbs/index.twig' with { model: breadcrumbs } only %}
@@ -89,14 +88,14 @@
 							{% include '@Components/Common/_image.twig' with {
 									model: image,
 									size: 'medium',
-									class: imageAlign == 'bottom' ? 'object-contain! h-full object-bottom! [mask-image:linear-gradient(to_bottom,white_80%,transparent_100%)]' : ''
+									class: imageAlign == 'bottom' ? 'object-contain! h-full object-bottom!' : ''
 								} only %}
 						{% endif %}
 					</div>
 				{% endif %}
 
 				{% if mediaType != 'none' and mediaType != 'image'%}
-					<div class="block relative isolate overflow-hidden md:col-span-5 mb-10 md:mt-10 md:mb-0">
+					<div class="block relative isolate overflow-hidden md:col-span-5 mb-10 md:mt-10 {{imageAlign == 'bottom' ? 'mb-0' : ''}}">
 						<div class="flex justify-center items-center">
 							{% include '@Components/Common/_media.twig' with { model: {
 								gravityForm: gravityForm,

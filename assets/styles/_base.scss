@@ -438,12 +438,22 @@ $edge-height: 50px;
   @apply prose dark:text-text-dark max-w-none lg:text-lg prose-strong:text-heading dark:prose-strong:text-white;
 }
 
+.tw-prose :where(a):not(:where([class~=not-prose], [class~=not-prose] *)) {
+  font-weight: normal;
+  text-decoration: none;
+}
+
 .tw-prose {
 
   --tw-prose-links: var(--color-primary);
 
   p {
     margin: 0;
+  }
+
+  a {
+    font-weight: normal;
+    text-decoration: none;
   }
 
   :where(& > :not(:last-child)) {
@@ -455,7 +465,10 @@ $edge-height: 50px;
   }
 }
 
+
+#mainContent,
 flynt-component.sand[data-theme='light'] {
+  background-color: var(--color-shade);
   background-image: url('./images/pattern.png');
   background-repeat: repeat;
   background-size: 264px 264px;
@@ -476,15 +489,49 @@ flynt-component.sand[data-theme='light'] {
   >flynt-component {
 
     // Top padding if previous component has a different theme
-    // &[data-theme='light']+flynt-component[data-theme='dark']>.tw-section,
     &[data-theme='dark']+flynt-component[data-theme='light']>.tw-section {
       @apply pt-10 md:pt-14 lg:pt-24;
     }
 
     // Bottom padding if next component has a different theme
-    // &[data-theme='dark']:has(+ flynt-component[data-theme='light'])>.tw-section,
     &[data-theme='light']:has(+ flynt-component[data-theme='dark'])>.tw-section {
       @apply pb-10 md:pb-14 lg:pb-24;
+    }
+
+    &.edge-mask[data-theme='dark'] {
+      /* Fallback (works in Firefox): just show the tear without compositing */
+      -webkit-mask-image: url('./images/bg-tear.svg');
+      -webkit-mask-repeat: repeat-x;
+      -webkit-mask-position: bottom center;
+      -webkit-mask-size: auto;
+      mask-image: url('./images/bg-tear.svg');
+      mask-repeat: repeat-x;
+      mask-position: bottom center;
+      mask-size: auto;
+
+      /* Safari & Chromium: XOR composite to cut out the tear */
+      -webkit-mask:
+        linear-gradient(white, white),
+        url('./images/bg-tear.svg');
+      -webkit-mask-repeat: repeat-x, repeat-x;
+      -webkit-mask-position: center calc(100% + 1px), bottom center;
+      -webkit-mask-composite: xor;
+
+      mask:
+        linear-gradient(white, white),
+        url('./images/bg-tear.svg');
+      mask-repeat: repeat-x, repeat-x;
+      mask-position: center calc(100% + 1px), bottom center;
+      mask-composite: exclude;
+
+      /* Sizing / alignment fixes */
+      position: relative;
+      top: -2px;
+      z-index: 1;
+
+      /* Optional tweak for Safari anti-aliasing gap */
+      -webkit-mask-origin: border-box;
+      mask-origin: border-box;
     }
 
     &.edge[data-theme='dark'] {
@@ -500,21 +547,22 @@ flynt-component.sand[data-theme='light'] {
         @apply block absolute left-0 right-0 w-full -z-10;
         height: $edge-height;
         content: '';
-        background: url('./images/bg-edge-mobile.png') repeat-x center;
+        background: url('./images/bg-tear.png') repeat-x center;
         background-size: cover;
 
         @media (min-width: $tablet) {
-          background: url('./images/bg-edge.png') repeat-x center;
+          // background: url('./images/bg-tear.png') repeat-x center;
         }
       }
 
       &::before {
-        top: -$edge-height;
+        top: -$edge-height + 1px;
       }
 
       &::after {
-        bottom: -$edge-height;
-        transform: rotate(180deg);
+        bottom: -$edge-height + 1px;
+        // transform: rotate(180deg); 
+        transform: scaleY(-1);
       }
 
     }
@@ -551,7 +599,7 @@ flynt-component.sand[data-theme='light'] {
           background-repeat: no-repeat;
           background-position: center;
           background-size: cover;
-          z-index: 1;
+          z-index: -9;
           pointer-events: none;
         }
       }
