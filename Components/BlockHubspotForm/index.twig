@@ -1,10 +1,13 @@
 {% set hubspotForm = model.hubspotForm %}
 {% set editor = hubspotForm.editor %}
 {% set altButton = options.altMode ?? false %}
+{% set align = options.align ?? 'center' %}
 {% set options = model.options %}
 {% set inline = options.inline ?? true %}
+
+
 {% if hubspotForm %}
-	<div class="{{inline ? 'inline-hubspot-form'}} {{altButton ? 'inline-hubspot-form-alt-button' }}">
+	<div class="{{inline ? 'inline-hubspot-form'}} {{altButton ? 'inline-hubspot-form-alt-button' }} {{align == 'left' ? 'hubspot-form-align-left' : ''}}">
 		{% if editor == 'new' %}
 			{% include '@Components/BlockHubspotFormNew/index.twig' with { model: hubspotForm, options: options } only %}
 		{% else %}

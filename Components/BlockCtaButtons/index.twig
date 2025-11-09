@@ -1,1 +1,10 @@
-{% include '@Components/Action/index.twig' with {model: model} only %}
+{% set actionType = model.actionType ?? 'none' %}
+{% set ctaButtons = model.ctaButtons %}
+{% if actionType == 'buttons' %}
+	{% if ctaButtons.primaryButton %}
+		{% include '@Components/Button/index.twig' with { model: ctaButtons.primaryButton } only %}
+	{% endif %}
+	{% if ctaButtons.secondaryButton %}
+		{% include '@Components/Button/index.twig' with { model: ctaButtons.secondaryButton, type: 'secondary' } only %}
+	{% endif %}
+{% endif %}

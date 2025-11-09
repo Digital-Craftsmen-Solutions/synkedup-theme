@@ -440,6 +440,8 @@ $edge-height: 50px;
 
 .tw-prose {
 
+  --tw-prose-links: var(--color-primary);
+
   p {
     margin: 0;
   }
@@ -460,12 +462,12 @@ flynt-component.sand[data-theme='light'] {
 }
 
 .text-heading {
-  .text-accent{
-     background-image: url('./images/underline.png');
-     background-repeat: no-repeat;
-     background-position: bottom center;
-     background-size: min(100%, 300px) auto;
-     padding-bottom: 4px;
+  .text-accent {
+    background-image: url('./images/underline.png');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: min(100%, 300px) auto;
+    padding-bottom: 4px;
   }
 }
 
@@ -534,8 +536,9 @@ flynt-component.sand[data-theme='light'] {
       }
     }
 
-    .arc{
+    .arc {
       position: relative;
+
       @media (min-width: $tablet) {
         &::before {
           content: '';
@@ -544,9 +547,9 @@ flynt-component.sand[data-theme='light'] {
           left: 0;
           right: 0;
           bottom: 0;
-          background-image: url('./images/arc-bg.svg'); 
-          background-repeat: no-repeat; 
-          background-position: center; 
+          background-image: url('./images/arc-bg.svg');
+          background-repeat: no-repeat;
+          background-position: center;
           background-size: cover;
           z-index: 1;
           pointer-events: none;
