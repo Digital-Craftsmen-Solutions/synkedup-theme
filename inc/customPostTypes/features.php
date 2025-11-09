@@ -41,7 +41,7 @@ add_action('init', function (): void {
     'show_in_menu' => true,
     'show_in_rest' => true,
     'menu_position' => 20,
-    'menu_icon' => 'dashicons-admin-page',
+    'menu_icon' => 'dashicons-awards',
     'show_in_admin_bar' => true,
     'show_in_nav_menus' => true,
     'can_export' => true,
