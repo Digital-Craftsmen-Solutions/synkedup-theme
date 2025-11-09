@@ -29,6 +29,7 @@ add_filter('Flynt/addComponentData?name=PageFeature', function (array $data): ar
                 'primaryButton' => $data['hero']['ctaButtons']['primaryButton'],
                 'secondaryButton' => $data['hero']['ctaButtons']['secondaryButton']
             ] : null,
+            'reusable' => $data['hero']['actionType'] == 'reusable' ? $data['hero']['reusable'] : null,
         ],
         'breadcrumbs' => [
             'items' => $breadcrumbs,
@@ -54,7 +55,7 @@ function getACFLayout(): array
             'sub_fields' => [
                 FieldVariables\getHeading('h1'),
                 FieldVariables\getMedia('none', ['none', 'image']),
-                FieldVariables\getAction(),
+                FieldVariables\getAction(['includeReusable' => true]),
             ]
         ],
         [
