@@ -23,11 +23,7 @@
 	{% include '@Components/Common/_form.twig' with { model: {gravityForm: gravityForm}, options: options } only %}
 {% endif %}
 {% if hubspotForm %}
-	{% if hubspotForm.editor is defined and hubspotForm.editor == 'new' %}
-		{% include '@Components/BlockHubspotFormNew/index.twig' with { model: hubspotForm } only %}
-	{% else %}
-		{% include '@Components/BlockHubspotFormOld/index.twig' with { model: hubspotForm, options: options } only %}
-	{% endif %}
+	{{ renderComponent('BlockHubspotForm', { hubspotForm: hubspotForm , options: {inline: false} }) }}
 {% endif %}
 {% if video %}
 	{% include '@Components/BlockVideoOembed/index.twig' with { model: video } only %}
@@ -36,5 +32,5 @@
 	{{ embeds }}
 {% endif %}
 {% if calendly %}
-	{% include '@Components/BlockCalendlyEmbed/index.twig' with { model: calendly } only %}
+	{{ renderComponent('BlockCalendlyEmbed', { calendly: calendly }) }}
 {% endif %}

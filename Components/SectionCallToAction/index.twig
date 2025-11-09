@@ -23,17 +23,7 @@
 						{% include '@Components/Heading/index.twig' with { model: heading, options: {align: display == 'full' ? 'center' : 'left', hideHighlight: theme == 'dark', theme: altMode ? 'dark' : theme} } only %}
 					{% endif %}
 					{% if action and display == 'full' %}
-						{% if action.actionType == 'hubspot' and action.hubspotForm %}
-							<div class="inline-hubspot-form">
-								{% if action.hubspotForm.editor is defined and action.hubspotForm.editor == 'new' %}
-									{% include '@Components/BlockHubspotFormNew/index.twig' with { model: action.hubspotForm, options: {raw: true, transparent: true} } only %}
-								{% else %}
-									{% include '@Components/BlockHubspotFormOld/index.twig' with { model: action.hubspotForm, options: {raw: true, transparent: true} } only %}
-								{% endif %}
-							</div>
-						{% else %}
-							{% include '@Components/Action/index.twig' with { model: action, options: {align: display == 'full' ? 'center' : 'left', inlineForm: display == 'split'} } only %}
-						{% endif %}
+						{% include '@Components/Action/index.twig' with { model: action, options: {align: display == 'full' ? 'center' : 'left', altMode: altMode, inlineForm: true} } only %}
 					{% endif %}
 				</div>
 
@@ -46,17 +36,7 @@
 							</div>
 						{% endif %}
 						{% if action %}
-							{% if action.actionType == 'hubspot' and action.hubspotForm %}
-								<div class="inline-hubspot-form inline-hubspot-form-alt-button">
-									{% if action.hubspotForm.editor is defined and action.hubspotForm.editor == 'new' %}
-										{% include '@Components/BlockHubspotFormNew/index.twig' with { model: action.hubspotForm, options: {raw: true, transparent: true} } only %}
-									{% else %}
-										{% include '@Components/BlockHubspotFormOld/index.twig' with { model: action.hubspotForm, options: {raw: true, transparent: true} } only %}
-									{% endif %}
-								</div>
-							{% else %}
-								{% include '@Components/Action/index.twig' with { model: action, options: {align: display == 'full' ? 'center' : 'left', inlineForm: display == 'split'} } only %}
-							{% endif %}
+							{% include '@Components/Action/index.twig' with { model: action, options: {align: display == 'full' ? 'center' : 'left', altMode: options.theme == 'dark', inlineForm: true} } only %}
 						{% endif %}
 					</div>
 				{% endif %}
@@ -64,3 +44,5 @@
 		</div>
 	</section>
 </flynt-component>
+
+{# {% include '@Components/Common/_json.twig' with {value: action, varName: 'action'} %} #}

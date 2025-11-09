@@ -3,8 +3,3 @@
 		{{ renderComponent(component) }}
 	{% endfor %}
 {% endif %}
-{% if reusableBlock %}
-	{% for component in reusableBlock.meta('reusableBlocks') %}
-		{{ renderComponent(component) }}
-	{% endfor %}
-{% endif %}

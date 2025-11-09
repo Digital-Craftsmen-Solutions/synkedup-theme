@@ -1,12 +1,16 @@
 {% set hubspotForm = model.hubspotForm %}
+{% set editor = hubspotForm.editor %}
+{% set altButton = options.altMode ?? false %}
+{% set options = model.options %}
+{% set inline = options.inline ?? true %}
 {% if hubspotForm %}
-	<div class="inline-hubspot-form inline-hubspot-form-alt-button">
-		{% if hubspotForm.editor is defined and hubspotForm.editor == 'new' %}
-			{% include '@Components/BlockHubspotFormNew/index.twig' with { model: hubspotForm, options: {raw: true, transparent: true} } only %}
+	<div class="{{inline ? 'inline-hubspot-form'}} {{altButton ? 'inline-hubspot-form-alt-button' }}">
+		{% if editor == 'new' %}
+			{% include '@Components/BlockHubspotFormNew/index.twig' with { model: hubspotForm, options: options } only %}
 		{% else %}
-			{% include '@Components/BlockHubspotFormOld/index.twig' with { model: hubspotForm, options: {raw: true, transparent: true} } only %}
+			{% include '@Components/BlockHubspotFormOld/index.twig' with { model: hubspotForm, options: options } only %}
 		{% endif %}
 	</div>
 {% endif %}
 
-{% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %}
+{# {% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %} #}

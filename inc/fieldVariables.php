@@ -309,7 +309,7 @@ function getAction($options = []): array
             'name' => 'reusable',
             'type' => 'flexible_content',
             'max' => 1,
-            'button_label' => __('Add Component', 'flynt'),
+            'button_label' => __('Add Block', 'flynt'),
             'conditional_logic' => [
                 [
                     [
@@ -321,7 +321,7 @@ function getAction($options = []): array
             ],
             'layouts' => [
                 [
-                    'name' => 'ReusableComponent',
+                    'name' => 'ReusableBlock',
                     'label' => sprintf('%1$s <i class="dashicons dashicons-controls-repeat"></i>', __('Reusable', 'flynt')),
                     'sub_fields' => [
                         [

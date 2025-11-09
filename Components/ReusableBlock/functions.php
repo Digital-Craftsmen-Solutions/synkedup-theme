@@ -1,19 +1,19 @@
 <?php
 
-namespace Flynt\Components\ReusableComponent;
+namespace Flynt\Components\ReusableBlock;
 
 function getACFLayout(): array
 {
     return [
-        'name' => 'ReusableComponent',
+        'name' => 'ReusableBlock',
         'label' => sprintf('%1$s <i class="dashicons dashicons-controls-repeat"></i>', __('Reusable', 'flynt')),
         'sub_fields' => [
             [
-                'label' => __('Select Reusable Component', 'flynt'),
-                'name' => 'reusableComponent',
+                'label' => __('Select Reusable Block', 'flynt'),
+                'name' => 'reusableBlock',
                 'type' => 'post_object',
                 'post_type' => [
-                    'reusable-components'
+                    'reusable-blocks'
                 ],
                 'allow_null' => 0,
                 'multiple' => 0,
@@ -55,7 +55,6 @@ function prepareReusableField(array $field, string $postType, string $labelText)
     return $field;
 }
 
-add_filter('acf/prepare_field/name=reusableComponent', function (array $field): array {
-    return prepareReusableField($field, 'reusable-components', 'reusable component');
+add_filter('acf/prepare_field/name=reusableBlock', function (array $field): array {
+    return prepareReusableField($field, 'reusable-blocks', 'reusable block');
 }, 1);
-
