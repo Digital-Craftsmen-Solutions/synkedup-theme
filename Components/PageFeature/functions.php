@@ -65,6 +65,7 @@ function getACFLayout(): array
             'button_label' => __('Add Section', 'flynt'),
             'layouts' => [
                 Components\SectionFeatureBlock\getACFLayout(),
+                Components\SectionAccordion\getACFLayout(),
             ],
         ],
     ];

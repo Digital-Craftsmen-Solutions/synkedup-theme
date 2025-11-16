@@ -1,9 +1,9 @@
-<div id="hs-main-megamenu" data-ref="megamenu" class="text-sm lg:text-base hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow lg:block lg:w-auto lg:basis-auto lg:order-2 lg:col-span-8" aria-labelledby="hs-main-megamenu-collapse">
+<div id="hs-main-megamenu" data-ref="megamenu" class="text-sm lg:text-base hs-collapse hidden transition-all duration-300 basis-full grow lg:block lg:w-auto lg:basis-auto lg:order-2 lg:col-span-8" aria-labelledby="hs-main-megamenu-collapse">
 	<div class="flex flex-col mt-5 lg:flex-row lg:justify-center lg:items-center lg:gap-y-0 lg:gap-x-7 lg:mt-0 divide-y divide-neutral-700 lg:divide-y-0">
 		{% for item in items %}
 			{% if item.children|default([])|length > 0 %}
-				<div class="hs-dropdown [--strategy:static] lg:[--strategy:absolute] [--adaptive:none]  [--is-collapse:true] md:[--is-collapse:false] py-3 lg:py-0 ">
-					<button id="hs-mega-menu" type="button" class="hs-dropdown-toggle lg:p-2 flex items-center w-full text-white hover:text-primary focus:outline-hidden focus:text-primary" aria-haspopup="menu" aria-expanded="false" aria-label="{{ item.title }}">
+				<div class="hs-dropdown [--trigger:hover] [--strategy:static] lg:[--strategy:absolute] [--adaptive:none]  [--is-collapse:true] md:[--is-collapse:false] py-3 lg:py-0">
+					<button id="hs-mega-menu" type="button" class="hs-dropdown-toggle main-megamenu-toggle lg:p-2 flex items-center w-full text-white hover:text-primary focus:outline-hidden focus:text-primary" aria-haspopup="menu" aria-expanded="false" aria-label="{{ item.title }}" data-refs="dropdownToggle" data-link="{{ item.link }}">
 						{{ item.title }}
 						{% include '@Components/Common/_icon.twig' with { name: 'chevronUp', class: 'hs-dropdown-open:-scale-y-100 md:-scale-y-100 ms-auto md:ms-1 shrink-0 size-4' } %}
 					</button>

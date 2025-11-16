@@ -35,7 +35,7 @@ add_action('init', function (): void {
     'labels' => $labels,
     'supports' => ['title', 'revisions'],
     'hierarchical' => false,
-    'capability_type' => 'page',
+    'capability_type' => 'post',
     'public' => true,
     'show_ui' => true,
     'show_in_menu' => true,
@@ -49,6 +49,10 @@ add_action('init', function (): void {
     'exclude_from_search' => false,
     'publicly_queryable' => true,
     'query_var' => true,
+    'rewrite' => [
+      'slug' => 'industries',
+      'with_front' => false,
+    ],
   ];
 
   register_post_type('industry', $args);

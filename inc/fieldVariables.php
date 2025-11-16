@@ -554,7 +554,7 @@ function getFeatures(): array
     ];
 }
 
-function getIcon($label = 'Icon', $required = 0, $icons = []): array
+function getIconChoices($icons = []): array
 {
     if (empty($icons)) {
         $icons = [
@@ -591,13 +591,36 @@ function getIcon($label = 'Icon', $required = 0, $icons = []): array
             'circleCheck',
             'checkGreen',
             'email',
+            'settings',
+            'calender',
+            'calculatorAlt',
+            'receipt',
+            'briefcase',
+            'management',
+            'CRM',
+            'bricks',
+            'drafting',
+            'landscaping',
+            'snowflake',
+            'tool',
+            'lightbulb',
+            'team',
+            'support',
+            'search',
         ];
     }
+
     sort($icons);
     $choices = [];
     foreach ($icons as $icon) {
         $choices[$icon] = ucwords(preg_replace('/([a-z])([A-Z])/', '$1 $2', $icon));
     }
+    return $choices;
+}
+
+function getIcon($label = 'Icon', $required = 0, $icons = []): array
+{
+    $choices = getIconChoices($icons);
 
     return [
         'label' => __($label, 'flynt'),
@@ -647,5 +670,73 @@ function getQuote(): array
             'required' => 1,
             'wrapper' => ['width' => 40],
         ],
+    ];
+}
+
+function getAccordion(): array
+{
+    return [
+        'label' => __('Accordion', 'flynt'),
+        'name' => 'accordion',
+        'type' => 'group',
+        'layout' => 'block',
+        'sub_fields' => [
+            [
+                'label' => __('Items', 'flynt'),
+                'name' => 'items',
+                'type' => 'repeater',
+                'layout' => 'block',
+                'button_label' => __('Add Accordion Item', 'flynt'),
+                'sub_fields' => [
+                    [
+                        'label' => __('Heading', 'flynt'),
+                        'name' => 'heading',
+                        'type' => 'text',
+                        'required' => 1,
+                        'wrapper' => ['width' => 80],
+                    ],
+                    [
+                        'label' => __('Anchor Id', 'flynt'),
+                        'name' => 'id',
+                        'type' => 'text',
+                        'wrapper' => ['width' => 20],
+                    ],
+                    [
+                        'label' => __('Content', 'flynt'),
+                        'name' => 'contentHtml',
+                        'type' => 'wysiwyg',
+                        'media_upload' => 0,
+                        'delay' => 0,
+                        'required' => 1,
+                    ],
+                ],
+            ],
+        ],
+    ];
+}
+
+function getUseSlimHeaderFooter(): array
+{
+    return [
+        'label' => __('Use Slim Header & Footer', 'flynt'),
+        'name' => 'useSlimHeaderFooter',
+        'type' => 'true_false',
+        'ui' => 1,
+        'default_value' => 0,
+    ];
+}
+
+function getJsonLd(): array
+{
+    return [
+        'name' => 'json_ld',
+        'label' => __('JSON-LD', 'flynt'),
+        'type' => 'textarea',
+        'instructions' => __('Paste valid JSON only. Do not include script tags.', 'flynt'),
+        'new_lines' => 'none', // prevents <br> or <p>  
+        'rows' => 8,
+        'wrapper' => [
+            'class' => 'acf-json-ld'
+        ]
     ];
 }

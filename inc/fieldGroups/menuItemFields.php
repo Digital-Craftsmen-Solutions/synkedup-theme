@@ -1,6 +1,7 @@
 <?php
 
 use ACFComposer\ACFComposer;
+use Flynt\FieldVariables;
 
 add_action('Flynt/afterRegisterComponents', function (): void {
   ACFComposer::registerFieldGroup([
@@ -12,18 +13,7 @@ add_action('Flynt/afterRegisterComponents', function (): void {
         'label' => __('Icon', 'flynt'),
         'name' => 'icon',
         'type' => 'select',
-        'choices' => [
-          'menu' => 'Menu',
-          'close' => 'Close',
-          'search' => 'Search',
-          'chevron-down' => 'Chevron Down',
-          'user' => 'User',
-          'home' => 'Home',
-          'settings' => 'Settings',
-          'arrow-right' => 'Arrow Right',
-          'arrow-left' => 'Arrow Left',
-          // Add more as needed
-        ],
+        'choices' => FieldVariables\getIconChoices(),
         'allow_null' => true,
         'ui' => true,
         'return_format' => 'value',

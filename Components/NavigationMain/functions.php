@@ -15,8 +15,8 @@ add_action('init', function (): void {
 add_filter('Flynt/addComponentData?name=NavigationMain', function (array $data): array {
     $data['menu'] = Timber::get_menu('navigation_main') ?? Timber::get_pages_menu();
     $data['logo'] = [
-        'src' => Asset::requireUrl('assets/images/logo-light.svg'),
-        'alt' => get_bloginfo('name')
+        'src' => Asset::requireUrl('assets/images/best-software-for-landscape-business.svg'),
+        'alt' => 'best software for landscape business'
     ];
     $data['options'] = Options::getGlobal('MainNavigation');
     return $data;

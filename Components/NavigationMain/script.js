@@ -2,6 +2,8 @@ import { buildRefs } from '@/assets/scripts/helpers.js'
 import { HSCollapse } from 'preline'
 
 export default function (el) {
+  const refs = buildRefs(el, true)
+
   const isDesktopMediaQuery = window.matchMedia('(min-width: 1024px)')
   isDesktopMediaQuery.addEventListener('change', onBreakpointChange)
 
@@ -37,5 +39,33 @@ export default function (el) {
       });
     }
   }, 1000);
+
+  function initDoubleTapDropdown() {
+    const triggers = refs.dropdownToggle
+    const isMobile = () => window.innerWidth < 1024
+
+    triggers?.forEach(btn => {
+      let tappedOnce = false
+      const link = btn.dataset.link
+
+      btn.addEventListener('click', e => {
+        if (!isMobile()) {
+          if (link) window.location.href = link
+          return
+        }
+
+        if (!tappedOnce) {
+          tappedOnce = true
+          setTimeout(() => tappedOnce = false, 600)
+          return
+        }
+
+        tappedOnce = false
+        if (link) window.location.href = link
+      })
+    })
+  }
+
+  initDoubleTapDropdown()
 
 }

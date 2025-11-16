@@ -2,6 +2,7 @@
 
 use ACFComposer\ACFComposer;
 use Flynt\Components;
+use Flynt\FieldVariables;
 
 add_action('Flynt/afterRegisterComponents', function (): void {
     ACFComposer::registerFieldGroup([
@@ -35,11 +36,8 @@ add_action('Flynt/afterRegisterComponents', function (): void {
 
                 ],
             ],
-            [
-                'name' => 'json_ld',
-                'label' => __('JSON-LD', 'flynt'),
-                'type' => 'textarea',
-            ],
+            FieldVariables\getUseSlimHeaderFooter(),
+            FieldVariables\getJsonLd()
         ],
         'location' => [
             [

@@ -38,44 +38,7 @@ function getACFLayout(): array
                 'endpoint' => 0,
             ],
             FieldVariables\getHeading(),
-            [
-                'label' => __('Accordion', 'flynt'),
-                'name' => 'accordion',
-                'type' => 'group',
-                'layout' => 'block',
-                'sub_fields' => [
-                    [
-                        'label' => __('Items', 'flynt'),
-                        'name' => 'items',
-                        'type' => 'repeater',
-                        'layout' => 'block',
-                        'button_label' => __('Add Accordion Item', 'flynt'),
-                        'sub_fields' => [
-                            [
-                                'label' => __('Heading', 'flynt'),
-                                'name' => 'heading',
-                                'type' => 'text',
-                                'required' => 1,
-                                'wrapper' => ['width' => 80],
-                            ],
-                            [
-                                'label' => __('Anchor Id', 'flynt'),
-                                'name' => 'id',
-                                'type' => 'text',
-                                'wrapper' => ['width' => 20],
-                            ],
-                            [
-                                'label' => __('Content', 'flynt'),
-                                'name' => 'contentHtml',
-                                'type' => 'wysiwyg',
-                                'media_upload' => 0,
-                                'delay' => 0,
-                                'required' => 1,
-                            ],
-                        ],
-                    ],
-                ],
-            ],
+            FieldVariables\getAccordion(),
             [
                 'label' => __('Options', 'flynt'),
                 'name' => 'optionsTab',
