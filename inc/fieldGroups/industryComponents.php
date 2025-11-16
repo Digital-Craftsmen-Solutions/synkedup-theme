@@ -2,7 +2,6 @@
 
 use ACFComposer\ACFComposer;
 use Flynt\Components;
-use Flynt\Utils\Options;
 
 add_action('Flynt/afterRegisterComponents', function (): void {
   ACFComposer::registerFieldGroup([
@@ -11,7 +10,6 @@ add_action('Flynt/afterRegisterComponents', function (): void {
     'style' => 'seamless',
     'menu_order' => 1,
     'fields' => [
-
       [
         'name' => 'pageIndustry',
         'label' => __('', 'flynt'),

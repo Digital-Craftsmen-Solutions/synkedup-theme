@@ -2,7 +2,6 @@
 
 use ACFComposer\ACFComposer;
 use Flynt\Components;
-use Flynt\Utils\Options;
 
 add_action('Flynt/afterRegisterComponents', function (): void {
   ACFComposer::registerFieldGroup([

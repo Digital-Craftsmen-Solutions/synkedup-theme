@@ -715,17 +715,6 @@ function getAccordion(): array
     ];
 }
 
-function getUseSlimHeaderFooter(): array
-{
-    return [
-        'label' => __('Use Slim Header & Footer', 'flynt'),
-        'name' => 'useSlimHeaderFooter',
-        'type' => 'true_false',
-        'ui' => 1,
-        'default_value' => 0,
-    ];
-}
-
 function getJsonLd(): array
 {
     return [

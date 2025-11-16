@@ -31,13 +31,10 @@ add_action('Flynt/afterRegisterComponents', function (): void {
                     Components\SectionPricingTable\getACFLayout(),
                     Components\SectionAccordion\getACFLayout(),
                     Components\SectionTeam\getACFLayout(),
-
                     Components\LayoutTabs\getACFLayout(),
 
                 ],
             ],
-            FieldVariables\getUseSlimHeaderFooter(),
-            FieldVariables\getJsonLd()
         ],
         'location' => [
             [
