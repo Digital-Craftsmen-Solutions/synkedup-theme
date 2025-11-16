@@ -11,7 +11,7 @@ add_filter('Flynt/addComponentData?name=PageIndustry', function (array $data): a
   $breadcrumbs = Breadcrumbs::get();
   $industriesLink = [
     'label' => __('Industries', 'flynt'),
-    'url' => '/industries',
+    'url' => '/industries/',
     'icon' => null,
     'isCurrent' => false,
   ];

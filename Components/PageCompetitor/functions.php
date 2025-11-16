@@ -11,7 +11,7 @@ add_filter('Flynt/addComponentData?name=PageCompetitor', function (array $data):
   $breadcrumbs = Breadcrumbs::get();
   $competitorsLink = [
     'label' => __('Competitors', 'flynt'),
-    'url' => '/competitors',
+    'url' => '/competitors/',
     'icon' => null,
     'isCurrent' => false,
   ];

@@ -1,4 +1,5 @@
 {% set backgroundImage = model.backgroundImage %}
+{% set mobileBackgroundImage = model.mobileBackgroundImage ? model.mobileBackgroundImage : backgroundImage %}
 {% set backgroundVideo = model.backgroundVideo %}
 {% set heading = model.heading|default([]) %}
 {% set heading = heading|merge({ type: 'h1' }) %}
@@ -31,7 +32,14 @@
 					<source src="{{ backgroundVideo }}" type="video/mp4" media="(min-width: 768px)">
 				</video>
 			{% endif %}
-			<div class="absolute inset-0 -z-11">
+			<div class="md:hidden absolute inset-0 -z-11">
+				{% include '@Components/Common/_image.twig' with {
+						model: mobileBackgroundImage,
+						class: 'h-full w-full object-cover object-center',
+						size: 'small'
+					} only %}
+			</div>
+			<div class="hidden md:block absolute inset-0 -z-11">
 				{% include '@Components/Common/_image.twig' with {
 					model: backgroundImage,
 					class: 'h-full w-full object-cover object-center',
@@ -113,5 +121,5 @@
 	</section>
 	<!-- End Hero -->
 
-	{# {% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %} #}
+	{% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %}
 </flynt-component>

@@ -11,7 +11,7 @@ add_filter('Flynt/addComponentData?name=PageFeature', function (array $data): ar
     $breadcrumbs = Breadcrumbs::get();
     $featuresLink = [
         'label' => __('Features', 'flynt'),
-        'url' => '/features',
+        'url' => '/features/',
         'icon' => null,
         'isCurrent' => false,
     ];
