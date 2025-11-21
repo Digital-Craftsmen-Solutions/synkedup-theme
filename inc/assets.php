@@ -49,21 +49,21 @@ Options::addGlobal('Scripts', [
         'name' => 'headerScripts',
         'type' => 'textarea',
         'rows' => 5,
-        'new_lines' => 'wpautop',
+        'new_lines' => ''
     ],
     [
         'label' => __('Body Scripts', 'flynt'),
         'name' => 'bodyScripts',
         'type' => 'textarea',
         'rows' => 5,
-        'new_lines' => 'wpautop',
+        'new_lines' => ''
     ],
     [
         'label' => __('Footer Scripts', 'flynt'),
         'name' => 'footerScripts',
         'type' => 'textarea',
         'rows' => 5,
-        'new_lines' => 'wpautop',
+        'new_lines' => ''
     ],
 ]);
 
@@ -87,19 +87,22 @@ add_action('wp_enqueue_scripts', function () {
 add_filter('gform_enable_legacy_markup', '__return_true');
 
 add_action('wp_footer', function () {
-    if ($footer_scripts = get_field('footer_scripts', 'options')) {
-        echo $footer_scripts;
+    $footerScripts = Options::getGlobal('Scripts', 'footerScripts');
+    if (!empty($footerScripts)) {
+        echo $footerScripts;
     }
 }, 10);
 
 add_action('wp_head', function () {
-    if ($header_scripts = get_field('header_scripts', 'options')) {
-        echo $header_scripts;
+    $headerScripts = Options::getGlobal('Scripts', 'headerScripts');
+    if (!empty($headerScripts)) {
+        echo $headerScripts;
     }
 }, 10);
 
 add_action('wp_body_open', function () {
-    if ($body_scripts = get_field('body_scripts', 'options')) {
-        echo $body_scripts;
+    $bodyScripts = Options::getGlobal('Scripts', 'bodyScripts');
+    if (!empty($bodyScripts)) {
+        echo $bodyScripts;
     }
 }, 10);
