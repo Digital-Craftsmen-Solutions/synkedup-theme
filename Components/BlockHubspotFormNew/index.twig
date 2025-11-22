@@ -6,9 +6,9 @@
 {% set isTransparent = options.transparent ?? false %}
 
 <flynt-component name="BlockHubspotFormNew" load:on="visible">
-{% if formId %}
-<div class="{{ isTransparent ? '' : 'bg-white border border-border-card' }} rounded-2xl md:rounded-3xl p-6 md:p-8">
-  <div class="hs-form-html" data-region="na1" data-form-id="{{ formId|e('html_attr') }}" data-portal-id="{{ portalId|e('html_attr') }}" data-redirect-rules='{{ redirectRules|json_encode|e('html_attr') }}' {{ isRaw ? 'data-raw' : '' }}></div>
-</div>
-{% endif %}
+	{% if formId %}
+		<div class="{{ isTransparent ? '' : 'bg-white border border-border-card' }} rounded-2xl md:rounded-3xl p-2">
+			<div class="hs-form-html" data-region="na1" data-form-id="{{ formId|e('html_attr') }}" data-portal-id="{{ portalId|e('html_attr') }}" data-redirect-rules='{{ redirectRules|json_encode|e('html_attr') }}' {{ isRaw ? 'data-raw' : '' }}></div>
+		</div>
+	{% endif %}
 </flynt-component>

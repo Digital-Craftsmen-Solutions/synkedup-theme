@@ -22,6 +22,7 @@ add_filter('Flynt/addComponentData?name=SectionFeatureBlock', function (array $d
                 'secondaryButton' => $data['ctaButtons']['secondaryButton']
             ] : null,
             'gravityForm' => $data['actionType'] == 'form' ? $data['gravityForm'] : null,
+            'reusable' => $data['actionType'] == 'reusable' ? $data['reusable'] : null,
         ],
         'quote' => ($data['showQuote'] && !empty($data['quote'])) ? $data['quote'] : null,
         'image' => $data['mediaType'] === 'image' ? $data['image'] : null,
@@ -64,7 +65,7 @@ function getACFLayout(): array
             FieldVariables\getHeading(),
             FieldVariables\getFeatures(),
             FieldVariables\getMedia($default = 'image'),
-            FieldVariables\getAction(),
+            FieldVariables\getAction(['includeReusable' => true]),
             [
                 'label' => __('Show Bottom Quote', 'flynt'),
                 'name' => 'showQuote',

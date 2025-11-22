@@ -558,7 +558,7 @@ flynt-component.sand[data-theme='light'] {
         @apply block absolute left-0 right-0 w-full -z-10;
         height: $edge-height;
         content: '';
-        background: url('./images/bg-tear.png') repeat-x center;
+        background: url('./images/bg-tear1.svg') repeat-x center;
         background-size: cover;
 
         @media (min-width: $tablet) {
@@ -607,6 +607,27 @@ flynt-component.sand[data-theme='light'] {
           right: 0;
           bottom: 0;
           background-image: url('./images/arc-bg.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          z-index: -9;
+          pointer-events: none;
+        }
+      }
+    }
+
+    .arc-round {
+      position: relative;
+
+      @media (min-width: $tablet) {
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 70%;
+          right: 0;
+          bottom: 0;
+          background-image: url('./images/arc-round-bg.svg');
           background-repeat: no-repeat;
           background-position: center;
           background-size: cover;

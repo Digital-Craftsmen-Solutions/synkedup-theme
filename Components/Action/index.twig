@@ -7,7 +7,7 @@
 {% set align = options.align ?? 'center' %}
 
 {% if actionType != 'none' %}
-	<div class="gap-3 flex flex-col md:flex-row justify-start md:justify-center items-center {{align == 'left' ? 'md:justify-start'}}" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
+	<div class="gap-3 flex flex-col md:flex-row justify-start md:justify-center items-center w-full {{align == 'left' ? 'md:justify-start'}}" {{ options.theme ? 'data-theme="' ~ options.theme ~ '"' }}>
 		{% if actionType == 'buttons' %}
 			{% if ctaButtons.primaryButton %}
 				{% include '@Components/Button/index.twig' with { model: ctaButtons.primaryButton } only %}

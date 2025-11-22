@@ -607,6 +607,14 @@ function getIconChoices($icons = []): array
             'team',
             'support',
             'search',
+            'sprout',
+            'notebook',
+            'toolbox',
+            'blocks',
+            'newspaper',
+            'question',
+            'phone',
+            'mic'
         ];
     }
 
