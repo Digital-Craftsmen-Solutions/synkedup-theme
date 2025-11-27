@@ -20,6 +20,7 @@
 {% set display = options.display ?? 'full' %}
 {% set imageAlign = options.imageAlign ?? 'bottom' %}
 {% set textAlign = options.textAlign ?? 'default' %}
+{% set columnSplit = options.columnSplit ?? 'default' %}
 {% set hasExtra = extraItems and extraItems|length > 0 %}
 
 <flynt-component
@@ -52,7 +53,7 @@
 			<div
 				class="{{display == 'full' ? '' : 'grid md:grid-cols-12 gap-6 md:gap-8'}}">
 				{# Content #}
-				<div class="flex flex-col justify-center gap-6 md:gap-14 py-6 md:py-12 lg:py-18 xl:py-24 {{display == 'full' ? '' : 'md:col-span-8 mb-4'}}">
+				<div class="flex flex-col justify-center gap-6 md:gap-14 py-6 md:py-12 lg:py-18 xl:py-24 {{display == 'full' ? '' : (columnSplit == '50-50' ? 'md:col-span-6 mb-4' : 'md:col-span-8 mb-4')}}">
 					<div class="max-w-4xl mx-auto flex flex-col justify-center gap-6 md:gap-8 my-10 md:my-14 {{display == 'full' ? ' items-center'}}">
 						{% if breadcrumbs %}
 							{% include '@Components/Breadcrumbs/index.twig' with { model: breadcrumbs } only %}
@@ -103,7 +104,7 @@
 				{% endif %}
 
 				{% if mediaType != 'none' and mediaType != 'image'%}
-					<div class="block relative isolate overflow-hidden md:col-span-4  {{display == 'full' ? 'mb-10' : 'mb-10 md:mt-10'}}  {{imageAlign == 'bottom' ? 'mb-0!' : ''}}">
+					<div class="block relative isolate overflow-hidden {{columnSplit == '50-50' ? 'md:col-span-6' : 'md:col-span-4'}}  {{display == 'full' ? 'mb-10' : 'mb-10 md:mt-10'}}  {{imageAlign == 'top' ? ' md:flex items-start' : imageAlign == 'center' ? ' md:flex items-center' : ' md:flex items-end'}}">
 						<div class="flex justify-center items-center">
 							{% include '@Components/Common/_media.twig' with { model: {
 								gravityForm: gravityForm,
