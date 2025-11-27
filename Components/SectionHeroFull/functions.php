@@ -239,6 +239,17 @@ function getACFLayout(): array
                         'allow_null' => 0,
                     ],
                     [
+                        'label' => __('Column Split', 'flynt'),
+                        'name' => 'columnSplit',
+                        'type' => 'button_group',
+                        'choices' => [
+                            'default' => __('Default', 'flynt'),
+                            '50-50' => __('50/50', 'flynt'),
+                        ],
+                        'default_value' => 'default',
+                        'allow_null' => 0,
+                    ],
+                    [
                         'label' => __('Show Breadcrumbs?', 'flynt'),
                         'name' => 'showBreadcrumbs',
                         'type' => 'true_false',
