@@ -6,7 +6,7 @@
 {% set isTransparent = options.inline ?? false %}
 
 <flynt-component name="BlockHubspotFormOld" load:on="visible">
-	<div class="blockHubspotForm {{ isTransparent ? '' : 'bg-white border border-border-card' }} rounded-2xl md:rounded-3xl p-2">
+	<div class="blockHubspotForm {{ isTransparent ? 'p-2' : 'bg-white border border-border-card p-6 md:p-8' }} rounded-2xl md:rounded-3xl ">
 		<div class="blockHubspotForm__container js-hubspotForm" data-portal-id="{{ portalId }}" data-form-id="{{ formId }}" data-redirect-rules='{{ redirectRules|json_encode|e('html_attr') }}' {{ isRaw ? 'data-raw' : '' }}></div>
 	</div>
 </flynt-component>

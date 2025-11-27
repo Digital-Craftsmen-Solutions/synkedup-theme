@@ -561,8 +561,8 @@ flynt-component.sand[data-theme='light'] {
         background: url('./images/bg-tear1.svg') repeat-x center;
         background-size: cover;
 
-        @media (min-width: $tablet) {
-          // background: url('./images/bg-tear.png') repeat-x center;
+        @media (min-width: $desktop) {
+          background-size: auto;
         }
       }
 
