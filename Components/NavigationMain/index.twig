@@ -1,6 +1,8 @@
 <flynt-component load:on="idle" name="NavigationMain">
-	{% include 'Partials/_topbar.twig' with {'options': options} only %}
-	<div id="NavigationMain" class="relative flex flex-wrap lg:justify-start lg:flex-nowrap z-50 w-full py-4 lg:py-6 bg-dark [.collapse-open]:bg-dark-blue lg:[.collapse-open]:bg-dark transition-colors">
+	{% if not useSlim %}
+		{% include 'Partials/_topbar.twig' with {'options': options} only %}
+	{% endif %}
+	<div id="NavigationMain" class="relative flex flex-wrap lg:justify-start lg:flex-nowrap z-50 w-full {{useSlim ? 'pt-4 pb-0' : 'py-4 lg:py-6'}} bg-dark [.collapse-open]:bg-dark-blue lg:[.collapse-open]:bg-dark transition-colors">
 		<nav aria-label="{{ labels.ariaLabel|e }}" class="max-w-7xl w-full flex flex-wrap lg:grid lg:grid-cols-12 basis-full items-center px-4 md:px-6 lg:px-8 mx-auto gap-4 sm:gap-0">
 			<div class="lg:col-span-2 flex items-center">
 				{% include 'Partials/_logo.twig' with {'logo': logo, 'site': site} only %}
@@ -8,28 +10,30 @@
 			</div>
 
 			<!-- Button Group -->
-			<div class="flex items-center gap-x-1 lg:gap-x-2 ms-auto lg:ps-6 lg:order-3 lg:col-span-2">
-				{% set secondaryButton = options.secondaryButton ?? null %}
-				{% if secondaryButton and secondaryButton.title and secondaryButton.url %}
-					<a type="button" class="hidden sm:inline-flex py-2 px-4 items-center gap-x-2 text-sm  text-nowrap rounded-xl border border-transparent bg-light text-heading hover:text-primary focus:text-primary transition disabled:opacity-50 disabled:pointer-events-none" href="{{ secondaryButton.url|e('esc_url') }}" target="{{secondaryButton.target}}">
-						{{secondaryButton.title}}
-					</a>
-				{% endif %}
-				{% set ctaButton = options.ctaButton ?? null %}
-				{% if ctaButton and ctaButton.title and ctaButton.url %}
-					<a type="button" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm  text-nowrap rounded-xl border border-transparent bg-primary text-white hover:bg-primary-900 focus:bg-primary-900 transition disabled:opacity-50 disabled:pointer-events-none" href="{{ ctaButton.url|e('esc_url') }}" target="{{ctaButton.target}}">
-						{{ctaButton.title}}
-					</a>
-				{% endif %}
-				{% if menu and not useSlim %}
-					<div class="lg:hidden relative left-2">
-						<button type="button" class="hs-collapse-toggle size-9.5 flex justify-center items-center text-sm font-semibold rounded-xl text-white hover:text-gray-300 focus:outline-hidden focus:text-gray-300 disabled:opacity-50 disabled:pointer-events-none " id="hs-main-megamenu-collapse" aria-expanded="false" aria-controls="hs-main-megamenu" aria-label="Toggle navigation" data-hs-collapse="#hs-main-megamenu">
-							{% include '@Components/Common/_icon.twig' with { name: 'menu', ariaLabel: 'Menu Icon', class: 'hs-collapse-open:hidden shrink-0 size-5' } %}
-							{% include '@Components/Common/_icon.twig' with { name: 'close', ariaLabel: 'Close Icon', class: 'hs-collapse-open:block hidden shrink-0 size-5' } %}
-						</button>
-					</div>
-				{% endif %}
-			</div>
+			{% if not useSlim %}
+				<div class="flex items-center gap-x-1 lg:gap-x-2 ms-auto lg:ps-6 lg:order-3 lg:col-span-2">
+					{% set secondaryButton = options.secondaryButton ?? null %}
+					{% if secondaryButton and secondaryButton.title and secondaryButton.url %}
+						<a type="button" class="hidden sm:inline-flex py-2 px-4 items-center gap-x-2 text-sm  text-nowrap rounded-xl border border-transparent bg-light text-heading hover:text-primary focus:text-primary transition disabled:opacity-50 disabled:pointer-events-none" href="{{ secondaryButton.url|e('esc_url') }}" target="{{secondaryButton.target}}">
+							{{secondaryButton.title}}
+						</a>
+					{% endif %}
+					{% set ctaButton = options.ctaButton ?? null %}
+					{% if ctaButton and ctaButton.title and ctaButton.url %}
+						<a type="button" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm  text-nowrap rounded-xl border border-transparent bg-primary text-white hover:bg-primary-900 focus:bg-primary-900 transition disabled:opacity-50 disabled:pointer-events-none" href="{{ ctaButton.url|e('esc_url') }}" target="{{ctaButton.target}}">
+							{{ctaButton.title}}
+						</a>
+					{% endif %}
+					{% if menu and not useSlim %}
+						<div class="lg:hidden relative left-2">
+							<button type="button" class="hs-collapse-toggle size-9.5 flex justify-center items-center text-sm font-semibold rounded-xl text-white hover:text-gray-300 focus:outline-hidden focus:text-gray-300 disabled:opacity-50 disabled:pointer-events-none " id="hs-main-megamenu-collapse" aria-expanded="false" aria-controls="hs-main-megamenu" aria-label="Toggle navigation" data-hs-collapse="#hs-main-megamenu">
+								{% include '@Components/Common/_icon.twig' with { name: 'menu', ariaLabel: 'Menu Icon', class: 'hs-collapse-open:hidden shrink-0 size-5' } %}
+								{% include '@Components/Common/_icon.twig' with { name: 'close', ariaLabel: 'Close Icon', class: 'hs-collapse-open:block hidden shrink-0 size-5' } %}
+							</button>
+						</div>
+					{% endif %}
+				</div>
+			{% endif %}
 			<!-- End Button Group -->
 
 			<!-- Collapse -->
