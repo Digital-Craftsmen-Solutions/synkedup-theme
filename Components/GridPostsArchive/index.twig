@@ -1,6 +1,6 @@
 {% set num = posts|length %}
+{% set options = options is defined ? options : model.options %}
 
-{# {% include '@Components/Common/_json.twig' with {value: model, varName: 'model'} %} #}
 
 <flynt-component name="GridPostsArchive" load:on="visible" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
 	<section class="tw-section tw-section-gap flex flex-col gap-8 lg:gap-12">

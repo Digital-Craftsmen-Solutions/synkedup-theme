@@ -63,6 +63,10 @@ add_filter('Flynt/addComponentData?name=GridPostsArchive', function (array $data
         $data['description'] = get_the_archive_description();
     }
 
+    $data['options'] = [
+        'theme' => 'light',
+    ];
+
     return $data;
 });
 
