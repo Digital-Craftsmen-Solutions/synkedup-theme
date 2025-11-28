@@ -64,9 +64,3 @@ function registerSchemaGenerator(string $postType, string $templatePath): void
         update_post_meta($postId, 'json_ld', $jsonLd);
     }, 10, 3);
 }
-
-// Register schema generator for default WordPress post type
-registerSchemaGenerator(
-    'post',
-    'Components/Schema/Partials/_post.twig'
-);

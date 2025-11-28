@@ -4,6 +4,11 @@ namespace Flynt\Components\PageBlog;
 
 use Timber\Timber;
 
+\Flynt\SchemaGenerator\registerSchemaGenerator(
+    'post',
+    'Components/Schema/Partials/_post.twig'
+);
+
 add_filter('Flynt/addComponentData?name=PageBlog', function (array $data): array {
     $post = Timber::get_post();
     $author = $post->author();
