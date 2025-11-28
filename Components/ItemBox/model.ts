@@ -6,6 +6,10 @@ export type ItemBoxModel = {
   image?: ImageModel;
   figure?: string;
   title?: string;
+  link?: {
+    url: string;
+    target?: "_self" | "_blank";
+  };
   description?: string;
   class?: string;
   options?: {

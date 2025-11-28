@@ -683,3 +683,7 @@ flynt-component.sand[data-theme='light'] {
     background: transparent;
   }
 }
+
+.author-thumbnail {
+  @apply rounded-full max-w-[96px];
+}

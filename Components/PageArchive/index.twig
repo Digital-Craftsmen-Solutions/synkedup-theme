@@ -1,0 +1,13 @@
+{% set hero = model.hero %}
+
+{% include '@Components/Common/_json.twig' with {value: hero, varName: 'hero'} %}
+
+{% if not post.meta('pageComponents')|length %}
+	{% include '@Components/SectionHeroFull/index.twig' with {model: hero, options: {theme: 'dark', display: 'full', textAlign: 'center', imageAlign: 'top'}} %}
+{% endif %}
+
+{% for component in post.meta('pageComponents') %}
+	{{ renderComponent(component) }}
+{% endfor %}
+{{ renderComponent('GridPostsArchive', {posts: posts}) }}
+{{ renderComponent('BlogPostFooter') }}

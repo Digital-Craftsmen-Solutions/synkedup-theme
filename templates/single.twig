@@ -3,59 +3,6 @@
 
 {% block content %}
 
-	{% include '@Components/SectionHeroFull/index.twig' with {model: {
-		backgroundImage: post.thumbnail,
-		heading: {
-			before: post.title,
-			description: post.excerpt.read_more(false)
-		},
-		extraItems: {
-			items: [
-				{
-					type: 'image',
-					image: {
-						src: post.author.avatar({size: 96}),
-						alt: post.author.name
-					},
-					title: post.author.name,
-					description: post.author.description
-				},
-				{
-					title: 'Last Updated',
-					description: post.modified_date('F j, Y')
-				}
-			]
-		}
-	}, options: {theme: 'dark', display: 'full', textAlign: 'center'}} %}
+	{{ renderComponent('PageBlog') }}
 
-	<article>
-		<flynt-component data-theme="light" class="edge sand bg-shade dark:bg-dark">
-			<section class="tw-section tw-section-gap flex flex-col gap-8 lg:gap-12">
-				<div class="max-w-5xl mx-auto">
-					<div class="text-text dark:text-text-dark tw-prose">
-						{{ post.content }}
-					</div>
-				</div>
-			</section>
-		</flynt-component>
-	</article>
-
-	{{ renderComponent('SectionCarouselCards', {
-      taxonomies: post.categories(), 
-      heading: {
-        'before': 'Related Articles',
-        'type': 'h3',
-      }, 
-      actionType: 'buttons',
-      ctaButtons: {
-        primaryButton: null,
-        secondaryButton: {
-          title: 'View All',
-          url: '/blog'
-        }
-      },
-      'options': {'theme': 'dark', display: 'imageOverlay' } }) 
-    }}
-
-	{{ renderComponent('BlogPostFooter', {post: post}) }}
 {% endblock %}

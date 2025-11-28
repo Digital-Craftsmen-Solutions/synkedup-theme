@@ -4,6 +4,7 @@
 {% set figure = model.figure %}
 {% set type = model.type %}
 {% set description = model.description %}
+{% set link = model.link %}
 {% set options = options is defined ? options : model.options %}
 
 <div {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="flex flex-col {{ options.align == 'center' ? 'items-center text-center' : 'items-start' }} gap-1 md:gap-4 mx-auto w-full">
@@ -24,7 +25,15 @@
 			<div class="font-medium {{title ? 'text-primary dark:text-primary' : 'text-heading dark:text-white'}} min-6-h md:min-h-8 text-2xl md:text-3xl">{{figure}}</div>
 		{% endif %}
 		{% if title %}
-			<div class="text-heading font-medium dark:text-white text-lg">{{title}}</div>
+			<div class="text-heading font-medium dark:text-white text-lg">
+				{% if link %}
+					<a href="{{ link|e('esc_url') }}" target="{{ link.target|default('_self')|e }}" class="text-inherit hover:underline">
+						{{ title }}
+					</a>
+				{% else %}
+					{{ title }}
+				{% endif %}
+			</div>
 		{% endif %}
 		{% if description %}
 			<p class="text-text dark:text-text-dark">{{description}}</p>

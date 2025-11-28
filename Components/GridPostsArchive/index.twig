@@ -5,16 +5,6 @@
 <flynt-component name="GridPostsArchive" load:on="visible" {{ options.theme ? ' data-theme="' ~ options.theme ~ '"' }} class="edge sand bg-shade dark:bg-dark">
 	<section class="tw-section tw-section-gap flex flex-col gap-8 lg:gap-12">
 
-		{% set html = isHome ? preContentHtml : description %}
-		{% if not isHome %}
-			<h1 class="hidden">Blog</h1>
-			{% include '@Components/Heading/index.twig' with { model: {
-				before: title,
-				type: 'h2',
-				description: html,
-			}, options: options } only %}
-		{% endif %}
-
 
 		<div class="flex flex-col gap-4 justify-between">
 			{% if terms %}

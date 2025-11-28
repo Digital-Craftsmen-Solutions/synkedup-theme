@@ -69,7 +69,7 @@
 								{% include '@Components/Common/_image.twig' with {
 									model: mobileImage,
 									size: 'small',
-									class: 'max-w-sm'
+									class: 'max-w-sm ' ~ mobileImage.class
 								} only %}
 							</div>
 							{% if display == 'full' %}
@@ -77,7 +77,7 @@
 									{% include '@Components/Common/_image.twig' with {
 									model: image,
 									size: 'medium',
-									class: 'max-w-md'
+									class: 'max-w-md ' ~ image.class
 								} only %}
 								</div>
 							{% endif %}

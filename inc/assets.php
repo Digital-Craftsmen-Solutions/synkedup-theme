@@ -107,3 +107,4 @@ add_action('wp_body_open', function () {
         echo $bodyScripts;
     }
 }, 10);
+
