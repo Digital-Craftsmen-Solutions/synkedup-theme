@@ -7,6 +7,12 @@ use Flynt\Components;
 use Flynt\Utils\Breadcrumbs;
 use Flynt\Utils\Options;
 
+// Register schema generator for partner post type
+\Flynt\SchemaGenerator\registerSchemaGenerator(
+    'partner',
+    'Components/Schema/Partials/_partner.twig'
+);
+
 add_filter('Flynt/addComponentData?name=PagePartner', function (array $data): array {
 
   $hero = [

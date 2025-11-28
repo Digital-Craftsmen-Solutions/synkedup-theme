@@ -1,0 +1,128 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "{{ PAGE_URL }}",
+      "url": "{{ PAGE_URL }}",
+      "name": "{{ PAGE_TITLE }}",
+      "description": "{{ PAGE_DESCRIPTION }}",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://synkedup.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://synkedup.com/#software"
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "@id": "{{ PAGE_URL }}#breadcrumb"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://synkedup.com/#software",
+      "name": "SynkedUP",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Landscape Business Management Software",
+      "operatingSystem": "Web, iOS, Android",
+      "offers": {
+        "@type": "Offer",
+        "price": "399",
+        "priceCurrency": "USD",
+        "priceValidUntil": "2025-12-31",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "188",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "featureList": [
+        "{{ PAGE_TITLE }}",
+        "Labor Rate Calculator",
+        "Overhead Recovery",
+        "Profit Margin Planning",
+        "Expense Tracking",
+        "Automatic Pricing Updates"
+      ],
+      "screenshot": "{{ FEATURE_IMAGE }}",
+      "softwareVersion": "2025",
+      "provider": {
+        "@type": "Organization",
+        "@id": "https://synkedup.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://synkedup.com/#organization",
+      "name": "SynkedUP",
+      "url": "https://synkedup.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://synkedup.com/wp-content/themes/synkedup-theme/dist/assets/logo-light-CpliuxoQ.svg",
+        "width": 112,
+        "height": 32
+      },
+      "description": "Landscape business management software built for contractors, by contractors. We help landscape contractors price their jobs profitably. Estimate, win, and track jobs with confidence.",
+      "foundingDate": "2020",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "8583 Woodbury Pike",
+        "addressLocality": "Hollidaysburg",
+        "addressRegion": "PA",
+        "postalCode": "16648",
+        "addressCountry": "US"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-814-383-1900",
+        "contactType": "customer service"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/synkedup/",
+        "https://www.facebook.com/synkedup/",
+        "https://www.instagram.com/synkedup/",
+        "https://www.youtube.com/@synkedup"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{ PAGE_URL }}#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://synkedup.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Features",
+          "item": "https://synkedup.com/features/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "{{ PAGE_TITLE }}",
+          "item": "{{ PAGE_URL }}"
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://synkedup.com/#website",
+      "url": "https://synkedup.com",
+      "name": "SynkedUP",
+      "description": "Landscape Business Management Software",
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://synkedup.com/#organization"
+      }
+    }
+  ]
+}

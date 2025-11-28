@@ -7,6 +7,12 @@ use Flynt\Components;
 use Flynt\Utils\Breadcrumbs;
 use Flynt\Utils\Options;
 
+// Register schema generator for feature post type
+\Flynt\SchemaGenerator\registerSchemaGenerator(
+    'feature',
+    'Components/Schema/Partials/_feature.twig'
+);
+
 add_filter('Flynt/addComponentData?name=PageFeature', function (array $data): array {
     $breadcrumbs = Breadcrumbs::get();
     $featuresLink = [

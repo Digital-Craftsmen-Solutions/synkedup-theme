@@ -33,7 +33,7 @@ add_action('init', function (): void {
 
   $args = [
     'labels' => $labels,
-    'supports' => ['title', 'revisions'],
+    'supports' => ['title', 'excerpt', 'thumbnail', 'revisions'],
     'hierarchical' => false,
     'capability_type' => 'post',
     'public' => true,

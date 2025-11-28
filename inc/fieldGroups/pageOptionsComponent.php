@@ -34,6 +34,13 @@ add_action('init', function () {
         [
           'param' => 'post_type',
           'operator' => '==',
+          'value' => 'post',
+        ],
+      ],
+      [
+        [
+          'param' => 'post_type',
+          'operator' => '==',
           'value' => 'feature',
         ],
       ],

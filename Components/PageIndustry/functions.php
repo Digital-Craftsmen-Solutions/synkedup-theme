@@ -7,6 +7,12 @@ use Flynt\Components;
 use Flynt\Utils\Breadcrumbs;
 use Flynt\Utils\Options;
 
+// Register schema generator for industry post type
+\Flynt\SchemaGenerator\registerSchemaGenerator(
+    'industry',
+    'Components/Schema/Partials/_industry.twig'
+);
+
 add_filter('Flynt/addComponentData?name=PageIndustry', function (array $data): array {
   $breadcrumbs = Breadcrumbs::get();
   $industriesLink = [
