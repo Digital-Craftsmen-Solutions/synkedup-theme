@@ -3,10 +3,32 @@
 namespace Flynt\Components\PageBlog;
 
 use Timber\Timber;
+use Flynt\Utils\Breadcrumbs;
 
 add_filter('Flynt/addComponentData?name=PageBlog', function (array $data): array {
     $post = Timber::get_post();
     $author = $post->author();
+
+    $breadcrumbs = [
+        [
+            'label' => __('Home', 'flynt'),
+            'url' => home_url('/'),
+            'icon' => 'home',
+            'isCurrent' => is_front_page(),
+        ],
+        [
+            'label' => __('Blog', 'flynt'),
+            'url' => '/blog/',
+            'icon' => null,
+            'isCurrent' => false,
+        ],
+        [
+            'label' => $post->categories[0]->name,
+            'url' => '/blog/?category=' . $post->categories[0]->slug,
+            'icon' => null,
+            'isCurrent' => false,
+        ],
+    ];
 
 
     $hero = [
@@ -29,9 +51,12 @@ add_filter('Flynt/addComponentData?name=PageBlog', function (array $data): array
                 ],
                 [
                     'title' => 'Last Updated',
-                    'description' => $post->modified_date('F j, Y'),
+                    'description' => $post->date('F j, Y'),
                 ],
             ],
+        ],
+        'breadcrumbs' => [
+            'items' => $breadcrumbs,
         ],
     ];
 

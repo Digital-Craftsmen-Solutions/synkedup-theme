@@ -49,6 +49,7 @@ add_action('init', function (): void {
     'exclude_from_search' => false,
     'publicly_queryable' => true,
     'query_var' => true,
+    'show_in_sitemap' => true,
     'rewrite' => [
       'slug' => 'features',
       'with_front' => false,

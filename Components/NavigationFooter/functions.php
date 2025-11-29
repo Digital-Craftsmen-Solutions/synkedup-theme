@@ -33,14 +33,16 @@ add_filter('Flynt/addComponentData?name=NavigationFooter', function (array $data
         'alt' => 'App store logo',
     ];
     $data['app_store_site'] = [
-        'link' => 'https://apps.apple.com/us/app/synkedup/id1482613991'
+        'link' => 'https://apps.apple.com/us/app/synkedup/id1482613991',
+        'target' => '_blank',
     ];
     $data['play_store_logo'] = [
         'src' => Asset::requireUrl('assets/images/google-play-badge.png'),
         'alt' => 'Play store logo',
     ];
     $data['play_store_site'] = [
-        'link' => 'https://play.google.com/store/apps/details?id=com.tussey.synkedup&hl=en_US'
+        'link' => 'https://play.google.com/store/apps/details?id=com.tussey.synkedup&hl=en_US',
+        'target' => '_blank',
     ];
     return $data;
 });
