@@ -56,7 +56,7 @@ add_filter('Flynt/addComponentData?name=PageBlog', function (array $data): array
                 ],
                 [
                     'title' => 'Last Updated',
-                    'description' => $post->date('F j, Y'),
+                    'description' => $post->modified_date('F j, Y'),
                 ],
             ],
         ],
