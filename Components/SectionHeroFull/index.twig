@@ -105,7 +105,7 @@
 
 				{% if mediaType != 'none' and mediaType != 'image'%}
 					<div class="block relative isolate overflow-hidden {{columnSplit == '50-50' ? 'md:col-span-6' : 'md:col-span-4'}}  {{display == 'full' ? 'mb-10' : 'mb-10 md:mt-10'}}  {{imageAlign == 'top' ? ' md:flex items-start' : imageAlign == 'center' ? ' md:flex items-center' : ' md:flex items-end'}}">
-						<div class="flex justify-center items-center">
+						<div class="w-full flex justify-center items-center">
 							{% include '@Components/Common/_media.twig' with { model: {
 								gravityForm: gravityForm,
 								video: video,
