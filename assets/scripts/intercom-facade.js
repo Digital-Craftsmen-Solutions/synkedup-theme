@@ -1,5 +1,5 @@
 (function (settings) {
-  var appId = settings.app_id !== 'undefined' ? settings.app_id : '';
+  var appId = settings && settings.app_id !== 'undefined' ? settings.app_id : '';
   if (!appId) {
     return;
   }
