@@ -7,7 +7,7 @@
 
 
 {% if hubspotForm %}
-	<div class="{{inline ? 'inline-hubspot-form'}} {{altButton ? 'inline-hubspot-form-alt-button' }} {{align == 'left' ? 'hubspot-form-align-left' : ''}}">
+	<div class="{{inline ? 'inline-hubspot-form'}} {{altButton ? 'inline-hubspot-form-alt-button' }} {{align == 'left' ? 'hubspot-form-align-left' : 'w-full'}}">
 		{% if editor == 'new' %}
 			{% include '@Components/BlockHubspotFormNew/index.twig' with { model: hubspotForm, options: options } only %}
 		{% else %}
