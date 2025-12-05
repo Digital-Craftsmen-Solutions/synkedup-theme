@@ -16,7 +16,7 @@
 				{% include '@Components/Button/index.twig' with { model: ctaButtons.secondaryButton, type: 'secondary' } only %}
 			{% endif %}
 		{% elseif actionType == 'form' and gravityForm %}
-			{% include '@Components/Common/_form.twig' with { model: {gravityForm: gravityForm}, options: options } only %}
+			{{ renderComponent('BlockGravityForm', { gravityForm: gravityForm, options: options }) }}
 		{% elseif actionType == 'hubspot' and hubspotForm %}
 			{{ renderComponent('BlockHubspotForm', { hubspotForm: hubspotForm, options: {altButton: options.altMode, inline: options.inlineForm} }) }}
 		{% elseif actionType == 'reusable' and reusable %}

@@ -1,3 +1,13 @@
 <?php
 namespace Flynt\Components\BlockGravityForm;
-// Intentionally left minimal; Gravity Forms shortcode handled directly in Twig.
+
+add_filter('Flynt/addComponentData?name=BlockGravityForm', function (array $data): array {
+
+  $model = [
+    'gravityForm' => $data['gravityForm'],
+    'options' => $data['options'] ?? [],
+  ];
+
+
+  return ['model' => $model];
+});

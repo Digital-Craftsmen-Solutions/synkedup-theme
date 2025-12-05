@@ -20,7 +20,7 @@
   } only %}
 {% endif %}
 {% if gravityForm %}
-	{% include '@Components/Common/_form.twig' with { model: {gravityForm: gravityForm}, options: options } only %}
+	{{ renderComponent('BlockGravityForm', { gravityForm: gravityForm, options: options }) }}
 {% endif %}
 {% if hubspotForm %}
 	{{ renderComponent('BlockHubspotForm', { hubspotForm: hubspotForm , options: {inline: false} }) }}

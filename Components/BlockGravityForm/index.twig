@@ -2,10 +2,10 @@
 {% set options = model.options ?? options ?? {} %}
 {% set isTransparent = options.transparent ?? false %}
 {% if formId %}
-<flynt-component name="BlockGravityForm" load:on="visible">
-  <div class="gravityFormWrapper rounded-2xl md:rounded-3xl p-6 md:p-8 {{ isTransparent ? '' : 'bg-white border border-border-card' }} {{ options.inlineForm ? 'max-w-2xl single-inline-form' : '' }}">
-    {% set shortcode = '[gravityform id="' ~ formId ~ '" title="false" description="false" ajax="true"]' %}
-    {% apply shortcodes %}{{ shortcode }}{% endapply %}
-  </div>
-</flynt-component>
+	<flynt-component name="BlockGravityForm" load:on="visible">
+		<div class="gravityFormWrapper rounded-2xl md:rounded-3xl p-6 md:p-8 {{ isTransparent ? '' : 'bg-white border border-border-card' }} {{ options.inlineForm ? 'max-w-2xl single-inline-form' : '' }}">
+			{% set shortcode = '[gravityform id="' ~ formId ~ '" title="false" description="false" ajax="true"]' %}
+			{% apply shortcodes %}{{ shortcode }}{% endapply %}
+		</div>
+	</flynt-component>
 {% endif %}

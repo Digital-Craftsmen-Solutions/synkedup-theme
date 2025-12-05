@@ -15,6 +15,7 @@
     element.innerHTML = innerHTML;
     return element;
   }
+
   var bindIntercomEvents = function () {
     if (!window.Intercom || window.__intercomEventsBound) {
       return;
@@ -34,7 +35,8 @@
         event: "intercomClosed",
       });
     });
-  };
+  }
+
   var loadChat = function (open) {
     if (!window.Intercom) {
       var w = window;
@@ -63,6 +65,9 @@
       }
       l();
     }
+
+    bindIntercomEvents();
+
     if (open) {
       logo.style.opacity = '0';
       close.style.opacity = '1';
