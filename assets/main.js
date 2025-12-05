@@ -8,6 +8,7 @@ import '@preline/accordion'
 // import '@preline/tooltip'
 import '@preline/collapse'
 import '@/assets/scripts/toggle-class.js'
+import '@/assets/scripts/intercom-facade.js'
 
 import FlyntComponent from './scripts/FlyntComponent'
 
