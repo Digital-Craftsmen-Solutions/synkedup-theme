@@ -24,11 +24,6 @@ add_action('wp_enqueue_scripts', function (): void {
     wp_enqueue_style('Flynt/assets/main', Asset::requireUrl('assets/main.scss'), [], null);
     wp_enqueue_style('Flynt/assets/print', Asset::requireUrl('assets/print.scss'), [], null, 'print');
 
-    // wp_enqueue_script('jquery-new', "https://code.jquery.com/jquery-3.4.1.min.js", array(), '3.4.1');
-    $current_id = get_queried_object_id();
-    if (!is_front_page() && !is_home() && !is_page(26194)) {
-        wp_enqueue_script('jquery');
-    }
 });
 
 add_action('admin_enqueue_scripts', function (): void {
