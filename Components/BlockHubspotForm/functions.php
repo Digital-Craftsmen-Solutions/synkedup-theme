@@ -49,7 +49,10 @@ add_filter('Flynt/addComponentData?name=BlockHubspotForm', function ($data) {
                 'https://js.hsforms.net/forms/embed/developer/21666517.js',
                 [],
                 null,
-                true
+                [
+                    'in_footer' => true,
+                    'strategy' => 'defer'
+                ]
             );
             wp_enqueue_script('hubspot-forms-developer');
             $newLoaded = true;
@@ -61,7 +64,10 @@ add_filter('Flynt/addComponentData?name=BlockHubspotForm', function ($data) {
                 'https://js.hsforms.net/forms/embed/v2.js',
                 [],
                 null,
-                true
+                [
+                    'in_footer' => true,
+                    'strategy' => 'defer'
+                ]
             );
             wp_enqueue_script('hubspot-forms');
             $legacyLoaded = true;

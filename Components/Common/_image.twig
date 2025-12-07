@@ -12,6 +12,8 @@
 {% set alt = model.alt %}
 {% set width = model.width|default('768') %}
 {% set height = model.height|default('512') %}
+{% set isPriority = isPriority|default(false) %}
+{% set placeholder = placeholderImage(width, height, 'rgba(125, 125, 125, 0.1)') %}
 
 
 {% if size == 'small' %}
@@ -37,4 +39,4 @@
     src|resizeDynamic(640) ~ ' 640w' %}
 {% endif %}
 
-<img class="lazyload h-auto w-full object-cover object-center {{ class is defined ? ' ' ~ class : '' }}" src="{{ placeholderImage(width, height, 'rgba(125, 125, 125, 0.1)') }}" data-srcset="{{ data_srcset }}" data-sizes="auto" alt="{{ alt|e }}">
+<img class="{{isPriority ? '' : 'lazyload'}} h-auto w-full object-cover object-center {{ class is defined ? ' ' ~ class : '' }}" src="{{ isPriority ? src_main : placeholder }}" data-srcset="{{ data_srcset }}" data-sizes="auto" alt="{{ alt|e }}" {{ isPriority ? 'loading="eager" fetchpriority="high"' : '' }}>

@@ -22,23 +22,21 @@ export default function (el) {
     document.documentElement.style.scrollPaddingTop = `${scrollPaddingTop}px`
   }
 
-  setTimeout(() => {
+  document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('hs.collapse.init', () => {
+      const collapse = HSCollapse.getInstance('#hs-main-megamenu-collapse');
 
-    const collapse = HSCollapse.getInstance('#hs-main-megamenu-collapse', true)
-    if (!collapse) {
-      console.warn('Collapse not initialized yet')
-      return
-    }
-    if (collapse) {
+      if (!collapse) return;
+
       collapse.element.on('open', () => {
-        document.querySelector('#NavigationMain')?.classList.add('collapse-open')
+        document.querySelector('#NavigationMain')?.classList.add('collapse-open');
       });
 
       collapse.element.on('hide', () => {
-        document.querySelector('#NavigationMain')?.classList.remove('collapse-open')
+        document.querySelector('#NavigationMain')?.classList.remove('collapse-open');
       });
-    }
-  }, 1000);
+    });
+  });
 
   function initDoubleTapDropdown() {
     const triggers = refs.dropdownToggle

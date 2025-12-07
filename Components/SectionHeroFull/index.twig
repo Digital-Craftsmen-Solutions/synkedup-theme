@@ -37,14 +37,16 @@
 				{% include '@Components/Common/_image.twig' with {
 						model: mobileBackgroundImage,
 						class: 'h-full w-full object-cover object-center',
-						size: 'small'
+						size: 'small',
+						isPriority: heading.type == 'h1'
 					} only %}
 			</div>
 			<div class="hidden md:block absolute inset-0 -z-11">
 				{% include '@Components/Common/_image.twig' with {
 					model: backgroundImage,
 					class: 'h-full w-full object-cover object-center',
-					size: 'large'
+					size: 'large',
+					isPriority: heading.type == 'h1'
 				} only %}
 			</div>
 			<div class="absolute inset-0 bg-black/40 dark:bg-black/60 dark:bg-gradient-to-t to-30% from-black/90 to-transparent -z-10"></div>
@@ -69,7 +71,8 @@
 								{% include '@Components/Common/_image.twig' with {
 									model: mobileImage,
 									size: 'small',
-									class: 'max-w-sm ' ~ mobileImage.class
+									class: 'max-w-sm ' ~ mobileImage.class,
+									isPriority: heading.type == 'h1'
 								} only %}
 							</div>
 							{% if display == 'full' %}
@@ -77,7 +80,8 @@
 									{% include '@Components/Common/_image.twig' with {
 									model: image,
 									size: 'medium',
-									class: 'max-w-md ' ~ image.class
+									class: 'max-w-md ' ~ image.class,
+									isPriority: heading.type == 'h1'
 								} only %}
 								</div>
 							{% endif %}
