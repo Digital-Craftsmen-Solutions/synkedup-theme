@@ -13,6 +13,10 @@ use Flynt\Utils\Breadcrumbs;
 add_filter('Flynt/addComponentData?name=PageBlog', function (array $data): array {
     $post = Timber::get_post();
     $author = $post->author();
+    $metaDescription = get_post_meta($post->ID, 'rank_math_description', true);
+    if (empty($metaDescription)) {
+        $metaDescription = $post->excerpt->read_more(false);
+    }
 
     $breadcrumbs = [
         [
@@ -39,7 +43,7 @@ add_filter('Flynt/addComponentData?name=PageBlog', function (array $data): array
     $hero = [
         'heading' => [
             'before' => $post->title,
-            'description' => $post->excerpt->read_more(false),
+            'description' => $metaDescription,
         ],
         'backgroundImage' => $post->thumbnail, // or $post->thumbnail(['size' => 'full'])
         'extraItems' => [
