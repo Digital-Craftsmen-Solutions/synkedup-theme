@@ -1,7 +1,13 @@
 export default function (el) {
   
+  function hasHubSpot() {
+    return !!(window.hbspt && window.hbspt.forms && typeof window.hbspt.forms.create === 'function');
+  }
+
   function init() {
     var containers = document.querySelectorAll('.js-hubspotForm');
+    if (!containers.length || !hasHubSpot()) return;
+    
     for (var i = 0; i < containers.length; i++) {
       setupContainer(containers[i]);
     }
@@ -13,7 +19,6 @@ export default function (el) {
     var portalId = container.getAttribute('data-portal-id');
     var formId = container.getAttribute('data-form-id');
     if (!portalId || !formId) return;
-    if (!window.hbspt || !window.hbspt.forms) return;
 
     ensureId(container);
 
@@ -161,5 +166,23 @@ export default function (el) {
     }
   }
 
-  init()
+  function initWhenReady() {
+    if (!hasHubSpot()) {
+      var tries = 0, max = 100; // ~5s
+      var iv = setInterval(function () {
+        tries++;
+        if (hasHubSpot()) {
+          clearInterval(iv);
+          init();
+        } else if (tries >= max) {
+          clearInterval(iv);
+        }
+      }, 50);
+    } else {
+      init();
+    }
+  }
+
+  if (document.readyState === 'complete') initWhenReady();
+  else window.addEventListener('load', initWhenReady);
 }
