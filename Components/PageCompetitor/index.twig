@@ -5,15 +5,9 @@
 {% include '@Components/SectionHeroFull/index.twig' with {model: hero, options: {theme: 'dark', display: 'full', imageAlign: 'center', textAlign: 'center'}} %}
 
 <article>
-	<flynt-component data-theme="light" class="edge sand bg-shade dark:bg-dark">
-		<section class="tw-section tw-section-gap flex flex-col gap-8 lg:gap-12">
-			<div class="max-w-5xl mx-auto">
-				<div class="text-text dark:text-text-dark tw-prose">
-					{{ post.content }}
-				</div>
-			</div>
-		</section>
-	</flynt-component>
+	{% for component in content %}
+		{{ renderComponent(component) }}
+	{% endfor %}
 </article>
 
 {% for component in competitorBottomComponents %}
