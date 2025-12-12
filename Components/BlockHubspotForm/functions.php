@@ -51,7 +51,6 @@ add_filter('Flynt/addComponentData?name=BlockHubspotForm', function ($data) {
                 null,
                 [
                     'in_footer' => true,
-                    'strategy' => 'defer'
                 ]
             );
             wp_enqueue_script('hubspot-forms-developer');
@@ -66,7 +65,6 @@ add_filter('Flynt/addComponentData?name=BlockHubspotForm', function ($data) {
                 null,
                 [
                     'in_footer' => true,
-                    'strategy' => 'defer'
                 ]
             );
             wp_enqueue_script('hubspot-forms');
