@@ -12,7 +12,7 @@ namespace Flynt\CustomModifiedDate;
 add_action('add_meta_boxes', function (): void {
     add_meta_box(
         'custom_modified_date',
-        'Last Modified Date',
+        'Modified Date',
         __NAMESPACE__ . '\\renderMetaBox',
         'post',
         'side',
@@ -35,7 +35,7 @@ function renderMetaBox(\WP_Post $post): void
     $formattedDate = $datetime->format('Y-m-d\TH:i');
     
     echo '<div class="misc-pub-section">';
-    echo '<label for="custom_modified_date_input" style="font-weight: 600;">Modified Date:</label><br/>';
+    echo '<label for="custom_modified_date_input" style="font-weight: 600;">Last Modified Date:</label><br/>';
     echo '<input type="datetime-local" id="custom_modified_date_input" name="custom_modified_date" value="' . esc_attr($formattedDate) . '" style="width: 100%; margin-top: 5px;" />';
     echo '<p class="description" style="margin-top: 8px; margin-bottom: 0;">Override the automatic modified date.</p>';
     echo '</div>';
