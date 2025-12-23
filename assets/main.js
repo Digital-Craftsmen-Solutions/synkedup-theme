@@ -1,3 +1,4 @@
+window.$hsOverlayCollection = window.$hsOverlayCollection || [];
 
 import 'vite/modulepreload-polyfill'
 import '@preline/carousel'
@@ -5,7 +6,6 @@ import '@preline/dropdown'
 import '@preline/overlay'
 import '@preline/tabs'
 import '@preline/accordion'
-// import '@preline/tooltip'
 import '@preline/collapse'
 import '@/assets/scripts/toggle-class.js'
 import '@/assets/scripts/intercom-facade.js'
