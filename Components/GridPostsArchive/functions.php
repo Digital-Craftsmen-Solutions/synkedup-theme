@@ -76,5 +76,9 @@ add_action('pre_get_posts', function ($query) {
         if (isset($_GET['category'])) {
             $query->set('category_name', sanitize_text_field($_GET['category']));
         }
+        
+        // Default to sorting by modified date
+        $query->set('orderby', 'modified');
+        $query->set('order', 'DESC');
     }
 });

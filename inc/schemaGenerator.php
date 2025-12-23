@@ -17,6 +17,7 @@ use Timber\Timber;
  */
 function generateSchema(int $postId, string $templatePath): string
 {
+    $post = get_post($postId);
     $pageUrl = get_permalink($postId);
     $pageTitle = get_the_title($postId);
     $pageDescription = '';
@@ -35,6 +36,8 @@ function generateSchema(int $postId, string $templatePath): string
         'PAGE_TITLE' => $pageTitle,
         'PAGE_DESCRIPTION' => $pageDescription,
         'FEATURE_IMAGE' => $featuredImage,
+        'DATE_PUBLISHED' => get_the_date('Y-m-d', $postId),
+        'DATE_MODIFIED' => get_the_modified_date('Y-m-d', $postId),
     ];
     
     $context = apply_filters('Flynt/SchemaGenerator/context', $context, $postId);
@@ -64,3 +67,53 @@ function registerSchemaGenerator(string $postType, string $templatePath): void
         update_post_meta($postId, 'json_ld', $jsonLd);
     }, 10, 3);
 }
+
+/**
+ * Regenerate JSON-LD schema for all published posts
+ *
+ * @param string $postType The post type to regenerate schema for
+ * @param string $templatePath Path to the Twig template
+ * @return array Array with 'success' count and 'total' count
+ */
+function regenerateAllSchemas(string $postType, string $templatePath): array
+{
+    $args = [
+        'post_type' => $postType,
+        'post_status' => 'publish',
+        'posts_per_page' => -1,
+        'fields' => 'ids',
+    ];
+    
+    $postIds = get_posts($args);
+    $successCount = 0;
+    
+    foreach ($postIds as $postId) {
+        try {
+            $jsonLd = generateSchema($postId, $templatePath);
+            update_post_meta($postId, 'json_ld', $jsonLd);
+            $successCount++;
+        } catch (\Exception $e) {
+            error_log("Failed to generate schema for post {$postId}: " . $e->getMessage());
+        }
+    }
+    
+    return [
+        'success' => $successCount,
+        'total' => count($postIds),
+    ];
+}
+
+/**
+ * Run schema regeneration once on admin load
+ */
+// add_action('admin_init', function (): void {
+//     if (get_transient('schema_regeneration_completed')) {
+//         return;
+//     }
+    
+//     $result = regenerateAllSchemas('post', 'Components/Schema/Partials/_post.twig');
+    
+//     set_transient('schema_regeneration_completed', true, YEAR_IN_SECONDS);
+    
+//     error_log("Schema regeneration completed: {$result['success']} of {$result['total']} posts updated.");
+// });
