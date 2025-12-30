@@ -27,7 +27,7 @@ add_filter('Flynt/addComponentData?name=NavigationFooter', function (array $data
         'alt' => get_bloginfo('name')
     ];
     $data['copyright'] = '© 2025 SynkedUP';
-    $data['address'] = '8583 Woodbury Pike <br> Hollidaysburg PA 16648';
+    $data['address'] = '8583 Woodbury Pike, <br> Hollidaysburg PA 16648';
     $data['app_store_logo'] = [
         'src' => Asset::requireUrl('assets/images/app-store-badge.svg'),
         'alt' => 'App store logo',
