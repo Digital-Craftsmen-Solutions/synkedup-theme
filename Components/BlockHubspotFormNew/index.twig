@@ -7,7 +7,7 @@
 
 <flynt-component name="BlockHubspotFormNew" load:on="visible">
 	{% if formId %}
-		<div class="{{ isTransparent ? 'p-2' : 'bg-white border border-border-card p-6 md:p-8' }} rounded-2xl md:rounded-3xl ">
+		<div class="{{ isTransparent ? 'p-2' : 'bg-white border border-border-card p-0 md:p-0' }} rounded-2xl md:rounded-3xl ">
 			<div class="hs-form-html" data-region="na1" data-form-id="{{ formId|e('html_attr') }}" data-portal-id="{{ portalId|e('html_attr') }}" data-redirect-rules='{{ redirectRules|json_encode|e('html_attr') }}' {{ isRaw ? 'data-raw' : '' }}></div>
 		</div>
 	{% endif %}
