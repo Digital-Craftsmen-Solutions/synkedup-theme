@@ -83,7 +83,8 @@ export const WithBadgeAndExtraCost: StoryObj<CardPricingModel> = {
     labelMonth: 'month',
     labelYear: 'per year',
     period: 'month',
-    extraCost: '+ $10 setup fee',
+    extraCostMonth: '+ $10 setup fee',
+    extraCostYear: '+ $100 setup fee',
     badge: 'Popular',
     features: [
       { label: 'Unlimited Projects' },
@@ -117,7 +118,8 @@ export const CenterAligned: StoryObj<CardPricingModel> = {
     labelMonth: 'month',
     labelYear: 'per year',
     period: 'month',
-    extraCost: '+ $10 setup fee',
+    extraCostMonth: '+ $10 setup fee',
+    extraCostYear: '+ $100 setup fee',
     badge: 'Popular',
     features: [
       { label: 'Unlimited Projects' },

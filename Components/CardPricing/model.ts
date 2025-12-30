@@ -11,7 +11,8 @@ export type CardPricingModel = {
   labelYear: string;
   switchId?: string;
   period?: "month" | "year";
-  extraCost?: string;
+  extraCostMonth?: string;
+  extraCostYear?: string;
   actionButton?: ButtonModel;
   badge?: string;
   features: FeatureListModel;

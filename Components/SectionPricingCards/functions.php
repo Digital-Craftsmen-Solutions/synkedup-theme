@@ -23,7 +23,8 @@ add_filter('Flynt/addComponentData?name=SectionPricingCards', function (array $d
                 'description' => $card['description'],
                 'priceMonth' => $card['priceMonth'],
                 'priceYear' => $card['priceYear'],
-                'extraCost' => $card['extraCost'],
+                'extraCostMonth' => $card['extraCostMonth'],
+                'extraCostYear' => $card['extraCostYear'],
                 'badge' => $card['badge'],
                 'features' => $card['features'] ?: [],
                 'actionButton' => $card['action'],
@@ -108,17 +109,23 @@ function getACFLayout(): array
                         'wrapper' => ['width' => 25],
                         'required' => 1,
                     ],
-                    [
-                        'label' => __('Extra Cost', 'flynt'),
-                        'name' => 'extraCost',
-                        'type' => 'text',
-                        'wrapper' => ['width' => 50],
-                    ],
-                    [
+                                        [
                         'label' => __('Action Button', 'flynt'),
                         'name' => 'action',
                         'type' => 'link',
                         'layout' => 'block',
+                        'wrapper' => ['width' => 50],
+                    ],
+                    [
+                        'label' => __('Extra Cost Month', 'flynt'),
+                        'name' => 'extraCostMonth',
+                        'type' => 'text',
+                        'wrapper' => ['width' => 50],
+                    ],
+                    [
+                        'label' => __('Extra Cost Year', 'flynt'),
+                        'name' => 'extraCostYear',
+                        'type' => 'text',
                         'wrapper' => ['width' => 50],
                     ],
                     [

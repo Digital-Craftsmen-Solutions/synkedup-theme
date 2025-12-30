@@ -7,7 +7,8 @@
 {% set labelYear = model.labelYear %}
 {% set priceMonth = model.priceMonth %}
 {% set priceYear = model.priceYear %}
-{% set extraCost = model.extraCost %}
+{% set extraCostMonth = model.extraCostMonth %}
+{% set extraCostYear = model.extraCostYear %}
 {% set badge = model.badge %}
 {% set features = model.features %}
 {% set actionButton = model.actionButton %}
@@ -50,8 +51,11 @@
 			</span>
 		</div>
 
-		{% if extraCost %}
-			<p>{{extraCost}}</p>
+		{% if extraCostMonth or extraCostYear %}
+			<p>
+				<span class="hidden group-[.period-month]:inline">{{extraCostMonth}}</span>
+				<span class="hidden group-[.period-year]:inline">{{extraCostYear}}</span>
+			</p>
 		{% endif %}
 
 	</div>
