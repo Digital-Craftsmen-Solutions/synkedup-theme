@@ -15,6 +15,16 @@ use Flynt\Utils\Options;
 
 add_filter('Flynt/addComponentData?name=PagePartner', function (array $data): array {
 
+  $breadcrumbs = Breadcrumbs::get();
+  $partnersLink = [
+    'label' => __('Partners', 'flynt'),
+    'url' => '/partners/',
+    'icon' => null,
+    'isCurrent' => false,
+  ];
+
+  array_splice($breadcrumbs, 1, 0, [$partnersLink]);
+
   $hero = [
     'heading' => $data['hero']['heading'],
     'mediaType' => $data['hero']['mediaType'],
@@ -26,6 +36,9 @@ add_filter('Flynt/addComponentData?name=PagePartner', function (array $data): ar
         'primaryButton' => $data['hero']['ctaButtons']['primaryButton'],
         'secondaryButton' => $data['hero']['ctaButtons']['secondaryButton']
       ] : null,
+    ],
+    'breadcrumbs' => [
+      'items' => $breadcrumbs,
     ],
   ];
   $model = [
